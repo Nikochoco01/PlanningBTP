@@ -102,8 +102,8 @@ margin:0;
 padding:0;
 }
 .main-menu li:hover>a /* insert here for sub menu*/{
-color: var(--textColorWhite);
-background-color: var(--mainColor);
+    color: var(--textColorWhite);
+    background-color: var(--mainColor);
 }
 
 
@@ -114,3 +114,37 @@ background-color: var(--mainColor);
 .dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,
 .dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
 .dashboard-page nav.dashboard-menu ul li.active a */
+
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 600px) {    
+    .layout{
+        height: 100%;
+    }
+    
+    aside{
+        height: 100%;
+    }
+
+    .main-menu{
+        position: relative;
+        height: 100%;
+    }
+    
+    .main-menu ul{
+        height: 100%;
+        display: flex;
+        gap: 10%;
+    }
+
+    .main-menu li{
+        position: relative;
+    }
+
+    .main-menu li a:focus{
+        color: var(--textColorWhite);
+        background-color: var(--mainColor);
+    }
+}
