@@ -5,33 +5,39 @@
     --textColorWhite : #fff;
 }
 
-i {
-position: relative;
-display: table-cell;
-width: 60px;
-height: 36px;
-text-align: center;
-vertical-align: middle;
-font-size:30px;
+aside{
+    background-color: #000;
+    width: 14%;
+    height: 100%;
+}
+
+.main-menu > ul > li > a > i {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:30px;
 }
 
 .main-menu:hover,nav.main-menu.expanded {
-width:250px;
-overflow:visible;
+    width:250px;
+    overflow:visible;
 }
 
 .main-menu {
-background: var(--secondaryColor);
-border-right:2px solid var(--mainColor);
-position: absolute;
-overflow:hidden;
-height: 70%;
-width:60px;
-transition:width .05s linear;
-z-index:1000;
+    background: var(--secondaryColor);
+    border-right:2px solid var(--mainColor);
+    /* position: absolute; */
+    overflow:hidden;
+    height: 100%;
+    width:60px;
+    transition:width .05s linear;
+    z-index:1000;
 }
 
-.main-menu>ul {
+.main-menu > ul {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -44,7 +50,7 @@ display:block;
 width:250px;
 }
 
-.main-menu li>a {
+.main-menu li > a {
 position:relative;
 display:table;
 border-collapse:collapse;
@@ -73,12 +79,6 @@ vertical-align:middle;
 width:190px;
 }
 
-.main-menu>ul.logout {
-position:absolute;
-left:0;
-bottom:0;
-}
-
 .no-touch .scrollable.hover {
 overflow-y:hidden;
 }
@@ -101,11 +101,10 @@ outline:0;
 margin:0;
 padding:0;
 }
-.main-menu li:hover>a /* insert here for sub menu*/{
+.main-menu li:hover > a /* insert here for sub menu*/{
 color: var(--textColorWhite);
 background-color: var(--mainColor);
 }
-
 
 /* 
  need to insert this if we do a sub menu
