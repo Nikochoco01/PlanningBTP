@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <title> Profil </title>
+    
+    <title> Frais </title>
 </head>
 
 <body>
     <header>
-        <h1> Profil </h1>
+        <h1> Frais </h1>
 
         <div class="logZone">
             <img src="/img/defaultPP.png" alt="user picture" class="userPic" id="userPic">
@@ -87,23 +88,30 @@
         </aside>
 
         <main>
-            <nav>
-                <menu type="toolbar">
-                    <li> <a href="profilAdmPerso.html"> Personnel </a> </li>
-                    <li> <a href="profilAdmEmp.html"> Employés </a> </li>
-                </menu>
-            </nav>
+            
+            <div class="listeFrais" id="listeFrais"></div>
 
-            <section>
-                <a href="#"> <i class="icon-userAdd"></i> <span> Add user </span> </a>
-                <div>
-                    <i class="icon-search"></i>
-                    <input type="search" name="employee" id="employee">
-                </div>
-                
-                <div class="listeEmployé" id="listeEmployé"></div>
+            <a href="#"> <i> Scan </i> </a>
 
-            </section>
+            <form>
+                <p><span class="hour" id="hour"></span>:<span class="minutes" id="minutes"></span></p>
+
+                <label for="worksite"> Chantier </label>
+                <input type="search" name="worksite" id="worksite">
+
+                <label for="description"> Raison de la depence </label>
+                <input type="text" name="description" id="description">
+
+                <label for="price"> Montant </label>
+                <input type="number" name="price" id="price" min="0" step="0.01">
+            </form>
+<script>
+    const hour = document.getElementById("hour");
+    const min = document.getElementById("minutes");
+    const today = new Date();
+    hour.innerText = today.getHours();
+    min.innerText = today.getMinutes();
+</script>
         </main>
     </div>
 </body>
