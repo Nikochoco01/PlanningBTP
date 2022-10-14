@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li class="has-subnav">
-                        <a href="#">
+                        <a href="#" autofocus>
                             <i class="icon-user"></i>
                             <span class="nav-text">
                                 Profil
@@ -68,7 +68,7 @@
                     </li>
                     <li>
                     <a href="#">
-                        <i class="icon-truck"></i>
+                        <i class="icon-truck">T</i>
                             <span class="nav-text">
                                 Véhicule
                             </span>
@@ -76,7 +76,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <i class="icon-wrench"></i>
+                            <i class="icon-wrench">W</i>
                                 <span class="nav-text">
                                     Matériel
                                 </span>
@@ -87,16 +87,17 @@
         </aside>
 
         <main>
-            <img src="" alt="Profil Picture">
-            <p> Prénom NOM </p>
-            <p> Mail </p>
-            <p> Adresse postale </p>
-            <p> Post entreprise </p>
-            <p> Téléphone </p>
-            
-            <div class="listePermis" id="listePermis"></div>
-            
-            <a href="#"> <i> Save </i> Enregistrer </a>
+
+            <section>
+                <a href="#"> <i> Add Matériel</i> <span> Ajout Matériel </span> </a>
+                <div>
+                    <i class="icon-search"></i>
+                    <input type="text" name="material" id="material">
+                </div>
+                
+                <div class="listeMateriel" id="listeMateriel"></div>
+
+            </section>
         </main>
     </div>
 </body>

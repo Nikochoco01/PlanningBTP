@@ -5,7 +5,7 @@
     --textColorWhite : #fff;
 }
 
-i {
+.layout i {
 position: relative;
 display: table-cell;
 width: 60px;
@@ -136,7 +136,7 @@ padding:0;
     .main-menu ul{
         height: 100%;
         display: flex;
-        gap: 10%;
+        justify-content: space-around;
     }
 
     .main-menu li{
