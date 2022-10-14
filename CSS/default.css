@@ -1,6 +1,7 @@
 :root{
     --mainColor: #ED7D31;
     --secondaryColor: #FFC000;
+    --shadowColor: rgba(0 , 0 , 0 , 0.5);
     --textColorBlack: #000;
     --textColorWhite : #fff;
 }
@@ -47,7 +48,8 @@ header h1{
     gap: 5px;
     width: 10%;
     padding: 0.4%;
-    background-color: burlywood;
+    background-color: var(--mainColor);
+    box-shadow: 5px 0px 30px var(--shadowColor);
 }
 
 .logZone .userPic{
