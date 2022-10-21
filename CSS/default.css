@@ -118,19 +118,20 @@ header h1{
 .tabs{
     display: flex;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
     margin: 0;
     width: 90%;
+    height: 5%;
 }
 
-.tabs span{
+.tabs .buttonPlanning{
     text-align: center;
     background-color: var(--mainColor);
     padding: 10px;
     width: 20%;
 }
 
-.tabs span:hover{
+.tabs .buttonPlanning:hover{
     cursor: pointer;
     background-color: var(--secondaryColor);
     color: var(--mainColor);
@@ -140,4 +141,79 @@ header h1{
     border: 2px solid var(--textColorBlack);
     width: 90%;
     height: 90%;
+}
+
+.changeTypePlanning{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+/* Planning day view */
+
+
+.planningContent{
+    display: flex;
+    background-color: brown;
+    gap: 10px;
+    padding: 10px;
+    width: 60%;
+    height: 80%;
+}
+
+.day{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: cyan;
+    /* overflow-y: scroll; */
+    /* padding: 5px; */
+    gap: 10px;
+    width: 20%;
+    height: 100%;
+}
+
+/* .day::-webkit-scrollbar{
+    display: none;
+} */
+
+.day > p {
+    text-align: center;
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+
+/* Mission style */
+
+.mission{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: crimson;
+    border-radius: 20px;
+    gap: 10px;
+    width: 90%;
+    height: auto;
+}
+
+.employeeList{
+    background-color: aquamarine;
+    width: 90%;
+    height: 20%;
+}
+
+.vehiculeLit{
+    background-color: aquamarine;
+    width: 90%;
+    height: 20%;
+}
+
+.meterielList{
+    background-color: aquamarine;
+    width: 90%;
+    height: 20%;
 }

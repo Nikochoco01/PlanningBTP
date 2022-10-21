@@ -88,16 +88,37 @@
 
         <main class="planningMain">
                 <div class="tabs">
-                    <span data-tab-value="#tab_1" class=""> Employés </span>
-                    <span data-tab-value="#tab_2" class=""> Chantier </span>
-                    <span data-tab-value="#tab_3" class=""> Véhicules </span>
-                    <span data-tab-value="#tab_4" class=""> Matériel </span>
+                    <span data-tab-value="#tab_1" class="buttonPlanning"> Employés </span>
+                    <span data-tab-value="#tab_2" class="buttonPlanning"> Chantier </span>
+                    <span data-tab-value="#tab_3" class="buttonPlanning"> Véhicules </span>
+                    <span data-tab-value="#tab_4" class="buttonPlanning"> Matériel </span>
+
+                    <span data-tab-value="#tab_5" class="changeTypePlanning" id="changeTypePlanning" > <i class="icon-home"></i> </span>
                 </div>
 
                     <div class="tabs__tab active" id="tab_1" data-tab-info>
+                        <h2>Planning Employés</h2>
 
-                        <p>Welcome to GeeksforGeek.</p>
-              
+                        <div class="tabContent" id="dayView">
+                            <a href="#" id="addDay" > ajout jour </a>
+
+                            <div class="planningContent">
+                                <div class="day" id="day1">
+                                    <p> Lundi </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tabContent" id="weekView">
+
+                        </div>
+
+                        <div class="tabContent" id="monthView">
+
+                        </div>
+
                     </div>
 
                     <div class="tabs__tab" id="tab_2" data-tab-info>
@@ -121,5 +142,10 @@
     </div>
 
     <script src="/JS/tabsGestion.js"></script>
+    <script src="/JS/dayClass.js"></script>
+    <script src="/JS/missionClass.js"></script>
+    <script src="/JS/employeeClass.js"></script>
+    <script src="/JS/materialClass.js"></script>
+    <!-- <script src="/JS/creationJour.js"></script> -->
 </body>
 </html>
