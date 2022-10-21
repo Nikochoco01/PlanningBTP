@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="fr">
 <?php $titre = "Véhicule";
 include_once "module/head.php";?>
 
