@@ -20,7 +20,7 @@ include_once "module/head.php";?>
                 <label for="worksite"> Chantier </label>
                 <input type="search" name="worksite" id="worksite">
 
-                <label for="description"> Raison de la depence </label>
+                <label for="description"> Raison de la dépense </label>
                 <input type="text" name="description" id="description">
 
                 <label for="price"> Montant </label>
