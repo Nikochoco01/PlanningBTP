@@ -18,7 +18,7 @@ include_once "module/head.php";?>
             </nav>
 
             <section>
-                <img src="" alt="Profil Picture">
+                <img src="/img/defaultPP.png" alt="user picture" class="userPic" id="userPic">
                 <p> Prénom NOM </p>
                 <p> Mail </p>
                 <p> Adresse postale </p>
