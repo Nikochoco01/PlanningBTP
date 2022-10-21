@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/default.css">
-    <link rel="stylesheet" href="/CSS/menu.css">
-    <link rel="stylesheet" href="/Icon/style.css">
-    <title> Accueil </title>
-</head>
-
-<body>
-    <header>
-        <h1> Accueil </h1>
-
-        <div class="logZone">
-            <img src="/img/defaultPP.png" alt="user picture" class="userPic" id="userPic">
-            <p class="userAccount" id="userAccount"> <span class="surName"> Prénom </span> <span class="name"> NOM </span> </p>
-            <p class="typeAccount" id="typeAccount"> Administrateur </p>
-            <a href="#"> <i class="icon-logOut"></i> <span> Déconnection </span> </a>
-        </div>
-    </header>
-
-    <div class="layout">
+<div class="layout">
         <aside>
             <nav class="main-menu">
                 <ul>
                     <li>
-                        <a href="index.html">
+                        <a href="index.php">
                             <i class="icon-home"></i>
                             <span class="nav-text">
                                 Accueil
@@ -43,7 +19,7 @@
                         </a>
                     </li>
                     <li class="has-subnav">
-                        <a href="planning.html">
+                        <a href="planning.php">
                         <i class="icon-calendar"></i>
                             <span class="nav-text">
                                 Planning
@@ -85,13 +61,3 @@
                 </ul>
             </nav>
         </aside>
-
-        <main class="indexMain">
-                <h2> Bienvenue </h2>
-                <p> Nom de la personne </p>
-                <p> Date </p>
-                <p> Horaires </p>
-        </main>
-    </div>
-</body>
-</html>
