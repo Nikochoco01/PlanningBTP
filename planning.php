@@ -13,6 +13,39 @@ $titlePage = 'Planning';
 $today = date("j F Y");
 $schedule = '8h00 - 17h30';
 
+/** Function for add a parameter to the URL */
+function addUrlParam($params=array()){
+	$p = array_merge($_GET, $params);
+	$qs = http_build_query($p);
+	return basename($_SERVER['PHP_SELF']).'?'.$qs;
+}
+
+/** Function for generate the tabs menu in this page */
+function modifNav($tab , $icon , $buttonName , $url){
+    if($_GET['onglet'] == $tab){
+        echo '<li class="buttonTabs activeTabs">';
+    }
+    else{
+        echo '<li class="buttonTabs" >';
+    }
+        echo '<a href="'. $url .'" > <i class="'. $icon . '"></i>'. $buttonName .'</a> </li>';
+}
+
+/** Function to switch between day week month view on the calendar */
+function displayType(){
+    if($_GET['display'] == 'week'){
+        echo addUrlParam(array('display'=> 'month'));
+    }
+    else if ($_GET['display'] == 'month'){
+        echo addUrlParam(array('display'=> 'day'));
+    }
+    else{
+        echo addUrlParam(array('display'=> 'week'));
+    }
+}
+    // echo var_dump($_SERVER['QUERY_STRING']);
+    // echo var_dump($_GET['display']);
+    // echo var_dump($_SERVER['QUERY_STRING']);
 ?>
 
 <head>
@@ -30,57 +63,37 @@ $schedule = '8h00 - 17h30';
         <?php include_once "Modules/aside.php" ?>
 
         <main class="planningMain">
-                <div class="tabs">
-                    <span data-tab-value="#tab_1" class="buttonPlanning"> Employés </span>
-                    <span data-tab-value="#tab_2" class="buttonPlanning"> Chantier </span>
-                    <span data-tab-value="#tab_3" class="buttonPlanning"> Véhicules </span>
-                    <span data-tab-value="#tab_4" class="buttonPlanning"> Matériel </span>
+            <nav>
+                <ul>
+                    <?php
+                        modifNav('Mission' , '' , 'Mission' , addUrlParam(array('onglet'=>'Mission')));
+                        modifNav('Employes' , '' , 'Employés' , addUrlParam(array('onglet'=>'Employes')));
+                        modifNav('Vehicules' , '' , 'Véhicules' , addUrlParam(array('onglet'=>'Vehicules')));
+                        modifNav('Materiel' , '' , 'Matériel' , addUrlParam(array('onglet'=>'Materiel')));
+                    ?>
+                    <li class="buttonChangeView"> <a href=" <?php displayType(); ?>" class="" id="buttonChangeView"> <i class="icon-home"></i></a> </li>
+                </ul>
+            </nav>
 
-                    <span data-tab-value="#tab_5" class="changeTypePlanning" id="changeTypePlanning" > <i class="icon-home"></i> </span>
-                </div>
-
-                    <div class="tabs__tab active" id="tab_1" data-tab-info>
-                        <h2>Planning Employés</h2>
-
-                        <div class="tabContent" id="dayView">
-                            <a href="#" id="addDay" > ajout jour </a>
-
-                            <div class="planningContent">
-                                <div class="day" id="day1">
-                                    <p> Lundi </p>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="tabContent" id="weekView">
-
-                        </div>
-
-                        <div class="tabContent" id="monthView">
-
-                        </div>
-
-                    </div>
-
-                    <div class="tabs__tab" id="tab_2" data-tab-info>
-
-                        <p> test 2 </p>
-              
-                    </div>
-
-                    <div class="tabs__tab" id="tab_3" data-tab-info>
-
-                        <p> TEST 3 .</p>
-              
-                    </div>
-
-                    <div class="tabs__tab" id="tab_4" data-tab-info>
-
-                        <p> TEST 4 .</p>
-              
-                    </div>
+            <div class="tabContent">
+                <?php 
+                    switch($_GET["onglet"]){
+                        case "Mission":
+                            include_once "Modules/tabs/mission.php";
+                            break;
+                        case "Employes":
+                            include_once "Modules/tabs/employee.php";
+                            break;
+                        case "Vehicules":
+                            include_once "Modules/tabs/vehicles.php";
+                            break;
+                        case "Materiel":
+                            include_once "Modules/tabs/material.php";
+                            break;
+                    }
+                
+                ?>
+            </div>
         </main>
     </div>
 

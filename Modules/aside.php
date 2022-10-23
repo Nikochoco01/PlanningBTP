@@ -1,3 +1,5 @@
+<?php include 'Constant.php' ?>
+
 <div class="layout">
         <aside>
             <nav class="main-menu">
@@ -19,7 +21,7 @@
                         </a>
                     </li>
                     <li class="has-subnav">
-                        <a href="planning.php">
+                        <a href="planning.php?onglet=<?php echo paramOnglet ?>&display=<?php echo paramDisplay ?>">
                         <i class="icon-calendar"></i>
                             <span class="nav-text">
                                 Planning
