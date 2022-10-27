@@ -20,27 +20,23 @@ function addUrlParam($params=array()){
 	return basename($_SERVER['PHP_SELF']).'?'.$qs;
 }
 
-/** Function for generate the tabs menu in this page */
-function modifNav($tab , $icon , $buttonName , $url){
+/** function that add the active class to the buttons */
+function activeTab($tab){
     if($_GET['onglet'] == $tab){
-        echo '<li class="buttonTabs activeTabs">';
+        return "activeTab";
     }
-    else{
-        echo '<li class="buttonTabs" >';
-    }
-        echo '<a href="'. $url .'" > <i class="'. $icon . '"></i>'. $buttonName .'</a> </li>';
 }
 
 /** Function to switch between day week month view on the calendar */
 function displayType(){
     if($_GET['display'] == 'week'){
-        echo addUrlParam(array('display'=> 'month'));
+        return addUrlParam(array('display'=> 'month'));
     }
     else if ($_GET['display'] == 'month'){
-        echo addUrlParam(array('display'=> 'day'));
+        return addUrlParam(array('display'=> 'day'));
     }
     else{
-        echo addUrlParam(array('display'=> 'week'));
+        return addUrlParam(array('display'=> 'week'));
     }
 }
     // echo var_dump($_SERVER['QUERY_STRING']);
@@ -65,24 +61,59 @@ function displayType(){
         <main class="planningMain">
             <nav>
                 <ul>
-                    <?php
-                        modifNav('Mission' , '' , 'Mission' , addUrlParam(array('onglet'=>'Mission')));
-                        modifNav('Employes' , '' , 'Employés' , addUrlParam(array('onglet'=>'Employes')));
-                        modifNav('Vehicules' , '' , 'Véhicules' , addUrlParam(array('onglet'=>'Vehicules')));
-                        modifNav('Materiel' , '' , 'Matériel' , addUrlParam(array('onglet'=>'Materiel')));
-                    ?>
-                    <li class="buttonChangeView"> <a href=" <?php displayType(); ?>" class="" id="buttonChangeView"> <i class="icon-home"></i></a> </li>
+                    <li class="buttonTabs <?php echo activeTab("Missions") ?>"> 
+                        <a href=" <?php echo addUrlParam(array('onglet'=>'Missions')) ?>">
+                            <i class=""></i> Missions 
+                        </a>
+                    </li>
+                    
+                    <li class="buttonTabs <?php echo activeTab("Employes") ?>"> 
+                        <a href=" <?php echo addUrlParam(array('onglet'=>'Employes')) ?>">
+                            <i class=""></i> Employés 
+                        </a>
+                    </li>
+
+                    <li class="buttonTabs <?php echo activeTab("Vehicules") ?>"> 
+                        <a href=" <?php echo addUrlParam(array('onglet'=>'Vehicules')) ?>">
+                            <i class=""></i> Véhicules 
+                        </a>
+                    </li>
+                    
+                    <li class="buttonTabs <?php echo activeTab("Material") ?>"> 
+                        <a href=" <?php echo addUrlParam(array('onglet'=>'Material')) ?>">
+                            <i class=""></i> Matériel 
+                        </a>
+                    </li>
+
+                    <li class="buttonChangeView"> <a href=" <?php echo displayType(); ?>" class="" id="buttonChangeView"> <i class="icon-home"></i></a> </li>
                 </ul>
             </nav>
 
             <div class="tabContent">
                 <?php 
                     switch($_GET["onglet"]){
-                        case "Mission":
-                            include_once "Modules/tabs/mission.php";
+                        case "Missions":
+                                switch($_GET["display"]){
+                                    case "day":
+                                        include_once "Modules/tabs/day.php";
+                                    break;
+                                    case "week":
+                                        include_once "Modules/tabs/week.php";
+                                    break;
+                                    case "month":
+                                        include_once "Modules/tabs/month.php";
+                                    break;
+                                }
                             break;
                         case "Employes":
                             include_once "Modules/tabs/employee.php";
+                            echo "Booh";
+                                // switch($_GET["display"]){
+                                //     case "day":
+                                //         echo "Booh";
+                                //     break;
+                                // }
+                            
                             break;
                         case "Vehicules":
                             include_once "Modules/tabs/vehicles.php";

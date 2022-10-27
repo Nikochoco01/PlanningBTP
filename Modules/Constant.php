@@ -1,5 +1,5 @@
 <?php 
-    const paramOnglet = 'Mission';
+    const paramOnglet = 'Missions';
     const paramDisplay = 'week';
 
 ?>
