@@ -177,10 +177,26 @@ header h1{
 
 .tab{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     background-color: aqua;
+    gap: 2%;
     width: 100%;
     height: 100%;
+}
+
+.tab > section{
+    display: flex;
+    align-items: center;
+    background-color: burlywood;
+    width: 100%;
+    height: 40%;
+}
+
+.tab > section > p {
+    font-size: 1.5em;
+    writing-mode:vertical-lr;
+    text-orientation:upright;
+    background-color: cadetblue;
 }
 
 /* Planning day view */

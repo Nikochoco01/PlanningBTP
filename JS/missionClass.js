@@ -5,7 +5,7 @@ let planningContent = document.getElementById('planningContent');
 
 class Mission{
 
-    constructor(MissionName , Employee , MissionMateriel , MissionVehicule, MissionAdress , StartTime , EndTime , ){
+    constructor(MissionName , Employee , MissionMateriel , MissionVehicule, MissionAdress , StartTime , EndTime){
         this.missionName = MissionName;
         this.missionEmployee = Employee;
         this.missionMateriel = MissionMateriel;
@@ -60,17 +60,16 @@ class Mission{
         missionSchedule.appendChild(missionStartTime);
         missionSchedule.appendChild(separate);
         missionSchedule.appendChild(missionEndTime);
-
+        
         ParentElement.appendChild(mission);
     }
 
 }
 
 let day1 = document.getElementById('day1');
+let test = document.getElementById('dayView');
 
 let mission1 = new Mission('Maison Ducro' , 'Nikola' , 'pelle , pioche' , 'Fourgon' , '34 rue de la mort' , '11h00' , '14h00');
 console.log(mission1);
 
-mission1.printMission(day1);
-mission1.printMission(day1);
-mission1.printMission(day1);
+mission1.printMission(test);

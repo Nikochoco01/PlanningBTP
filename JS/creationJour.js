@@ -48,9 +48,9 @@ let jour;
 
 let mission = new Mission('test' , 'Nikola' , '22 rue peter fink' , '7h00' , '18h00');
 
-buttonAddDay.addEventListener('click' , () =>{
+// buttonAddDay.addEventListener('click' , () =>{
     jour = new Day();
     jour.addMission(mission);
-   jour.printMission(zoneAffichage);
+    jour.printMission(zoneAffichage);
     console.log(mission);
-})
+// })

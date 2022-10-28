@@ -13,32 +13,7 @@ $titlePage = 'Planning';
 $today = date("j F Y");
 $schedule = '8h00 - 17h30';
 
-/** Function for add a parameter to the URL */
-function addUrlParam($params=array()){
-	$p = array_merge($_GET, $params);
-	$qs = http_build_query($p);
-	return basename($_SERVER['PHP_SELF']).'?'.$qs;
-}
-
-/** function that add the active class to the buttons */
-function activeTab($tab){
-    if($_GET['onglet'] == $tab){
-        return "activeTab";
-    }
-}
-
-/** Function to switch between day week month view on the calendar */
-function displayType(){
-    if($_GET['display'] == 'week'){
-        return addUrlParam(array('display'=> 'month'));
-    }
-    else if ($_GET['display'] == 'month'){
-        return addUrlParam(array('display'=> 'day'));
-    }
-    else{
-        return addUrlParam(array('display'=> 'week'));
-    }
-}
+include_once "Modules/config.php"
     // echo var_dump($_SERVER['QUERY_STRING']);
     // echo var_dump($_GET['display']);
     // echo var_dump($_SERVER['QUERY_STRING']);
@@ -106,29 +81,50 @@ function displayType(){
                                 }
                             break;
                         case "Employes":
-                            include_once "Modules/tabs/employee.php";
-                            echo "Booh";
-                                // switch($_GET["display"]){
-                                //     case "day":
-                                //         echo "Booh";
-                                //     break;
-                                // }
-                            
+                                switch($_GET["display"]){
+                                    case "day":
+                                        include_once "Modules/tabs/day.php";
+                                    break;
+                                    case "week":
+                                        include_once "Modules/tabs/week.php";
+                                    break;
+                                    case "month":
+                                        include_once "Modules/tabs/month.php";
+                                    break;
+                                }
                             break;
                         case "Vehicules":
-                            include_once "Modules/tabs/vehicles.php";
+                                switch($_GET["display"]){
+                                    case "day":
+                                        include_once "Modules/tabs/day.php";
+                                    break;
+                                    case "week":
+                                        include_once "Modules/tabs/week.php";
+                                    break;
+                                    case "month":
+                                        include_once "Modules/tabs/month.php";
+                                    break;
+                                }
                             break;
                         case "Materiel":
-                            include_once "Modules/tabs/material.php";
+                                switch($_GET["display"]){
+                                    case "day":
+                                        include_once "Modules/tabs/day.php";
+                                    break;
+                                    case "week":
+                                        include_once "Modules/tabs/week.php";
+                                    break;
+                                    case "month":
+                                        include_once "Modules/tabs/month.php";
+                                    break;
+                                }
                             break;
                     }
-                
                 ?>
             </div>
         </main>
     </div>
 
-    <script src="/JS/tabsGestion.js"></script>
     <script src="/JS/dayClass.js"></script>
     <script src="/JS/missionClass.js"></script>
     <script src="/JS/employeeClass.js"></script>
