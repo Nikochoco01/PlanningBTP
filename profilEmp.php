@@ -19,14 +19,7 @@
         <?php include_once "module/aside.php"; ?>
 
         <main>
-            <img src="/img/defaultPP.png" alt="user picture" class="userPic" id="userPic">
-            <p> Prénom NOM </p>
-            <p> Mail </p>
-            <p> Adresse postale </p>
-            <p> Post entreprise </p>
-            <p> Téléphone </p>
-            
-            <div class="listePermis" id="listePermis"></div>
+            <?php include "module/profilView.php" ?>
             
             <a href="#"> <i> Save </i> Enregistrer </a>
         </main>
