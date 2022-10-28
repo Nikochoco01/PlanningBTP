@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php $titre = "Accueil"; ?>
+
+<!-- variables declaration -->
+<?php 
+$userName = 'Nikola CHEVALLIOT';
+
+$surName = 'Nikola';
+$name = 'chevalliot';
+$position = 'administrateur'; // position in the companie
+
+$titlePage = "Accueil";
+$today = date("j F Y");
+$schedule = '8h00 - 17h30';
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -9,20 +21,17 @@
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titre ?> </title>
+    <?php echo  "<title>" . $titlePage . "</title>" ?>
 </head>
 
 <body>
-    <?php include_once "module/header.php"; ?>
-
-    <div class="layout">
-        <?php include_once "module/aside.php"; ?>
-
-        <main>
-            <h2> Bienvenue </h2>
-            <p> Nom de la personne </p>
-            <p> Date </p>
-            <p> Horaires </p>
+    <?php include_once "Modules/header.php" ?>
+    <?php include_once "Modules/aside.php" ?>
+        <main class="indexMain">
+                <h2> Bienvenue </h2>
+                <?php echo '<p>' . $userName . '</p>' ?>
+                <?php echo '<p>'. $today .'</p>' ?>
+                <?php echo '<p>'. $schedule .'</p>' ?>
         </main>
     </div>
 </body>
