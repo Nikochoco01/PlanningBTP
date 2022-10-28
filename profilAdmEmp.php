@@ -1,3 +1,4 @@
+<?php include_once "module/config.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php $titre = "Profil"; ?>
@@ -19,10 +20,19 @@
         <?php include_once "module/aside.php"; ?>
         <main>
             <nav>
-                <menu type="toolbar">
-                    <li> <a href="profilAdmPerso.html"> Personnel </a> </li>
-                    <li> <a href="profilAdmEmp.html"> Employés </a> </li>
-                </menu>
+                <ul>
+                    <li class="buttonTabs <?php echo activeTab("Personal") ?>">
+                        <a href=" <?php echo addUrlParam(array('onglet' => 'Personal')) ?>">
+                            <i class=""></i> Personnel
+                        </a>
+                    </li>
+
+                    <li class="buttonTabs <?php echo activeTab("Employes") ?>">
+                        <a href=" <?php echo addUrlParam(array('onglet' => 'Employes')) ?>">
+                            <i class=""></i> Employés
+                        </a>
+                    </li>
+                </ul>
             </nav>
 
             <section>
@@ -31,11 +41,12 @@
                     <i class="icon-search"></i>
                     <input type="search" name="employee" id="employee">
                 </div>
-                
+
                 <div class="listeEmployé" id="listeEmployé"></div>
 
             </section>
         </main>
     </div>
 </body>
+
 </html>
