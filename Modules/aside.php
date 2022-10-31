@@ -5,7 +5,7 @@
             <nav class="main-menu">
                 <ul>
                     <li>
-                        <a href="index.php">
+                        <a href="accueil.php">
                             <i class="icon-home"></i>
                             <span class="nav-text">
                                 Accueil

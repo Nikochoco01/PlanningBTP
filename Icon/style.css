@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?1qe1w8');
-  src:  url('fonts/icomoon.eot?1qe1w8#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?1qe1w8') format('truetype'),
-    url('fonts/icomoon.woff?1qe1w8') format('woff'),
-    url('fonts/icomoon.svg?1qe1w8#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?v65tnr');
+  src:  url('fonts/icomoon.eot?v65tnr#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?v65tnr') format('truetype'),
+    url('fonts/icomoon.woff?v65tnr') format('woff'),
+    url('fonts/icomoon.svg?v65tnr#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,6 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -26,6 +27,9 @@
 
 .icon-home:before {
   content: "\e900";
+}
+.icon-pencil:before {
+  content: "\e905";
 }
 .icon-coin-euro:before {
   content: "\e93c";
@@ -48,11 +52,20 @@
 .icon-search:before {
   content: "\e986";
 }
+.icon-passWord:before {
+  content: "\e98f";
+}
 .icon-wrench:before {
   content: "\e991";
 }
 .icon-truck:before {
   content: "\e9b0";
+}
+.icon-passWordVisible:before {
+  content: "\e9ce";
+}
+.icon-passWordHidden:before {
+  content: "\e9d1";
 }
 .icon-logOut:before {
   content: "\ea14";

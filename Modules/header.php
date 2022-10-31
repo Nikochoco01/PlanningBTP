@@ -13,9 +13,9 @@ $position = 'administrateur'; // position in the companie
     <?php echo "<h1>" . $titlePage . "</h1>" ?>
 
     <div class="logZone">
-        <?php echo '<img src="'. $userPic .'" alt="user picture" class="userPic" id="userPic">' ?>
-        <?php echo '<p class="userAccount" id="userAccount"> <span class="surName">'. $surName .'</span> <span class="name">'. strtoupper($name) .'</span> </p>' ?>
-        <?php echo '<p class="typeAccount" id="typeAccount">'. strtoupper($position) .'</p>' ?>
-        <a href="#"> <i class="icon-logOut"></i> <span> Déconnection </span> </a>
-        </div>
+        <img src="<?php echo $userPic ?>" alt="user picture" class="userPic" id="userPic">
+        <p class="userAccount" id="userAccount"> <span class="surName"> <?php echo $surName ?> </span> <span class="name"> <?php echo strtoupper($name) ?> </span> </p>
+        <p class="typeAccount" id="typeAccount"> <?php echo strtoupper($position) ?> </p>
+        <a href="../index.php"> <i class="icon-logOut"></i> <span> Déconnection </span> </a>
+    </div>
 </header>

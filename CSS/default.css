@@ -265,3 +265,132 @@ header h1{
     width: 90%;
     height: 20%;
 }
+
+/* Style login */
+
+.logMain{
+    background-color: var(--secondaryColor);
+    width: 100%;
+    height: 100%;
+}
+
+.logForm{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    padding-top: 1%;
+    background-color: var(--mainColor);
+    border-radius: 50px;
+    box-shadow: 1px 1px 10px var(--textColorBlack);
+    width: 40%;
+    height: 55%;
+}
+
+.logForm form{
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50% , -60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    width: 80%;
+    height: 80%;
+}
+
+.logForm form p{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 2px;
+    width: 50%;
+    font-size: 1.2em;
+}
+
+
+.logForm form p span{
+    display: flex;
+    gap: 1%;
+}
+
+.logForm form p span a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 320px;
+    text-decoration: none;
+    color: var(--textColorBlack);
+    align-self: center;
+    background-color: var(--secondaryColor);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.logForm form p span a:hover{
+    transform: scale(1.1);
+}
+
+.logForm form p span i{
+    align-self: center;
+    font-size: 1.2em;
+}
+
+.logForm .inputLog{
+    border: 0px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.logForm .inputLog:focus{
+    outline: none;
+    caret-color: var(--mainColor);
+}
+
+.logForm form .userName{
+    position: absolute;
+    top: 100px;
+}
+
+.logForm form .passWord{
+    position: absolute;
+    top: 200px;
+}
+
+.logForm input[type = "submit"]{
+    position: absolute;
+    bottom: 20%;
+    align-self: center;
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    height: 35px;
+}
+
+.logForm input[type = "submit"]:hover{
+    transform: scale(1.1);
+}
+
+.logForm input[type = "reset"]{
+    position: absolute;
+    bottom: 10%;
+    align-self: center;
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    height: 35px;
+}
+
+.logForm input[type = "reset"]:hover{
+    transform: scale(1.1);
+}
