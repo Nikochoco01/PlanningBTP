@@ -1,13 +1,10 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <!-- variables declaration -->
 <?php 
-$userName = 'Nikola CHEVALLIOT';
-
-$surName = 'Nikola';
-$name = 'chevalliot';
-$position = 'administrateur'; // position in the companie
 
 $titlePage = "Accueil";
 $today = date("j F Y");
@@ -29,9 +26,9 @@ $schedule = '8h00 - 17h30';
     <?php include_once "Modules/aside.php" ?>
         <main class="indexMain">
                 <h2> Bienvenue </h2>
-                <?php echo '<p>' . $userName . '</p>' ?>
-                <?php echo '<p>'. $today .'</p>' ?>
-                <?php echo '<p>'. $schedule .'</p>' ?>
+                <p><?php echo $_SESSION['surName'] ." ". $_SESSION['name'] ?> </p>
+                <p><?php echo $today ?> </p>
+                <p><?php echo $_SESSION['schedule'] ?> </p>
         </main>
     </div>
 </body>

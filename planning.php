@@ -1,14 +1,10 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <!-- variables declaration -->
-<?php 
-$userName = 'Nikola CHEVALLIOT';
-
-$surName = 'Nikola';
-$name = 'chevalliot';
-$position = 'administrateur'; // position in the companie
-
+<?php
 $titlePage = 'Planning';
 $today = date("j F Y");
 $schedule = '8h00 - 17h30';

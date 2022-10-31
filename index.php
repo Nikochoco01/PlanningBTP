@@ -1,16 +1,12 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <!-- variables declaration -->
 <?php
-
-use function PHPSTORM_META\type;
-
-$userName = 'Nikola CHEVALLIOT';
-
-$surName = 'Nikola';
-$name = 'chevalliot';
-$position = 'administrateur'; // position in the companie
 
 $titlePage = "Connexion";
 ?>
@@ -26,12 +22,11 @@ $titlePage = "Connexion";
 </head>
 
 <body>
-    
         <main class="logMain">
 
             <div class="logForm">
                 <h2> Connectez-vous </h2>
-                <form action="index.php" method="post">
+                <form action="/Modules/connectionProcess.php" method="post">
                     <p class="userName">
                         <label for="userName"> Nom d'utilisateur : </label>
                         <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prenom.nom" class="inputLog"> </span>
