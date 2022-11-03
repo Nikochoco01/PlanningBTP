@@ -22,7 +22,7 @@ include_once "Modules/config.php"
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <?php echo  "<title>" . $titlePage . "</title>" ?>
+    <title> <?php echo $titlePage ?> </title>
 </head>
 
 <body>

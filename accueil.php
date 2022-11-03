@@ -5,10 +5,7 @@
 
 <!-- variables declaration -->
 <?php 
-
 $titlePage = "Accueil";
-$today = date("j F Y");
-$schedule = '8h00 - 17h30';
 ?>
 
 <head>
@@ -18,7 +15,7 @@ $schedule = '8h00 - 17h30';
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <?php echo  "<title>" . $titlePage . "</title>" ?>
+    <title> <?php echo $titlePage ?> </title>
 </head>
 
 <body>
@@ -27,7 +24,7 @@ $schedule = '8h00 - 17h30';
         <main class="indexMain">
                 <h2> Bienvenue </h2>
                 <p><?php echo $_SESSION['surName'] ." ". $_SESSION['name'] ?> </p>
-                <p><?php echo $today ?> </p>
+                <p><?php echo $_SESSION['dateToday'] ?> </p>
                 <p><?php echo $_SESSION['schedule'] ?> </p>
         </main>
     </div>

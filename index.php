@@ -18,7 +18,7 @@ $titlePage = "Connexion";
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <?php echo  "<title>" . $titlePage . "</title>" ?>
+    <title> <?php echo $titlePage ?> </title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@ $titlePage = "Connexion";
 
             <div class="logForm">
                 <h2> Connectez-vous </h2>
-                <form action="/Modules/connectionProcess.php" method="post">
+                <form action="/Modules/logInProcess.php" method="post">
                     <p class="userName">
                         <label for="userName"> Nom d'utilisateur : </label>
                         <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prenom.nom" class="inputLog"> </span>
@@ -62,7 +62,6 @@ $titlePage = "Connexion";
                 toggleIcon.classList = 'icon-passWordHidden';
             }
         })
-        
     </script>
 </body>
 </html>

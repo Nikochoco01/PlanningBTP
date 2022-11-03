@@ -1,7 +1,9 @@
-<?php include_once "module/config.php" ?>
+<?php include_once "Modules/config.php";
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php $titre = "Profil"; ?>
+<?php $titlePage = "Profil"; ?>
 
 <head>
     <meta charset="UTF-8">
@@ -10,14 +12,14 @@
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titre ?> </title>
+    <title> <?php echo $titlePage ?> </title>
 </head>
 
 <body>
-    <?php include_once "module/header.php"; ?>
+    <?php include_once "Modules/header.php"; ?>
 
     <div class="layout">
-        <?php include_once 'module/aside.php'; ?>
+        <?php include_once 'Modules/aside.php'; ?>
 
         <main>
             <nav>
@@ -43,7 +45,6 @@
                            
                             break;
                         case "Employes":
-                            
                             switch($_GET["display"]){
                                 case "View":
                                     include "module/Profil/profilView.php";
@@ -52,7 +53,7 @@
                                     include "module/Profil/profilModify.php";
                                 break;
                             }
-                            break;
+                        break;
                     }
                 ?>
 

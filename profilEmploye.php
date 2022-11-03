@@ -13,13 +13,13 @@
 </head>
 
 <body>
-    <?php include_once "module/header.php"; ?>
+    <?php include_once "Modules/header.php"; ?>
 
     <div class="layout">
-        <?php include_once "module/aside.php"; ?>
+        <?php include_once "Modules/aside.php"; ?>
 
         <main>
-            <?php include "module/profilView.php" ?>
+            <?php include "Modules/profilView.php" ?>
             
             <a href="#"> <i> Save </i> Enregistrer </a>
         </main>

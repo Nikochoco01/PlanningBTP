@@ -39,40 +39,67 @@ header h1{
     font-size: 2em;
 }
 
-.logZone{
+.profilZone{
     position: absolute;
     right: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
     width: 10%;
-    padding: 0.4%;
+    gap: 5px;
     background-color: var(--mainColor);
-    box-shadow: 5px 0px 30px var(--shadowColor);
 }
 
-.logZone .userPic{
-   border-radius: 50px;
-   width: 90px;
-   height: 90px;
+.profilZone::before{
+    content: " ";
+    position: absolute;
+    width:15px;
+    height: 100%;
+    top: 0px;
+    right: -15px;
+    box-shadow: 10px 0px 10px -10px #000 inset;
 }
 
-.logZone a{
-    text-decoration: none;
-    color: var(--textColorBlack);
+.profilZone::after{
+    content: " ";
+    position: absolute;
+    width:15px;
+    height: 100%;
+    top: 0px;
+    left: -15px;
+    box-shadow: -10px 0px 10px -10px #000 inset;
+}
+
+.profilZone .userPic{
+    border-radius: 50px;
+    width: 90px;
+    height: 90px;
+ }
+
+.profilZone form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profilZone form label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
     background-color: var(--secondaryColor);
     border-radius: 50px;
-    padding: 10px;
+    padding: 8px;
 }
 
-.logZone a i {
-    vertical-align: middle;
-    font-size: 1em;
+.profilZone form input{
+    position: absolute;
 }
 
-.logZone a:hover{
+.profilZone form label:hover{
     transform: scale(1.1);
 }
 
@@ -86,7 +113,7 @@ header h1{
     height: 100%;
 }
 
-.planningMain{
+main{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -97,13 +124,13 @@ header h1{
 
 /* style for tabs Planning */
 
-.planningMain > nav{
+main > nav{
     display: flex;
     width: 100%;
     height: 10%;
 }
 
-.planningMain > nav > ul{
+main > nav > ul{
     display: flex;
     gap: 3%;
     justify-content: center;
@@ -113,12 +140,12 @@ header h1{
     height: 100%;
 }
 
-.planningMain > nav > ul > .buttonTabs{
+main > nav > ul > .buttonTabs{
     width: 20%;
     height: 50%;
 }
 
-.planningMain > nav > ul > .buttonTabs > a {
+main > nav > ul > .buttonTabs > a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,20 +158,20 @@ header h1{
     height: 100%;
 }
 
-.planningMain > nav > ul > .buttonTabs > a:hover{
+main > nav > ul > .buttonTabs > a:hover{
     transform: scale(1.1);
     color: var(--mainColor);
     background-color: var(--secondaryColor);
     transition: 0.3s;
 }
 
-.planningMain > nav > ul > .buttonChangeView{
+main > nav > ul > .buttonChangeView{
     border-radius: 50px;
     width: 40px;
     height: 40px;
 }
 
-.planningMain > nav > ul > .buttonChangeView > a{
+main > nav > ul > .buttonChangeView > a{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,12 +184,12 @@ header h1{
     height: 100%;
 }
 
-.planningMain > nav > ul > .activeTab a{
+main > nav > ul > .activeTab a{
     background-color: var(--secondaryColor);
     color: var(--mainColor);
 }
 
-.planningMain > nav > ul > .buttonChangeView > a:hover{
+main > nav > ul > .buttonChangeView > a:hover{
     background-color: var(--secondaryColor);
     color: var(--mainColor);
     transform: scale(1.1);
