@@ -25,30 +25,33 @@
                 if($_GET["position"] == 'administrateur'){
                     include_once "Modules/Profil/selectTab.php";
                 }
-
-                switch ($_GET["onglet"]) {
-                    case "Personnal":
-                        switch($_GET["display"]){
-                            case "View":
-                                include "Modules/Profil/profilView.php";
-                            break;
-                            case "Modify":
-                                include "Modules/Profil/profilModify.php";
-                            break;
-                        }
-                    break;
-                    case "Employes":
-                        switch($_GET["display"]){
-                            case "View":
-                                include "Modules/Profil/profilView.php";
-                            break;
-                            case "Modify":
-                                include "Modules/Profil/profilModify.php";
-                            break;
-                        }
-                    break;
-                }
             ?>
+            <div class="profilContent">
+                <?php 
+                    switch ($_GET["onglet"]) {
+                        case "Personnal":
+                            switch($_GET["display"]){
+                                case "View":
+                                    include "Modules/Profil/profilView.php";
+                                break;
+                                case "Modify":
+                                    include "Modules/Profil/profilModify.php";
+                            break;
+                            }
+                        break;
+                        case "Employes":
+                            switch($_GET["display"]){
+                                case "View":
+                                    include "Modules/Profil/profilView.php";
+                                break;
+                                case "Modify":
+                                    include "Modules/Profil/profilModify.php";
+                                break;
+                            }
+                        break;
+                    }
+                ?>
+            </div>
 
 
         </main>

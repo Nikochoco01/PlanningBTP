@@ -20,13 +20,14 @@ $titlePage = "Accueil";
 
 <body>
     <?php include_once "Modules/header.php" ?>
-    <?php include_once "Modules/aside.php" ?>
-        <main class="indexMain">
-                <h2> Bienvenue </h2>
-                <p><?php echo $_SESSION['surName'] ." ". $_SESSION['name'] ?> </p>
-                <p><?php echo $_SESSION['dateToday'] ?> </p>
-                <p><?php echo $_SESSION['schedule'] ?> </p>
-        </main>
+    <div class="layout"> 
+        <?php include_once "Modules/aside.php" ?>
+            <main>
+                    <h2> Bienvenue </h2>
+                    <p><?php echo $_SESSION['surName'] ." ". $_SESSION['name'] ?> </p>
+                    <p><?php echo $_SESSION['dateToday'] ?> </p>
+                    <p><?php echo $_SESSION['schedule'] ?> </p>
+            </main>
     </div>
 </body>
 </html>

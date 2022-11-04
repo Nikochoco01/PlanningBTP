@@ -1,4 +1,4 @@
-<nav>
+<nav class="navTab">
     <ul>
         <li class="buttonTabs <?php echo activeTab("Personnal") ?>">
             <a href=" <?php echo addUrlParam(array('onglet' => 'Personnal')) ?>">

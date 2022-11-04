@@ -27,10 +27,10 @@ include_once "Modules/config.php"
 
 <body>
         <?php include_once "Modules/header.php" ?>
+    <div class="layout">
         <?php include_once "Modules/aside.php" ?>
-
         <main class="planningMain">
-            <nav>
+            <nav class="navTab">
                 <ul>
                     <li class="buttonTabs <?php echo activeTab("Missions") ?>"> 
                         <a href=" <?php echo addUrlParam(array('onglet'=>'Missions')) ?>">
