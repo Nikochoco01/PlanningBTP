@@ -111,11 +111,13 @@ main{
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: aqua;
 }
 
-/* style for buttons tabs */
-
+/******************************
+*
+    Style for buttons tabs
+*
+*****************************/
 main > nav{
     display: flex;
     width: 100%;
@@ -188,9 +190,15 @@ main > nav > ul > .buttonChangeView > a:hover{
     transition: 0.3s;
 }
 
-/* tabs style */
+/******************************
+*
+    Style for tabs
+*
+*****************************/
 
 .tabContent{
+    display: flex;
+    align-items: flex-end;
     width: 100%;
     height: 88%;
 }
@@ -198,29 +206,26 @@ main > nav > ul > .buttonChangeView > a:hover{
 .tab{
     display: flex;
     flex-direction: column;
-    background-color: aqua;
     gap: 2%;
     width: 100%;
-    height: 100%;
+    height: 95%;
 }
 
-.tab > section{
+.tabHeader{
+    position: relative;
     display: flex;
     align-items: center;
-    background-color: burlywood;
+    justify-content: center;
     width: 100%;
-    height: 40%;
+    height: 10%;
+    background-color: var(--mainColor);
 }
 
-.tab > section > p {
-    font-size: 1.5em;
-    writing-mode:vertical-lr;
-    text-orientation:upright;
-    background-color: cadetblue;
-}
-
-/* Planning day view */
-
+/******************************
+*
+    Style for Planning day view
+*
+*****************************/
 
 .planningContent{
     display: flex;
@@ -243,17 +248,114 @@ main > nav > ul > .buttonChangeView > a:hover{
     height: 100%;
 }
 
-/* .day::-webkit-scrollbar{
-    display: none;
-} */
-
 .day > p {
     text-align: center;
     border-bottom: 2px solid black;
     width: 100%;
 }
 
-/* Mission style */
+/******************************
+*
+    Style for Planning week view
+*
+*****************************/
+
+
+/******************************
+*
+    Style for Planning month view
+*
+*****************************/
+
+.changeButtonContent{
+    position: absolute;
+    right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4%;
+    width: 20%;
+    height: 100%;
+}
+
+.changeMonth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mainColor);
+    border-radius: 50px;
+    width: 100px;
+    height: 50%;
+    color: var(--textColorBlack);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.currentMonth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    color: var(--textColorBlack);
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.changeMonth:hover , .currentMonth:hover{
+    color: var(--mainColor);
+    background-color: var(--secondaryColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+
+.calendarTable{
+    align-self: center;
+    justify-self: center;
+    border-collapse: collapse;
+    width: 90%;
+    height: 85%;
+}
+
+.calendarTable th{
+    height: 5%;
+}
+
+/* if month as 5 weeks */
+.calendarTable td{
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid var(--textColorBlack);
+    width: 12.85%;
+    height: 18%;
+}
+
+/* if month as 6 weeks*/
+.calendarTable6weeks td{
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid var(--textColorBlack);
+    width: 12.85%;
+    height: 15%;
+}
+
+/* if the day isn't in the current month*/
+.calendarOtherMonth{
+    opacity: 0.3;
+}
+
+
+
+
+
+/******************************
+*
+    Style for Mission
+*
+*****************************/
 
 .mission{
     display: flex;
@@ -285,7 +387,11 @@ main > nav > ul > .buttonChangeView > a:hover{
     height: 20%;
 }
 
-/* Style login */
+/******************************
+*
+    Style for login page
+*
+*****************************/
 
 .logMain{
     background-color: var(--secondaryColor);
@@ -415,7 +521,12 @@ main > nav > ul > .buttonChangeView > a:hover{
     transform: scale(1.1);
 }
 
-/* ----------- Profil style ---------- */
+
+/******************************
+*
+    Style for profil page
+*
+*****************************/
 
 .profilContent{
     display: flex;
@@ -484,7 +595,11 @@ main > nav > ul > .buttonChangeView > a:hover{
     transform: scale(1.1);
 }
 
-/* profilModify */
+/******************************
+*
+    Style for profilModify
+*
+*****************************/
 
 .profilModify label{
     display: flex;

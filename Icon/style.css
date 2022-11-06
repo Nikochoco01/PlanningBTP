@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?v65tnr');
-  src:  url('fonts/icomoon.eot?v65tnr#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?v65tnr') format('truetype'),
-    url('fonts/icomoon.woff?v65tnr') format('woff'),
-    url('fonts/icomoon.svg?v65tnr#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?eq4fw8');
+  src:  url('fonts/icomoon.eot?eq4fw8#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?eq4fw8') format('truetype'),
+    url('fonts/icomoon.woff?eq4fw8') format('woff'),
+    url('fonts/icomoon.svg?eq4fw8#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -69,4 +69,13 @@
 }
 .icon-logOut:before {
   content: "\ea14";
+}
+.icon-loop:before {
+  content: "\ea2e";
+}
+.icon-arrowRight:before {
+  content: "\ea3c";
+}
+.icon-arrowLeft:before {
+  content: "\ea40";
 }

@@ -66,52 +66,52 @@ include_once "Modules/config.php"
                         case "Missions":
                                 switch($_GET["display"]){
                                     case "day":
-                                        include_once "Modules/tabs/day.php";
+                                        include_once "Modules/tabs/dayView.php";
                                     break;
                                     case "week":
-                                        include_once "Modules/tabs/week.php";
+                                        include_once "Modules/tabs/weekView.php";
                                     break;
                                     case "month":
-                                        include_once "Modules/tabs/month.php";
+                                        include_once "Modules/tabs/monthView.php";
                                     break;
                                 }
                             break;
                         case "Employes":
                                 switch($_GET["display"]){
                                     case "day":
-                                        include_once "Modules/tabs/day.php";
+                                        include_once "Modules/tabs/dayView.php";
                                     break;
                                     case "week":
-                                        include_once "Modules/tabs/week.php";
+                                        include_once "Modules/tabs/weekView.php";
                                     break;
                                     case "month":
-                                        include_once "Modules/tabs/month.php";
+                                        include_once "Modules/tabs/monthView.php";
                                     break;
                                 }
                             break;
                         case "Vehicules":
                                 switch($_GET["display"]){
                                     case "day":
-                                        include_once "Modules/tabs/day.php";
+                                        include_once "Modules/tabs/dayView.php";
                                     break;
                                     case "week":
-                                        include_once "Modules/tabs/week.php";
+                                        include_once "Modules/tabs/weekView.php";
                                     break;
                                     case "month":
-                                        include_once "Modules/tabs/month.php";
+                                        include_once "Modules/tabs/monthView.php";
                                     break;
                                 }
                             break;
-                        case "Materiel":
+                        case "Material":
                                 switch($_GET["display"]){
                                     case "day":
-                                        include_once "Modules/tabs/day.php";
+                                        include_once "Modules/tabs/dayView.php";
                                     break;
                                     case "week":
-                                        include_once "Modules/tabs/week.php";
+                                        include_once "Modules/tabs/weekView.php";
                                     break;
                                     case "month":
-                                        include_once "Modules/tabs/month.php";
+                                        include_once "Modules/tabs/monthView.php";
                                     break;
                                 }
                             break;

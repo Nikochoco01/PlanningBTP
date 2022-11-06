@@ -1,4 +1,4 @@
-<?php include 'Constant.php' ?>
+<?php include 'constant.php' ?>
 
     <aside>
         <nav class="main-menu">
@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="has-subnav">
-                    <a href="planning.php?position=<?php echo $_SESSION['position']?>&onglet=<?php echo PARAM_PLANNING_ONGLET ?>&display=<?php echo PARAM_PLANNING_DISPLAY ?>">
+                    <a href="planning.php?position=<?php echo $_SESSION['position']?>&onglet=<?php echo PARAM_PLANNING_ONGLET ?>&display=<?php echo PARAM_PLANNING_DISPLAY ?>&month=<?php echo date('m') ?>&year=<?php echo date('Y') ?>">
                         <i class="icon-calendar"></i>
                             <span class="nav-text">
                                 Planning
