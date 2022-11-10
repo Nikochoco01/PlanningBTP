@@ -9,5 +9,4 @@
         header('Location: ../index.php');
         Exit();
     }
-
 ?>
