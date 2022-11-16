@@ -10,7 +10,7 @@
 
 
 try{
-    $PDO = new PDO('mysql:host=localhost:3306;dbname=bdsite' , 'root' , 'root');
+    $PDO = new PDO('mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2103916' , 'p2103916' , '12103916');
     $PDO->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
     //echo "Connexion réussie"."\n";
 }

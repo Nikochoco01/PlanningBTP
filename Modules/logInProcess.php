@@ -1,6 +1,6 @@
 <?php 
 include_once '../dataBase/dataBaseConnection.php';
-$statement = $PDO->prepare("select * from user where idUser = (select idUser from Login where idUser= :userName and password = :userPassword)");
+$statement = $PDO->prepare("select * from User where idUser = (select idUser from Login where idUser= :userName and password = :userPassword)");
 $statement->execute(
     [
         'userName' => $_POST['userName'],
