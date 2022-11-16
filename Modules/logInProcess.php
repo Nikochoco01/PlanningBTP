@@ -2,7 +2,7 @@
 include_once dirname(__FILE__,2)."/Modules/Constant.php";
 include_once dirname(__FILE__,2)."/dataBase/dataBaseConnection.php";
 
-$user = $statement->fetchAll();
+$user = $statement->fetch();
 //var_dump($user);
 
 $statementUserName = $PDO->prepare("select loginUsername from Login where loginUsername= :userName");
