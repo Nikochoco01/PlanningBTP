@@ -1,6 +1,9 @@
 <form action="/Modules/Profil/modifyProcess.php" method="post" class="profilModify">
 
     <label for="userPicture" class="userPicture">
+        <div class="iconAddPicture">
+            <i class="icon-image-plus"></i>
+        </div>
         <img src="<?php echo $_SESSION['userPic'] ?>" alt="user Picture">
         <input type="file" name="userPicture" id="userPicture">
     </label>

@@ -22,7 +22,7 @@
         <?php include_once 'Modules/aside.php'; ?>
         <main>
             <?php
-                if($_GET["position"] == 'administrateur'){
+                if($_GET["userRole"] == 'administrateur'){
                     include_once "Modules/Profil/selectTab.php";
                 }
             ?>
@@ -52,8 +52,6 @@
                     }
                 ?>
             </div>
-
-
         </main>
     </div>
 </body>

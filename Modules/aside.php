@@ -4,7 +4,7 @@
         <nav class="main-menu">
             <ul>
                 <li>
-                    <a href="accueil.php?position=<?php echo $_SESSION['position']?>">
+                    <a href="accueil.php?userRole=<?php echo $_SESSION['userRole']?>">
                         <i class="icon-home"></i>
                             <span class="nav-text">
                                 Accueil
@@ -12,15 +12,15 @@
                     </a>
                 </li>
                 <li class="has-subnav">
-                    <a href="profil.php?position=<?php echo $_SESSION['position']?>&onglet=<?php echo PARAM_PROFIL_ONGLET ?>&display=<?php echo PARAM_PROFIL_DISPLAY ?>">
-                        <i class="icon-user"></i>
+                    <a href="profil.php?userRole=<?php echo $_SESSION['userRole']?>&onglet=<?php echo PARAM_PROFIL_ONGLET ?>&display=<?php echo PARAM_PROFIL_DISPLAY ?>">
+                        <i class="icon-id-card"></i>
                             <span class="nav-text">
                                 Profil
                             </span>
                     </a>
                 </li>
                 <li class="has-subnav">
-                    <a href="planning.php?position=<?php echo $_SESSION['position']?>&onglet=<?php echo PARAM_PLANNING_ONGLET ?>&display=<?php echo PARAM_PLANNING_DISPLAY ?>&month=<?php echo date('m') ?>&year=<?php echo date('Y') ?>">
+                    <a href="planning.php?userRole=<?php echo $_SESSION['userRole']?>&onglet=<?php echo PARAM_PLANNING_ONGLET ?>&display=<?php echo PARAM_PLANNING_DISPLAY ?>&month=<?php echo date('m') ?>&year=<?php echo date('Y') ?>">
                         <i class="icon-calendar"></i>
                             <span class="nav-text">
                                 Planning
@@ -37,7 +37,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="icon-coin-euro"></i>
+                        <i class="icon-euro"></i>
                             <span class="nav-text">
                                 Frais
                             </span>
@@ -45,7 +45,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="icon-truck"></i>
+                        <i class="icon-warehouse"></i>
                             <span class="nav-text">
                                 Véhicule
                             </span>
@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="icon-wrench"></i>
+                        <i class="icon-tool"></i>
                             <span class="nav-text">
                                 Matériel
                             </span>
