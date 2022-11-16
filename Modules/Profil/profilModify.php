@@ -1,53 +1,15 @@
-<form action="/Modules/Profil/modifyProcess.php" method="post" class="profilModify">
+<?php $userName = "Niko" ?>
 
-    <label for="userPicture" class="userPicture">
-        <img src="<?php echo $_SESSION['userPic'] ?>" alt="user Picture">
-        <input type="file" name="userPicture" id="userPicture">
-    </label>
+<form action="<?php echo displayType2("View") ?>" method="post">
+    <img src="<?= $userPic ?>" alt="user picture" class="userPic" id="userPic">
+    <!-- <input type="file" name="" id=""> -->
+    <input type="text" name="userFirstname" id="userFirstname" value="<?= $userFirstname ?>">
+    <input type="text" name="userSurname" id="userSurname" value="<?= $userSurname ?>">
+    <input type="text" name="userName" id="userName" value="<?= $userPosition ?>">
+    <input type="text" name="userName" id="userName" value="<?= $userMail ?>">
+    <input type="text" name="userName" id="userName" value="<?= $userPostal ?>">
+    <input type="text" name="userName" id="userName" value="<?= $userPhone ?>">
 
-    <label class="Disabled"> <span>Nom d'utilisateur : </span>
-        <input type="text" name="userName" id="userName" value="<?php echo $_SESSION['userName'] ?>" class="Disabled" disabled>
-    </label>
-    <label for="userPassWord"> <span>Mot de passe :</span>
-        <input type="password" name="userPassWord" id="userPassWord" value="" placeholder="taper un nouveau mot de passe">
-    </label>
-    <label for="surName"> <span>Prénom :</span>
-        <input type="text" name="surName" id="surName" value="<?php echo $_SESSION['surName'] ?>">
-    </label>
-    <label for="name"> <span>Nom :</span>
-        <input type="text" name="name" id="name" value="<?php echo $_SESSION['name'] ?>">
-    </label>
-    <label for="userPosition" class=" <?php echo addDisabled() ?>"> <span>Poste :</span>
-        <input type="text" name="userPosition" id="userPosition" value="<?php echo $_SESSION['position'] ?>" <?php echo disableInput()?> class="<?php echo addDisabled() ?>">
-    </label>
-    <label for="userMail"> <span>Adresse mail :</span>
-        <input type="text" name="userMAil" id="userMail" value="<?php echo $_SESSION['userMail'] ?>">
-    </label>
-    <label for="userPhone"> <span>Numéro de téléphone :</span>
-        <input type="text" name="userPhone" id="userPhone" value="<?php echo $_SESSION['userPhone'] ?>">
-    </label>
-    <span>
-        <input type="submit" value="Enregistrer">
-        <input type="reset" value="Annuler">
-    </span>
+    <input type="submit" value="Enregistrer">
+    <input type="button" value="Supprimer">
 </form>
-
-<?php 
-    function disableInput(){
-        if($_SESSION['position'] == "administrateur"){
-            return "";
-        }
-        else{
-            return "disabled";
-        }
-    }
-
-    function addDisabled(){
-        if($_SESSION['position'] == "administrateur"){
-            return "";
-        }
-        else{
-            return "Disabled";
-        }
-    }
-?>
