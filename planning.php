@@ -34,25 +34,25 @@ include_once "Modules/config.php"
                 <ul>
                     <li class="buttonTabs <?php echo activeTab("Missions") ?>"> 
                         <a href=" <?php echo addUrlParam(array('onglet'=>'Missions')) ?>">
-                            <i class=""></i> Missions 
+                            <i class="icon-clipboard-list"></i> Missions 
                         </a>
                     </li>
                     
                     <li class="buttonTabs <?php echo activeTab("Employes") ?>"> 
                         <a href=" <?php echo addUrlParam(array('onglet'=>'Employes')) ?>">
-                            <i class=""></i> Employés 
+                            <i class="icon-users-group"></i> Employés 
                         </a>
                     </li>
 
                     <li class="buttonTabs <?php echo activeTab("Vehicules") ?>"> 
                         <a href=" <?php echo addUrlParam(array('onglet'=>'Vehicules')) ?>">
-                            <i class=""></i> Véhicules 
+                            <i class="icon-warehouse"></i> Véhicules 
                         </a>
                     </li>
                     
                     <li class="buttonTabs <?php echo activeTab("Material") ?>"> 
                         <a href=" <?php echo addUrlParam(array('onglet'=>'Material')) ?>">
-                            <i class=""></i> Matériel 
+                            <i class="icon-tool"></i> Matériel 
                         </a>
                     </li>
 

@@ -35,8 +35,8 @@ $titlePage = "Connexion";
                     <p class="passWord">
                         <label for="userPassWord"> Mot de passe : </label>
                         <span> 
-                            <i class="icon-passWord"></i> <input type="password" name="userPassWord" id="userPassWord" placeholder="mot de passe" class="inputLog"> 
-                            <a href="#" id="toggle"> <i class="icon-passWordHidden" id="toggleIcon"></i> </a>
+                            <i class="icon-lock"></i> <input type="password" name="userPassWord" id="userPassWord" placeholder="mot de passe" class="inputLog"> 
+                            <a href="#" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
                         </span>
                     </p>
 
@@ -53,13 +53,13 @@ $titlePage = "Connexion";
         let toggleIcon = document.getElementById('toggleIcon');
 
         toggleButton.addEventListener('click' , ()=>{
-            if(toggleIcon.classList == 'icon-passWordHidden'){
+            if(toggleIcon.classList == 'icon-eye-slash'){
                 inputPassWord.type = 'text';
-                toggleIcon.classList = 'icon-passWordVisible';
+                toggleIcon.classList = 'icon-eye';
             }
             else{
                 inputPassWord.type = 'password';
-                toggleIcon.classList = 'icon-passWordHidden';
+                toggleIcon.classList = 'icon-eye-slash';
             }
         })
     </script>
