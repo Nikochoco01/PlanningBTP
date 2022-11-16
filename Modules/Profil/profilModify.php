@@ -31,7 +31,7 @@
     </label>
     <span>
         <input type="submit" value="Enregistrer">
-        <input type="reset" value="Annuler">
+        <a href="<?php echo addUrlParam(array('display' => 'View')) ?>"> Annuler </a>
     </span>
 </form>
 
