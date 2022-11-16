@@ -1,6 +1,9 @@
+<?php include_once "Modules/config.php";
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php $titre = "Frais"; ?>
+<?php $titlePage = "Frais"; ?>
 
 <head>
     <meta charset="UTF-8">
@@ -9,14 +12,14 @@
     <link rel="stylesheet" href="/CSS/default.css">
     <link rel="stylesheet" href="/CSS/menu.css">
     <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titre ?> </title>
+    <title> <?php echo $titlePage ?> </title>
 </head>
 
 <body>
-    <?php include_once "module/header.php"; ?>
+    <?php include_once "Modules/header.php"; ?>
 
     <div class="layout">
-        <?php include_once "module/aside.php"; ?>
+        <?php include_once "Modules/aside.php"; ?>
         <main>
             
             <div class="listeFrais" id="listeFrais"></div>
@@ -40,7 +43,9 @@
     const min = document.getElementById("minutes");
     const today = new Date();
     hour.innerText = today.getHours();
-    min.innerText = today.getMinutes();
+    m = today.getMinutes();
+    if(m<10){m = '0' + m;}
+    min.innerText = m;
 </script>
         </main>
     </div>

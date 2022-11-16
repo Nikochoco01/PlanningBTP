@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="insertionFrais.php">
                         <i class="icon-euro"></i>
                             <span class="nav-text">
                                 Frais
@@ -55,7 +55,11 @@
                     </a>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a href="vehicleManagement.php">
+=======
+                    <a href="gestionVehicule.php#">
+>>>>>>> 8d1f4b3... ajout de url des pages de gestion de materiel et vehicule + celle d'insertion de frais
                         <i class="icon-warehouse"></i>
                             <span class="nav-text">
                                 Véhicule
@@ -63,7 +67,11 @@
                     </a>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a href="toolManagement.php">
+=======
+                    <a href="gestionMat.php">
+>>>>>>> 8d1f4b3... ajout de url des pages de gestion de materiel et vehicule + celle d'insertion de frais
                         <i class="icon-tool"></i>
                             <span class="nav-text">
                                 Matériel
