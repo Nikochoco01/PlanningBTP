@@ -8,7 +8,7 @@ $statement->execute(
     ]
 );
 
-$user = $statement->fetchAll();
+$user = $statement->fetch();
 //var_dump($user);
 
 if(isset($user)){
