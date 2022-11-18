@@ -15,12 +15,12 @@ class invoice{
     }
 
     function display(){
-        echo "<div class=\"invoice\">";
-        echo "<p>".$this->idInvoice."</p>";
+        echo "<form class=\"invoice\">";
+        echo "<input type=\"text\" value=\"".$this->idInvoice."\" disabled>";
         echo "<p>".$this->date."</p>";
         echo "<p>".$this->price."</p>";
         echo "<p>".$this->description."</p>";
         echo "<p>".$this->designation."</p>";
-        echo "</div>";
+        echo "</form>";
     }
 }
