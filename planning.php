@@ -5,25 +5,17 @@
 
 <!-- variables declaration -->
 <?php
-$titlePage = 'Planning';
+$title = 'Planning';
 $today = date("j F Y");
 $schedule = '8h00 - 17h30';
 
-include_once "Modules/config.php"
+
     // echo var_dump($_SERVER['QUERY_STRING']);
     // echo var_dump($_GET['display']);
     // echo var_dump($_SERVER['QUERY_STRING']);
+include_once dirname(__FILE__)."/Modules/config.php";
+include_once dirname(__FILE__)."/Modules/head.php";
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/default.css">
-    <link rel="stylesheet" href="/CSS/menu.css">
-    <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titlePage ?> </title>
-</head>
 
 <body>
         <?php include_once "Modules/header.php" ?>
@@ -120,11 +112,5 @@ include_once "Modules/config.php"
             </div>
         </main>
     </div>
-
-    <script src="/JS/dayClass.js"></script>
-    <script src="/JS/missionClass.js"></script>
-    <script src="/JS/employeeClass.js"></script>
-    <script src="/JS/materialClass.js"></script>
-    <!-- <script src="/JS/creationJour.js"></script> -->
 </body>
 </html>

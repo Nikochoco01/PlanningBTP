@@ -1,6 +1,7 @@
-<?php 
-include_once '../dataBase/dataBaseConnection.php';
-$statement = $PDO->prepare("select * from user where idUser = (select idUser from Login where idUser= :userName and password = :userPassword)");
+<?php
+include_once dirname(__FILE__,2)."/dataBase/dataBaseConnection.php";
+
+$statement = $PDO->prepare("select * from User where idUser = (select idUser from Login where idUser= :userName and password = :userPassword)");
 $statement->execute(
     [
         'userName' => $_POST['userName'],
@@ -8,8 +9,9 @@ $statement->execute(
     ]
 );
 
-$user = $statement->fetchAll();
-//  var_dump($user);
+$user = $statement->fetch();
+//var_dump($user);
+//var_dump($user->idUser);
 
 if(isset($user)){
     session_start();
@@ -19,14 +21,14 @@ if(isset($user)){
     /** date variables */
     $_SESSION['dateToday'] = translateDate();
     /** user variables */ 
-    $_SESSION['userName'] = $user[0]['idUser']; //  connection ID
-    $_SESSION['userRole'] = $user[0]['userRole']; // set user permission
-    $_SESSION['userPic'] = $user[0]['profilePicture']; // profile picture 
-    $_SESSION['surName'] = $user[0]['surname']; // first name of user
-    $_SESSION['name'] = $user[0]['name']; // name of user 
-    $_SESSION['position'] = $user[0]['position']; // position in the companie
-    $_SESSION['userPhone'] = $user[0]['phoneNumber']; // user phone number 
-    $_SESSION['userMail'] = $user[0]['mail']; // user mail address
+    $_SESSION['userName'] = $user->idUser; //  connection ID
+    $_SESSION['userRole'] = $user->userRole; // set user permission
+    $_SESSION['userPic'] = $user->profilePicture; // profile picture 
+    $_SESSION['surName'] = $user->surname; // first name of user
+    $_SESSION['name'] = $user->name; // name of user 
+    $_SESSION['position'] = $user->position; // position in the companie
+    $_SESSION['userPhone'] = $user->phoneNumber; // user phone number 
+    $_SESSION['userMail'] = $user->mail; // user mail address
 
     $_SESSION['schedule'] = '7h 18h'; // user schedule of day for the user 
     header('Location: ../accueil.php?userRole='.$_SESSION['userRole']);

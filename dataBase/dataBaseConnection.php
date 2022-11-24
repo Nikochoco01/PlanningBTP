@@ -12,6 +12,7 @@
 try{
     $PDO = new PDO('mysql:host=localhost:3306;dbname=bdsite' , 'root' , 'root');
     $PDO->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+    $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
     //echo "Connexion réussie"."\n";
 }
 catch(PDOException $e){

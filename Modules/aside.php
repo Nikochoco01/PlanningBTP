@@ -1,7 +1,7 @@
 <?php include 'constant.php' ?>
 
     <aside>
-        <nav class="main-menu">
+        <nav class="mainMenu">
             <ul>
                 <li>
                     <a href="accueil.php?userRole=<?php echo $_SESSION['userRole']?>">
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="vehicleManagement.php">
                         <i class="icon-warehouse"></i>
                             <span class="nav-text">
                                 Véhicule
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="toolManagement.php">
                         <i class="icon-tool"></i>
                             <span class="nav-text">
                                 Matériel

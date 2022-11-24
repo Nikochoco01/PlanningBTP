@@ -1,5 +1,5 @@
 <header>
-    <h1> <?php echo $titlePage ?> </h1>
+    <h1> <?php echo $title ?> </h1>
 
     <div class="profilZone">
         <img src="<?php echo $_SESSION['userPic'] ?>" alt="user picture" class="userPic" id="userPic">
