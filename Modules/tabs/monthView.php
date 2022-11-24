@@ -19,7 +19,7 @@
 <div class="tab" >
     <div class="tabHeader">
         <div class="buttonAddEvent">
-            <a href="#">  </a>
+            <a href="#"> <i class="icon-calendar-plus-alt"></i> </a>
         </div>
         <h2> <?php echo $month->toString(); ?> </h2>
         <div class="changeButtonContent">
