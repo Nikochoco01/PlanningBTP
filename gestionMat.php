@@ -29,7 +29,7 @@
                 <input type="search" name="material" id="material">
             </div>
                 
-            <div class="listeMateriel" id="listeMateriel"></div>
+            <div class="materialList"></div>
 
         </main>
     </div>

@@ -1,5 +1,8 @@
-<?php include_once "Modules/config.php";
+<?php 
     session_start();
+    include_once "Modules/config.php";
+    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__)."/vehiculeClass.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,7 +32,17 @@
                 <input type="search" name="material" id="material">
             </div>
                 
-            <div class="listeVehicule" id="listeVehicule"></div>
+            <div class="vehiculeList">
+                <?php 
+                    $stat = $PDO->prepare("");
+
+                    $stat->execute();
+                    $results = $stat->fetchAll();
+                    foreach($results as $res){
+                        $veh = new Vehicule();
+                    }
+                ?>
+            </div>
             
         </main>
     </div>

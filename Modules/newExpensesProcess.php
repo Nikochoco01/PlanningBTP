@@ -11,4 +11,4 @@ if( isset($_POST['price']) && isset($_POST['description']) && isset($_POST['work
         'user' => $_SESSION['userName']
     ]);
 }
-header("Location:".dirname(__FILE__, 2)."insertionFrais.php");
+header("Location:".$_SERVER['HTTP_REFERER']);

@@ -1,5 +1,5 @@
 <?php
-class vehicule{
+class Vehicule{
     private $id;
     private $type;
     private $designation;

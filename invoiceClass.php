@@ -1,5 +1,5 @@
 <?php
-class invoice{
+class Invoice{
     private $idInvoice;
     private $date;
     private $price;
@@ -18,7 +18,7 @@ class invoice{
         echo "<form class=\"invoice\">";
         echo "<input type=\"text\" value=\"".$this->idInvoice."\" disabled>";
         echo "<p>".$this->date."</p>";
-        echo "<p>".$this->price."</p>";
+        echo "<p>".$this->price."€</p>";
         echo "<p>".$this->description."</p>";
         echo "<p>".$this->designation."</p>";
         echo "</form>";
