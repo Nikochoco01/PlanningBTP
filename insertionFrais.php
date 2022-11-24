@@ -24,9 +24,9 @@ include_once dirname(__FILE__)."/invoiceClass.php";
         <?php include_once "Modules/aside.php"; ?>
         <main>
             
-            <div class="listeFrais" id="listeFrais">
+            <div class="invoiceList">
                 <?php 
-                    $stat = $PDO->prepare("select i.idInvoice, i.purchaseDate, i.price, i.description, w.designation from Invoice i join Worksite w on i.idWorksite = w.idWorksite where idUser = :user");
+                    $stat = $PDO->prepare("select i.idInvoice, i.purchaseDate, i.price, i.description, w.designation from Invoice i join Worksite w on i.idWorksite = w.idWorksite where idUser = :user order by i.idInvoice");
                     $stat->execute(['user' => $_SESSION['userName']]);
                     $results = $stat->fetchAll();
                     foreach($results as $res){
