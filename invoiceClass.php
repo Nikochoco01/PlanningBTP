@@ -17,10 +17,10 @@ class Invoice{
     function display(){
         echo "<form class=\"invoice\">";
         echo "<input type=\"text\" value=\"".$this->idInvoice."\" disabled>";
-        echo "<p>".$this->date."</p>";
-        echo "<p>".$this->price."€</p>";
-        echo "<p>".$this->description."</p>";
         echo "<p>".$this->designation."</p>";
+        echo "<p>".$this->description."</p>";
+        echo "<p>".explode(" ", $this->date)[0]."</p>";
+        echo "<p>".number_format($this->price, 2, ".", " ")."€</p>";
         echo "</form>";
     }
 }

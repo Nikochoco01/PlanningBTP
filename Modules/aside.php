@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="insertionFrais.php">
+                    <a href="invoice.php">
                         <i class="icon-euro"></i>
                             <span class="nav-text">
                                 Frais
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="gestionVehicule.php#">
+                    <a href="vehicle.php#">
                         <i class="icon-warehouse"></i>
                             <span class="nav-text">
                                 Véhicule
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="gestionMat.php">
+                    <a href="material.php">
                         <i class="icon-tool"></i>
                             <span class="nav-text">
                                 Matériel

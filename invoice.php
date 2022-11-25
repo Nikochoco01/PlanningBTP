@@ -45,12 +45,12 @@ include_once dirname(__FILE__)."/invoiceClass.php";
                 <input type="search" name="worksite" id="worksite" list="worksites">
                 <datalist id="worksites">
                 <?php 
-                    $stat = $PDO->prepare("select idWorksite, designation from Worksite;");
+                    $stat = $PDO->prepare("select designation from Worksite;");
                     
                     $stat->execute();
                     $results = $stat->fetchAll();
                     foreach($results as $res){
-                        echo "<option value=\"".$res->idWorksite." - ". $res->designation."\"> ". $res->designation;
+                        echo "<option>". $res->designation;
                     }
                     ?>
                 </datalist>
