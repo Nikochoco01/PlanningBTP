@@ -12,12 +12,14 @@ class Vehicule{
         $this->license = $license;
     }
 
-    function display(){
-        echo "<form class=\"vehicule\">";
-        echo "<input type=\"text\" value=\"".$this->id."\" disabled>";
-        echo "<p>".$this->type."</p>";
-        echo "<p>".$this->designation."</p>";
-        echo "<p>".$this->license."</p>";
-        echo "</form>";
+    function display(): string{
+        $str = "";
+        $str .=  "<form class=\"vehicule\">";
+        $str .=  "<input type=\"text\" value=\"".$this->id."\" disabled>";
+        $str .=  "<p>".$this->type."</p>";
+        $str .=  "<p>".$this->designation."</p>";
+        $str .=  "<p>".$this->license."</p>";
+        $str .=  "</form>";
+        return $str;
     }
 }

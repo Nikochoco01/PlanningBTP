@@ -14,13 +14,15 @@ class Invoice{
         $this->designation = $desi;
     }
 
-    function display(){
-        echo "<form class=\"invoice\">";
-        echo "<input type=\"text\" value=\"".$this->idInvoice."\" disabled>";
-        echo "<p>".$this->designation."</p>";
-        echo "<p>".$this->description."</p>";
-        echo "<p>".explode(" ", $this->date)[0]."</p>";
-        echo "<p>".number_format($this->price, 2, ".", " ")."€</p>";
-        echo "</form>";
+    function display() : string{
+        $str = "";
+        $str .=  "<form class=\"invoice\">";
+        $str .=  "<input type=\"text\" value=\"".$this->idInvoice."\" disabled>";
+        $str .=  "<p>".$this->designation."</p>";
+        $str .=  "<p>".$this->description."</p>";
+        $str .=  "<p>".explode(" ", $this->date)[0]."</p>";
+        $str .=  "<p>".number_format($this->price, 2, ".", " ")."€</p>";
+        $str .=  "</form>";
+        return $str;
     }
 }

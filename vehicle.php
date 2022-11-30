@@ -3,6 +3,7 @@
     include_once "Modules/config.php";
     include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__)."/vehiculeClass.php"; 
+    include_once dirname(__FILE__)."/tokenGenerator.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,19 +36,23 @@
                     $results = $stat->fetchAll();
                     foreach($results as $res){
                         $veh = new Vehicule($res->idVehicle, $res->type, $res->designation, $res->driverLicenseName);
-                        $veh->display();
+                        echo $veh->display();
                     }
                 ?>
             </div>
 
             <form action="newVehicle.php" method="post">
-                <label for="plate">Immatriculation <input type="search" name="plate" id="plate"></label>
+                <label for="plate">Immatriculation</label>
+                <input type="search" name="plate" id="plate">
 
-                <label for="type">Type de vehicule <input type="text" name="type" id="type"></label>
+                <label for="type">Type de vehicule</label>
+                <input type="text" name="type" id="type">
 
-                <label for="model">Model de vehicule <input type="text" name="model" id="model"></label>
+                <label for="model">Model de vehicule</label>
+                <input type="text" name="model" id="model">
 
-                <label for="license">Permis nécessaire <input type="text" name="license" id="license" list="licenses"></label>
+                <label for="license">Permis nécessaire</label>
+                <input type="text" name="license" id="license" list="licenses">
                 <datalist id="licenses">
                     <?php 
                     $stat = $PDO->prepare("select driverLicenseName from DriverLicense;");
