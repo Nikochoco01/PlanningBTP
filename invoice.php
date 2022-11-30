@@ -1,7 +1,8 @@
 <?php session_start();
-include_once "Modules/config.php";   
-include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-include_once dirname(__FILE__)."/invoiceClass.php"; 
+    include_once "Modules/config.php";   
+    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__)."/invoiceClass.php"; 
+    include_once dirname(__FILE__)."/tokenGenerator.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,7 +32,7 @@ include_once dirname(__FILE__)."/invoiceClass.php";
                     $results = $stat->fetchAll();
                     foreach($results as $res){
                         $in = new Invoice($res->idInvoice, $res->purchaseDate, $res->price, $res->description, $res->designation);
-                        $in->display();
+                        echo $in->display();
                     }
                 ?>
             </div>
@@ -69,6 +70,8 @@ include_once dirname(__FILE__)."/invoiceClass.php";
 
                 <label for="price"> Montant </label>
                 <input type="number" name="price" id="price" min="0" step="0.01">
+
+                <input type="hidden" name="token" value="">
 
                 <span>
                     <input type="submit" value="Valider">

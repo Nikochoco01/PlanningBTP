@@ -10,11 +10,13 @@ class Material{
         $this->cmtDispo = $dispo;
     }
 
-    function display(){
-        echo "<form class=\"material\">";
-        echo "<input type=\"text\" value=\"".$this->designation."\" disabled>";
-        echo "<p>".$TTCount."</p>";
-        echo "<p>".$cmtDispo."</p>";
-        echo "</form>";
+    function display() : string{
+        $str = "";
+        $str .= "<form class=\"material\">";
+        $str .= "<input type=\"text\" value=\"".$this->designation."\" disabled>";
+        $str .=  "<p>".$TTCount."</p>";
+        $str .=  "<p>".$cmtDispo."</p>";
+        $str .=  "</form>";
+        return $str;
     }
 }
