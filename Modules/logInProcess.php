@@ -13,7 +13,7 @@ $user = $statement->fetch();
 //var_dump($user);
 //var_dump($user->idUser);
 
-if(isset($user)){
+if(isset($user->idUser)){
     session_start();
     include_once 'translateDate.php';
     /** session existence test variables */

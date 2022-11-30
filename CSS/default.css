@@ -302,6 +302,12 @@ main > nav > ul > .buttonChangeView > a:hover{
     height: 95%;
 }
 
+/******************************
+*
+    Style for tool bar planning
+*
+*****************************/
+
 .tabHeader{
     position: relative;
     z-index: 1;
@@ -311,6 +317,139 @@ main > nav > ul > .buttonChangeView > a:hover{
     width: 100%;
     height: 10%;
     background-color: var(--mainColor);
+}
+
+.zoneAddEvent{
+    position: absolute;
+    left: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    width: 10%;
+    height: 100%;
+}
+
+.zoneAddEvent .buttonAddEvent{
+    position: absolute;
+}
+
+.zoneAddEvent .indicator{
+    text-align: center;
+    position: absolute;
+    display: inline;
+    width: 150px;
+    border-radius: 5px;
+    background-color: var(--secondaryColor);
+    color: var(--mainColor);
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.zoneAddEvent .buttonLabel{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    color: var(--textColorBlack);
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 50%;
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+}
+
+.zoneAddEvent .buttonLabel:hover{
+    background-color: var(--secondaryColor);
+    color: var(--mainColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.zoneAddEvent .buttonLabel:hover ~ .indicator{
+    transform: translateY(-50px);
+    transition: 0.3s;
+}
+
+.popupAddEvent{
+    position: absolute;
+    top: 70px;
+    border-radius: 20px;
+    background-color: var(--mainColor);
+    width: 400px;
+    height: 300px;
+    visibility: hidden;
+}
+
+.popupAddEvent form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    gap: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.popupAddEvent form span{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    column-gap: 5%;
+    width: 80%;
+}
+
+.popupAddEvent form span label{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 40%;
+}
+
+.popupAddEvent form span input{
+    width: 50%;
+}
+
+.popupAddEvent form span select{
+    width: 50%;
+}
+
+.popupAddEvent .validateButton{
+    position: absolute;
+    bottom: 5%;
+    align-self: center;
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+}
+
+.popupAddEvent input[type="submit"]{
+    left: 40px;
+}
+
+.popupAddEvent input[type="button"]{
+    right: 40px;
+}
+
+.validateButton:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.buttonAddEvent:checked ~ .buttonLabel{
+    background-color: var(--secondaryColor);
+    color: var(--mainColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.buttonAddEvent:checked ~ .popupAddEvent{
+    visibility: visible;
 }
 
 /******************************
@@ -441,38 +580,37 @@ main > nav > ul > .buttonChangeView > a:hover{
 
 /******************************
 *
-    Style for Mission
+    Style for calendarBox and Events
 *
 *****************************/
 
-.mission{
+.calendarBox{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 5%;
+    width: 100%;
+    height: 100%;
+    background-color: pink;
+}
+
+.calendarBox .calendarDayNumber{
+    display: flex;
     align-items: center;
-    background-color: crimson;
-    border-radius: 20px;
-    gap: 10px;
-    width: 90%;
-    height: auto;
+    justify-content: center;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    background-color: #ED7D31;
 }
 
-.employeeList{
-    background-color: aquamarine;
+.calendarBox .calendarEvent{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
     width: 90%;
-    height: 20%;
-}
-
-.vehiculeLit{
-    background-color: aquamarine;
-    width: 90%;
-    height: 20%;
-}
-
-.meterielList{
-    background-color: aquamarine;
-    width: 90%;
-    height: 20%;
+    background-color: aqua;
 }
 
 /******************************
@@ -857,4 +995,91 @@ main > nav > ul > .buttonChangeView > a:hover{
     width: 10%;
     z-index: -1;
     visibility: hidden;
+}
+
+/******************************
+*
+    Style for profilViewAdmin
+*
+*****************************/
+
+.profilViewAdmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.profilViewAdmin .searchZone{
+    position: relative;
+    top: -45%;
+    left: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.profilViewAdmin .searchZone .searchEmployeeLabel{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    background-color: var(--secondaryColor);
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 35px;
+    height: 35px;
+}
+
+.profilViewAdmin .searchZone input[type="search"]{
+    background-color: var(--mainColor);
+    border: 0px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 20%;
+    padding-left: 40px;
+    outline: none;
+}
+
+.profilViewAdmin .searchZone input[type="search"]:hover ~ .searchEmployeeLabel{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.profilViewAdmin .searchZone input[type="search"]:focus ~ .searchEmployeeLabel{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.profilViewAdmin .addZone{
+    position: relative;
+    top: -40%;
+    left: 67%;
+    display: flex;
+    align-items: center;
+}
+
+.profilViewAdmin .addEmployeeLabel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--mainColor);
+    font-size: 1.5em;
+    transition: 0.3s;
+    width: 35px;
+    height: 35px;
+}
+
+.profilViewAdmin .addEmployeeLabel:hover{
+    background-color: var(--secondaryColor);
+    color: var(--mainColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.profilViewAdmin input[type="button"]{
+    position: absolute;
+    z-index: -1;
 }
