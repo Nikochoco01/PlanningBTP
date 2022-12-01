@@ -34,7 +34,7 @@
                     $results = $stat->fetchAll();
                     foreach($results as $res){
                         $in = new Invoice($res->idInvoice, $res->purchaseDate, $res->price, $res->description, $res->designation);
-                        echo $in->display();
+                        echo $in->display($_SESSION['token']);
                     }
                 ?>
             </div>

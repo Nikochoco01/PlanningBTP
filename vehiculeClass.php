@@ -12,13 +12,14 @@ class Vehicule{
         $this->license = $license;
     }
 
-    function display(): string{
+    function display(string $token): string{
         $str = "";
         $str .=  "<form class=\"vehicule\">";
         $str .=  "<input type=\"text\" value=\"".$this->id."\" disabled>";
         $str .=  "<p>".$this->type."</p>";
         $str .=  "<p>".$this->designation."</p>";
         $str .=  "<p>".$this->license."</p>";
+        $str .=  "<input  type=\"hidden\" name=\"token\" value=\"".$token."\">";
         $str .=  "</form>";
         return $str;
     }

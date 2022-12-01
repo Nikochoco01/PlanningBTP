@@ -1,5 +1,7 @@
-<?php include_once dirname(__FILE__, 2)."/dataBase/dataBaseConnection.php";
+<?php 
 session_start();
+include_once dirname(__FILE__, 2)."/dataBase/dataBaseConnection.php";
+
 if( isset($_POST['price'], $_POST['description'], $_POST['worksite'], $_POST['token'], $_SESSION['userName'], $_SESSION['token']) ){
         if($_POST['token'] == $_SESSION['token']){
         $des = $PDO->quote($_POST['worksite']);
@@ -13,6 +15,6 @@ if( isset($_POST['price'], $_POST['description'], $_POST['worksite'], $_POST['to
             'user' => $_SESSION['userName']
         ]);
     }
-    $_SESSION['token'] = "";
+    unset($_SESSION['token']);
 }
 header("Location:".$_SERVER['HTTP_REFERER']);
