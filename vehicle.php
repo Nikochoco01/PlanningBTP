@@ -4,6 +4,8 @@
     include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__)."/vehiculeClass.php"; 
     include_once dirname(__FILE__)."/tokenGenerator.php";
+
+    $_SESSION['token'] = generateToken(10);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,7 +38,7 @@
                     $results = $stat->fetchAll();
                     foreach($results as $res){
                         $veh = new Vehicule($res->idVehicle, $res->type, $res->designation, $res->driverLicenseName);
-                        echo $veh->display();
+                        echo $veh->display($_SESSION['token']);
                     }
                 ?>
             </div>
@@ -64,6 +66,8 @@
                     }
                     ?>
                 </datalist>
+
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
                 <span>
                     <input type="submit" value="Valider">
