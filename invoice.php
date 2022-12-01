@@ -3,6 +3,8 @@
     include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__)."/invoiceClass.php"; 
     include_once dirname(__FILE__)."/tokenGenerator.php";
+
+    $_SESSION['token'] = generateToken(10);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,7 +42,7 @@
             <!-- <a href="#"> <i> Scan </i> </a> -->
 
             <form action="Modules/newExpensesProcess.php" method="post">
-                <p><span class="hour" id="hour"></span>:<span class="minutes" id="minutes"></span></p>
+                <!-- <p><span class="hour" id="hour"></span>:<span class="minutes" id="minutes"></span></p> -->
 
                 <label for="worksite"> Chantier </label>
                 <input type="search" name="worksite" id="worksite" list="worksites">
@@ -71,7 +73,7 @@
                 <label for="price"> Montant </label>
                 <input type="number" name="price" id="price" min="0" step="0.01">
 
-                <input type="hidden" name="token" value="">
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
                 <span>
                     <input type="submit" value="Valider">
