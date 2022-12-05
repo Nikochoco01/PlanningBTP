@@ -1,6 +1,6 @@
 <?php 
 include_once '../dataBase/dataBaseConnection.php';
-$statement = $PDO->prepare("select * from User where idUser = (select idUser from Login where idUser= :userName and password = :userPassword)");
+$statement = $PDO->prepare("select * from User where userId = (select userId from Login where loginUsername= :userName and loginUserPassword = :userPassword)");
 $statement->execute(
     [
         'userName' => $_POST['userName'],
@@ -19,14 +19,14 @@ if(isset($user)){
     /** date variables */
     $_SESSION['dateToday'] = translateDate();
     /** user variables */ 
-    $_SESSION['userName'] = $user->idUser; //  connection ID
-    $_SESSION['userRole'] = $user->userRole; // set user permission
-    $_SESSION['userPic'] = $user->profilePicture; // profile picture 
-    $_SESSION['surName'] = $user->surname; // first name of user
-    $_SESSION['name'] = $user->name; // name of user 
-    $_SESSION['position'] = $user->position; // position in the companie
-    $_SESSION['userPhone'] = $user->phoneNumber; // user phone number 
-    $_SESSION['userMail'] = $user->mail; // user mail address
+    $_SESSION['userName'] = $user->userId; //  connection ID
+    $_SESSION['userRole'] = $user->userPosition; // set user permission
+    $_SESSION['userPic'] = $user->userPicture; // profile picture 
+    $_SESSION['surName'] = $user->userLastName; // first name of user
+    $_SESSION['name'] = $user->userFirstName; // name of user 
+    $_SESSION['position'] = $user->userPosition; // position in the companie
+    $_SESSION['userPhone'] = $user->userPhone; // user phone number 
+    $_SESSION['userMail'] = $user->userMail; // user mail address
 
     $_SESSION['schedule'] = '7h 18h'; // user schedule of day for the user 
     header('Location: ../accueil.php?userRole='.$_SESSION['userRole']);

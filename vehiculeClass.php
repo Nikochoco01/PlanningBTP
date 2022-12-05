@@ -1,23 +1,23 @@
 <?php
 class Vehicule{
-    private $id;
-    private $type;
-    private $designation;
+    private $plate;
+    private $model;
+    private $maxPassenger;
     private $license;
 
-    function __construct(string $plate, string $type, string $des, string $license){
-        $this->id = $plate;
-        $this->type = $type;
-        $this->designation = $des;
+    function __construct(string $plate, string $model, string $max, string $license){
+        $this->plate = $plate;
+        $this->model = $model;
+        $this->maxPassenger = $max;
         $this->license = $license;
     }
 
     function display(string $token): string{
         $str = "";
         $str .=  "<form class=\"vehicule\">";
-        $str .=  "<input type=\"text\" value=\"".$this->id."\" disabled>";
-        $str .=  "<p>".$this->type."</p>";
-        $str .=  "<p>".$this->designation."</p>";
+        $str .=  "<input type=\"text\" value=\"".$this->plate."\" disabled>";
+        $str .=  "<p>".$this->model."</p>";
+        $str .=  "<p>".$this->maxPassenger."</p>";
         $str .=  "<p>".$this->license."</p>";
         $str .=  "<input  type=\"hidden\" name=\"token\" value=\"".$token."\">";
         $str .=  "</form>";
