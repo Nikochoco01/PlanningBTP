@@ -50,8 +50,8 @@
                 <input type="text" name="model" id="model">
 
                 <label for="license">Permis nécessaire</label>
-                <input type="text" name="license" id="license" list="licenses">
-                <datalist id="licenses">
+                <select name="license" id="license" list="licenses">
+                <!-- <datalist id="licenses"> -->
                     <?php 
                     $stat = $PDO->prepare("select driverLicenseName from DriverLicense;");
                     
@@ -61,7 +61,8 @@
                         echo "<option>". $res->driverLicenseName;
                     }
                     ?>
-                </datalist>
+                <!-- </datalist> -->
+                </select>
 
                 <label for="maxPassenger">Nombre de passager maximal</label>
                 <input type="number" name="maxPassenger" id="maxPassenger" min="1" /*max="9" step="1">
