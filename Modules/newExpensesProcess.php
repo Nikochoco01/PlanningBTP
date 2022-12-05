@@ -6,8 +6,6 @@ if( !empty($_POST['price']) && !empty($_POST['description']) && !empty($_POST['w
     if($_POST['token'] == $_SESSION['token']){
         $des = $PDO->quote($_POST['worksite']);
         $worksite = $PDO->query("select worksiteId from Worksite where worksiteName = $des;")->fetch();
-        
-        $event = explode("-", $_POST['event'])[0];
 
         $stat = $PDO->prepare("insert into Expense values(default, :date, :price, :desc, :user, :event, :worksite);");
         $stat->execute([
@@ -15,7 +13,7 @@ if( !empty($_POST['price']) && !empty($_POST['description']) && !empty($_POST['w
             'price' => $_POST['price'],
             'desc' => $_POST['description'],
             'user' => $_SESSION['userName'],
-            'event' => $event,
+            'event' => $_POST['event'],
             'worksite' => $worksite->worksiteId
         ]);
     }

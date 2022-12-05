@@ -68,16 +68,15 @@
                 </datalist>
 
                 <label for="event"> Mission associé à la dépense </label>
-                <input type="text" name="event" id="event" list="expencesEvent">
-                <datalist id="expencesEvent">
+                <select name="event" id="event" list="expencesEvent">
                     <?php
                     $stat = $PDO->prepare("select eventId, eventDescription from Event where eventEndDate > :now && :now < eventStartDate;");
                     $results = $stat->execute(['now' => Date("Y-m-d")]);
                     foreach($results as $res){
-                        echo "<option>".$res->eventId." - ".$res->eventDescription;
+                        echo "<option value=\"".$res->eventId."\">".$res->eventDescription;
                     }
                     ?>
-                </datalist>
+                </select>
 
                 <label for="price"> Montant </label>
                 <input type="number" name="price" id="price" min="0" step="0.01">
