@@ -10,12 +10,13 @@ class Material{
         $this->cmtDispo = $dispo;
     }
 
-    function display() : string{
+    function display(string $token) : string{
         $str = "";
         $str .= "<form class=\"material\">";
         $str .= "<input type=\"text\" value=\"".$this->designation."\" disabled>";
-        $str .=  "<p>".$TTCount."</p>";
-        $str .=  "<p>".$cmtDispo."</p>";
+        $str .=  "<p>".$this->TTCount."</p>";
+        $str .=  "<p>".$this->cmtDispo."</p>";
+        $str .=  "<input  type=\"hidden\" name=\"token\" value=\"".$token."\">";
         $str .=  "</form>";
         return $str;
     }

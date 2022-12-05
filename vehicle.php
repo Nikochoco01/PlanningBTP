@@ -29,15 +29,14 @@
 
         <main>
 
-            <!-- <a href="#"> <i> Add Véhicule </i> <span> Ajout Véhicule </span> </a> -->
             <div class="vehiculeList">
                 <?php 
-                    $stat = $PDO->prepare("select v.idVehicle, v.type, v.availability, v.designation, d.driverLicenseName from Vehicle v join DriverLicense d on v.idDriverLicense = d.idDriverLicense");
+                    $stat = $PDO->prepare("select v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense from Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName");
 
                     $stat->execute();
                     $results = $stat->fetchAll();
                     foreach($results as $res){
-                        $veh = new Vehicule($res->idVehicle, $res->type, $res->designation, $res->driverLicenseName);
+                        $veh = new Vehicule($res->vehicleLicensePlate, $res->vehicleModel, $res->vehicleMaxPassenger, $res->vehicleDriverLicense);
                         echo $veh->display($_SESSION['token']);
                     }
                 ?>
@@ -46,9 +45,6 @@
             <form action="newVehicle.php" method="post">
                 <label for="plate">Immatriculation</label>
                 <input type="search" name="plate" id="plate">
-
-                <label for="type">Type de vehicule</label>
-                <input type="text" name="type" id="type">
 
                 <label for="model">Model de vehicule</label>
                 <input type="text" name="model" id="model">
@@ -66,6 +62,9 @@
                     }
                     ?>
                 </datalist>
+
+                <label for="maxPassenger">Nombre de passager maximal</label>
+                <input type="number" name="maxPassenger" id="maxPassenger" min="1" /*max="9" step="1">
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
