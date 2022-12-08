@@ -3,9 +3,8 @@
 include_once dirname(__FILE__,4)."/dataBase/dataBaseConnection.php";
 
 class Events{
-
-    private $PDO;
    
+    public $PDO;
     function __construct($pdo)
     {
         $this->PDO = $pdo;
@@ -16,13 +15,14 @@ class Events{
      * 
      * @return assoc_array from data base
      */
-    public function getEventBetween(\DateTime $eventStart , \DateTime $eventEnd){
+    public function getEventBetween(\DateTimeImmutable $eventStart , \DateTimeImmutable $eventEnd){
         $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
-        $query = "select description , startTime , endTime from Event where startTime between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}'";
-        
+        /* Get the event from dataBase */
+        $query = "select distinct * from Event e join Worksite w on w.worksiteId = e.worksiteId where eventStartDate between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}'";
         $statement = $this->PDO->query($query);
-        $result = $statement->fetchAll();
-        return $result;
+        $getEvent = $statement->fetchAll();
+
+        return $getEvent;
     }
 
     /**
@@ -30,11 +30,11 @@ class Events{
      * 
      * @return day
      */
-    public function getEventBetweenByDay(\DateTime $eventStart , \DateTime $eventEnd){
+    public function getEventBetweenByDay(\DateTimeImmutable $eventStart , \DateTimeImmutable $eventEnd){
         $events = $this->getEventBetween($eventStart , $eventEnd);
         $days = [];
         foreach($events as $event){
-            $date = explode(' ' , $event['startTime'])[0];
+            $date = explode(' ' , $event['eventStartDate'])[0];
             if(!isset($days[$date])){
                 $days[$date] = [$event];
             }

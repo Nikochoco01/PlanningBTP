@@ -1017,6 +1017,8 @@ main > nav > ul > .buttonChangeView > a:hover{
     left: 70%;
     display: flex;
     align-items: center;
+    border-radius: 20px;
+    width: 15%;
 }
 
 .profilViewAdmin .searchZone .searchEmployeeLabel{
@@ -1037,7 +1039,7 @@ main > nav > ul > .buttonChangeView > a:hover{
     border: 0px solid;
     border-radius: 10px;
     padding: 10px;
-    width: 20%;
+    width: 100%;
     padding-left: 40px;
     outline: none;
 }
@@ -1052,7 +1054,7 @@ main > nav > ul > .buttonChangeView > a:hover{
     transition: 0.3s;
 }
 
-.profilViewAdmin .addZone{
+.profilViewAdmin .addEmployee{
     position: relative;
     top: -40%;
     left: 67%;
@@ -1060,26 +1062,23 @@ main > nav > ul > .buttonChangeView > a:hover{
     align-items: center;
 }
 
-.profilViewAdmin .addEmployeeLabel{
+.profilViewAdmin .addEmployee{
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     background-color: var(--mainColor);
     font-size: 1.5em;
+    text-decoration: none;
+    color: var(--textColorBlack);
     transition: 0.3s;
     width: 35px;
     height: 35px;
 }
 
-.profilViewAdmin .addEmployeeLabel:hover{
+.profilViewAdmin .addEmployee:hover{
     background-color: var(--secondaryColor);
     color: var(--mainColor);
     transform: scale(1.1);
     transition: 0.3s;
-}
-
-.profilViewAdmin input[type="button"]{
-    position: absolute;
-    z-index: -1;
 }

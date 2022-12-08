@@ -18,18 +18,4 @@ try{
 catch(PDOException $e){
     echo "Errreur : " . $e->getMessage();
 }
-    // $request = 'select * from user where name="chevalliot";';
-
-    // foreach($PDO->query($request) as $user){
-    //     echo $user['idUser']."\n";
-    //     echo $user['name']."\n";
-    //     echo $user['surname']."\n";
-    //     echo $user['profilePicture']."\n";
-    //     echo $user['phoneNumber']."\n";
-    //     echo $user['position']."\n";
-    //     echo $user['userRole']."\n";
-    //     echo $user['mail']."\n";
-    // }
-
-
 ?>

@@ -3,13 +3,11 @@
 class Month{
 
     public $days = ['Lundi' , 'Mardi' , 'Mercredi' , 'Jeudi' , 'Vendredi' , 'Samedi' , 'Dimanche'];
-
-
     private $months = ['Janvier' , 'Février' , 'Mars' , 'Avril' , 'Mai' , 'Juin' , 'Juillet' , 'Août' , 'Septembre' , 'Octobre' , 'Novembre' , 'Décembre'];
-
 
     public $month;
     public $year;
+    public $numWeek;
 
     /**
      * month constructor
@@ -18,7 +16,7 @@ class Month{
      * @param int $year current year of calendar
      */
 
-    public function __construct(?int $month = null , ?int $year = null)
+    public function __construct(?int $month = null , ?int $year = null , ?int $numWeek = null)
     {
         if($month === null || $month < 1 || $month > 12){
             $month = intval(date('m'));
@@ -30,15 +28,16 @@ class Month{
 
         $this->month = $month;
         $this->year = $year;
+        $this->numWeek = $numWeek;
     }
 
     /**
      * return the first day of month 
      * 
-     * @return DateTime
+     * @return DateTimeImmutable
      */
     public function getFirstDay(){
-        return new DateTime("{$this->year}-{$this->month}-01");
+        return new DateTimeImmutable("{$this->year}-{$this->month}-01");
     }
 
     /**
@@ -57,18 +56,27 @@ class Month{
      */
     public function getWeeks(){
         $start = $this->getFirstDay();
-        $end = (clone $start)->modify('+1 month -1 day');
-        $weeks = intval($end->format('W')) - intval($start->format('W')) + 1;
+        $end = $start->modify('+1 month -1 day');
+        $startWeek = intval($start->format('W'));
+        $endWeek = intval($end->format('W'));
+        if($endWeek === 1 ){
+            $endWeek = intval($end->modify('- 7 days')->format('W')) + 1;
+        }
+
+        $weeks = $endWeek - $startWeek + 1;
+
         if($weeks < 0 ){
             $weeks = intval($end->format('W'));
         }
+
+        $this->week = $weeks;
         return $weeks;
     }
 
     /**
      * test if the day is in current month
      * 
-     * @param DateTime $date
+     * @param DateTimeImmutable $date
      * @return bool
      */
     public function withinMonth($date){
@@ -105,6 +113,49 @@ class Month{
             $year -= 1;
         }
         return new Month($month, $year);
+    }
+
+
+    function setupWeek(){
+        
+    }
+
+    /**
+     * return the week at the format day to day month
+     * 
+     * @return string 
+     */
+    public function toStringWeek(){
+        return "du ". "........." ."au"."........". $this->year;
+    }
+
+
+    /**
+     * return week after current week
+     * 
+     * @return Week
+     */
+    public function nextWeek(){
+        $this->numWeek+7;
+        if($this->numWeek > $this->getWeeks()*7){
+            $this->nextMonth();
+            $this->numWeek = 0;
+        }
+        return $this->numWeek;
+    }
+
+    /**
+     * return week before current week
+     * 
+     * @return Week
+     */
+    public function previousWeek(){
+        $this->numWeek-7;
+        if($this->numWeek > $this->getWeeks()*7){
+            $this->nextMonth();
+            $this->numWeek = 0;
+        }
+        return $this->numWeek;
     }
 
 }
