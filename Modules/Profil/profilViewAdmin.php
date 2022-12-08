@@ -12,33 +12,21 @@
         switch ($_GET["add"]) {
             case "false":
     ?>
-        <!-- <section class="listContainer" id="listContainer">
+        <section class="listContainer" id="listContainer">
             <h2> Liste des Employés : </h2>
 
             <ul class="listContent" id="listContent">
+                <?php foreach($tabs as $tab): ?>
                 <li class="employee">
                     <img src="img/Noemie.png" alt="image de l'employé">
-                    <p class="nameEmployee"> Nom </p>
+                    <p class="nameEmployee"> <?= $tab->userName?> </p>
                     <p class="surNameEmployee"> Prenom </p>
                     <label for="editEmployee"> <i class="icon-user-edit"></i></label>
                     <input type="button" value="" id="editEmployee">
                 </li>
-                <li class="employee">
-                    <img src="img/Noemie.png" alt="image de l'employé">
-                    <p class="nameEmployee"> Nom </p>
-                    <p class="surNameEmployee"> Prenom </p>
-                    <label for="editEmployee"> <i class="icon-user-edit"></i></label>
-                    <input type="button" value="" id="editEmployee">
-                </li>
-                <li class="employee">
-                    <img src="img/Noemie.png" alt="image de l'employé">
-                    <p class="nameEmployee"> Nom </p>
-                    <p class="surNameEmployee"> Prenom </p>
-                    <label for="editEmployee"> <i class="icon-user-edit"></i></label>
-                    <input type="button" value="" id="editEmployee">
-                </li>
+                <?php endforeach?>
             </ul>
-        </section> -->
+        </section>
     <?php
             break;
             case "true":
