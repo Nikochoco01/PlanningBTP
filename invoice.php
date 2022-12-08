@@ -29,11 +29,11 @@
             
             <div class="invoiceList">
                 <?php 
-                    $stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.expenseDescription, w.worksiteName from Expense e join Worksite w on e.worksiteId = w.worksiteId where userId = :user order by e.expenseId");
+                    $stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.expenseDescription, w.worksiteName, v.eventDescription from Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId where userId = :user order by e.expenseId");
                     $stat->execute(['user' => $_SESSION['userName']]);
                     $results = $stat->fetchAll();
                     foreach($results as $res){
-                        $in = new Invoice($res->expenseId, $res->expenseDate, $res->expenseAmount, $res->expenseDescription, $res->worksiteName);
+                        $in = new Invoice($res->expenseId, $res->expenseDate, $res->expenseAmount, $res->expenseDescription, $res->eventDescription, $res->worksiteName);
                         echo $in->display($_SESSION['token']);
                     }
                 ?>
@@ -42,8 +42,8 @@
             <form action="Modules/newExpensesProcess.php" method="post">
 
                 <label for="worksite"> Chantier </label>
-                <input type="search" name="worksite" id="worksite" list="worksites">
-                <datalist id="worksites">
+                <select name="worksite" id="worksite" list="worksites">
+                    <option value="">-- Choix du chantier --</option>
                 <?php 
                     $stat = $PDO->prepare("select worksiteName from Worksite;");
                     
@@ -53,7 +53,7 @@
                         echo "<option>". $res->worksiteName;
                     }
                     ?>
-                </datalist>
+                </select>
 
                 <label for="description"> Raison de la dépense </label>
                 <input type="text" name="description" id="description" list="expensesType">
@@ -66,20 +66,22 @@
                     <option></option>
                     <option></option> -->
                 </datalist>
-
                 <label for="event"> Mission associé à la dépense </label>
                 <select name="event" id="event" list="expencesEvent">
+                    <option value="">-- Choix de la mission --</option>
                     <?php
-                    $stat = $PDO->prepare("select eventId, eventDescription from Event where eventEndDate > :now && :now < eventStartDate;");
-                    $results = $stat->execute(['now' => Date("Y-m-d")]);
-                    foreach($results as $res){
-                        echo "<option value=\"".$res->eventId."\">".$res->eventDescription;
-                    }
+                        $now = Date("Y-m-d");
+                        $stat = $PDO->prepare("select eventId, eventDescription from Event where eventEndDate > \"$now\" && eventStartDate < \"$now\";");
+                        $stat->execute();
+                        $results = $stat->fetchAll();
+                        foreach($results as $res){
+                            echo "<option value=\"".$res->eventId."\">".$res->eventDescription;
+                        }
                     ?>
                 </select>
 
                 <label for="price"> Montant </label>
-                <input type="number" name="price" id="price" min="0" step="0.01">
+                <input type="number" name="price" id="price" min="0" max="34000000000000000000000000000000000000" step="0.01">
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 

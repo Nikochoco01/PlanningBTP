@@ -11,13 +11,16 @@ class Material{
     }
 
     function display(string $token) : string{
-        $str = "";
-        $str .= "<form class=\"material\">";
-        $str .= "<input type=\"text\" value=\"".$this->designation."\" disabled>";
-        $str .=  "<p>".$this->TTCount."</p>";
-        $str .=  "<p>".$this->cmtDispo."</p>";
-        $str .=  "<input  type=\"hidden\" name=\"token\" value=\"".$token."\">";
-        $str .=  "</form>";
+        $str  = "";
+        $str .= "<form class=\"material\" action=\"delete.php\" method=\"post\">";
+        $str .= "<input type=\"text\" value=\"".$this->designation."\" name=\"id\" readonly>";
+        $str .= "<p>".$this->TTCount."</p>";
+        $str .= "<p>".$this->cmtDispo."</p>";
+        $str .= "<input  type=\"hidden\" name=\"token\" value=\"".$token."\">";
+        $str .= "<input  type=\"hidden\" name=\"table\" value=\"Equipment\">";
+        $str .= "<input  type=\"hidden\" name=\"idName\" value=\"equipmentName\">";
+        $str .= "<input type=\"submit\" value=\"Effacer\">";
+        $str .= "</form>";
         return $str;
     }
 }
