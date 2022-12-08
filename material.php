@@ -46,7 +46,7 @@
                 <input type="text" name="designation" id="designation">
 
                 <label for="total">Quantité du nouvelle équipement</label>
-                <input type="number" name="total" id="total" min="0" step="1">
+                <input type="number" name="total" id="total" min="0" max="2000000000" step="1">
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 

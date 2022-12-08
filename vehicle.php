@@ -52,6 +52,7 @@
                 <label for="license">Permis nécessaire</label>
                 <select name="license" id="license" list="licenses">
                 <!-- <datalist id="licenses"> -->
+                    <option value="">-- Choix du Permis --</option>
                     <?php 
                     $stat = $PDO->prepare("select driverLicenseName from DriverLicense;");
                     
@@ -65,7 +66,7 @@
                 </select>
 
                 <label for="maxPassenger">Nombre de passager maximal</label>
-                <input type="number" name="maxPassenger" id="maxPassenger" min="1" /*max="9" step="1">
+                <input type="number" name="maxPassenger" id="maxPassenger" min="1" max="2000000000" /*max="9" step="1">
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
