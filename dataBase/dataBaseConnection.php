@@ -30,6 +30,3 @@ catch(PDOException $e){
     //     echo $user['userRole']."\n";
     //     echo $user['mail']."\n";
     // }
-
-
-?>
