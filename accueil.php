@@ -17,7 +17,7 @@ include_once dirname(__FILE__)."/Modules/head.php";
             <main>
                     <section class="homePage">
                         <h2> Bienvenue </h2>
-                        <img src="<?php echo $_SESSION['userPic'] ?>" alt="image de votre profil">
+                        <img src="<?php echo $_SESSION['userPicture'] ?>" alt="image de votre profil">
                         <p><?php echo $_SESSION['surName'] ." ". mb_strtoupper($_SESSION['name']) ?> </p>
                         <div class="scheduleSummary">
                             <p><?php echo $_SESSION['dateToday'] ?> </p>

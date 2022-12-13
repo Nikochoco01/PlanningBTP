@@ -83,23 +83,14 @@
                 <?php foreach($month->days as $dayNumber => $day): 
                         $date = $firstDay->modify("+".($dayNumber + $i*7). "days");
                         $eventsForDay = $events[$date->format('Y-m-d')] ?? [];
+                        
+                        // if($day == "Dimanche"){
+                        //     echo "c'est dimanche donc on met lundi \n";
+                        //     echo $dayNumber = 0;
+                        // }
                 ?>
-                    <td class="<?= $month->withinMonth($date) ?'' : 'calendarOtherMonth' ?>">
-<!-- box calendar -->
-                        <div class="calendarBox"> 
-                            <p class="calendarDayNumber"> <?= $date->format('d'); ?> </p>
-                            
-                            <?php foreach($eventsForDay as $event): ?>
-                                <div class="calendarEvent">
-                                    <p class="descriptionEvent"> <?= $event['eventDescription'] ?> </p>
-                                    <p class="worksiteEvent"> <?= $event['eventDescription'] ?> </p>
-                                    <p class="eventTime"> <?= (new DateTime($event['eventStartTime']))->format('H:m') ?> - <?= (new DateTime($event['eventEndTime']))->format('H:m') ?></p>
-                                    <p class="eventStartTime">  </p>
-                                </div>
-                            <?php endforeach;?>
-                        </div>
-
-                    </td>
+                    <!-- include the calendarBox to display all days -->
+                    <?php include dirname(__FILE__,1)."/planningClass/boxCalendar.php";?>
                 <?php endforeach; ?>
             </tr>
         <?php endfor; ?>

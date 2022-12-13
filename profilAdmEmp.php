@@ -27,8 +27,8 @@
                         </a>
                     </li>
 
-                    <li class="buttonTabs <?php echo activeTab("Employes") ?>">
-                        <a href=" <?php echo addUrlParam(array('onglet' => 'Employes')) ?>">
+                    <li class="buttonTabs <?php echo activeTab("Employees") ?>">
+                        <a href=" <?php echo addUrlParam(array('onglet' => 'Employees')) ?>">
                             <i class=""></i> Employés
                         </a>
                     </li>

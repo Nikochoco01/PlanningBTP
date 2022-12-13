@@ -37,7 +37,7 @@
 
 <?php 
     function disableInput(){
-        if($_SESSION['position'] == "administrateur"){
+        if($_SESSION['userFonction'] == "administrator"){
             return "";
         }
         else{
@@ -46,7 +46,7 @@
     }
 
     function addDisabled(){
-        if($_SESSION['position'] == "administrateur"){
+        if($_SESSION['userFonction'] == "administrator"){
             return "";
         }
         else{

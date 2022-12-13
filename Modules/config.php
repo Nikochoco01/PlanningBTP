@@ -23,7 +23,7 @@ function displayType(){
         return addUrlParam(array('display'=> 'day'));
     }
     else{
-        return addUrlParam(array('display'=> 'week'));
+        return addUrlParam(array('display'=> 'week' , 'week' => '1'));
     }
 }
 

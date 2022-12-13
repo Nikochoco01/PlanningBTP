@@ -1,6 +1,6 @@
 <div class="profilViewAdmin">
 
-    <a href="/profil.php?userRole=administrateur&onglet=Employes&display=View&add=true" class="addEmployee"> <i class="icon-user-plus-bottom"></i> </a>
+    <a href="/profil.php?onglet=Employes&display=View&add=true" class="addEmployee"> <i class="icon-user-plus-bottom"></i> </a>
 
     <span class="searchZone">
         <input type="search" name="searchEmployee" id="searchEmployee" placeholder="chercher un employé">
@@ -18,7 +18,7 @@
             <ul class="listContent" id="listContent">
                 <?php foreach($tabs as $tab): ?>
                 <li class="employee">
-                    <img src="img/Noemie.png" alt="image de l'employé">
+                    <img src="<?= $_SESSION['userPicture'] ?>" alt="image de l'employé">
                     <p class="nameEmployee"> <?= $tab->userName?> </p>
                     <p class="surNameEmployee"> Prenom </p>
                     <label for="editEmployee"> <i class="icon-user-edit"></i></label>

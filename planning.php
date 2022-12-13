@@ -22,36 +22,7 @@ include_once dirname(__FILE__)."/Modules/head.php";
     <div class="layout">
         <?php include_once "Modules/aside.php" ?>
         <main class="planningMain">
-            <nav class="navTab">
-                <ul>
-                    <li class="buttonTabs <?php echo activeTab("Missions") ?>"> 
-                        <a href=" <?php echo addUrlParam(array('onglet'=>'Missions')) ?>">
-                            <i class="icon-clipboard-list"></i> Missions 
-                        </a>
-                    </li>
-                    
-                    <li class="buttonTabs <?php echo activeTab("Employes") ?>"> 
-                        <a href=" <?php echo addUrlParam(array('onglet'=>'Employes')) ?>">
-                            <i class="icon-users-group"></i> Employés 
-                        </a>
-                    </li>
-
-                    <li class="buttonTabs <?php echo activeTab("Vehicules") ?>"> 
-                        <a href=" <?php echo addUrlParam(array('onglet'=>'Vehicules')) ?>">
-                            <i class="icon-warehouse"></i> Véhicules 
-                        </a>
-                    </li>
-                    
-                    <li class="buttonTabs <?php echo activeTab("Material") ?>"> 
-                        <a href=" <?php echo addUrlParam(array('onglet'=>'Material')) ?>">
-                            <i class="icon-tool"></i> Matériel 
-                        </a>
-                    </li>
-
-                    <li class="buttonChangeView"> <a href=" <?php echo displayType(); ?>" class="" id="buttonChangeView"> <i class="icon-home"></i></a> </li>
-                </ul>
-            </nav>
-
+            <?php include_once "Modules/tabs/selectTab.php"?>
             <div class="tabContent">
                 <?php 
                     switch($_GET["onglet"]){
@@ -68,7 +39,7 @@ include_once dirname(__FILE__)."/Modules/head.php";
                                     break;
                                 }
                             break;
-                        case "Employes":
+                        case "Employees":
                                 switch($_GET["display"]){
                                     case "day":
                                         include_once "Modules/tabs/dayView.php";
@@ -81,7 +52,7 @@ include_once dirname(__FILE__)."/Modules/head.php";
                                     break;
                                 }
                             break;
-                        case "Vehicules":
+                        case "Vehicles":
                                 switch($_GET["display"]){
                                     case "day":
                                         include_once "Modules/tabs/dayView.php";

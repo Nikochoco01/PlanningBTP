@@ -1,7 +1,8 @@
-<?php include 'constant.php';
+<?php 
+    include 'constant.php';
 
     function addUser(){
-        if($_SESSION['position'] ==="administrateur"){
+        if($_SESSION['userFonction'] ==="administrator"){
             return "&add=false";
         }
         else{
@@ -14,7 +15,7 @@
         <nav class="mainMenu">
             <ul>
                 <li>
-                    <a href="accueil.php?userRole=<?php echo $_SESSION['position']?>">
+                    <a href="accueil.php">
                         <i class="icon-home"></i>
                             <span class="nav-text">
                                 Accueil
@@ -22,7 +23,7 @@
                     </a>
                 </li>
                 <li class="has-subnav">
-                    <a href="profil.php?userRole=<?php echo $_SESSION['position']?>&onglet=<?php echo PARAM_PROFIL_ONGLET ?>&display=<?php echo PARAM_PROFIL_DISPLAY ?><?=addUser() ?> ">
+                    <a href="profil.php?onglet=<?= PARAM_PROFIL_ONGLET ?>&display=<?= PARAM_PROFIL_DISPLAY ?><?=addUser() ?> ">
                         <i class="icon-id-card"></i>
                             <span class="nav-text">
                                 Profil
@@ -30,7 +31,7 @@
                     </a>
                 </li>
                 <li class="has-subnav">
-                    <a href="planning.php?userRole=<?php echo $_SESSION['position']?>&onglet=<?php echo PARAM_PLANNING_ONGLET ?>&display=<?php echo PARAM_PLANNING_DISPLAY ?>&month=<?php echo date('m') ?>&year=<?php echo date('Y') ?>">
+                    <a href="planning.php?onglet=<?= PARAM_PLANNING_ONGLET ?>&display=<?= PARAM_PLANNING_DISPLAY ?>&month=<?= date('m') ?>&year=<?= date('Y') ?>&week=<?=1 ?>">
                         <i class="icon-calendar"></i>
                             <span class="nav-text">
                                 Planning

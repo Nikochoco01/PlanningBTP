@@ -16,14 +16,14 @@
         <?php include_once 'Modules/aside.php'; ?>
         <main>
             <?php
-                if($_GET["userRole"] == 'administrateur'){
-                    include_once "Modules/Profil/selectTab.php";
+                if($_SESSION['userFonction'] == 'administrator'){
+                    include_once "Modules/tabs/selectTab.php";
                 }
             ?>
             <div class="profilContent">
                 <?php 
                     switch ($_GET["onglet"]) {
-                        case "Personnal":
+                        case "Personal":
                             switch($_GET["display"]){
                                 case "View":
                                     include "Modules/Profil/profilView.php";
@@ -33,7 +33,7 @@
                             break;
                             }
                         break;
-                        case "Employes":
+                        case "Employees":
                             switch($_GET["display"]){
                                 case "View":
                                     include "Modules/Profil/profilViewAdmin.php";

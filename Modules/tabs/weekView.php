@@ -12,10 +12,13 @@
     $lastDay = $firstDay->modify('+' . (6 + 7 * ($weeks - 1)) . 'days');
     $events = $event->getEventBetweenByDay($firstDay , $lastDay);
     
-    // echo "<pre>";
-    //     print_r($events);
-    // echo "</pre";
-    var_dump(52 - 49);
+    /**
+     * function to setup the date 
+     */
+    $date;
+    foreach($month->days as $dayNumber => $day){
+        $date = $firstDay->modify("+".($dayNumber + $month->setupWeek($_GET['week'])). "day");
+    }
 ?>
 
 <div class="tab" >
@@ -64,12 +67,12 @@
             </div>
         </div>
 
-        <h2> <?php echo $month->toString(); ?> </h2>
+        <h2> <?php echo $month->toStringWeek($date); ?> </h2>
 
         <div class="changeButtonContent">
-            <a href="<?= addUrlParam(array('month'=>$month->previousMonth()->month ,'year'=>$month->previousMonth()->year))?> " class="changeMonth"> <i class="icon-angle-left"></i> </a>
+            <a href="<?= addUrlParam(array('month'=>$month->previousWeek()->month ,'year'=>$month->previousWeek()->year , 'week'=>$month->previousWeek()->week))?> " class="changeMonth"> <i class="icon-angle-left"></i> </a>
             <a href="<?= addUrlParam(array('month'=>date('m') ,'year'=>date('Y')))?>" class="currentMonth"> <i class="icon-rotate" ></i> </a>
-            <a href="<?= addUrlParam(array('week'=>$month->nextWeek()->numWeek))?> " class="changeMonth"> <i class="icon-angle-right"></i> </a>
+            <a href="<?= addUrlParam(array('month'=>$month->nextWeek()->month ,'year'=>$month->nextWeek()->year , 'week'=>$month->nextWeek()->week))?> " class="changeMonth"> <i class="icon-angle-right"></i> </a>
         </div>
     </div>
 
@@ -79,30 +82,15 @@
                 <th> <?= $day ?> </th>
             <?php endforeach?>
         </tr>
-            <tr>
-                <?php foreach($month->days as $dayNumber => $day):
-                        $date = $firstDay->modify("+".($dayNumber + $month->numWeek). "days");
-                        $eventsForDay = $events[$date->format('Y-m-d')] ?? [];
-                ?>
-                    <td class="<?= $month->withinMonth($date) ?'' : 'calendarOtherMonth' ?>">
-                    
-                        <!-- box calendar -->
-                        <div class="calendarBox"> 
-                            <p class="calendarDayNumber"> <?= $date->format('d'); ?> </p>
-                            
-                            <?php foreach($eventsForDay as $event): ?>
-                                <div class="calendarEvent">
-                                    <p class="descriptionEvent"> <?= $event['description'] ?> </p>
-                                    <p class="dateEvent"> date event </p>
-                                    <p class="timeEvent"> <?= (new DateTime($event['startTime']))->format('H:m') ?> </p>
-                                    <!-- -  echo $event['endTime']->format('H:m') -->
-                                </div>
-                            <?php endforeach;?>
-                        </div>
-
-                    </td>
-                <?php endforeach; ?>
-            </tr>
+        <tr>
+            <?php foreach($month->days as $dayNumber => $day):
+                    $date = $firstDay->modify("+".($dayNumber + $month->setupWeek($_GET['week'])). "day");
+                    $eventsForDay = $events[$date->format('Y-m-d')] ?? [];
+            ?>
+                <!-- include the calendarBox to display all days -->
+                <?php include dirname(__FILE__,1)."/planningClass/boxCalendar.php";?>
+            <?php endforeach; ?>
+        </tr>
 
     </table>
 </div>

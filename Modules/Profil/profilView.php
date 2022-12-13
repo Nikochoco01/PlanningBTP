@@ -1,5 +1,5 @@
 <div class="profilView">
-    <img src=" <?php echo $_SESSION['userPic'] ?> " alt="photo de profil">
+    <img src=" <?php echo $_SESSION['userPicture'] ?> " alt="photo de profil">
     <p>
         <span class="label"> <i class="icon-user"></i> Nom d'utilisateur :</span>
         <span class="userInfo">
