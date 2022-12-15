@@ -1,8 +1,7 @@
 <?php 
     session_start();
     include_once "Modules/config.php";
-    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/vehiculeClass.php"; 
+    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php"; 
     include_once dirname(__FILE__)."/tokenGenerator.php";
 
     $_SESSION['token'] = generateToken(10);
@@ -31,14 +30,7 @@
 
             <div class="vehiculeList">
                 <?php 
-                    $stat = $PDO->prepare("select v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense from Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName");
-
-                    $stat->execute();
-                    $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        $veh = new Vehicule($res->vehicleLicensePlate, $res->vehicleModel, $res->vehicleMaxPassenger, $res->vehicleDriverLicense);
-                        echo $veh->display($_SESSION['token']);
-                    }
+                    include_once dirname(__FILE__)."/vehiculeClass.php";
                 ?>
             </div>
 

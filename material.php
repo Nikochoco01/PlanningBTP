@@ -2,7 +2,6 @@
     session_start();
     include_once "Modules/config.php";
     include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/materialClass.php"; 
     include_once dirname(__FILE__)."/tokenGenerator.php";
 
     $_SESSION['token'] = generateToken(10);
@@ -31,13 +30,7 @@
 
             <div class="materialList">
                 <?php 
-                    $stat = $PDO->prepare("SELECT * FROM Equipment");
-                    $stat->execute();
-                    $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        $mat = new Material($res->equipmentName, $res->equipmentTotalQuantity, $res->equipmentAvailableQuantity);
-                        echo $mat->display($_SESSION['token']);
-                    }
+                    include_once dirname(__FILE__)."/materialClass.php"; 
                 ?>
             </div>
 

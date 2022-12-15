@@ -1,7 +1,6 @@
 <?php session_start();
     include_once "Modules/config.php";   
     include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/invoiceClass.php"; 
     include_once dirname(__FILE__)."/tokenGenerator.php";
 
     $_SESSION['token'] = generateToken(10);
@@ -29,13 +28,7 @@
             
             <div class="invoiceList">
                 <?php 
-                    $stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.expenseDescription, w.worksiteName, v.eventDescription from Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId where userId = :user order by e.expenseId");
-                    $stat->execute(['user' => $_SESSION['userName']]);
-                    $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        $in = new Invoice($res->expenseId, $res->expenseDate, $res->expenseAmount, $res->expenseDescription, $res->eventDescription, $res->worksiteName);
-                        echo $in->display($_SESSION['token']);
-                    }
+                    include_once dirname(__FILE__)."/invoiceClass.php"; 
                 ?>
             </div>
 
