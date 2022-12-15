@@ -46,19 +46,35 @@
                 <!-- <datalist id="licenses"> -->
                     <option value="">-- Choix du Permis --</option>
                     <?php 
-                    $stat = $PDO->prepare("select driverLicenseName from DriverLicense;");
+                    $stat = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
                     
                     $stat->execute();
                     $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        echo "<option>". $res->driverLicenseName;
-                    }
-                    ?>
+                    foreach($results as $res):?>
+                        <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= $res->driverLicenseName ?>
+                    <?php endforeach; ?>
                 <!-- </datalist> -->
                 </select>
 
                 <label for="maxPassenger">Nombre de passager maximal</label>
-                <input type="number" name="maxPassenger" id="maxPassenger" min="1" max="2000000000" /*max="9" step="1">
+                <!-- <input type="number" name="maxPassenger" id="maxPassenger" min="1" max="2000000000" /*max="9" step="1"> -->
+                <select name="maxPassenger" id="maxPassenger">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                </select>
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
@@ -71,4 +87,5 @@
         </main>
     </div>
 </body>
+<script src="js/vehicle.js"></script>
 </html>
