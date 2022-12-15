@@ -38,14 +38,13 @@
                 <select name="worksite" id="worksite" list="worksites">
                     <option value="">-- Choix du chantier --</option>
                 <?php 
-                    $stat = $PDO->prepare("select worksiteName from Worksite;");
+                    $stat = $PDO->prepare("select worksiteId, worksiteName from Worksite;");
                     
                     $stat->execute();
                     $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        echo "<option>". $res->worksiteName;
-                    }
-                    ?>
+                    foreach($results as $res):?>
+                        <option value="<?= $res->worksiteId ?>"> <?= $res->worksiteName ?>
+                <?php endforeach; ?>
                 </select>
 
                 <label for="description"> Raison de la dépense </label>
@@ -61,16 +60,15 @@
                 </datalist>
                 <label for="event"> Mission associé à la dépense </label>
                 <select name="event" id="event" list="expencesEvent">
-                    <option value="">-- Choix de la mission --</option>
+                    <option value="" worksite="">-- Choix de la mission --</option>
                     <?php
                         $now = Date("Y-m-d");
-                        $stat = $PDO->prepare("select eventId, eventDescription from Event where eventEndDate > \"$now\" && eventStartDate < \"$now\";");
+                        $stat = $PDO->prepare("select eventId, eventDescription, worksiteId from Event where eventEndDate > \"$now\" && eventStartDate < \"$now\";");
                         $stat->execute();
                         $results = $stat->fetchAll();
-                        foreach($results as $res){
-                            echo "<option value=\"".$res->eventId."\">".$res->eventDescription;
-                        }
-                    ?>
+                        foreach($results as $res):?>
+                        <option value="<?= $res->eventId ?>" worksite="<?= $res->worksiteId ?>"><?= $res->eventDescription ?>
+                    <?php endforeach; ?>
                 </select>
 
                 <label for="price"> Montant </label>
@@ -83,16 +81,8 @@
                     <input type="reset" value="Annuler">
                 </span>
             </form>
-<script>
-    const hour = document.getElementById("hour");
-    const min = document.getElementById("minutes");
-    const today = new Date();
-    hour.innerText = today.getHours();
-    m = today.getMinutes();
-    if(m<10){m = '0' + m;}
-    min.innerText = m;
-</script>
         </main>
     </div>
 </body>
+<script src="js/expenses.js"></script>
 </html>
