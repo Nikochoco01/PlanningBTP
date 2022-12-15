@@ -1,35 +1,19 @@
 <?php
-class Invoice{
-    private $idInvoice;
-    private $date;
-    private $price;
-    private $description;
-    private $event;
-    private $worksite;
-
-    function __construct(int $idIn, string $date, float $price, string $desc, string $event, string $work){
-        $this->idInvoice = $idIn;
-        $this->date = $date;
-        $this->price = $price;
-        $this->description = $desc;
-        $this->event = $event;
-        $this->worksite = $work;
-    }
-
-    function display(string $token) : string{
-        $str = "";
-        $str .=  "<form class=\"invoice\" action=\"delete.php\" method=\"post\">";
-        $str .=  "<input type=\"text\" value=\"".$this->idInvoice."\" name=\"id\" readonly>";
-        $str .=  "<p>".$this->description."</p>";
-        $str .=  "<p>".$this->worksite."</p>";
-        $str .=  "<p>".$this->event."</p>";
-        $str .=  "<p>".explode(" ", $this->date)[0]."</p>";
-        $str .=  "<p>".number_format($this->price, 2, ".", " ")."€</p>";
-        $str .=  "<input  type=\"hidden\" name=\"token\" value=\"".$token."\">";
-        $str .=  "<input  type=\"hidden\" name=\"table\" value=\"Expense\">";
-        $str .=  "<input  type=\"hidden\" name=\"idName\" value=\"expenseId\">";
-        $str .=  "<input type=\"submit\" value=\"Effacer\">";
-        $str .=  "</form>";
-        return $str;
-    }
-}
+include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
+$stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.expenseDescription, w.worksiteName, v.eventDescription from Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId where userId = :user order by e.expenseId");
+$stat->execute(['user' => $_SESSION['userName']]);
+$results = $stat->fetchAll();
+foreach($results as $res):?>
+<form class="expense" action="delete.php" method="post">
+    <input type="text" name="id" value="<?= $res->expenseId ?>" readonly>
+    <p><?= $res->expenseDescription ?></p>
+    <p><?= $res->worksiteName ?></p>
+    <p><?= $res->eventDescription ?></p>
+    <p><?= explode(" ", $res->expenseDate)[0] ?></p>
+    <p><?= number_format($res->expenseAmount, 2, ".", " ")."€" ?></p>
+    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+    <input type="hidden" name="table" value="Expense">
+    <input type="hidden" name="idName" value="expenseId">
+    <input type="submit" value="Effacer">
+</form>
+<?php endforeach; ?>
