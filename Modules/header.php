@@ -1,13 +1,13 @@
 <header>
-    <h1> <?php echo $title ?> </h1>
+    <h1> <?= $title ?> </h1>
 
     <div class="profilZone">
-        <img src="<?php echo $_SESSION['userPic'] ?>" alt="user picture" class="userPic" id="userPic">
+        <img src="<?= $_SESSION['userPicture'] ?>" alt="user picture" class="userPic" id="userPic">
         <p class="userAccount" id="userAccount"> 
-            <span class="surName"> <?php echo $_SESSION['surName'] ?> </span> 
-            <span class="name"> <?php echo mb_strtoupper($_SESSION['name']) ?> </span> 
+            <span class="surName"> <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "FirstName") ?> </span> 
+            <span class="name"> <?= InputSecurity::displayWithFormat($_SESSION['userLastName'] , "LastName") ?> </span> 
         </p>
-        <p class="typeAccount" id="typeAccount"> <?php echo mb_strtoupper($_SESSION['position']) ?> </p>
+        <p class="typeAccount" id="typeAccount"> <?= InputSecurity::displayWithFormat($_SESSION['userPosition'] , "Position") ?> </p>
         
         <form action="/Modules/logOutProcess.php" method="post">
                 <label for="logOutButton" class="logOutButton"> <i class="icon-power-off"></i> <span> Déconnexion </span> </label>

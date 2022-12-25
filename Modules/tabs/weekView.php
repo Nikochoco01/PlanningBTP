@@ -8,6 +8,8 @@
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
     $firstDay = $firstDay->format('N') === '1' ? $firstDay : $month->getFirstDay()->modify('last monday');
+    //var_dump($firstDay);
+    //var_dump($firstDay->modify('+ 7 days'));
     
     $lastDay = $firstDay->modify('+' . (6 + 7 * ($weeks - 1)) . 'days');
     $events = $event->getEventBetweenByDay($firstDay , $lastDay);
@@ -67,7 +69,7 @@
             </div>
         </div>
 
-        <h2> <?php echo $month->toStringWeek($date); ?> </h2>
+        <h2> <?= $month->toStringWeek($date); ?> </h2>
 
         <div class="changeButtonContent">
             <a href="<?= addUrlParam(array('month'=>$month->previousWeek()->month ,'year'=>$month->previousWeek()->year , 'week'=>$month->previousWeek()->week))?> " class="changeMonth"> <i class="icon-angle-left"></i> </a>
@@ -76,7 +78,8 @@
         </div>
     </div>
 
-    <table class="calendarTable calendarTable<?php echo $weeks?>weeks">
+    <?php var_dump($month->getCurrentWeek($firstDay)); ?>
+    <table class="calendarTable calendarTable<?= $weeks?>weeks">
         <tr> 
             <?php foreach($month->days as $dayNumber => $day):?>
                 <th> <?= $day ?> </th>

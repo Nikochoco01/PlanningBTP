@@ -2,7 +2,7 @@
     include 'constant.php';
 
     function addUser(){
-        if($_SESSION['userFonction'] ==="administrator"){
+        if($_SESSION['userFonction'] === "administrator"){
             return "&add=false";
         }
         else{
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="schedule.php">
                         <i class="icon-clock"></i>
                             <span class="nav-text">
                                 Horaires
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="expenditure.php">
                         <i class="icon-euro"></i>
                             <span class="nav-text">
                                 Frais

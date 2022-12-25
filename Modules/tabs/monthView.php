@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <h2> <?php echo $month->toString(); ?> </h2>
+        <h2> <?= $month->toString(); ?> </h2>
 
         <div class="changeButtonContent">
             <a href="<?= addUrlParam(array('month'=>$month->previousMonth()->month ,'year'=>$month->previousMonth()->year))?> " class="changeMonth"> <i class="icon-angle-left"></i> </a>

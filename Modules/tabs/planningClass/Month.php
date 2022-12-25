@@ -174,6 +174,28 @@ class Month{
         return "Du ". $date->modify('- 6 day')->format("d")." au ". $date->format("d") . " " . $this->months[$this->month - 1] . " " . $this->year;
     }
 
+    private function withinWeek($numWeek){
+        $currentDay = date("Y-m-d");
+        $firstDayWeek = $numWeek;
+        $latsDayWeek = $numWeek + 7;
+        return $currentDay >= $firstDayWeek && $currentDay <= $latsDayWeek;
+    }
+
+    public function getCurrentWeek($date){
+        //var_dump($this->getWeeks());
+        $numWeek = 0;
+       //var_dump($date);
+        for($i = 1; $i <= $this->getWeeks(); $i++){
+            $convertWeek = $this->convertWeek($i);
+            //var_dump($convertWeek);
+            $numWeek = $date->modify("+" . $convertWeek ."days")->format("d");
+            var_dump($numWeek);
+            if($this->withinWeek($numWeek) === true){
+               // var_dump($numWeek);
+               // return $convertWeek;
+            };
+        }
+    }
 
     /**
      * return week after current week

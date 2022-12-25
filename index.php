@@ -7,7 +7,7 @@ session_start();
 
 <!-- variables declaration -->
 <?php
-    $titlePage = "Connexion";
+    $title = "Connexion";
     include_once dirname(__FILE__)."/Modules/head.php";
 ?>
 

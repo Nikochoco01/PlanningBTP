@@ -29,11 +29,12 @@ if(isset($user->userId) && isset($loginUsername->loginUsername)){
         }
     };
 
+    $_SESSION['userId'] = $user->userId; //user id in data base
     $_SESSION['userName'] = $loginUsername->loginUsername; //  connection ID
     $_SESSION['userPicture'] = $user->userPicture; // profile picture 
-    $_SESSION['surName'] = $user->userFirstName; // first name of user
-    $_SESSION['name'] = $user->userLastName; // name of user 
-    $_SESSION['position'] = $user->userPosition; // position in the company
+    $_SESSION['userFirstName'] = $user->userFirstName; // first name of user
+    $_SESSION['userLastName'] = $user->userLastName; // name of user 
+    $_SESSION['userPosition'] = $user->userPosition; // position in the company
     $_SESSION['userPhone'] = $user->userPhone; // user phone number 
     $_SESSION['userMail'] = $user->userMail; // user mail address
 
