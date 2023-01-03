@@ -16,5 +16,6 @@ if( !empty($_POST['price']) && !empty($_POST['description']) && !empty($_POST['w
         ]);
     }
     unset($_SESSION['token']);
+    header("Location:".$_SERVER['HTTP_REFERER']);
 }
-header("Location:".$_SERVER['HTTP_REFERER']);
+header("Location:".dirname(__FILE__,3)."/public/expenditure.php");

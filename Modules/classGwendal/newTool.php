@@ -13,4 +13,4 @@ if( !empty($_POST['designation']) && !empty($_POST['total']) && !empty($_POST['t
     unset($_SESSION['token']);
     header("Location:".$_SERVER['HTTP_REFERER']);
 }
-header("Location:material.php");
+header("Location:".dirname(__FILE__,3)."/public/toolManagement.php");
