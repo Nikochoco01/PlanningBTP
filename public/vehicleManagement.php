@@ -79,5 +79,5 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
         </main>
     </div>
 </body>
-<script src="js/vehicle.js"></script>
+<script src="../private/js/vehicle.js"></script>
 </html>
