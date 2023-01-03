@@ -1,45 +1,44 @@
 <?php 
     session_start();
-    include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
-    include_once dirname(__FILE__,2)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/Modules/classGwendal/vehiculeClass.php"; 
-    include_once dirname(__FILE__)."/Modules/tokenGenerator.php";
+    include_once "Modules/config.php";
+    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php"; 
+    include_once dirname(__FILE__)."/tokenGenerator.php";
 
     $_SESSION['token'] = generateToken(10);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php 
-    $title = TITLE_PAGE_VEHICLE; 
-    include_once dirname(__FILE__,2)."/private/constant/page/head.php";
-?>
+<?php $titlePage = "Véhicule"; ?>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/default.css">
+    <link rel="stylesheet" href="/CSS/menu.css">
+    <link rel="stylesheet" href="/Icon/style.css">
+    <title> <?php echo $titlePage ?> </title>
+</head>
 
 <body>
-    <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
+    <?php include_once "Modules/header.php"; ?>
 
     <div class="layout">
-        <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php";?>
+        <?php include_once "Modules/aside.php"; ?>
 
         <main>
 
-            <div class="vehicleList">
+            <div class="vehiculeList">
                 <?php 
-                    $stat = $PDO->prepare("select v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense from Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName");
-
-                    $stat->execute();
-                    $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        $veh = new Vehicule($res->vehicleLicensePlate, $res->vehicleModel, $res->vehicleMaxPassenger, $res->vehicleDriverLicense);
-                        echo $veh->display($_SESSION['token']);
-                    }
+                    include_once dirname(__FILE__)."/vehiculeClass.php";
                 ?>
             </div>
 
-            <form action="/Modules/classGwendal/newVehicle.php" method="post">
+            <form action="newVehicle.php" method="post">
                 <label for="plate">Immatriculation</label>
                 <input type="search" name="plate" id="plate">
 
-                <label for="model">Model de véhicule</label>
+                <label for="model">Model de vehicule</label>
                 <input type="text" name="model" id="model">
 
                 <label for="license">Permis nécessaire</label>
@@ -47,19 +46,35 @@
                 <!-- <datalist id="licenses"> -->
                     <option value="">-- Choix du Permis --</option>
                     <?php 
-                    $stat = $PDO->prepare("select driverLicenseName from DriverLicense;");
+                    $stat = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
                     
                     $stat->execute();
                     $results = $stat->fetchAll();
-                    foreach($results as $res){
-                        echo "<option>". $res->driverLicenseName;
-                    }
-                    ?>
+                    foreach($results as $res):?>
+                        <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= $res->driverLicenseName ?>
+                    <?php endforeach; ?>
                 <!-- </datalist> -->
                 </select>
 
                 <label for="maxPassenger">Nombre de passager maximal</label>
-                <input type="number" name="maxPassenger" id="maxPassenger" min="1" max="9" step="1">
+                <!-- <input type="number" name="maxPassenger" id="maxPassenger" min="1" max="2000000000" /*max="9" step="1"> -->
+                <select name="maxPassenger" id="maxPassenger">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                </select>
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
@@ -72,4 +87,5 @@
         </main>
     </div>
 </body>
+<script src="js/vehicle.js"></script>
 </html>
