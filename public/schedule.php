@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once dirname(__FILE__,2). "/private/constant/constant.php";
-include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
+include_once dirname(__FILE__,2). "/private/dataBase/dataBaseConnection.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
 <?php 
 $title = TITLE_PAGE_SCHEDULE;
 
-include_once dirname(__FILE__)."/Modules/head.php";
+include_once dirname(__FILE__,2)."/private/constant/page/head.php";
 ?>
 
 <body>
