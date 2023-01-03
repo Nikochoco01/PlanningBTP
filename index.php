@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include_once dirname(__FILE__)."/private/constant/constant.php";
 ?>
 
 <!DOCTYPE html>
@@ -7,8 +8,8 @@ session_start();
 
 <!-- variables declaration -->
 <?php
-    $title = "Connexion";
-    include_once dirname(__FILE__)."/Modules/head.php";
+    $title = TITLE_PAGE_INDEX;
+    include_once dirname(__FILE__)."/private/constant/page/head.php";
 ?>
 
 <body>
@@ -16,7 +17,7 @@ session_start();
 
             <div class="logForm">
                 <h2> Connectez-vous </h2>
-                <form action="/Modules/logInProcess.php" method="post">
+                <form action="<?= LINK_LOGIN_PROCESS ?>" method="post">
                     <p class="userName">
                         <label for="userName"> Nom d'utilisateur : </label>
                         <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prenom.nom" class="inputLog"> </span>

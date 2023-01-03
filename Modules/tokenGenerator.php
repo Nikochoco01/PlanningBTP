@@ -8,6 +8,6 @@ function generateToken(int $n) : string{
         $randomStr .= $str[$index]; 
     } 
   
-    return $randomStr; 
+    return $randomStr;
 }
 ?>
