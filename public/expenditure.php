@@ -1,38 +1,32 @@
 <?php session_start();
-    include_once "Modules/config.php";   
-    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/tokenGenerator.php";
+    include_once dirname(__FILE__,2)."/private/class/URLManagementClass.php";   
+    include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
+    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2)."/Modules/tokenGenerator.php";
 
     $_SESSION['token'] = generateToken(10);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php $titlePage = "Frais"; ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/default.css">
-    <link rel="stylesheet" href="/CSS/menu.css">
-    <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titlePage ?> </title>
-</head>
+<?php 
+$title = "Frais";
+include_once dirname(__FILE__,2)."/private/constant/page/head.php";
+?>
 
 <body>
-    <?php include_once "Modules/header.php"; ?>
+    <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
 
     <div class="layout">
-        <?php include_once "Modules/aside.php"; ?>
+        <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php"; ?>
         <main>
             
             <div class="invoiceList">
                 <?php 
-                    include_once dirname(__FILE__)."/expenditureList.php"; 
+                    include_once dirname(__FILE__,2)."/Modules/classGwendal/expenditureList.php"; 
                 ?>
             </div>
 
-            <form action="Modules/newExpenditure.php" method="post">
+            <form action="Modules/classGwendal/newExpenditure.php" method="post">
 
                 <label for="worksite"> Chantier </label>
                 <select name="worksite" id="worksite" list="worksites">
