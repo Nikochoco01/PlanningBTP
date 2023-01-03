@@ -1,10 +1,10 @@
 <?php
-include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
+include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
 $stat = $PDO->prepare("SELECT * FROM Equipment");
 $stat->execute();
 $results = $stat->fetchAll();
 foreach($results as $res):?>
-<form class="material" action="delete.php" method="post">
+<form class="material" action="../Modules/classGwendal/delete.php" method="post">
     <input type="text" name="id" value="<?= $res->equipmentName ?>" readonly>
     <p><?= $res->equipmentTotalQuantity ?></p>
     <p><?= $res->equipmentAvailableQuantity ?></p>

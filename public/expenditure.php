@@ -1,13 +1,15 @@
-<?php session_start();
-    include_once dirname(__FILE__,2)."/private/class/URLManagementClass.php";   
+<?php 
+    session_start();
     include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
     include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__,2)."/Modules/tokenGenerator.php";
+    include_once dirname(__FILE__,2). "/private/constant/constant.php";
 
-    $_SESSION['token'] = generateToken(10);
+    $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <?php 
 $title = "Frais";
 include_once dirname(__FILE__,2)."/private/constant/page/head.php";
@@ -26,7 +28,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 ?>
             </div>
 
-            <form action="Modules/classGwendal/newExpenditure.php" method="post">
+            <form action="../Modules/classGwendal/newExpenditure.php" method="post">
 
                 <label for="worksite"> Chantier </label>
                 <select name="worksite" id="worksite" list="worksites">

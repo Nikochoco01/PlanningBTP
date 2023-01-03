@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once dirname(__FILE__, 2)."/dataBase/dataBaseConnection.php";
+include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
 
 if( !empty($_POST['price']) && !empty($_POST['description']) && !empty($_POST['worksite']) && !empty($_POST['token']) && !empty($_SESSION['userName']) && !empty($_SESSION['token']) ){
     if($_POST['token'] == $_SESSION['token']){

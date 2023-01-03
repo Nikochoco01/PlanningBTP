@@ -4,7 +4,7 @@ $stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.exp
 $stat->execute(['user' => $_SESSION['userName']]);
 $results = $stat->fetchAll();
 foreach($results as $res):?>
-<form class="expense" action="delete.php" method="post">
+<form class="expense" action="../Modules/classGwendal/delete.php" method="post">
     <input type="text" name="id" value="<?= $res->expenseId ?>" readonly>
     <p><?= $res->expenseDescription ?></p>
     <p><?= $res->worksiteName ?></p>

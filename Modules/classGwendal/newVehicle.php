@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once __DIR__."/dataBase/dataBaseConnection.php";
+include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
 
 if( !empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['license']) && !empty($_POST['maxPassenger']) && !empty($_POST['token']) && !empty($_SESSION['token'])){
     if($_POST['token'] == $_SESSION['token']){

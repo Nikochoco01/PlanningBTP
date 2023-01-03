@@ -1,40 +1,34 @@
 <?php 
     session_start();
-    include_once "Modules/config.php";
-    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/tokenGenerator.php";
+    include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
+    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2). "/private/constant/constant.php";
 
-    $_SESSION['token'] = generateToken(10);
+    $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
-<?php $titlePage = "Matériel"; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/default.css">
-    <link rel="stylesheet" href="/CSS/menu.css">
-    <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titlePage ?> </title>
-</head>
+<?php $title = "Matériel";
+include_once dirname(__FILE__,2)."/private/constant/page/head.php";
+?>
 
 <body>
-    <?php include_once "Modules/header.php"; ?>
+    <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
 
     <div class="layout">
-        <?php include_once "Modules/aside.php"; ?>
+        <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php"; ?>
 
         <main>
 
             <div class="materialList">
                 <?php 
-                    include_once dirname(__FILE__)."/toolList.php"; 
+                    include_once dirname(__FILE__,2)."/Modules/classGwendal/toolList.php"; 
                 ?>
             </div>
 
-            <form action="newTool.php" method="post">
+            <form action="../Modules/classGwendal/newTool.php" method="post">
                 <label for="designation">Nom de l'équipement</label>
                 <input type="text" name="designation" id="designation">
 

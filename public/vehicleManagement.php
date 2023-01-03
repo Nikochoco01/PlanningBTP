@@ -1,40 +1,34 @@
 <?php 
     session_start();
-    include_once "Modules/config.php";
-    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php"; 
-    include_once dirname(__FILE__)."/tokenGenerator.php";
+    include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
+    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2). "/private/constant/constant.php";
 
-    $_SESSION['token'] = generateToken(10);
+    $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
-<?php $titlePage = "Véhicule"; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/default.css">
-    <link rel="stylesheet" href="/CSS/menu.css">
-    <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titlePage ?> </title>
-</head>
+<?php $title = "Véhicule";
+include_once dirname(__FILE__,2)."/private/constant/page/head.php";
+?>
 
 <body>
-    <?php include_once "Modules/header.php"; ?>
+    <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
 
     <div class="layout">
-        <?php include_once "Modules/aside.php"; ?>
+        <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php"; ?>
 
         <main>
 
             <div class="vehiculeList">
                 <?php 
-                    include_once dirname(__FILE__)."/vehiculeClass.php";
+                    include_once dirname(__FILE__,2)."/Modules/classGwendal/vehiculeList.php";
                 ?>
             </div>
 
-            <form action="newVehicle.php" method="post">
+            <form action="../Modules/classGwendal/newVehicle.php" method="post">
                 <label for="plate">Immatriculation</label>
                 <input type="search" name="plate" id="plate">
 
@@ -53,11 +47,9 @@
                     foreach($results as $res):?>
                         <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= $res->driverLicenseName ?>
                     <?php endforeach; ?>
-                <!-- </datalist> -->
                 </select>
 
                 <label for="maxPassenger">Nombre de passager maximal</label>
-                <!-- <input type="number" name="maxPassenger" id="maxPassenger" min="1" max="2000000000" /*max="9" step="1"> -->
                 <select name="maxPassenger" id="maxPassenger">
                     <option value="2">2</option>
                     <option value="3">3</option>
