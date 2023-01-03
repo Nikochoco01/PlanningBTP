@@ -17,5 +17,5 @@ if( !empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['license
     header("Location:".$_SERVER['HTTP_REFERER']);
 }
 else{
-    header("Location:".__DIR__."/vehicle.php");
+    header("Location:".dirname(__FILE__,3)."/vehicle.php");
 }
