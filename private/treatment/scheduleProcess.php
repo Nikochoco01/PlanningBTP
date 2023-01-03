@@ -89,6 +89,6 @@ if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
        //echo "l'heure n'est pas valide" . "<br>";
     }
 
-    header('Location: ../schedule.php');
+    header('Location: ../../public/schedule.php');
     Exit();
 }
