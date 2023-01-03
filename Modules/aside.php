@@ -55,15 +55,8 @@
                     </a>
                 </li>
                 <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a href="vehicleManagement.php">
-=======
-                    <a href="gestionVehicule.php#">
->>>>>>> 8d1f4b3... ajout de url des pages de gestion de materiel et vehicule + celle d'insertion de frais
-=======
-                    <a href="vehicle.php#">
->>>>>>> e281fa5... implementation de l'ajout de vehicule et affichage de la liste de vehicules
+                    <a href="gestionVehicule.php">
                         <i class="icon-warehouse"></i>
                             <span class="nav-text">
                                 Véhicule
@@ -71,15 +64,9 @@
                     </a>
                 </li>
                 <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a href="toolManagement.php">
-=======
                     <a href="gestionMat.php">
->>>>>>> 8d1f4b3... ajout de url des pages de gestion de materiel et vehicule + celle d'insertion de frais
-=======
                     <a href="material.php">
->>>>>>> e281fa5... implementation de l'ajout de vehicule et affichage de la liste de vehicules
                         <i class="icon-tool"></i>
                             <span class="nav-text">
                                 Matériel

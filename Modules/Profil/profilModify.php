@@ -34,3 +34,23 @@
         <a href="<?php echo addUrlParam(array('display' => 'View')) ?>"> Annuler </a>
     </span>
 </form>
+
+<?php 
+    function disableInput(){
+        if($_SESSION['position'] == "administrateur"){
+            return "";
+        }
+        else{
+            return "disabled";
+        }
+    }
+
+    function addDisabled(){
+        if($_SESSION['position'] == "administrateur"){
+            return "";
+        }
+        else{
+            return "Disabled";
+        }
+    }
+?>
