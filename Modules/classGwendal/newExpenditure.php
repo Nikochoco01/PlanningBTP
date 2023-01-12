@@ -1,8 +1,9 @@
 <?php 
 session_start();
+include_once dirname(__FILE__,3)."/private/class/InputSecurityClass.php";
 include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
 
-if( !empty($_POST['price']) && !empty($_POST['description']) && !empty($_POST['worksite']) && !empty($_POST['token']) && !empty($_SESSION['userId']) && !empty($_POST['event']) && !empty($_SESSION['token']) ){
+if( InputSecurity::isEmpty($_POST['price']) == $_POST['price'] && InputSecurity::isEmpty($_POST['description']) == $_POST['description'] && InputSecurity::isEmpty($_POST['worksite']) == $_POST['worksite'] && InputSecurity::isEmpty($_POST['token']) == $_POST['token'] && InputSecurity::isEmpty($_SESSION['userId']) == $_SESSION['userId'] && InputSecurity::isEmpty($_POST['event']) == $_POST['event'] && InputSecurity::isEmpty($_SESSION['token']) == $_SESSION['token'] ){
     if($_POST['token'] == $_SESSION['token']){
 
         $stat = $PDO->prepare("insert into Expense values(default, :date, :price, :desc, :user, :event, :worksite);");
@@ -18,4 +19,6 @@ if( !empty($_POST['price']) && !empty($_POST['description']) && !empty($_POST['w
     unset($_SESSION['token']);
     header("Location:".$_SERVER['HTTP_REFERER']);
 }
-header("Location:".dirname(__FILE__,3)."/public/expenditure.php");
+else{
+    header("Location:".dirname(__FILE__,3)."/public/expenditure.php");
+}

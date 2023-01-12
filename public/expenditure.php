@@ -3,6 +3,7 @@
     include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
     include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__,2). "/private/constant/constant.php";
+    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
 
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>

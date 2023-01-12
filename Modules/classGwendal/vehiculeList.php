@@ -1,5 +1,4 @@
 <?php
-include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
 $stat = $PDO->prepare("select v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense from Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName");
 $stat->execute();
 $results = $stat->fetchAll();

@@ -3,6 +3,7 @@
     include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
     include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__,2). "/private/constant/constant.php";
+    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
 
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
@@ -41,6 +42,32 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 <button type="reset">Annuler</button>
             </form>
 
+            <?php 
+            $stat = $PDO->prepare("select equipmentName from Equipment");
+            $stat->execute();
+            $results = $stat->fetchAll();
+            if(!empty($results)):?>
+            <form action="../private/treatment/toolProcess/addRmvToolProcess.php" method="post">
+                <label for="designation">Nom de l'équipement</label>
+                <select name="designation" id="des">
+                    <?php 
+                    foreach($results as $res):?>
+                    <option><?= $res->equipmentName ?></option>
+                    <?php endforeach;?>
+                </select>
+
+                <label for="add">Nombre ajouter/enlever au stock</label>
+                <input type="number" name="add" id="add" min="0">
+
+                <label for="rmv">Enlever</label>
+                <input type="checkbox" name="rmv" id="rmv">
+
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+
+                <button type="submit">Valider</button>
+                <button type="submit">Annuler</button>
+            </form>
+            <?php endif; ?>
         </main>
     </div>
 </body>

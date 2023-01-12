@@ -1,5 +1,4 @@
 <?php
-include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
 $stat = $PDO->prepare("SELECT * FROM Equipment");
 $stat->execute();
 $results = $stat->fetchAll();
