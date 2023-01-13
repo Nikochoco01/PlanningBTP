@@ -47,7 +47,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             $stat->execute();
             $results = $stat->fetchAll();
             if(!empty($results)):?>
-            <form action="../private/treatment/toolProcess/addRmvToolProcess.php" method="post">
+            <form action="../private/treatment/toolProcess/RemoveToolProcess.php" method="post">
                 <label for="designation">Nom de l'équipement</label>
                 <select name="designation" id="des">
                     <?php 
@@ -56,11 +56,8 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     <?php endforeach;?>
                 </select>
 
-                <label for="add">Nombre ajouter/enlever au stock</label>
+                <label for="add">Nombre à enlever au stock</label>
                 <input type="number" name="add" id="add" min="0">
-
-                <label for="rmv">Enlever</label>
-                <input type="checkbox" name="rmv" id="rmv">
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 

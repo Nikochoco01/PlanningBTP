@@ -38,7 +38,6 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
 
                 <label for="license">Permis nécessaire</label>
                 <select name="license" id="license" list="licenses">
-                <!-- <datalist id="licenses"> -->
                     <option value="">-- Choix du Permis --</option>
                     <?php 
                     $stat = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
