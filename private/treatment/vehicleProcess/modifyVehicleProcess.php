@@ -11,7 +11,7 @@ if(InputSecurity::isEmpty($_POST['id']) == $_POST['id']
     && InputSecurity::isEmpty($_SESSION['token']) == $_SESSION['token']){
 
         if($_POST['token'] == $_SESSION['token']){
-            $state = $PDO->prepare("UPDATE Vehicle SET vehicleModel = :model, vehicleDriverLicense = :license, vehicleMaxPassenger = :maxPassenger WHERE vehicleLicensePlate = :plate");
+            $state = $PDO->prepare("UPDATE Vehicle SET vehicleModel = :model, vehicleDriverlicense = :license, vehicleMaxPassenger = :maxPassenger WHERE vehiclelicensePlate = :plate");
             $plate = InputSecurity::validateWithoutLetter($_POST['id'], "licensePlate");
             $state->execute([
                 'model' => $_POST['model'],

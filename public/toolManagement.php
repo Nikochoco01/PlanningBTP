@@ -56,8 +56,8 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     <?php endforeach;?>
                 </select>
 
-                <label for="add">Nombre à enlever au stock</label>
-                <input type="number" name="add" id="add" min="0">
+                <label for="rmv">Nombre à enlever au stock</label>
+                <input type="number" name="rmv" id="rmv" min="0">
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
