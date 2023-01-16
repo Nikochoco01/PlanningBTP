@@ -6,8 +6,9 @@ $i = 0;
 foreach($results as $res):?>
 <form class="vehicule" method="post">
     <input type="text" name="id" value="<?= $res->vehicleLicensePlate ?>" readonly>
-    <input type="text" name="model" value="<?= $res->vehicleModel ?>">
-    <select name="maxPassenger" id="maxPassenger<?= $i ?>">
+    <?php if($rightToModify):?>
+        <input type="text" name="model" value="<?= $res->vehicleModel ?>">
+        <select name="maxPassenger" id="maxPassenger<?= $i ?>">
         <option value="2" <?= $res->vehicleMaxPassenger == 2?"selected":"" ?>>2</option>
         <option value="3" <?= $res->vehicleMaxPassenger == 3?"selected":"" ?>>3</option>
         <option value="4" <?= $res->vehicleMaxPassenger == 4?"selected":"" ?>>4</option>
@@ -40,6 +41,11 @@ foreach($results as $res):?>
     <input type="submit" value="Effacer" formaction="../Modules/classGwendal/delete.php">
     <input type="submit" value="Modifier" formaction="../private/treatment/vehicleProcess/modifyVehicleProcess.php">
     <input type="reset" value="Reset">
+    <?php else:?>
+        <p><?= $res->vehicleModel ?></p>
+        <p><?= $res->vehicleMaxPassenger ?></p>
+        <p><?= $res->vehicleDriverLicense ?></p>
+    <?php endif;?>
 </form>
 <?php 
 $i++;

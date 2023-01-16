@@ -12,6 +12,7 @@
 <html lang="fr">
 
 <?php $title = "Matériel";
+$rightToModify = $_SESSION['userFonction'] == 'administrator' || $_SESSION['userFonction'] == 'materialManager';
 include_once dirname(__FILE__,2)."/private/constant/page/head.php";
 ?>
 
@@ -29,6 +30,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 ?>
             </div>
 
+            <?php if($rightToModify): ?>
             <form action="../Modules/classGwendal/newTool.php" method="post">
                 <label for="designation">Nom de l'équipement</label>
                 <input type="text" name="designation" id="designation">
@@ -64,7 +66,8 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 <button type="submit">Valider</button>
                 <button type="submit">Annuler</button>
             </form>
-            <?php endif; ?>
+            <?php endif;
+            endif;?>
         </main>
     </div>
 </body>

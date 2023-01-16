@@ -10,6 +10,8 @@ foreach($results as $res):?>
     <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
     <input type="hidden" name="table" value="Equipment">
     <input type="hidden" name="idName" value="equipmentName">
-    <input type="submit" value="Effacer">
+    <?php if($rightToModify):?>
+        <input type="submit" value="Effacer">
+    <?php endif; ?>
 </form>
 <?php endforeach; ?>

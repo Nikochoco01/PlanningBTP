@@ -12,6 +12,7 @@
 <html lang="fr">
 
 <?php $title = "Véhicule";
+$rightToModify = $_SESSION['userFonction'] == 'administrator' || $_SESSION['userFonction'] == 'vehicleManager';
 include_once dirname(__FILE__,2)."/private/constant/page/head.php";
 ?>
 
@@ -29,6 +30,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 ?>
             </div>
 
+            <?php if($rightToModify):?>
             <form action="../Modules/classGwendal/newVehicle.php" method="post">
                 <label for="plate">Immatriculation</label>
                 <input type="search" name="plate" id="plate">
@@ -75,6 +77,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     <input type="reset" value="Annuler">
                 </span>
             </form>
+            <?php endif; ?>
             
         </main>
     </div>
