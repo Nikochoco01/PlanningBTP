@@ -31,7 +31,7 @@ foreach($results as $res):?>
         $stat->execute();
         $results = $stat->fetchAll();
         foreach($results as $resu):?>
-            <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseMaxPassenger?"selected":""?>> <?= $resu->driverLicenseName ?>
+            <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseName?"selected":""?>> <?= $resu->driverLicenseName ?>
         <?php endforeach; ?>
     </select>
     <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
