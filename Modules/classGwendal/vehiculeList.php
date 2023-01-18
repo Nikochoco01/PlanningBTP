@@ -9,21 +9,21 @@ foreach($results as $res):?>
     <?php if($rightToModify):?>
         <input type="text" name="model" value="<?= $res->vehicleModel ?>">
         <select name="maxPassenger" id="maxPassenger<?= $i ?>">
-        <option value="2" <?= $res->vehicleMaxPassenger == 2?"selected":"" ?>>2</option>
-        <option value="3" <?= $res->vehicleMaxPassenger == 3?"selected":"" ?>>3</option>
-        <option value="4" <?= $res->vehicleMaxPassenger == 4?"selected":"" ?>>4</option>
-        <option value="5" <?= $res->vehicleMaxPassenger == 5?"selected":"" ?>>5</option>
-        <option value="7" <?= $res->vehicleMaxPassenger == 7?"selected":"" ?>>7</option>
-        <option value="8" <?= $res->vehicleMaxPassenger == 8?"selected":"" ?>>8</option>
-        <option value="9" <?= $res->vehicleMaxPassenger == 9?"selected":"" ?>>9</option>
-        <option value="10" <?= $res->vehicleMaxPassenger == 10?"selected":"" ?>>10</option>
-        <option value="11" <?= $res->vehicleMaxPassenger == 11?"selected":"" ?>>11</option>
-        <option value="12" <?= $res->vehicleMaxPassenger == 12?"selected":"" ?>>12</option>
-        <option value="13" <?= $res->vehicleMaxPassenger == 13?"selected":"" ?>>13</option>
-        <option value="14" <?= $res->vehicleMaxPassenger == 14?"selected":"" ?>>14</option>
-        <option value="15" <?= $res->vehicleMaxPassenger == 15?"selected":"" ?>>15</option>
-        <option value="16" <?= $res->vehicleMaxPassenger == 16?"selected":"" ?>>16</option>
-        <option value="17" <?= $res->vehicleMaxPassenger == 17?"selected":"" ?>>17</option>
+        <option <?= $res->vehicleMaxPassenger == 2?"selected":"" ?>>2</option>
+        <option <?= $res->vehicleMaxPassenger == 3?"selected":"" ?>>3</option>
+        <option <?= $res->vehicleMaxPassenger == 4?"selected":"" ?>>4</option>
+        <option <?= $res->vehicleMaxPassenger == 5?"selected":"" ?>>5</option>
+        <option <?= $res->vehicleMaxPassenger == 7?"selected":"" ?>>7</option>
+        <option <?= $res->vehicleMaxPassenger == 8?"selected":"" ?>>8</option>
+        <option <?= $res->vehicleMaxPassenger == 9?"selected":"" ?>>9</option>
+        <option <?= $res->vehicleMaxPassenger == 10?"selected":"" ?>>10</option>
+        <option <?= $res->vehicleMaxPassenger == 11?"selected":"" ?>>11</option>
+        <option <?= $res->vehicleMaxPassenger == 12?"selected":"" ?>>12</option>
+        <option <?= $res->vehicleMaxPassenger == 13?"selected":"" ?>>13</option>
+        <option <?= $res->vehicleMaxPassenger == 14?"selected":"" ?>>14</option>
+        <option <?= $res->vehicleMaxPassenger == 15?"selected":"" ?>>15</option>
+        <option <?= $res->vehicleMaxPassenger == 16?"selected":"" ?>>16</option>
+        <option <?= $res->vehicleMaxPassenger == 17?"selected":"" ?>>17</option>
     </select>
     <select name="license" id="license<?= $i ?>" list="licenses">
         <?php 

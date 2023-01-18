@@ -3,8 +3,8 @@ session_start();
 include_once dirname(__FILE__,3)."/class/InputSecurityClass.php";
 include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
 
-if(InputSecurity::isEmpty($_POST["designation"]) == $_POST["designation"] 
-    && InputSecurity::isEmpty($_POST["rmv"]) == $_POST["rmv"] 
+if(InputSecurity::validateWithoutNumber($_POST["designation"]) == $_POST["designation"] 
+    && InputSecurity::validateWithoutLetter($_POST["rmv"]) == $_POST["rmv"] 
     && InputSecurity::isEmpty($_POST["token"]) == $_POST["token"] 
     && InputSecurity::isEmpty($_SESSION["token"]) == $_SESSION["token"]){
         
