@@ -5,8 +5,8 @@ function hideSeatBeyonMax(license, seatNbs){
             seatNb.removeAttribute("hidden");
             seatNb.removeAttribute("disabled");
             if(seatNbs.options[seatNbs.selectedIndex].value > parseInt(license.options[license.selectedIndex].getAttribute("max")) 
-                    && parseInt(seatNb.value) == parseInt(license.options[license.selectedIndex].getAttribute("max"))){
-                seatNb.setAttribute("selected", "");
+                && parseInt(seatNb.value) == parseInt(license.options[license.selectedIndex].getAttribute("max"))){
+                    seatNbs.value = seatNb.value;
             }
         }else{
             seatNb.setAttribute("hidden", '');
