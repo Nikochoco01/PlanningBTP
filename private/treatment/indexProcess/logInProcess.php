@@ -31,7 +31,7 @@ if(isset($user->userId) && isset($loginUsername->loginUsername)){
 
     $_SESSION['userId'] = $user->userId; //user id in data base
     $_SESSION['userName'] = $loginUsername->loginUsername; //  connection ID
-    $_SESSION['userPicture'] = $user->userPicture; // profile picture 
+    $_SESSION['userPicture'] = $user->userFirstName; //$user->userPicture; // profile picture 
     $_SESSION['userFirstName'] = $user->userFirstName; // first name of user
     $_SESSION['userLastName'] = $user->userLastName; // name of user 
     $_SESSION['userPosition'] = $user->userPosition; // position in the company

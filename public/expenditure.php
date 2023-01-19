@@ -34,14 +34,14 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 <label for="worksite"> Chantier </label>
                 <select name="worksite" id="worksite" list="worksites">
                     <option value="">-- Choix du chantier --</option>
-                <?php 
+                    <?php 
                     $stat = $PDO->prepare("select worksiteId, worksiteName from Worksite;");
-                    
+                        
                     $stat->execute();
                     $results = $stat->fetchAll();
                     foreach($results as $res):?>
                         <option value="<?= $res->worksiteId ?>"> <?= $res->worksiteName ?>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </select>
 
                 <label for="description"> Raison de la dépense </label>
@@ -51,19 +51,16 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     <option> Restaurant </option>
                     <option> Autoroute </option>
                     <option> Hotel </option>
-                    <!-- <option></option>
-                    <option></option>
-                    <option></option> -->
                 </datalist>
                 <label for="event"> Mission associé à la dépense </label>
                 <select name="event" id="event" list="expencesEvent">
                     <option value="" worksite="">-- Choix de la mission --</option>
                     <?php
-                        $now = Date("Y-m-d");
-                        $stat = $PDO->prepare("select eventId, eventDescription, worksiteId from Event where eventEndDate > \"$now\" && eventStartDate < \"$now\";");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
-                        foreach($results as $res):?>
+                    $now = Date("Y-m-d");
+                    $stat = $PDO->prepare("select eventId, eventDescription, worksiteId from Event where eventEndDate > \"$now\" && eventStartDate < \"$now\";");
+                    $stat->execute();
+                    $results = $stat->fetchAll();
+                    foreach($results as $res):?>
                         <option value="<?= $res->eventId ?>" worksite="<?= $res->worksiteId ?>"><?= $res->eventDescription ?>
                     <?php endforeach; ?>
                 </select>

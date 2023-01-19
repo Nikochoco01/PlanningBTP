@@ -31,43 +31,42 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             </div>
 
             <?php if($rightToModify): ?>
-            <form action="../Modules/classGwendal/newTool.php" method="post">
-                <label for="designation">Nom de l'équipement</label>
-                <input type="text" name="designation" id="designation">
+                <form action="../Modules/classGwendal/newTool.php" method="post">
+                    <label for="designation">Nom de l'équipement</label>
+                    <input type="text" name="designation" id="designation">
 
-                <label for="total">Quantité du nouvelle équipement</label>
-                <input type="number" name="total" id="total" min="0" max="2000000000" step="1">
+                    <label for="total">Quantité du nouvelle équipement</label>
+                    <input type="number" name="total" id="total" min="0" max="2000000000" step="1">
 
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
-                <button type="submit">Valider</button>
-                <button type="reset">Annuler</button>
-            </form>
+                    <button type="submit">Valider</button>
+                    <button type="reset">Annuler</button>
+                </form>
 
-            <?php 
-            $stat = $PDO->prepare("select equipmentName from Equipment");
-            $stat->execute();
-            $results = $stat->fetchAll();
-            if(!empty($results)):?>
-            <form action="../private/treatment/toolProcess/RemoveToolProcess.php" method="post">
-                <label for="designation">Nom de l'équipement</label>
-                <select name="designation" id="des">
-                    <?php 
-                    foreach($results as $res):?>
-                    <option><?= $res->equipmentName ?></option>
-                    <?php endforeach;?>
-                </select>
+                <?php 
+                $stat = $PDO->prepare("select equipmentName from Equipment");
+                $stat->execute();
+                $results = $stat->fetchAll();
+                if(!empty($results)):?>
+                    <form action="../private/treatment/toolProcess/RemoveToolProcess.php" method="post">
+                        <label for="designation">Nom de l'équipement</label>
+                        <select name="designation" id="des">
+                            <?php foreach($results as $res):?>
+                                <option><?= $res->equipmentName ?></option>
+                            <?php endforeach;?>
+                        </select>
 
-                <label for="rmv">Nombre à enlever au stock</label>
-                <input type="number" name="rmv" id="rmv" min="0">
+                        <label for="rmv">Nombre à enlever au stock</label>
+                        <input type="number" name="rmv" id="rmv" min="0">
 
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
-                <button type="submit">Valider</button>
-                <button type="submit">Annuler</button>
-            </form>
-            <?php endif;
-            endif;?>
+                        <button type="submit">Valider</button>
+                        <button type="submit">Annuler</button>
+                    </form>
+                <?php endif; ?>
+            <?php endif;?>
         </main>
     </div>
 </body>
