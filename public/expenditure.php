@@ -52,8 +52,8 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     <option> Autoroute </option>
                     <option> Hotel </option>
                 </datalist>
+
                 <label for="event"> Mission associé à la dépense </label>
-                
                 <select name="event" id="event" list="expencesEvent" required>
                     <option value="" worksite="">-- Choix de la mission --</option>
                     <?php
