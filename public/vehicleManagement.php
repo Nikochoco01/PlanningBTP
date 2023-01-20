@@ -33,13 +33,13 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             <?php if($rightToModify):?>
                 <form action="../Modules/classGwendal/newVehicle.php" method="post">
                     <label for="plate">Immatriculation</label>
-                    <input type="search" name="plate" id="plate">
+                    <input type="search" name="plate" id="plate" required>
 
                     <label for="model">Model de vehicule</label>
-                    <input type="text" name="model" id="model">
+                    <input type="text" name="model" id="model" required>
 
                     <label for="license">Permis nécessaire</label>
-                    <select name="license" id="license" list="licenses">
+                    <select name="license" id="license" list="licenses" required>
                         <option value="">-- Choix du Permis --</option>
                         <?php 
                         $stat = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
@@ -52,7 +52,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     </select>
 
                     <label for="maxPassenger">Nombre de passager maximal</label>
-                    <select name="maxPassenger" id="maxPassenger">
+                    <select name="maxPassenger" id="maxPassenger" required>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>

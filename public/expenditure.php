@@ -32,7 +32,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             <form action="../Modules/classGwendal/newExpenditure.php" method="post">
 
                 <label for="worksite"> Chantier </label>
-                <select name="worksite" id="worksite" list="worksites">
+                <select name="worksite" id="worksite" list="worksites" required>
                     <option value="">-- Choix du chantier --</option>
                     <?php 
                     $stat = $PDO->prepare("select worksiteId, worksiteName from Worksite;");
@@ -45,7 +45,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 </select>
 
                 <label for="description"> Raison de la dépense </label>
-                <input type="text" name="description" id="description" list="expensesType">
+                <input type="text" name="description" id="description" list="expensesType" required>
                 <datalist id="expensesType">
                     <option> Essence </option>
                     <option> Restaurant </option>
@@ -53,12 +53,13 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                     <option> Hotel </option>
                 </datalist>
                 <label for="event"> Mission associé à la dépense </label>
-                <select name="event" id="event" list="expencesEvent">
+                
+                <select name="event" id="event" list="expencesEvent" required>
                     <option value="" worksite="">-- Choix de la mission --</option>
                     <?php
                     $now = Date("Y-m-d");
-                    $stat = $PDO->prepare("select eventId, eventDescription, worksiteId from Event where eventEndDate > \"$now\" && eventStartDate < \"$now\";");
-                    $stat->execute();
+                    $stat = $PDO->prepare("select eventId, eventDescription, worksiteId from Event where eventEndDate >= :now && eventStartDate <= :now");
+                    $stat->execute(["now" => $now]);
                     $results = $stat->fetchAll();
                     foreach($results as $res):?>
                         <option value="<?= $res->eventId ?>" worksite="<?= $res->worksiteId ?>"><?= $res->eventDescription ?>

@@ -33,10 +33,10 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             <?php if($rightToModify): ?>
                 <form action="../Modules/classGwendal/newTool.php" method="post">
                     <label for="designation">Nom de l'équipement</label>
-                    <input type="text" name="designation" id="designation">
+                    <input type="text" name="designation" id="designation" required>
 
                     <label for="total">Quantité du nouvelle équipement</label>
-                    <input type="number" name="total" id="total" min="0" max="2000000000" step="1">
+                    <input type="number" name="total" id="total" min="0" max="2000000000" step="1" required>
 
                     <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
@@ -51,14 +51,14 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 if(!empty($results)):?>
                     <form action="../private/treatment/toolProcess/RemoveToolProcess.php" method="post">
                         <label for="designation">Nom de l'équipement</label>
-                        <select name="designation" id="des">
+                        <select name="designation" id="des" required>
                             <?php foreach($results as $res):?>
                                 <option><?= $res->equipmentName ?></option>
                             <?php endforeach;?>
                         </select>
 
                         <label for="rmv">Nombre à enlever au stock</label>
-                        <input type="number" name="rmv" id="rmv" min="0">
+                        <input type="number" name="rmv" id="rmv" min="0" required>
 
                         <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 

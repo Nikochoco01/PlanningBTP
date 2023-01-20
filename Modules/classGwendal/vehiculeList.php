@@ -7,7 +7,7 @@ foreach($results as $res):?>
     <form class="vehicule" method="post">
         <input type="text" name="id" value="<?= $res->vehicleLicensePlate ?>" readonly>
         <?php if($rightToModify):?>
-            <input type="text" name="model" value="<?= $res->vehicleModel ?>">
+            <input type="text" name="model" value="<?= $res->vehicleModel ?>" required>
             <select name="maxPassenger" id="maxPassenger<?= $i ?>">
                 <option <?= $res->vehicleMaxPassenger == 2?"selected":"" ?>>2</option>
                 <option <?= $res->vehicleMaxPassenger == 3?"selected":"" ?>>3</option>
@@ -25,7 +25,7 @@ foreach($results as $res):?>
                 <option <?= $res->vehicleMaxPassenger == 16?"selected":"" ?>>16</option>
                 <option <?= $res->vehicleMaxPassenger == 17?"selected":"" ?>>17</option>
             </select>
-            <select name="license" id="license<?= $i ?>" list="licenses">
+            <select name="license" id="license<?= $i ?>" list="licenses" required>
                 <?php 
                 $sta = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
                             
