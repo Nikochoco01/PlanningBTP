@@ -1,11 +1,12 @@
 <?php 
     session_start();
     include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
-    include_once dirname(__FILE__,2)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/Modules/classGwendal/vehiculeClass.php"; 
-    include_once dirname(__FILE__)."/Modules/tokenGenerator.php";
+    include_once dirname(__FILE__,2). "/private/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2). "/private/constant/constant.php";
+    // include_once dirname(__FILE__)."/Modules/classGwendal/vehiculeClass.php"; 
+    // include_once dirname(__FILE__)."/Modules/tokenGenerator.php";
 
-    $_SESSION['token'] = generateToken(10);
+    // $_SESSION['token'] = generateToken(10);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

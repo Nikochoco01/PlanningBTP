@@ -1,5 +1,4 @@
 <?php
-
     // const display parameter:
     const PARAM_DAY_DISPLAY = 'day';
     const PARAM_WEEK_DISPLAY = 'week';
@@ -24,9 +23,17 @@
         'employé' => 'employee'
     ];
 
+    const PARAM_SESSION_TYPE_ADMINISTRATOR = "administrator";
+    const PARAM_SESSION_TYPE_TEAM_LEADER = "planningManager";
+    const PARAM_SESSION_TYPE_VEHICLE_MANAGER = "vehicleManager";
+    const PARAM_SESSION_TYPE_MATERIAL_MANAGER = "materialManager";
+    const PARAM_SESSION_TYPE_HUMAN_MANAGER = "humanResources";
+    const PARAM_SESSION_TYPE_EMPLOYEE = "employee";
+
     const TITLE_PAGE_INDEX = "Connexion";
     const TITLE_PAGE_HOME = "Accueil";
     const TITLE_PAGE_PROFIL = "Profil";
+    const TITLE_PAGE_COST = "Frais";
     const TITLE_PAGE_PLANNING = "Planning";
     const TITLE_PAGE_SCHEDULE = "Horaires";
     const TITLE_PAGE_MATERIAL = "Matériel";

@@ -16,7 +16,6 @@
             "order" => "" // string ASC / DESC
         )
     );
-    //$searchWord = array("nikola" , "chevalliot"); // word that we research
 ?>
 
 <div class="profilViewAdmin">

@@ -24,6 +24,7 @@ class InputSecurity{
         $inputProcessing = strip_tags($input);
         $inputProcessing = stripslashes($inputProcessing);
         $inputProcessing = trim($inputProcessing);
+        $inputProcessing = mb_strtolower($inputProcessing);
 
         return $inputProcessing;
     }
@@ -77,7 +78,7 @@ class InputSecurity{
     * @author Nikola Chevalliot
     * @param string $input
     * 
-    * @return string
+    * @return string return the input values if is not empty
     */
     public static function isEmpty($input): string{
         if(!empty($input)){
@@ -98,7 +99,7 @@ class InputSecurity{
     */
     public static function validateMail($input): string{
         $inputProcessing = InputSecurity::isEmpty($input);
-        $inputProcessing = strtolower($inputProcessing);
+        $inputProcessing = mb_strtolower($inputProcessing);
         $REGEX = '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#';
         if(preg_match($REGEX , $inputProcessing)){
             return $inputProcessing;
@@ -196,13 +197,13 @@ class InputSecurity{
         $inputProcessing = InputSecurity::validateWithoutTags($input);
         switch($format){
             case null:
-                    return strtolower($inputProcessing);
+                    return mb_strtolower($inputProcessing);
                 break;
             case "LastName":
                     return mb_strtoupper($inputProcessing);
                 break;
             case "FirstName":
-                    return ucwords($inputProcessing);
+                    return mb_convert_case($inputProcessing , MB_CASE_TITLE);
                 break;
             case "Position":
                     return mb_strtoupper($inputProcessing);

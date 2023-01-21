@@ -1,30 +1,24 @@
-<?php session_start();
-    include_once "Modules/config.php";   
-    include_once dirname(__FILE__)."/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__)."/Modules/classGwendal/invoiceClass.php"; 
-    include_once dirname(__FILE__)."/Modules/tokenGenerator.php";
-
-    $_SESSION['token'] = generateToken(10);
+<?php 
+    session_start();
+    include_once dirname(__FILE__,2). "/private/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
+    include_once dirname(__FILE__,2). "/private/constant/constant.php";
+    //include_once dirname(__FILE__)."/Modules/tokenGenerator.php";
+    $title = TITLE_PAGE_COST; 
+    //$_SESSION['token'] = generateToken(10);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
-<?php $title = "Frais"; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/default.css">
-    <link rel="stylesheet" href="/CSS/menu.css">
-    <link rel="stylesheet" href="/Icon/style.css">
-    <title> <?php echo $titre ?> </title>
-</head>
+<?php include_once dirname(__FILE__,2)."/private/constant/page/head.php";?>
+
 
 <body>
-    <?php include_once "Modules/header.php"; ?>
+    <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php" ?>
 
     <div class="layout">
-        <?php include_once "Modules/aside.php"; ?>
+        <?php include_once dirname(__FILE__,2). "/private/constant/page/aside.php" ?>
         <main>
             
         <div class="invoiceList">

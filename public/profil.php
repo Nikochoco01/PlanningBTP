@@ -1,8 +1,8 @@
 <?php
+    session_start();
     include_once dirname(__FILE__,2). "/private/constant/constant.php";
     include_once dirname(__FILE__,2). "/private/class/InputSecurityClass.php";
     include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
-    session_start();
     //var_dump($_SESSION['ERROR']);
     // if(isset($_SESSION['MESSAGE'])){
     //     var_dump($_SESSION['MESSAGE']);

@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once dirname(__FILE__,2)."/InputSecurityClass.php";
-    include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
+    include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
 
     $mail = InputSecurity::validateMail($_POST['userMail']);
 
