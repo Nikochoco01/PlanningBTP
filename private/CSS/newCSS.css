@@ -659,3 +659,235 @@ main{
     z-index: -1;
     visibility: hidden;
 }
+
+
+/******************************
+*
+    Style for profilViewAdmin search bar and add button
+*
+*****************************/
+
+.addButton-searchZone{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 1%;
+    width: 100%;
+}
+
+.addButton-searchZone .addEmployeeButton{
+    position: relative;
+    right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    text-decoration: none;
+    color: var(--textColorBlack);
+    font-size: 1.5em;
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 35px;
+    height: 35px;
+}
+
+.addButton-searchZone .addEmployeeButton:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    color: var(--mainColor);
+    background-color: var(--secondaryColor);
+}
+
+.addButton-searchZone .searchZone{
+    position: relative;
+    right: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.addButton-searchZone .searchZone input{
+    background-color: var(--mainColor);
+    border: 0px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    padding-left: 40px;
+    outline: none;
+}
+
+.addButton-searchZone .searchZone label{
+    position: absolute;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    background-color: var(--secondaryColor);
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 35px;
+    height: 35px;
+}
+
+.addButton-searchZone .searchZone input[type="search"]:hover ~ .searchEmployeeLabel{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.addButton-searchZone .searchZone input[type="search"]:focus ~ .searchEmployeeLabel{
+    color: var(--mainColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+/******************************
+*
+    Style for profilViewAdmin Employee List
+*
+*****************************/
+
+.profilViewAdmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.listContainer{
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    height: 100%;
+}
+
+.scrollTableContainer{
+    display: inline-block;
+    overflow-y: scroll;
+    width: 100%;
+    height: 80%;
+}
+
+.listContant{
+    text-align: center;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* style of head table */
+.listContant thead th{
+    position: sticky;
+    top: 0;
+    padding: 1%;
+    background-color: var(--mainColor);
+    color: var(--textColorBlack);
+}
+
+/* Picture column */
+.listContant thead th:nth-child(1){
+    width: 8%;
+}
+
+/* SurName column */
+.listContant thead th:nth-child(2){
+    width: 18%;
+}
+
+/* FirstName column */
+.listContant thead th:nth-child(3){
+    width: 18%;
+}
+
+/* Mail column */
+.listContant thead th:nth-child(4){
+    width: 16%;
+}
+
+/* Phone column */
+.listContant thead th:nth-child(5){
+    width: 14%;
+}
+
+/* Position column */
+.listContant thead th:nth-child(6){
+    width: 10%;
+}
+
+/* Button column */
+.listContant thead th:nth-child(7){
+    width: 5%;
+}
+
+/******************************
+*
+    Style for profilViewAdmin Employee object
+*
+*****************************/
+
+.listContant tbody td{
+    padding-bottom: 10px;
+}
+
+.listContant tbody tr:nth-child(odd) {
+    background-color: var(--primaryTableColor);
+}
+
+.listContant tbody tr:nth-child(even) {
+    background-color: var(--secondaryTableColor);
+}
+
+.employeeObject a{
+    padding: 5%;
+    border-radius: 10px;
+    background-color: var(--mainColor);
+    color: var(--textColorBlack);
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.employeeObject .columnForButton:hover{
+    transform: scale(1.1);
+}
+
+.addEvent{
+    position: absolute;
+    top: -50px;
+    left: 100px;
+    background-color: aqua;
+    width: 900px;
+    height: 600px;
+}
+
+.addEvent form{
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.addEvent span{
+    background-color: antiquewhite;
+    width: 100%;
+}
+
+.addEvent form .employeeSelected{
+    background-color: brown;
+    width: 90%;
+    height: auto;
+}
+
+.addEvent form .employeeSelected{
+    background-color: brown;
+    width: 90%;
+    height: auto;
+}
+
+.addEvent form .vehicleSelected{
+    background-color: brown;
+    width: 90%;
+    height: auto;
+}
