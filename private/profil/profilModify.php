@@ -1,4 +1,5 @@
 <form action="<?= LINK_TO_MODIFY_PROCESS ?>" method="post" class="profilModify">
+    <a href="<?= returnURL()?>" class="quitButton" > <i class=""></i> QUIT </a>
 
     <label for="userPicture" class="userPicture">
         <div class="iconAddPicture">
@@ -51,6 +52,15 @@
         }
         else{
             return "Disabled";
+        }
+    }
+
+    function returnURL(){
+        if($_SESSION['userFonction'] == "administrator"){
+            return "/public/profil.php?onglet=personal&display=view&add=false";
+        }
+        else{
+            return "/public/profil.php?onglet=personal&display=view";
         }
     }
 ?>
