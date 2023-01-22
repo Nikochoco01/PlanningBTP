@@ -33,6 +33,149 @@ body{
     grid-auto-rows: 1fr;
 }
 
+/******************************
+*
+    Style for login page
+*
+*****************************/
+
+.logBody{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.logMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondaryColor);
+    width: 100%;
+    height: 100%;
+}
+
+.logForm{
+    position: absolute;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    padding-top: 1%;
+    background-color: var(--mainColor);
+    border-radius: 50px;
+    box-shadow: 1px 1px 10px var(--textColorBlack);
+    width: 40%;
+    height: 55%;
+}
+
+.logForm form{
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50% , -60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    width: 80%;
+    height: 80%;
+}
+
+.logForm form p{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 2px;
+    width: 50%;
+    font-size: 1.2em;
+}
+
+
+.logForm form p span{
+    display: flex;
+    gap: 1%;
+}
+
+.logForm form p span a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 320px;
+    text-decoration: none;
+    color: var(--textColorBlack);
+    align-self: center;
+    background-color: var(--secondaryColor);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.logForm form p span a:hover{
+    transform: scale(1.1);
+}
+
+.logForm form p span i{
+    align-self: center;
+    font-size: 1.2em;
+}
+
+.logForm .inputLog{
+    border: 0px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.logForm .inputLog:focus{
+    outline: none;
+    caret-color: var(--mainColor);
+}
+
+.logForm form .userName{
+    position: absolute;
+    top: 100px;
+}
+
+.logForm form .passWord{
+    position: absolute;
+    top: 200px;
+}
+
+
+.logForm input[type = "submit"]{
+    position: absolute;
+    bottom: 20%;
+    align-self: center;
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    height: 35px;
+}
+
+.logForm input[type = "submit"]:hover{
+    transform: scale(1.1);
+}
+
+.logForm input[type = "reset"]{
+    position: absolute;
+    bottom: 10%;
+    align-self: center;
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    height: 35px;
+}
+
+.logForm input[type = "reset"]:hover{
+    transform: scale(1.1);
+}
 
 /******************************
 *
@@ -306,80 +449,47 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: brown;
 }
 
-.profilView{
-    display: grid;
-    grid-template-columns: repeat(4 , 1fr);
-    grid-template-rows: repeat(6 , 1fr);
+/* profilView , profilModify*/
+.profilView , .profilModify{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 50px;
+    gap: 4%;
     background-color: var(--mainColor);
-    border-radius: 20px;
-    width: 80%;
-    height: 100%;
+    font-size: 1.2em;
+    width: 40%;
+    height: 80%;
 }
 
+/* profilView */
 .profilView img{
-    grid-column: 1 / 3;
-    grid-row: 2 / 5;
-    border-radius: 20px;
-    border: 2px solid var(--textColorBlack);
-    justify-self: center;
     align-self: center;
-    width: 320px;
-    height: 320px;
+    border: 2px solid var(--secondaryColor);
+    border-radius: 50px;
+    width: 150px;
+    height: 150px;
 }
 
-/* all element */
-.profilView p:nth-child(n){
-    grid-column: 3 / 5;
-    font-size: large;
-    align-self: center;
+/* profilView */
+
+.profilView p {
+    display: flex;
+    width: 100%;
+}
+.profilView p .label{
+    display: inline-block;
+    text-align: end;
+    padding-left: 10%;
+    width: 30%;
 }
 
-/* userName */
-.profilView p:nth-child(2){
-    grid-row: 3;
-}
-
-/* firstName - lastName */
-.profilView p:nth-child(3) , p:nth-child(4) {
-    grid-row: 2;
-    font-size: xx-large;
-}
-/* lastName */
-.profilView p:nth-child(4){
-    margin-left: 16%;
-    font-size: xx-large;
-}
-
-/* user position */
-.profilView p:nth-child(5){
-    grid-row: 4;
-}
-
-/* user mail */
-
-
-.profilView p:nth-child(6) , .profilView p:nth-child(7){
-    grid-column: 1 / 3;
-    grid-row: 5;
-    justify-self: center;
-}
-
-/* user phone */
-.profilView p:nth-child(7){
-    grid-column: 3 / 5;
-    justify-self: flex-start;
-}
-
-/* modify button */
-
-.profilView a:nth-child(n){
-    grid-column: 2 / 4;
-    grid-row: 6 / 8;
-    justify-self: center;
-    align-self: center;
-    font-size: large;
+.profilView p .userInfo{
+    padding-left: 5%;
+    width: 55%;
 }
 
 .profilView a{
@@ -387,9 +497,13 @@ main{
     justify-content: center;
     align-items: center;
     gap: 5%;
+    align-self: center;
     background-color: var(--secondaryColor);
     border-radius: 50px;
-    padding: 15px 50px 15px 50px;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
     text-decoration: none;
     color: var(--textColorBlack);
     transition: 0.3s;
@@ -402,4 +516,161 @@ main{
 .profilView a:hover{
     transform: scale(1.1);
     transition: 0.3s;
+}
+
+/******************************
+*
+    Style for profilModify page
+*
+*****************************/
+
+.profilModify .userPicture{
+    grid-column: 1 / 3;
+    grid-row: 2 / 5;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 0;
+    border: 2px solid var(--secondaryColor);
+    border-radius: 50px;
+    width: 320px;
+    height: 320px;
+}
+
+.profilModify .iconAddPicture{
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondaryColor);
+    opacity: 0.8;
+    border-radius: 50px;
+    width: 322px;
+    height: 322px;
+    transition: 0.2s;
+}
+
+.profilModify .iconAddPicture i{
+    font-size: 3em;
+    color: var(--mainColor);
+}
+
+.profilModify .userPicture:hover .iconAddPicture{
+    visibility: visible;
+    animation: hoverIcon 0.5s;
+}
+
+@keyframes hoverIcon{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.profilModify .userPicture img{
+    border-radius: 50px;
+    width: 320px;
+    height: 320px;
+}
+
+.profilModify label{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: 5%;
+    cursor: pointer;
+    width: 90%;
+}
+
+.profilModify label:nth-child(2){
+    grid-column: 4 / 6;
+    grid-row: 2;
+}
+
+.profilModify label:nth-child(3){
+    grid-column: 4 / 6;
+    grid-row: 3;
+}
+
+.profilModify label:nth-child(4){
+    grid-column: 4 / 6;
+    grid-row: 4;
+}
+
+.profilModify label:nth-child(5){
+    grid-column: 4 / 6;
+    grid-row: 5;
+}
+
+.profilModify label:nth-child(6){
+    grid-column: 4 / 6;
+    grid-row: 6;
+}
+
+.profilModify label:nth-child(7){
+
+}
+
+.profilModify label:nth-child(8){
+    
+}
+
+.profilModify .Disabled{
+    cursor: not-allowed;
+}
+
+.profilModify label span{
+    display: inline-block;
+    text-align: end;
+    width: 42%;
+}
+
+.profilModify span{
+    grid-column: 2/ 4;
+    grid-row: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.profilModify input[type="text"] , input[type="password"]{
+    border: 0px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 45%;
+}
+
+.profilModify input[type="text"]:focus  , input[type="password"]:focus{
+    outline: none;
+    caret-color: var(--mainColor);
+}
+
+.profilModify span input[type="submit"] , .profilModify span input[type="reset"]{
+    align-self: center;
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    height: 35px;
+}
+
+.profilModify input[type="submit"]:hover , .profilModify input[type="reset"]:hover{
+    transform: scale(1.1);
+}
+
+.profilModify input[type="file"]{
+    position: absolute;
+    left: 45%;
+    width: 10%;
+    z-index: -1;
+    visibility: hidden;
 }
