@@ -4,7 +4,7 @@ $stat->execute(['user' => $_SESSION['userId']]);
 $results = $stat->fetchAll();
 foreach($results as $res):?>
     <form class="expense" action="../Modules/classGwendal/delete.php" method="post">
-        <input type="text" name="id" value="<?= $res->expenseId ?>" readonly>
+        <input type="hidden" name="id" value="<?= $res->expenseId ?>">
         <p><?= $res->expenseDescription ?></p>
         <p><?= $res->worksiteName ?></p>
         <p><?= $res->eventDescription ?></p>
