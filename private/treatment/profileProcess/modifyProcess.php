@@ -15,9 +15,7 @@
     $position = InputSecurity::validateWithoutNumber($_POST['userPosition']);
 
     // test phone number
-    echo $_POST['userPhone'];
     $phoneNumber = InputSecurity::validateWithoutLetter($_POST['userPhone'] , "phoneNumber");
-    echo $phoneNumber;
 
     $picture = $_SESSION['userPicture'];
     $userId = $_SESSION['userId'];
