@@ -30,6 +30,9 @@
     <label for="userPhone"> <span>Numéro de téléphone :</span>
         <input type="text" name="userPhone" id="userPhone" value="<?= $_SESSION['userPhone'] ?>">
     </label>
+    
+    <input type="hidden" name="userId" value="<?= $_SESSION['userId'] ?>">
+
     <span>
         <input type="submit" name="valider" value="Enregistrer">
         <input type="reset" value="Annuler">
@@ -42,7 +45,7 @@
             return "";
         }
         else{
-            return "disabled";
+            return "readonly";
         }
     }
 

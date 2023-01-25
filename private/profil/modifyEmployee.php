@@ -15,7 +15,7 @@
         <div class="iconAddPicture">
             <i class="icon-image-plus"></i>
         </div>
-        <img src="/private/treatment/indexProcess/export.php?pictureId=1" alt="user Picture">
+        <img src="/private/treatment/indexProcess/export.php?pictureId=<?= $_GET['employee'] ?>" alt="user Picture">
         <input type="file" name="userPicture" id="userPicture">
     </label>
 
@@ -40,6 +40,9 @@
     <label for="userPhone"> <span>Numéro de téléphone :</span>
         <input type="text" name="userPhone" id="userPhone" value="<?= $results->userPhone ?>">
     </label>
+
+    <input type="hidden" name="userId" value="<?= $_GET['employee']?>">
+    
     <span>
         <input type="submit" value="Enregistrer">
         <input type="reset" value="Annuler">
