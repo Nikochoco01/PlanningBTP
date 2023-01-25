@@ -1,11 +1,11 @@
-<form action="<?= LINK_TO_MODIFY_PROCESS ?>" method="post" class="profilModify">
+<form action="<?= LINK_TO_MODIFY_PROCESS ?>" method="post" class="profilModify" enctype="multipart/form-data">
     <a href="<?= returnURL()?>" class="quitButton" > <i class=""></i> QUIT </a>
 
     <label for="userPicture" class="userPicture">
         <div class="iconAddPicture">
             <i class="icon-image-plus"></i>
         </div>
-        <img src="<?= $_SESSION['userPicture'] ?>" alt="user Picture">
+        <img src="/private/treatment/indexProcess/export.php?pictureId=<?php echo $_SESSION['userId']; ?>" alt="user Picture">
         <input type="file" name="userPicture" id="userPicture">
     </label>
 
@@ -31,7 +31,7 @@
         <input type="text" name="userPhone" id="userPhone" value="<?= $_SESSION['userPhone'] ?>">
     </label>
     <span>
-        <input type="submit" value="Enregistrer">
+        <input type="submit" name="valider" value="Enregistrer">
         <input type="reset" value="Annuler">
     </span>
 </form>

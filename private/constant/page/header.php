@@ -2,7 +2,7 @@
     <h1> <?= $title ?> </h1>
 
     <div class="profilZone">
-        <span id="profilButton" tabindex="0" role="button"> <img src="/private/img/defaultPP.png" alt="user picture" class="userPic" id="userPic"> </span>
+        <span id="profilButton" tabindex="0" role="button"> <img src="/private/treatment/indexProcess/export.php?pictureId=<?php echo $_SESSION['userId']; ?>" alt="user picture" class="userPic" id="userPic"> </span>
         <div class="profilMenu">
             <p class="userAccount" id="userAccount"> 
                 <span class="surName"> <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "FirstName") ?> </span> 

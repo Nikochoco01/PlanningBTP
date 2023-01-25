@@ -111,7 +111,7 @@ class Events{
 
         $select = "select distinct *";
         $from = " from Vehicle";
-        $where = " where vehicleLicensePlate not in (select vehicleLicensePlate from goTo)";
+        $where = " where vehicleLicensePlate not in (select vehicleLicensePlate from GoTo)";
         $query = $select . $from . $where;
         $statement = $this->PDO->query($query);
         $getSite = $statement->fetchAll();

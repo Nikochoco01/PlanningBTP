@@ -2,6 +2,7 @@
     include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__,2). "/class/InputSecurityClass.php";
     $userID = InputSecurity::validateWithoutLetter($_GET['employee']);
+    var_dump($userID);
     $statement = $PDO->prepare("select * from User where userId =".$userID);
     $statement->execute();
     $results = $statement->fetch();
@@ -14,7 +15,7 @@
         <div class="iconAddPicture">
             <i class="icon-image-plus"></i>
         </div>
-        <img src="<?= $_SESSION['userPicture'] ?>" alt="user Picture">
+        <img src="/private/treatment/indexProcess/export.php?pictureId=1" alt="user Picture">
         <input type="file" name="userPicture" id="userPicture">
     </label>
 
