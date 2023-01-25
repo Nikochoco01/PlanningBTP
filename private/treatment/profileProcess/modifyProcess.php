@@ -23,26 +23,25 @@
     //var_dump($picture);
 
     if(isset($_POST["valider"])){
-        $pdo = new PDO('mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521', 'p2107521', '12107521' , [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
+        $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
         // var_dump($_FILES["userPicture"]["name"]!="");
         // var_dump($_FILES["userPicture"]["name"]);
         if($_FILES["userPicture"]["name"]!=""){
-            $test = $pdo->prepare("select pictureId from Picture where userId = $userId");
+            $test = $PDO->prepare("select pictureId from Picture where userId = $userId");
             $test->execute();
             $test = $test->fetch();
             //var_dump($test->pictureId);
             if(empty($test->pictureId)){
-                $req = $pdo->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
+                $req = $PDO->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
                 //echo "if";
             }else{
-                $req = $pdo->prepare("update Picture set pictureId = $userId, pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ?, userId = userId");
+                $req = $PDO->prepare("update Picture set pictureId = $userId, pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ?, userId = userId");
                 //echo "else";
             }
             $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
         }
 
-        $sql = $pdo->prepare("select * from Picture");
+        $sql = $PDO->prepare("select * from Picture");
         $sql->execute();
 
         $result = $sql->fetchAll();
