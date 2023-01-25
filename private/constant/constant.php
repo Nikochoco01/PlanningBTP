@@ -19,7 +19,7 @@
         'chef d\'équipe' => 'planningManager',
         'responsable véhicules' => 'vehicleManager',
         'responsable matériel' => 'materialManager',
-        'resource humaine' => 'humanResources',
+        'resources humaine' => 'humanResources',
         'employé' => 'employee'
     ];
 

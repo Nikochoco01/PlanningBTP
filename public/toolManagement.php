@@ -17,9 +17,8 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
 ?>
 
 <body>
-    <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
-
     <div class="layout">
+        <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
         <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php"; ?>
 
         <main>

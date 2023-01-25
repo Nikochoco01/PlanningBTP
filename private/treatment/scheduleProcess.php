@@ -35,8 +35,9 @@ function diff_time($t1, $t2)
 
 if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
     if (preg_match('/[0-2][0-9]:[0-5][0-9]/', $_POST['startTime']) && preg_match('/[0-2][0-9]:[0-5][0-9]/', $_POST['endTime'])) {
-       //echo "l'heure est valide" . "<br>";
+       // echo "l'heure est valide" . "<br>";
         if ($_POST['startTime'] < $_POST['endTime']) {
+            unset($_SESSION['error']);
             // echo "c'est tout bon" . "<br>";
             // echo date('W') . "<br>";
             $w = date("W");
@@ -49,29 +50,68 @@ if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
             // echo $diff . " test 1" . "<br>";
             // $diff = date("h:i", strtotime($diff));
             // echo $diff . " test 2" . "<br>";
+            $getId = $PDO->prepare("select userId from Login where loginUsername = :userName");
+            $getId->bindParam("userName" , $_SESSION['userName']);
+            $getId->execute();
+            $getId = $getId->fetch();
+            $getId = $getId->userId;
+
+                $test = $PDO->prepare('select userId from WorkTime where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
+                $test->bindParam('id', $getId);
+                $test->bindParam("d" , $_POST['dayInput']);
+                $test->bindParam("week" , $w);
+                $test->bindParam('m', $m);
+                $test->bindParam('Y', $y);
+                $test->execute();
+                $test = $test->fetch();
+                // var_dump($test);
+            if(!isset($test->userId)){
+                // echo "j'insert";
+                $sth = $PDO->prepare('INSERT INTO WorkTime(userId, workTimeDay, workTimeWeek, workTimeMonth, workTimeYear, workTimeTotalHours) VALUES (:id, :d, :week, :m, :Y, :diff)');
+                $sth->bindParam('id', $getId);
+                $sth->bindParam("d" , $_POST['dayInput']);
+                $sth->bindParam("week" , $w);
+                // $sth->bindParam('W', $w); // à voir pour éviter le problème d'une saisie par semaine
+                $sth->bindParam('m', $m);
+                $sth->bindParam('Y', $y);
+                $sth->bindParam('diff', $diff);
+                $sth->execute();
+            }else{
+                // echo "j'update";
+                $up = $PDO->prepare('UPDATE WorkTime set workTimeTotalHours = :diff where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
+                $up->bindParam('diff', $diff);
+                $up->bindParam('id', $getId);
+                $up->bindParam("d" , $_POST['dayInput']);
+                $up->bindParam("week" , $w);
+                $up->bindParam('m', $m);
+                $up->bindParam('Y', $y);
+                $up->execute();
+            }
         } else {
             //echo "erreur input";
+            $_SESSION['error'] = "erreur input";
         }
     
-        $getId = $PDO->prepare("select userId from Login where loginUsername = :userName");
-        $getId->bindParam("userName" , $_SESSION['userName']);
-        $getId->execute();
-        $getId = $getId->fetch();
-        $getId = $getId->userId;
-
-        $sth = $PDO->prepare('INSERT INTO WorkTime(userId, workTimeWeek, workTimeMonth, workTimeYear, workTimeTotalHours) VALUES (:id, :week, :m, :Y, :diff)');
-        $sth->bindParam('id', $getId);
-        $sth->bindParam("week" , $_POST['weekInput']);
-        // $sth->bindParam('W', $w); // à voir pour éviter le problème d'un saisie par semaine
-        $sth->bindParam('m', $m);
-        $sth->bindParam('Y', $y);
-        $sth->bindParam('diff', $diff);
-        $sth->execute();
+    // $dsn = 'mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521';
+    // $user = 'p2107521';
+    // $password = '12107521';
+    // $conn = new PDO($dsn, $user, $password);
+    // $sql = ("select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime;");
+    // //$sql = ("select workTimeTotalHours as totalHours from WorkTime;");
+    // foreach ($conn->query($sql) as $row) {
+    //     echo $row['totalHours'] . "<br>";
+    //     if ($row['totalHours'] == null) {
+    //         echo "<br>" . "= null";
+    //     } else {
+    //         $diff = date("H:i", strtotime($row['totalHours']));
+    //     }
+    // }
     
     // echo "<br>" . "c'est ici: " . $diff;
     }
     else {
        //echo "l'heure n'est pas valide" . "<br>";
+       $_SESSION['error'] = "erreur input";
     }
 
     header('Location: ../../public/schedule.php');
