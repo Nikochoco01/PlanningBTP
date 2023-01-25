@@ -18,7 +18,7 @@
     $phoneNumber = InputSecurity::validateWithoutLetter($_POST['userPhone'] , "phoneNumber");
 
     $picture = $_SESSION['userPicture'];
-    $userId = $_SESSION['userId'];
+    $userId = $_POST['userId'];
 
     //var_dump($picture);
 
@@ -84,11 +84,13 @@
     // $_SESSION['userId'] = $getUser->userId; //user id in data base
     // $_SESSION['userName'] = $loginUsername->loginUsername; //  connection ID
     //$_SESSION['userPicture'] = $getUser->userPicture; // profile picture 
-    $_SESSION['userFirstName'] = $getUser->userFirstName; // first name of user
-    $_SESSION['userLastName'] = $getUser->userLastName; // name of user 
-    $_SESSION['userPosition'] = $getUser->userPosition; // position in the company
-    $_SESSION['userPhone'] = $getUser->userPhone; // user phone number 
-    $_SESSION['userMail'] = $getUser->userMail; // user mail address
-    header('Location:' .dirname(__FILE__,4)."/public/profil.php"."?&onglet='.'Personal'.'&display='.'View'");
+    if($_SESSION['userId'] == $_POST['userId']){
+        $_SESSION['userFirstName'] = $getUser->userFirstName; // first name of user
+        $_SESSION['userLastName'] = $getUser->userLastName; // name of user 
+        $_SESSION['userPosition'] = $getUser->userPosition; // position in the company
+        $_SESSION['userPhone'] = $getUser->userPhone; // user phone number 
+        $_SESSION['userMail'] = $getUser->userMail; // user mail address
+    }
+    header("Location: /public/profil.php?onglet=personal&display=view&add=false");
     Exit();
 ?>

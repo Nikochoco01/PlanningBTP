@@ -40,6 +40,9 @@
     <label for="userPhone"> <span>Numéro de téléphone :</span>
         <input type="text" name="userPhone" id="userPhone" value="<?= $results->userPhone ?>">
     </label>
+
+    <input type="hidden" name="userId" value="<?= $_GET['employee']?>">
+    
     <span>
         <input type="submit" value="Enregistrer">
         <input type="reset" value="Annuler">
