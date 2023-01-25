@@ -11,19 +11,49 @@ class Events{
     }
 
     /**
+     * allow to get an event with his ID
+     * 
+     * @return assoc_array from data base
+     */
+        public function getEvent($eventId = null){
+            if($eventId != null){
+                $select = "select distinct *";
+                $from = " from Event";
+                $where = " where eventId = " . $eventId;
+
+                $query = $select . $from . $where;
+                $statement = $this->PDO->query($query);
+                $getEvent = $statement->fetchAll();
+                return $getEvent;
+            }
+        }
+
+
+    /**
      * allow to get all worksite from de data base
      * 
      * @return assoc_array from data base
      */
-        public function getWorksite(){
+        public function getWorksite($worksiteId = null){
             $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
 
-            $select = "select distinct *";
-            $from = " from Worksite";
-            $query = $select . $from;
-            $statement = $this->PDO->query($query);
-            $getSite = $statement->fetchAll();
-            return $getSite;
+            if($worksiteId != null){
+                $select = "select distinct *";
+                $from = " from Worksite";
+                $where = " where worksiteId = ". $worksiteId; 
+                $query = $select . $from . $where;
+                $statement = $this->PDO->query($query);
+                $getSite = $statement->fetchAll();
+                return $getSite;
+            }
+            else{
+                $select = "select distinct *";
+                $from = " from Worksite";
+                $query = $select . $from;
+                $statement = $this->PDO->query($query);
+                $getSite = $statement->fetchAll();
+                return $getSite;
+            }
         }
 
     /**
@@ -31,16 +61,27 @@ class Events{
      * 
      * @return assoc_array from data base
      */
-    public function getEmployee(){
+    public function getEmployee($employeeId = null){
         $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
 
-        $select = "select distinct *";
-        $from = " from User";
-        $where = " where userId not in (select userId from Affected)";
-        $query = $select . $from . $where;
-        $statement = $this->PDO->query($query);
-        $getSite = $statement->fetchAll();
-        return $getSite;
+        if($employeeId != null){
+            $select = "select distinct *";
+            $from = " from User";
+            $where = " where userId=". $employeeId;
+            $query = $select . $from . $where;
+            $statement = $this->PDO->query($query);
+            $getEmployee = $statement->fetchAll();
+            return $getEmployee;
+        }
+        else{
+            $select = "select distinct *";
+            $from = " from User";
+            $where = " where userId not in (select userId from Affected)";
+            $query = $select . $from . $where;
+            $statement = $this->PDO->query($query);
+            $getEmployee = $statement->fetchAll();
+            return $getEmployee;
+        }
     }
 
     /**
@@ -56,8 +97,8 @@ class Events{
         $where = " where equipmentName not in (select equipmentName from UsedEquipment)";
         $query = $select . $from . $where;
         $statement = $this->PDO->query($query);
-        $getSite = $statement->fetchAll();
-        return $getSite;
+        $getMaterial = $statement->fetchAll();
+        return $getMaterial;
     }
 
     /**
@@ -76,11 +117,6 @@ class Events{
         $getSite = $statement->fetchAll();
         return $getSite;
     }
-
-
-
-
-
 
     /**
      * allow to get an event in the data base
@@ -233,45 +269,19 @@ class Events{
      * 
      * @return assoc_array from data base
      */
-    public function getDetailSelectedEvent(\DateTimeImmutable $eventStart , \DateTimeImmutable $eventEnd){
+    public function getDetailSelectedEvent($eventId){
         $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
+        $select = "select e.eventId, a.userId, e.worksiteId, GROUP_CONCAT(distinct(u.equipmentName)) equipment, GROUP_CONCAT(distinct(g.vehicleLicensePlate)) vehicle";
+        $from = " from Event e join Affected a on e.eventId = a.eventId left outer join UsedEquipment u on e.eventId = u.eventId left outer join GoTo g on e.eventId = g.eventId";
+        $where = " where e.eventId =". $eventId;
+        $groupBy = " group by e.eventId, a.userId, e.worksiteId";
 
-        /** Get employees */
-        $selectEmployee = "select distinct *";
-        $fromEmployee = " from Affected a join Event e on a.eventId = e.eventId";
-        $whereEmployee = " where eventStartDate";
-        $betweenEmployee = " between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}' and a.eventId = 1";
+        $query = $select . $from . $where . $groupBy;
 
-        $queryEmployee = $selectEmployee . $fromEmployee . $whereEmployee . $betweenEmployee;
+        $statement = $this->PDO->query($query);
+        $getEvent = $statement->fetchAll();
 
-        $statementEmployee = $this->PDO->query($queryEmployee);
-        $getEventEmployee = $statementEmployee->fetchAll();
-
-        /** Get material */
-        $selectMaterial = "select distinct *";
-        $fromMaterial = " from UsedEquipment u join Event e on u.eventId = e.eventId";
-        $whereMaterial = " where eventStartDate";
-        $betweenMaterial = " between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}' and u.eventId = 1 ;";
-
-        $queryMaterial = $selectMaterial . $fromMaterial . $whereMaterial . $betweenMaterial;
-
-        $statementMaterial = $this->PDO->query($queryMaterial);
-        $getEventMaterial = $statementMaterial->fetchAll();
-
-        /** Get vehicles */
-        $selectVehicle = "select distinct *";
-        $fromVehicle = " from GoTo g join Event e on g.eventId = e.eventId";
-        $whereVehicle = " where eventStartDate";
-        $betweenVehicle = " between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}' and g.eventId = 1; ";
-        
-        $query = $selectVehicle . $fromVehicle . $whereVehicle . $betweenVehicle;
-
-        $statementVehicle = $this->PDO->query($query);
-        $getEventVehicle = $statementVehicle->fetchAll();
-
-        // $getEvent = $getEventEmployee + $getEventMaterial + $getEventVehicle;
-
-        return $getEventEmployee;
+        return $getEvent;
     }
 
 

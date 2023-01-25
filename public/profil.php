@@ -45,7 +45,7 @@
                                     include_once dirname(__FILE__,2). "/private/profil/profilViewAdmin.php";
                                 break;
                                 case PARAM_MODIFY_DISPLAY:
-                                    include_once dirname(__FILE__,2). "/private/profil/profilModify.php";
+                                    include_once dirname(__FILE__,2). "/private/profil/modifyEmployee.php";
                                 break;
                             }
                         break;

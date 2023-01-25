@@ -1,5 +1,5 @@
 <div class="calendarEvent">
-    <a href="1" class="buttonEvent"> ici </a>
+    <a href="<?= URLManagement::addUrlParam(array('event'=>$event['eventId']))?>" class="buttonEvent"> détails </a>
     <p class="descriptionEvent"> <span class="eventLabel"> </span> <span class="eventInfo"> <?= $event['eventDescription'] ?> </span> </p>
     <p class="worksiteNameEvent"> <span class="eventLabel"> </span> <span class="eventInfo"> <?= $event['worksiteName'] ?> </span> </p>
     <p class="worksiteEvent"> <span class="eventLabel"> </span> <span class="eventInfo"> <?= $event['worksiteAddress'] ?> </span> </p>

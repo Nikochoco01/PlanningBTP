@@ -37,10 +37,9 @@
         switch ($_GET["add"]) {
             case "false":
     ?>
-        <div class="listContainer" id="listContainer">
 
             <div class="addButton-searchZone">
-                <a href="/profil.php?onglet=Employees&display=View&add=true" class="addEmployeeButton"> <i class="icon-user-plus-bottom"></i> </a>
+                <a href="<?= URLManagement::addUrlParam(array('add'=>'true')) ?>" class="addEmployeeButton"> <i class="icon-user-plus-bottom"></i> </a>
 
                 <form method="POST" class="searchZone">
                     <input type="search" name="searchEmployee" id="searchEmployee" placeholder="chercher un employé">
@@ -48,9 +47,8 @@
                 </form>
             </div>
 
-
             <div class="scrollTableContainer">
-                <table class="listContant">
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col"> Image</th>
@@ -65,20 +63,19 @@
                     <tbody>
                         <?php
                             foreach($results as $employee):?>
-                            <tr class="employeeObject">
+                            <tr class="tableCell">
                                 <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "LastName") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "FirstName") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPhone , "PhoneNumber") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "Position") ?> </td>
-                                <td class="columnForButton"> <a href="#"> <i class="icon-user-edit"></i> </a> </td>
+                                <td class="columnForButton"> <a href="/public/profil.php?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
-        </section>
     <?php
             break;
             case "true":

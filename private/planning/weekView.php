@@ -22,6 +22,9 @@
 
     // $worksite = $event->getWorksite();
     // var_dump($worksite);
+
+    // var_dump($events);
+    // var_dump($_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']."&event=".$event['eventId']);
 ?>
 
 <div class="tab" >
@@ -32,6 +35,12 @@
                 <label for="buttonAddEvent" class="buttonLabel" id="buttonLabel"> <i id="iButtonLabel" class="icon-calendar-plus-alt"></i></label>
                 <label for="buttonAddEvent" class="indicator"> Ajouter une mission</label>
                 <?php include_once dirname(__FILE__). "/addEventView.php"?>
+            </div>
+         
+            <div class="zoneModifyEvent">
+                <?php if(isset($_GET['event'])){
+                    include_once dirname(__FILE__). "/modifyEvent.php";
+                } ?>
             </div>
         </div>
 
@@ -45,7 +54,7 @@
                     <a href="<?= URLManagement::addUrlParam(array('month'=>$month->nextWeek()->month ,'year'=>$month->nextWeek()->year , 'week'=>$month->nextWeek()->week))?> "> <i class="icon-angle-right"></i> </a>
                 </div>
                 <div class="navigationView">
-                    <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y') , 'week'=>$month->getCurrentWeek()))?>">Ajourd’hui</a>
+                    <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y') , 'week'=>$month->getCurrentWeek()))?>">Aujourd’hui</a>
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d'))) ?>" class="changeView"> Jour </a>
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'week' , 'week'=>$month->getCurrentWeek())) ?>" class="changeView"> Semaine </a>
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'month')) ?>" class="changeView"> Mois </a>

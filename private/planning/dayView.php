@@ -25,48 +25,18 @@
 <div class="tab" >
     <div class="tabHeader">
         <div class="leftSide">
-            <div class="zoneAddEvent">
-                <input type="checkbox" name="buttonAddEvent" id="buttonAddEvent" class="buttonAddEvent">
-                <label for="buttonAddEvent" class="buttonLabel" id="buttonLabel"> <i id="iButtonLabel" class="icon-calendar-plus-alt"></i></label>
-                <label for="buttonAddEvent" class="indicator"> Ajouter une mission</label>
-
-                <div class="popupAddEvent">
-                    <form action="/Modules/popupProcess/addEvent.php" method="post">
-
-                        <span>
-                            <label for="eventLocation"> Lieu :</label>
-                            <select name="eventLocation" id="eventLocation">
-                                <option value="1"> 1 </option>
-                            </select>
-                        </span>
-
-                        <span>
-                            <label for="eventDescription"> Description :</label>
-                            <input type="text" name="eventDescription" id="eventDescription">
-                        </span>
-                        <span>
-                            <label for="eventDate"> Date de début :</label>
-                            <input type="date" name="eventDate" id="eventDate">
-                        </span>
-                        <span>
-                            <label for="eventDate"> Date de fin :</label>
-                            <input type="date" name="eventDate" id="eventDate">
-                        </span>
-                        <span>
-                            <label for="eventStartTime"> Heure de début :</label>
-                            <input type="datetime-local" name="eventStartTime" id="eventStartTime">
-                        </span>
-                        <span>
-                            <label for="eventEndTime"> Heure de fin :</label>
-                            <input type="datetime-local" name="eventEndTime" id="eventEndTime">
-                        </span>
-                        <span>
-                            <input type="submit" value="Ajouter la mission" class="validateButton">
-                            <input type="button" value="Annuler l'ajout" class="validateButton">
-                        </span>
-                    </form>
+                <div class="zoneAddEvent">
+                    <input type="checkbox" name="buttonAddEvent" id="buttonAddEvent" class="buttonAddEvent">
+                    <label for="buttonAddEvent" class="buttonLabel" id="buttonLabel"> <i id="iButtonLabel" class="icon-calendar-plus-alt"></i></label>
+                    <label for="buttonAddEvent" class="indicator"> Ajouter une mission</label>
+                    <?php include_once dirname(__FILE__). "/addEventView.php"?>
                 </div>
-            </div>
+            
+                <div class="zoneModifyEvent">
+                    <?php if(isset($_GET['event'])){
+                        include_once dirname(__FILE__). "/modifyEvent.php";
+                    } ?>
+                </div>
         </div>
 
         <div class="middle">
@@ -79,7 +49,7 @@
                     <a href="<?= URLManagement::addUrlParam(array('month'=>$month->nextDay()->month ,'year'=>$month->nextDay()->year , 'week'=>$month->nextDay()->week , 'day'=>$month->nextDay()->day))?> "> <i class="icon-angle-right"></i> </a>
                 </div>
                 <div class="navigationView">
-                    <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y'), 'day'=>date('d')))?>">Ajourd’hui</a>
+                    <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y'), 'day'=>date('d')))?>">Aujourd’hui</a>
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d'))) ?>" class="changeView"> Jour </a>
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'week' , 'week'=>$month->getCurrentWeek())) ?>" class="changeView"> Semaine </a>
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'month')) ?>" class="changeView"> Mois </a>
