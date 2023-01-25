@@ -28,7 +28,7 @@
                     ?>
                 </div>
 
-                <form action="../Modules/classGwendal/newExpenditure.php" method="post" class="addExpenditure">
+                <form action="../Modules/classGwendal/newExpenditure.php" method="post" class="fromAddExpenditure">
 
                     <label for="worksite"> Chantier </label>
                     <select name="worksite" id="worksite" list="worksites" required>

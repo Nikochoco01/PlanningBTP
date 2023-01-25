@@ -23,7 +23,7 @@
     //var_dump($picture);
 
     if(isset($_POST["valider"])){
-        $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
+        // $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
         // var_dump($_FILES["userPicture"]["name"]!="");
         // var_dump($_FILES["userPicture"]["name"]);
         if($_FILES["userPicture"]["name"]!=""){
@@ -89,6 +89,6 @@
     $_SESSION['userPosition'] = $getUser->userPosition; // position in the company
     $_SESSION['userPhone'] = $getUser->userPhone; // user phone number 
     $_SESSION['userMail'] = $getUser->userMail; // user mail address
-    header('Location:' .dirname(__FILE__,4)."/public/profil.php"."?&onglet='.'Personal'.'&display='.'View'");
+    header('Location:' .dirname(__FILE__,4)."/public/profil.php?"."onglet=personal&display=view");
     Exit();
 ?>
