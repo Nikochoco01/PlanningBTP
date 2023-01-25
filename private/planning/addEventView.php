@@ -36,13 +36,13 @@
 
         <ul>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropMission" class="labelDropMenu"> Lieux de la mission </label>
+                <input type="checkbox" id="checkboxDropMission" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Lieux de la mission </h2>
                 <span>
                     <!-- WORKSITES -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Nom du lieux </th>
@@ -53,7 +53,7 @@
                             <tbody>
                                 <?php
                                     foreach($workSites as $workSite):?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($workSite['worksiteName'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($workSite['worksiteAddress']) ?> </td>
                                         <td class="columnForButton"> 
@@ -68,13 +68,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropEmployee" class="labelDropMenu"> Employés de la mission </label>
+                <input type="checkbox" id="checkboxDropEmployee" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Employés de la mission</h2>
                 <span>
                     <!-- EMPLOYEES -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Image</th>
@@ -87,7 +87,7 @@
                             <tbody>
                                 <?php
                                     foreach($employees as $employee):?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee['userLastName'] , "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee['userFirstName'] , "FirstName") ?> </td>
@@ -104,13 +104,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropVehicle" class="labelDropMenu"> Véhicules de la mission </label>
+                <input type="checkbox" id="checkboxDropVehicle" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Véhicules de la mission</h2>
                 <span>
                     <!-- VEHICLES -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Plaque d’immatriculation </th>
@@ -123,7 +123,7 @@
                             <tbody>
                                 <?php
                                     foreach($vehicles as $vehicle):?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleLicensePlate'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleModel']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleMaxPassenger']) ?> </td>
@@ -140,13 +140,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropMaterial" class="labelDropMenu"> Matériel de la mission </label>
+                <input type="checkbox" id="checkboxDropMaterial" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Matériel de la mission</h2>
                 <span>
                     <!-- MATERIAL -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Nom de l’équipement </th>
@@ -159,7 +159,7 @@
                             <tbody>
                                 <?php
                                     foreach($materials as $material):?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($material['equipmentName'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material['equipmentTotalQuantity']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material['equipmentAvailableQuantity']) ?> </td>
@@ -177,7 +177,7 @@
             </li>
         </ul>
 
-        <span>
+        <span class="buttonZone">
             <input type="submit" value="Ajouter la mission" class="validateButton">
             <input type="button" value="Annuler l'ajout" class="validateButton">
         </span>

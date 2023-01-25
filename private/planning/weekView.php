@@ -35,13 +35,14 @@
                 <label for="buttonAddEvent" class="buttonLabel" id="buttonLabel"> <i id="iButtonLabel" class="icon-calendar-plus-alt"></i></label>
                 <label for="buttonAddEvent" class="indicator"> Ajouter une mission</label>
                 <?php include_once dirname(__FILE__). "/addEventView.php"?>
-            </div>
-         
-            <div class="zoneModifyEvent">
+
                 <?php if(isset($_GET['event'])){
-                    include_once dirname(__FILE__). "/modifyEvent.php";
-                } ?>
+                    include_once dirname(__FILE__). "/showEvent.php";
+                }?>
             </div>
+
+
+            
         </div>
 
         <div class="middle">

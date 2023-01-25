@@ -1049,13 +1049,23 @@ main{
     transition: 0.3s;
 }
 
+/******************************
+*
+    Style for popUp to add event
+*
+*****************************/
 .addEvent{
     position: absolute;
-    top: 70px;
-    border-radius: 20px;
-    background-color: var(--mainColor);
-    width: 400px;
-    height: 300px;
+    top: 100px;
+    left: 0px;
+    border-radius: 10px;
+    background-color: var(--transparentMainColor);
+    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--transparentSecondaryColor);
+    padding: 10%;
+    width: 1000px;
+    height: auto;
     visibility: hidden;
 }
 
@@ -1064,39 +1074,41 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
-    gap: 5%;
+    gap: 5px;
     width: 100%;
     height: 100%;
 }
 
-.addEvent form span{
+.addEvent form span:nth-child(n){
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.addEvent form span:nth-child(n) label{
+    display: flex;
+    width: 20%;
+}
+
+.addEvent form span:nth-child(n) input{
+    position: relative;
+    width: 200px;
+}
+
+.addEvent .scrollAddEvent{
+    width: 100%;
+    height: 200px;
+}
+
+.addEvent .buttonZone{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    column-gap: 5%;
-    width: 80%;
-}
-
-.addEvent form span label{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    width: 40%;
-}
-
-.addEvent form span input{
-    width: 50%;
-}
-
-.addEvent form span select{
-    width: 50%;
+    justify-content: space-between;
+    gap: 5%;
+    padding: 2%;
 }
 
 .addEvent .validateButton{
-    position: absolute;
-    bottom: 5%;
-    align-self: center;
     border:  1px solid var(--textColorBlack);
     border-radius: 50px;
     cursor: pointer;
@@ -1104,12 +1116,353 @@ main{
     height: 35px;
 }
 
-.addEvent input[type="submit"]{
-    left: 40px;
+.validateButton:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
 }
 
-.addEvent input[type="button"]{
-    right: 40px;
+.zoneAddEvent .buttonAddEvent:checked ~ .buttonLabel{
+    background-color: var(--secondaryColor);
+    color: var(--mainColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.zoneAddEvent .buttonAddEvent:checked ~ .addEvent{
+    visibility: visible;
+}
+
+.addEvent ul{
+    list-style: none;
+    perspective: 900;
+    padding: 0;
+    margin: 0;
+}
+
+.addEvent li{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 4px;
+    padding-top: 18px;
+    animation: flipdown 0.5s ease both;
+}
+
+.addEvent li:nth-of-type(1){
+    animation-delay: 0.5s;
+}
+
+.addEvent li:nth-of-type(2){
+    animation-delay: 0.75s;
+}
+    
+.addEvent li:nth-of-type(3){
+    animation-delay: 1.0s;
+}
+
+.addEvent li:nth-of-type(4){
+    animation-delay: 1.25s;
+}
+
+li:last-of-type{
+    padding-bottom: 0;
+}
+
+.addEvent i{
+    position: absolute;
+    transform: translate( -6px , 0 );
+    margin-top: 16px;
+    right: 0;
+}
+
+.addEvent i:before , .addEvent i:after{
+    content: "";
+    animation: transition;
+    position: absolute;
+    width: 3px;
+    height: 9px;
+}
+
+.addEvent i:before{
+    transform: translate( -2px , 0 ) rotate( 45deg );
+}
+
+.addEvent i:after{
+    transform: translate( 2px , 0 ) rotate( -45deg );
+}
+
+.addEvent .labelDropMenu{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.addEvent .labelDropMenu:hover{
+    cursor: pointer;
+}
+
+.addEvent .checkboxDrop{
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0;
+}
+
+.addEvent .checkboxDrop:checked ~span{
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate( 0 , 50% );
+}
+
+.addEvent .checkboxDrop:checked ~i:before{
+    transform: translate( 2px , 0 ) rotate( 45deg );
+}
+
+.addEvent .checkboxDrop:checked ~i::after{
+    transform: translate( -2px , 0 ) rotate( -45deg );
+}
+
+@keyframes flipdown{
+    0%{
+        opacity: 0;
+        transform-origin: top center;
+        transform: rotateX(-90deg);
+    }
+    5%{
+        opacity: 1;
+    }
+    80%{
+        transform: rotateX(8deg);
+    }
+    83%{
+        transform: rotateX(6deg);
+    }
+    
+    92%{
+        transform: rotateX(-3deg);
+    }
+
+    100%{
+        transform-origin: top center;
+        transform: rotateX(0deg);
+    }
+}
+
+/******************************
+*
+    Style for popUp to show detail of event
+*
+*****************************/
+
+.detailEvent{
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    border-radius: 10px;
+    background-color: var(--transparentMainColor);
+    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--transparentSecondaryColor);
+    padding: 10%;
+    width: 1000px;
+    height: auto;
+    /* visibility: hidden; */
+}
+
+.detailEvent .detailContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.detailEvent .detailContainer span:nth-child(n){
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.detailEvent .detailContainer span:nth-child(n) label{
+    display: flex;
+    width: 20%;
+}
+
+.detailEvent .detailContainer span:nth-child(n) input{
+    position: relative;
+    width: 200px;
+}
+
+.detailEvent .scrollAddEvent{
+    width: 100%;
+    height: 200px;
+}
+
+.detailEvent .buttonZone{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    padding: 2%;
+}
+
+.detailEvent ul{
+    list-style: none;
+    perspective: 900;
+    padding: 0;
+    margin: 0;
+}
+
+.detailEvent li{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 4px;
+    padding-top: 18px;
+    animation: flipdown 0.5s ease both;
+}
+
+.detailEvent li:nth-of-type(1){
+    animation-delay: 0.5s;
+}
+
+.detailEvent li:nth-of-type(2){
+    animation-delay: 0.75s;
+}
+    
+.detailEvent li:nth-of-type(3){
+    animation-delay: 1.0s;
+}
+
+.detailEvent li:nth-of-type(4){
+    animation-delay: 1.25s;
+}
+
+li:last-of-type{
+    padding-bottom: 0;
+}
+
+.detailEvent i{
+    position: absolute;
+    transform: translate( -6px , 0 );
+    margin-top: 16px;
+    right: 0;
+}
+
+.detailEvent i:before , .addEvent i:after{
+    content: "";
+    animation: transition;
+    position: absolute;
+    width: 3px;
+    height: 9px;
+}
+
+.detailEvent i:before{
+    transform: translate( -2px , 0 ) rotate( 45deg );
+}
+
+.detailEvent i:after{
+    transform: translate( 2px , 0 ) rotate( -45deg );
+}
+
+.detailEvent .labelDropMenu{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.detailEvent .labelDropMenu:hover{
+    cursor: pointer;
+}
+
+.detailEvent .checkboxDrop{
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0;
+}
+
+.detailEvent .checkboxDrop:checked ~span{
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate( 0 , 50% );
+}
+
+.detailEvent .checkboxDrop:checked ~i:before{
+    transform: translate( 2px , 0 ) rotate( 45deg );
+}
+
+.detailEvent .checkboxDrop:checked ~i::after{
+    transform: translate( -2px , 0 ) rotate( -45deg );
+}
+
+/******************************
+*
+    Style for Popup to modify Event
+*
+*****************************/
+
+.modifyEvent{
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    border-radius: 10px;
+    background-color: var(--transparentMainColor);
+    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--transparentSecondaryColor);
+    padding: 10%;
+    width: 1000px;
+    height: auto;
+}
+
+.modifyEvent form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.modifyEvent form span:nth-child(n){
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.modifyEvent form span:nth-child(n) label{
+    display: flex;
+    width: 20%;
+}
+
+.modifyEvent form span:nth-child(n) input{
+    position: relative;
+    width: 200px;
+}
+
+.modifyEvent .scrollAddEvent{
+    width: 100%;
+    height: 200px;
+}
+
+.buttonZone{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    padding: 2%;
+}
+
+.modifyEvent .validateButton{
+    border:  1px solid var(--textColorBlack);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
 }
 
 .validateButton:hover{
@@ -1117,16 +1470,111 @@ main{
     transition: 0.3s;
 }
 
-.buttonAddEvent:checked ~ .buttonLabel{
+.zoneAddEvent .buttonAddEvent:checked ~ .buttonLabel{
     background-color: var(--secondaryColor);
     color: var(--mainColor);
     transform: scale(1.1);
     transition: 0.3s;
 }
 
-.buttonAddEvent:checked ~ .addEvent{
+.zoneAddEvent .buttonAddEvent:checked ~ .addEvent{
     visibility: visible;
 }
+
+.modifyEvent ul{
+    list-style: none;
+    perspective: 900;
+    padding: 0;
+    margin: 0;
+}
+
+.modifyEvent li{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 4px;
+    padding-top: 18px;
+    animation: flipdown 0.5s ease both;
+}
+
+.modifyEvent li:nth-of-type(1){
+    animation-delay: 0.5s;
+}
+
+.modifyEvent li:nth-of-type(2){
+    animation-delay: 0.75s;
+}
+    
+.modifyEvent li:nth-of-type(3){
+    animation-delay: 1.0s;
+}
+
+.modifyEvent li:nth-of-type(4){
+    animation-delay: 1.25s;
+}
+
+li:last-of-type{
+    padding-bottom: 0;
+}
+
+.modifyEvent i{
+    position: absolute;
+    transform: translate( -6px , 0 );
+    margin-top: 16px;
+    right: 0;
+}
+
+.modifyEvent i:before , .addEvent i:after{
+    content: "";
+    animation: transition;
+    position: absolute;
+    width: 3px;
+    height: 9px;
+}
+
+.modifyEvent i:before{
+    transform: translate( -2px , 0 ) rotate( 45deg );
+}
+
+.modifyEvent i:after{
+    transform: translate( 2px , 0 ) rotate( -45deg );
+}
+
+.modifyEvent .labelDropMenu{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.modifyEvent .labelDropMenu:hover{
+    cursor: pointer;
+}
+
+.modifyEvent .checkboxDrop{
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0;
+}
+
+.modifyEvent .checkboxDrop:checked ~span{
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate( 0 , 50% );
+}
+
+.modifyEvent .checkboxDrop:checked ~i:before{
+    transform: translate( 2px , 0 ) rotate( 45deg );
+}
+
+.modifyEvent .checkboxDrop:checked ~i::after{
+    transform: translate( -2px , 0 ) rotate( -45deg );
+}
+
+
+
+
+
 
 /******************************
 *
@@ -1243,13 +1691,12 @@ main{
 *
 *****************************/
 
-.addEvent{
+/* .addEvent{
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: red;
-    width: 100wh;
-    height: 100vh;
+    padding: 50%;
+    height: auto;
 }
 
 .addEvent form{
@@ -1282,4 +1729,4 @@ main{
     background-color: brown;
     width: 90%;
     height: auto;
-}
+} */

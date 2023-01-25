@@ -1,16 +1,21 @@
-<?php 
+<?php
+/**
+ * IUT
+ */
 // try{
-//     $PDO = new PDO('mysql:host=iutbg-lamp.lyon1.fr ; dbname=p2101430' , 'p2101430' , '12101430');
+//     $PDO = new PDO('mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2103916' , 'p2103916' , '12103916');
 //     $PDO->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-//     echo "Connexion réussie";
+//     $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
 // }
 // catch(PDOException $e){
-//     echo "Errreur : " . $e->getMessage();
+//     echo "Error : " . $e->getMessage();
 // }
 
-
+/**
+ * PC NIKO
+ */
 try{
-    $PDO = new PDO('mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2103916' , 'p2103916' , '12103916');
+    $PDO = new PDO('mysql:host=localhost:3306;dbname=bdsite' , 'root' , 'root');
     $PDO->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
     $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
 }
