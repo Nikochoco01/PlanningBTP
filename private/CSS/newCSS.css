@@ -1449,7 +1449,7 @@ li:last-of-type{
     height: 200px;
 }
 
-.buttonZone{
+.modifyEvent .buttonZone{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1524,7 +1524,7 @@ li:last-of-type{
     right: 0;
 }
 
-.modifyEvent i:before , .addEvent i:after{
+.modifyEvent i:before , .modifyEvent i:after{
     content: "";
     animation: transition;
     position: absolute;
@@ -1570,11 +1570,6 @@ li:last-of-type{
 .modifyEvent .checkboxDrop:checked ~i::after{
     transform: translate( -2px , 0 ) rotate( -45deg );
 }
-
-
-
-
-
 
 /******************************
 *

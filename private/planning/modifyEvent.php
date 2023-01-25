@@ -10,10 +10,9 @@
     }
 ?>
 
-
 <div class="modifyEvent">
     <form action="/private/treatment/planningProcess/addEventProcess.php" method="post">
-
+        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>"> X </a>
         <span>
             <label for="eventDescription"> Description :</label>
             <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>">
@@ -41,8 +40,8 @@
 
         <ul>
             <li>
-                <label for="checkboxDropMission" class="labelDropMenu"> Lieux de la mission </label>
-                <input type="checkbox" id="checkboxDropMission" class="checkboxDrop" checked>
+                <label for="checkboxDropMissionModify" class="labelDropMenu"> Lieux de la mission </label>
+                <input type="checkbox" id="checkboxDropMissionModify" class="checkboxDrop" checked>
                 <i></i>
                 <span>
                     <!-- WORKSITES -->
@@ -73,8 +72,8 @@
                 </span>
             </li>
             <li>
-                <label for="checkboxDropEmployee" class="labelDropMenu"> Employés de la mission </label>
-                <input type="checkbox" id="checkboxDropEmployee" class="checkboxDrop" checked>
+                <label for="checkboxDropEmployeeModify" class="labelDropMenu"> Employés de la mission </label>
+                <input type="checkbox" id="checkboxDropEmployeeModify" class="checkboxDrop" checked>
                 <i></i>
                 <span>
                     <!-- EMPLOYEES -->
@@ -108,8 +107,8 @@
                 </span>
             </li>
             <li>
-                <label for="checkboxDropVehicle" class="labelDropMenu"> Véhicules de la mission </label>
-                <input type="checkbox" id="checkboxDropVehicle" class="checkboxDrop" checked>
+                <label for="checkboxDropVehicleModify" class="labelDropMenu"> Véhicules de la mission </label>
+                <input type="checkbox" id="checkboxDropVehicleModify" class="checkboxDrop" checked>
                 <i></i>
                 <span>
                     <!-- VEHICLES -->
@@ -143,8 +142,8 @@
                 </span>
             </li>
             <li>
-                <label for="checkboxDropMaterial" class="labelDropMenu"> Matériel de la mission </label>
-                <input type="checkbox" id="checkboxDropMaterial" class="checkboxDrop" checked>
+                <label for="checkboxDropMaterialModify" class="labelDropMenu"> Matériel de la mission </label>
+                <input type="checkbox" id="checkboxDropMaterialModify" class="checkboxDrop" checked>
                 <i></i>
                 <span>
                     <!-- MATERIAL -->
@@ -179,10 +178,9 @@
             </li>
         </ul>
 
-        <span>
-            <input type="submit" value="mettre à jour la mission" class="validateButton">
+        <span class="buttonZone">
+            <input type="submit" value="Ajouter la mission" class="validateButton">
             <input type="button" value="Annuler l'ajout" class="validateButton">
         </span>
-
     </form>
 </div>

@@ -151,7 +151,7 @@
         </ul>
 
         <span class="buttonZone">
-                <a href="">Modifier</a>
+                <a href="<?= URLManagement::addUrlParam(array('modify'=>'true')) ?>">Modifier</a>
         </span>
     </div>
 </div>

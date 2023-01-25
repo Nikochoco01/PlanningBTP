@@ -181,6 +181,5 @@
             <input type="submit" value="Ajouter la mission" class="validateButton">
             <input type="button" value="Annuler l'ajout" class="validateButton">
         </span>
-
     </form>
 </div>

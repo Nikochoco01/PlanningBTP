@@ -36,9 +36,15 @@
                 <label for="buttonAddEvent" class="indicator"> Ajouter une mission</label>
                 <?php include_once dirname(__FILE__). "/addEventView.php"?>
 
-                <?php if(isset($_GET['event'])){
-                    include_once dirname(__FILE__). "/showEvent.php";
-                }?>
+                <?php 
+                    if(isset($_GET['event'])){
+                        include_once dirname(__FILE__). "/showEvent.php";
+                    }
+                    
+                    if(isset($_GET['modify']) == true){
+                        include_once dirname(__FILE__). "/modifyEvent.php";
+                    }
+                ?>
             </div>
 
 
