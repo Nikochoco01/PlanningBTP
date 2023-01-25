@@ -48,8 +48,6 @@ if($_SERVER['SCRIPT_NAME'] === '/public/profil.php'):
                 <i class="icon-tool"></i> Matériel 
             </a>
         </li>
-
-        <li class="buttonChangeView"> <a href=" <?= URLManagement::displayType(); ?>" class="" id="buttonChangeView"> <i class="icon-home"></i></a> </li>
     </ul>
 </nav>
 

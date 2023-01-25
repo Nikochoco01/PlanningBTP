@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once dirname(__FILE__,2)."/InputSecurityClass.php";
-    include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
+    include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
 
     $mail = InputSecurity::validateMail($_POST['userMail']);
 
@@ -19,6 +19,13 @@
 
     $picture = $_SESSION['userPicture'];
     $userId = $_SESSION['userId'];
+
+    if(isset($_POST['userPicture'])){
+        $req = $PDO->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
+        $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+    }
+
+    
 
     $statement = $PDO->prepare("update User  set userFirstName = :FirstName , userLastName = :LastName, userMail = :userMail , userPhone = :userPhone, userPicture = :userPicture , userPosition = :userPosition where userId = :userId");
     $statement->bindParam("FirstName" , $firstName);

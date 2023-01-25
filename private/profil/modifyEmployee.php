@@ -1,3 +1,12 @@
+<?php
+    include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2). "/class/InputSecurityClass.php";
+    $userID = InputSecurity::validateWithoutLetter($_GET['employee']);
+    $statement = $PDO->prepare("select * from User where userId =".$userID);
+    $statement->execute();
+    $results = $statement->fetch();
+?>
+
 <form action="<?= LINK_TO_MODIFY_PROCESS ?>" method="post" class="profilModify">
     <a href="<?= returnURL()?>" class="quitButton" > <i class=""></i> QUIT </a>
 
@@ -10,25 +19,25 @@
     </label>
 
     <label class="Disabled"> <span>Nom d'utilisateur : </span>
-        <input type="text" name="userName" id="userName" value="<?= $_SESSION['userName'] ?>" class="Disabled" disabled>
+        <input type="text" name="userName" id="userName" value="<?= $results->userLastName ?>" class="Disabled" disabled>
     </label>
     <label for="userPassWord"> <span>Mot de passe :</span>
         <input type="password" name="userPassword" id="userPassword" value="" placeholder="taper un nouveau mot de passe">
     </label>
     <label for="userFirstName"> <span>Prénom :</span>
-        <input type="text" name="userFirstName" id="userFirstName" value="<?= $_SESSION['userFirstName'] ?>">
+        <input type="text" name="userFirstName" id="userFirstName" value="<?= $results->userFirstName ?>">
     </label>
     <label for="userLastName"> <span>Nom :</span>
-        <input type="text" name="userLastName" id="userLastName" value="<?= $_SESSION['userLastName'] ?>">
+        <input type="text" name="userLastName" id="userLastName" value="<?= $results->userLastName ?>">
     </label>
     <label for="userPosition" class=" <?= addDisabled() ?>"> <span>Poste :</span>
-        <input type="text" name="userPosition" id="userPosition" value="<?= $_SESSION['userPosition'] ?>" <?= disableInput()?> class="<?= addDisabled() ?>">
+        <input type="text" name="userPosition" id="userPosition" value="<?= $results->userPosition ?>" <?= disableInput()?> class="<?= addDisabled() ?>">
     </label>
     <label for="userMail"> <span>Adresse mail :</span>
-        <input type="text" name="userMail" id="userMail" value="<?= $_SESSION['userMail'] ?>">
+        <input type="text" name="userMail" id="userMail" value="<?= $results->userMail ?>">
     </label>
     <label for="userPhone"> <span>Numéro de téléphone :</span>
-        <input type="text" name="userPhone" id="userPhone" value="<?= $_SESSION['userPhone'] ?>">
+        <input type="text" name="userPhone" id="userPhone" value="<?= $results->userPhone ?>">
     </label>
     <span>
         <input type="submit" value="Enregistrer">
@@ -57,7 +66,14 @@
 
     function returnURL(){
         if($_SESSION['userFonction'] == "administrator"){
-            return "/public/profil.php?onglet=personal&display=view&add=false";
+            switch($_GET['onglet']){
+                case "personal":
+                        return "/public/profil.php?onglet=personal&display=view&add=false";
+                    break;
+                case "employees":
+                        return "/public/profil.php?onglet=employees&display=view&add=false";
+                    break;
+            }
         }
         else{
             return "/public/profil.php?onglet=personal&display=view";

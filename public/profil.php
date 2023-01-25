@@ -1,8 +1,8 @@
 <?php
+    session_start();
     include_once dirname(__FILE__,2). "/private/constant/constant.php";
     include_once dirname(__FILE__,2). "/private/class/InputSecurityClass.php";
     include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
-    session_start();
     //var_dump($_SESSION['ERROR']);
     // if(isset($_SESSION['MESSAGE'])){
     //     var_dump($_SESSION['MESSAGE']);
@@ -17,9 +17,8 @@
 ?>
 
 <body>
-    <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
-
     <div class="layout">
+        <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
         <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php"; ?>
         <main>
             <?php
@@ -46,7 +45,7 @@
                                     include_once dirname(__FILE__,2). "/private/profil/profilViewAdmin.php";
                                 break;
                                 case PARAM_MODIFY_DISPLAY:
-                                    include_once dirname(__FILE__,2). "/private/profil/profilModify.php";
+                                    include_once dirname(__FILE__,2). "/private/profil/modifyEmployee.php";
                                 break;
                             }
                         break;

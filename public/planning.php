@@ -15,11 +15,15 @@
 ?>
 
 <body>
-        <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php" ?>
     <div class="layout">
+        <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php" ?>
         <?php include_once dirname(__FILE__,2). "/private/constant/page/aside.php" ?>
-        <main class="planningMain">
-            <?php include_once dirname(__FILE__,2). "/private/selectTab.php" ?>
+        <main>
+            <?php
+                if($_SESSION['userFonction'] == 'administrator'){
+                    include_once dirname(__FILE__,2). "/private/selectTab.php";
+                }
+            ?>
             <div class="tabContent">
                 <?php
                     $dayView = dirname(__FILE__,2). "/private/planning/dayView.php";

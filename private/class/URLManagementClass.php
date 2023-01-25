@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 /**
  * Allow to manage the url of the web site 
  * @author Nikola Chevalliot
@@ -31,25 +30,25 @@ class URLManagement{
         }
     }
 
-    /** 
-     * Function to switch between day week month view on the calendar 
-     * @author Nikola Chevalliot
-     * 
-     * @return string
-    */
-    public static function displayType(){
-        switch($_GET['display']){
-            case "day":
-                    return URLManagement::addUrlParam(array('display'=>'week'));
-                break;
-            case "week":
-                    return URLManagement::addUrlParam(array('display'=>'month', 'week'=>'1'));
-                break;
-            case "month":
-                    return URLManagement::addUrlParam(array('display'=>'day'));
-                break;
-        }
-    }
+    // /** 
+    //  * Function to switch between day week month view on the calendar 
+    //  * @author Nikola Chevalliot
+    //  * 
+    //  * @return string
+    // */
+    // public static function displayType(){
+    //     switch($_GET['display']){
+    //         case "day":
+    //                 return URLManagement::addUrlParam(array('display'=>'week' , 'week'=>'2'));
+    //             break;
+    //         case "week":
+    //                 return URLManagement::addUrlParam(array('display'=>'month'));
+    //             break;
+    //         case "month":
+    //                 return URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d')));
+    //             break;
+    //     }
+    // }
 }
 
 ?>

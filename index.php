@@ -12,7 +12,7 @@ include_once dirname(__FILE__)."/private/constant/constant.php";
     include_once dirname(__FILE__)."/private/constant/page/head.php";
 ?>
 
-<body>
+<body class="logBody">
         <main class="logMain">
 
             <div class="logForm">

@@ -1,11 +1,21 @@
 <?php 
     session_start();
+<<<<<<< HEAD
     include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
     include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__,2). "/private/constant/constant.php";
     include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
 
     $_SESSION['token'] = InputSecurity::generateToken(10);
+=======
+    include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
+    include_once dirname(__FILE__,2). "/private/dataBase/dataBaseConnection.php";
+    include_once dirname(__FILE__,2). "/private/constant/constant.php";
+    // include_once dirname(__FILE__)."/Modules/classGwendal/vehiculeClass.php"; 
+    // include_once dirname(__FILE__)."/Modules/tokenGenerator.php";
+
+    // $_SESSION['token'] = generateToken(10);
+>>>>>>> fusionFinal
 ?>
 
 <!DOCTYPE html>
