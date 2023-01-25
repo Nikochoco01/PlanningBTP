@@ -2,6 +2,7 @@
 session_start();
 include_once dirname(__FILE__,2). "/private/constant/constant.php";
 include_once dirname(__FILE__,2). "/private/dataBase/dataBaseConnection.php";
+include_once dirname(__FILE__,2). "/private/class/month.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +16,23 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
 ?>
 
 <body>
-    <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php"; ?>
-
     <div class="layout">
+        <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php"; ?>
         <?php include_once dirname(__FILE__,2). "/private/constant/page/aside.php"; ?>
 
         <main>
-            <?php 
-            
+            <?php
+
+            // $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null);
+            // var_dump($month);
+
+            //     foreach($month->days as $dayNumber => $day):
+            //     $date = $firstDay->modify("+".($dayNumber + $month->setupWeek($_GET['week'])). "day");
+            //     endforeach;
+
+            if(isset($_SESSION['error'])){
+                echo "<script> alert('".$_SESSION['error']."') </script>";
+            }
             function affichage($totalHours){
                 //Heures au format (hh:mm:ss) la plus grande puis la plus petite
 
@@ -41,8 +51,15 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             // $statement = $PDO->prepare("select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime;");
             // $schedule = $statement->fetchAll();
 
+            $week = date('W');
+            $getId = $PDO->prepare("select userId from Login where loginUsername = :userName");
+            $getId->bindParam("userName" , $_SESSION['userName']);
+            $getId->execute();
+            $getId = $getId->fetch();
+            $getId = $getId->userId;
+
             // temporaire 
-            $sql  = "select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime;";
+            $sql  = "select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime where userId = $getId and workTimeWeek = $week";
             foreach($PDO->query($sql) as $row){
                if($row->totalHours != null){
                     $diff = $row->totalHours;
@@ -64,14 +81,24 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
             //         // var_dump($diff);
             //     }
             // }
-            if (!isset($diff)) {
-                echo "<br>" . "Les heures effectuées cette semaine: 0:00";
-            } else {
-                echo "<br>" . "Les heures effectuées cette semaine: " . affichage($diff);
-            } ?>
+            $horaire  = "select * from WorkTime where userId = $getId and workTimeWeek = $week order by workTimeDay ASC";
+            foreach($PDO->query($horaire) as $row):?>
+            <div class="horaire">
+                    <p>Jour : <?= $row->workTimeDay ?>
+                    Semaine : <?=$row->workTimeWeek ?>
+                    Mois : <?= $row->workTimeMonth ?>
+                    Heures de la journée : <?= $row->workTimeTotalHours ?></p>
+            </div>
+            <?php endforeach;
+            if (!isset($diff)) :?>
+                <p>Les heures effectuées cette semaine: 0:00</p>
+            <?php else: ?>
+                <p>Les heures effectuées cette semaine: <?= affichage($diff); ?></p>
+            <?php endif; ?>
+
             <form action="/private/treatment/scheduleProcess.php" method="post">
-                <label for="weekInput"> Semaine : </label>
-                <input type="number" name="weekInput" id="weekInput" max="52">
+                <label for="dayInput"> Jour : </label>
+                <input type="number" name="dayInput" id="weekInput" max="31" min="1">
                 <label for="plate">Heure d'arrivée <input type="time" name="startTime" id="plate"></label>
 
                 <label for="type">Heure de départ <input type="time" name="endTime" id="type"></label>
@@ -79,7 +106,6 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                 <input type="submit" value="Valider">
                 <input type="reset" value="Annuler">
             </form>
-
         </main>
     </div>
 </body>

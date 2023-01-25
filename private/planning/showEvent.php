@@ -6,6 +6,8 @@
 
 
 <div class="detailEvent">
+    <div class="detailContainer">
+        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>"> X </a>
         <span>
             <label for="eventDescription"> Description :</label>
             <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>">
@@ -33,13 +35,13 @@
 
         <ul>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropMissionShow" class="labelDropMenu"> Lieux de la mission </label>
+                <input type="checkbox" id="checkboxDropMissionShow" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Lieux de la mission </h2>
                 <span>
                     <!-- WORKSITES -->
                     <div class="scrollTableContainer">
-                        <table class="listContant">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Nom du lieux </th>
@@ -48,7 +50,7 @@
                             </thead>
                             <tbody>
                                 <?php $workSite = $event->getWorksite($eventDetails[0]['worksiteId']); ?>
-                                <tr class="employeeObject">
+                                <tr class="tableCell">
                                     <td> <?= InputSecurity::displayWithFormat($workSite[0]['worksiteName'], "LastName") ?> </td>
                                     <td> <?= InputSecurity::displayWithFormat($workSite[0]['worksiteAddress']) ?> </td>
                                 </tr>
@@ -58,13 +60,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropEmployeeShow" class="labelDropMenu"> Employés de la mission </label>
+                <input type="checkbox" id="checkboxDropEmployeeShow" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Employés de la mission</h2>
                 <span>
                     <!-- EMPLOYEES -->
                     <div class="scrollTableContainer">
-                        <table class="listContant">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Image</th>
@@ -75,7 +77,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "FirstName") ?> </td>
@@ -88,13 +90,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropVehicleShow" class="labelDropMenu"> Véhicules de la mission </label>
+                <input type="checkbox" id="checkboxDropVehicleShow" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Véhicules de la mission</h2>
                 <span>
                     <!-- VEHICLES -->
                     <div class="scrollTableContainer">
-                        <table class="listContant">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Plaque d’immatriculation </th>
@@ -105,7 +107,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail['vehicle']);?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleLicensePlate'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleModel']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleMaxPassenger']) ?> </td>
@@ -118,13 +120,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropMaterialShow" class="labelDropMenu"> Matériel de la mission </label>
+                <input type="checkbox" id="checkboxDropMaterialShow" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Matériel de la mission</h2>
                 <span>
                     <!-- MATERIAL -->
                     <div class="scrollTableContainer">
-                        <table class="listContant">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Nom de l’équipement </th>
@@ -135,7 +137,7 @@
                             <tbody>
                                 <?php
                                     foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail['equipment'])?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentName'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentTotalQuantity']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentAvailableQuantity']) ?> </td>
@@ -147,4 +149,9 @@
                 </span>
             </li>
         </ul>
+
+        <span class="buttonZone">
+                <a href="<?= URLManagement::addUrlParam(array('modify'=>'true')) ?>">Modifier</a>
+        </span>
+    </div>
 </div>

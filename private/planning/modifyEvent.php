@@ -10,10 +10,9 @@
     }
 ?>
 
-
 <div class="modifyEvent">
     <form action="/private/treatment/planningProcess/addEventProcess.php" method="post">
-
+        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>"> X </a>
         <span>
             <label for="eventDescription"> Description :</label>
             <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>">
@@ -41,13 +40,13 @@
 
         <ul>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropMissionModify" class="labelDropMenu"> Lieux de la mission </label>
+                <input type="checkbox" id="checkboxDropMissionModify" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Lieux de la mission </h2>
                 <span>
                     <!-- WORKSITES -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Nom du lieux </th>
@@ -58,7 +57,7 @@
                             <tbody>
                                 <?php
                                     foreach($workSites as $workSite):?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($workSite['worksiteName'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($workSite['worksiteAddress']) ?> </td>
                                         <td class="columnForButton"> 
@@ -73,13 +72,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropEmployeeModify" class="labelDropMenu"> Employés de la mission </label>
+                <input type="checkbox" id="checkboxDropEmployeeModify" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Employés de la mission</h2>
                 <span>
                     <!-- EMPLOYEES -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Image</th>
@@ -91,7 +90,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "FirstName") ?> </td>
@@ -108,13 +107,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropVehicleModify" class="labelDropMenu"> Véhicules de la mission </label>
+                <input type="checkbox" id="checkboxDropVehicleModify" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Véhicules de la mission</h2>
                 <span>
                     <!-- VEHICLES -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Plaque d’immatriculation </th>
@@ -126,7 +125,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail['vehicle']);?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleLicensePlate'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleModel']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleMaxPassenger']) ?> </td>
@@ -143,13 +142,13 @@
                 </span>
             </li>
             <li>
-                <input type="checkbox" checked>
+                <label for="checkboxDropMaterialModify" class="labelDropMenu"> Matériel de la mission </label>
+                <input type="checkbox" id="checkboxDropMaterialModify" class="checkboxDrop" checked>
                 <i></i>
-                <h2>Matériel de la mission</h2>
                 <span>
                     <!-- MATERIAL -->
-                    <div class="scrollTableContainer">
-                        <table class="listContant">
+                    <div class="scrollTableContainer scrollAddEvent">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col"> Nom de l’équipement </th>
@@ -161,7 +160,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail['equipment'])?>
-                                    <tr class="employeeObject">
+                                    <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentName'], "LastName") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentTotalQuantity']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentAvailableQuantity']) ?> </td>
@@ -179,10 +178,9 @@
             </li>
         </ul>
 
-        <span>
-            <input type="submit" value="mettre à jour la mission" class="validateButton">
+        <span class="buttonZone">
+            <input type="submit" value="Ajouter la mission" class="validateButton">
             <input type="button" value="Annuler l'ajout" class="validateButton">
         </span>
-
     </form>
 </div>
