@@ -3,10 +3,10 @@ session_start();
 include_once dirname(__FILE__,3)."/class/InputSecurityClass.php";
 include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
 
-if(InputSecurity::validateWithoutNumber($_POST["designation"]) == $_POST["designation"] 
-    && InputSecurity::validateWithoutLetter($_POST["rmv"]) == $_POST["rmv"] 
-    && InputSecurity::isEmpty($_POST["token"]) == $_POST["token"] 
-    && InputSecurity::isEmpty($_SESSION["token"]) == $_SESSION["token"]){
+if(InputSecurity::validateWithoutNumber($_POST["designation"]) 
+    && InputSecurity::validateWithoutLetter($_POST["rmv"]) 
+    && InputSecurity::isEmpty($_POST["token"]) 
+    && InputSecurity::isEmpty($_SESSION["token"])){
         
         if($_POST["token"] == $_SESSION["token"]){
                 $stat = $PDO->prepare("SELECT equipmentTotalQuantity, equipmentAvailableQuantity FROM Equipment WHERE equipmentName = :designation");
