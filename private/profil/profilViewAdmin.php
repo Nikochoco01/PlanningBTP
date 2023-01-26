@@ -40,6 +40,7 @@
 
             <div class="addButton-searchZone">
                 <a href="<?= URLManagement::addUrlParam(array('add'=>'true')) ?>" class="addEmployeeButton"> <i class="icon-user-plus-bottom"></i> </a>
+                <a href="/public/profil.php?onglet=employees&display=view&add=false" class="refreshButton"> <i class="icon-rotate"></i> </a>
 
                 <form method="POST" class="searchZone">
                     <input type="search" name="searchEmployee" id="searchEmployee" placeholder="chercher un employé">

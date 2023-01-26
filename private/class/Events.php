@@ -148,11 +148,10 @@ class Events{
     public function getEventBetweenByDay(\DateTimeImmutable $eventStart , \DateTimeImmutable $eventEnd , ?string $page = null){
         $events = "";
 
-        if($page == null){
-            $events = $this->getEventForGivenPerson($eventStart , $eventEnd);
-        }
-
         switch($page){
+            case "employee":
+                    $events = $this->getEventForGivenPerson($eventStart , $eventEnd);
+                break;
             case "missions":
                     $events = $this->getEventBetween($eventStart , $eventEnd);
                 break;

@@ -150,8 +150,10 @@
             </li>
         </ul>
 
-        <span class="buttonZone">
+        <?php if($_SESSION['userPosition'] != PARAM_SESSION_TYPE_ADMINISTRATOR ) : ?>
+            <span class="buttonZone">
                 <a href="<?= URLManagement::addUrlParam(array('modify'=>'true')) ?>">Modifier</a>
-        </span>
+            </span>
+        <?php endif ?>
     </div>
 </div>

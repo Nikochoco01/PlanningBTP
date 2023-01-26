@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
+                    <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
                     <i class="icon-calendar"></i>
                         <span class="nav-text">
                             Planning

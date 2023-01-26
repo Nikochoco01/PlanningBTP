@@ -697,6 +697,29 @@ main{
     background-color: var(--secondaryColor);
 }
 
+.addButton-searchZone .refreshButton{
+    position: relative;
+    right: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    text-decoration: none;
+    color: var(--textColorBlack);
+    font-size: 1.5em;
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 35px;
+    height: 35px;
+}
+
+.addButton-searchZone .refreshButton:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    color: var(--mainColor);
+    background-color: var(--secondaryColor);
+}
+
 .addButton-searchZone .searchZone{
     position: relative;
     right: 6%;
