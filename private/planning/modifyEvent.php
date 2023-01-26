@@ -11,8 +11,9 @@
 ?>
 
 <div class="modifyEvent">
-    <form action="/private/treatment/planningProcess/addEventProcess.php" method="post">
-        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>"> X </a>
+    <form action="/private/treatment/planningProcess/modifyEventProcess.php" method="post">
+        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>" class="quitModify"> X </a>
+        <input type="hidden" name="eventId" value="<?= $_GET['event'] ?>" >
         <span>
             <label for="eventDescription"> Description :</label>
             <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>">
@@ -179,7 +180,7 @@
         </ul>
 
         <span class="buttonZone">
-            <input type="submit" value="Ajouter la mission" class="validateButton">
+            <input type="submit" value="Modifier la mission" class="validateButton">
             <input type="button" value="Annuler l'ajout" class="validateButton">
         </span>
     </form>

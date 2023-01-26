@@ -2,7 +2,6 @@
     include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__,2). "/class/InputSecurityClass.php";
     $userID = InputSecurity::validateWithoutLetter($_GET['employee']);
-    var_dump($userID);
     $statement = $PDO->prepare("select * from User where userId =".$userID);
     $statement->execute();
     $results = $statement->fetch();

@@ -7,30 +7,30 @@
 
 <div class="detailEvent">
     <div class="detailContainer">
-        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>"> X </a>
+        <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>" class="quitDetails"> X </a>
         <span>
             <label for="eventDescription"> Description :</label>
-            <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>">
+            <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>" readonly>
         </span>
 
         <span>
             <label for="eventStartDate"> Date de début :</label>
-            <input type="date" name="eventStartDate" id="eventStartDate" value="<?= $selectedEvent[0]['eventStartDate'] ?>">
+            <input type="date" name="eventStartDate" id="eventStartDate" value="<?= $selectedEvent[0]['eventStartDate'] ?>" readonly>
         </span>
 
         <span>
             <label for="eventEndDate"> Date de fin :</label>
-            <input type="date" name="eventEndDate" id="eventEndDate" value="<?= $selectedEvent[0]['eventEndDate'] ?>">
+            <input type="date" name="eventEndDate" id="eventEndDate" value="<?= $selectedEvent[0]['eventEndDate'] ?>" readonly>
         </span>
 
         <span>
             <label for="eventStartTime"> Heure de début :</label>
-            <input type="time" name="eventStartTime" id="eventStartTime" value="<?= $selectedEvent[0]['eventStartTime'] ?>">
+            <input type="time" name="eventStartTime" id="eventStartTime" value="<?= $selectedEvent[0]['eventStartTime'] ?>" readonly>
         </span>
 
         <span>
             <label for="eventEndTime"> Heure de fin :</label>
-            <input type="time" name="eventEndTime" id="eventEndTime" value="<?= $selectedEvent[0]['eventEndTime'] ?>">
+            <input type="time" name="eventEndTime" id="eventEndTime" value="<?= $selectedEvent[0]['eventEndTime'] ?>" readonly>
         </span>
 
         <ul>

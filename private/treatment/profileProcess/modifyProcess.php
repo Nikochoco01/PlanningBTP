@@ -84,14 +84,6 @@
     // $_SESSION['userId'] = $getUser->userId; //user id in data base
     // $_SESSION['userName'] = $loginUsername->loginUsername; //  connection ID
     //$_SESSION['userPicture'] = $getUser->userPicture; // profile picture 
-<<<<<<< HEAD
-    $_SESSION['userFirstName'] = $getUser->userFirstName; // first name of user
-    $_SESSION['userLastName'] = $getUser->userLastName; // name of user 
-    $_SESSION['userPosition'] = $getUser->userPosition; // position in the company
-    $_SESSION['userPhone'] = $getUser->userPhone; // user phone number 
-    $_SESSION['userMail'] = $getUser->userMail; // user mail address
-    header('Location:' .dirname(__FILE__,4)."/public/profil.php?"."onglet=personal&display=view");
-=======
     if($_SESSION['userId'] == $_POST['userId']){
         $_SESSION['userFirstName'] = $getUser->userFirstName; // first name of user
         $_SESSION['userLastName'] = $getUser->userLastName; // name of user 
@@ -100,6 +92,5 @@
         $_SESSION['userMail'] = $getUser->userMail; // user mail address
     }
     header("Location: /public/profil.php?onglet=personal&display=view&add=false");
->>>>>>> d3e593a46d06a636ef67de02821c945c511e0762
     Exit();
 ?>

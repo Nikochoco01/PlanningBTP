@@ -7,6 +7,7 @@
 
     --shadowColor: rgba(0 , 0 , 0 , 0.5);
     --textColorBlack: #000;
+    --transparentTextColorBlack: rgba(0, 0, 0, 0.5);
     --textColorWhite : #fff;
 }
 
@@ -1283,6 +1284,31 @@ li:last-of-type{
     height: 100%;
 }
 
+.detailEvent .detailContainer a {
+    text-decoration: none;
+    color: var(--textColorBlack);
+}
+
+.detailEvent .detailContainer .quitDetails{
+    position: relative;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    border-radius: 10px;
+    transition: 0.5s;
+    width: 40px;
+    height: 40px;
+}
+
+.detailEvent .detailContainer .quitDetails:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+    color: var(--mainColor);
+    background-color: var(--secondaryColor);
+}
+
 .detailEvent .detailContainer span:nth-child(n){
     display: flex;
     justify-content: center;
@@ -1311,6 +1337,27 @@ li:last-of-type{
     gap: 5%;
     padding: 2%;
 }
+
+.detailEvent .buttonZone a{
+    position: relative;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    border-radius: 10px;
+    transition: 0.5s;
+    width: 80px;
+    height: 40px;
+}
+
+.detailEvent .buttonZone a:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+    color: var(--mainColor);
+    background-color: var(--secondaryColor);
+}
+
 
 .detailEvent ul{
     list-style: none;
@@ -1430,6 +1477,32 @@ li:last-of-type{
     gap: 5px;
     width: 100%;
     height: 100%;
+}
+
+.modifyEvent form a {
+    text-decoration: none;
+    color: var(--textColorBlack);
+}
+
+.modifyEvent .quitModify{
+    position: relative;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    border-radius: 10px;
+    border: 2px solid var(--transparentTextColorBlack);
+    transition: 0.5s;
+    width: 40px;
+    height: 40px;
+}
+
+.modifyEvent .quitModify:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+    color: var(--mainColor);
+    background-color: var(--secondaryColor);
 }
 
 .modifyEvent form span:nth-child(n){
