@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include_once dirname(__FILE__,2)."/dataBase/dataBaseConnection.php";
 function diff_time($t1, $t2)
 {

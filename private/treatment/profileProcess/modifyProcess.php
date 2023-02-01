@@ -1,7 +1,6 @@
 <?php
-    session_start();
-    include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
-    include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
+    include_once APP . "/private/class/InputSecurityClass.php";
+    include_once APP . "/private/dataBase/dataBaseConnection.php";
 
     $mail = InputSecurity::validateMail($_POST['userMail']);
 
@@ -91,6 +90,6 @@
         $_SESSION['userPhone'] = $getUser->userPhone; // user phone number 
         $_SESSION['userMail'] = $getUser->userMail; // user mail address
     }
-    header("Location: /public/profil.php?onglet=personal&display=view&add=false");
+    header("Location:/profil?onglet=personal&display=view&add=false");
     Exit();
 ?>

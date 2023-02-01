@@ -1,7 +1,6 @@
 <?php
-    session_start();
-    include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
-    include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
+    include_once APP . "/private/class/InputSecurityClass.php";
+    include_once APP . "/private/dataBase/dataBaseConnection.php";
 
     // test FirstName
     $firstName = InputSecurity::validateWithoutNumber($_POST['userFirstName']);
@@ -32,6 +31,6 @@
 
     InputSecurity::returnMessage("Votre mot de passe par default est 1234 changer le des que possible");
 
-    header('Location: /public/profil.php?onglet=employees&display=view&add=false');
+    header('Location:/profil?onglet=employees&display=view&add=false');
     Exit();
 ?>

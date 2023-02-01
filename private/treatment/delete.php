@@ -1,7 +1,6 @@
 <?php
-session_start();
-include_once dirname(__FILE__,3)."/private/class/InputSecurityClass.php";
-include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
+include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 if(InputSecurity::isEmpty($_POST['id'])
     && InputSecurity::isEmpty($_POST['idName'])
     && InputSecurity::isEmpty($_POST['table']) 

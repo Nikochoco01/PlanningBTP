@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include_once dirname(__FILE__)."/private/constant/constant.php";
 ?>
 
@@ -17,7 +16,7 @@ include_once dirname(__FILE__)."/private/constant/constant.php";
 
             <div class="logForm">
                 <h2> Connectez-vous </h2>
-                <form action="<?= LINK_LOGIN_PROCESS ?>" method="post">
+                <form  action="<?php //LINK_LOGIN_PROCESS ?>" method="post">
                     <p class="userName">
                         <label for="userName"> Nom d'utilisateur : </label>
                         <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prenom.nom" class="inputLog"> </span>

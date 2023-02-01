@@ -1,7 +1,6 @@
-<?php 
-session_start();
-include_once dirname(__FILE__,3)."/private/class/InputSecurityClass.php";
-include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
+<?php
+include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if( InputSecurity::validateWithoutNumber($_POST['plate'])
     && InputSecurity::isEmpty($_POST['model']) 
@@ -26,5 +25,5 @@ if( InputSecurity::validateWithoutNumber($_POST['plate'])
         header("Location:".$_SERVER['HTTP_REFERER']);
 }
 else{
-        header("Location:".dirname(__FILE__,3)."/vehicle.php");
+        header("Location:/vehicle");
 }

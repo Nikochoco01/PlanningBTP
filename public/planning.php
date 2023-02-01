@@ -1,34 +1,32 @@
-<?php session_start() ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <!-- variables declaration -->
 <?php
 
-    include_once dirname(__FILE__,2). "/private/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__,2). "/private/class/URLManagementClass.php";
-    include_once dirname(__FILE__,2). "/private/constant/constant.php";
+    include_once APP . "private/dataBase/dataBaseConnection.php";
+    include_once APP . "private/class/URLManagementClass.php";
+    include_once APP . "private/constant/constant.php";
 
     $title = TITLE_PAGE_PLANNING;
-    include_once dirname(__FILE__,2)."/private/constant/page/head.php";
+    include_once APP . "private/constant/page/head.php";
 ?>
 
 <body>
     <div class="layout">
-        <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php" ?>
-        <?php include_once dirname(__FILE__,2). "/private/constant/page/aside.php" ?>
+        <?php include_once APP . "private/constant/page/header.php" ?>
+        <?php include_once APP . "private/constant/page/aside.php" ?>
         <main>
             <?php
                 if($_SESSION['userFonction'] == 'administrator'){
-                    include_once dirname(__FILE__,2). "/private/selectTab.php";
+                    include_once APP . "private/selectTab.php";
                 }
             ?>
             <div class="tabContent">
                 <?php
-                    $dayView = dirname(__FILE__,2). "/private/planning/dayView.php";
-                    $weekView = dirname(__FILE__,2). "/private/planning/weekView.php";
-                    $monthView = dirname(__FILE__,2). "/private/planning/monthView.php";
+                    $dayView = APP . "private/planning/dayView.php";
+                    $weekView = APP . "private/planning/weekView.php";
+                    $monthView = APP . "private/planning/monthView.php";
 
 
                     switch($_GET["onglet"]){

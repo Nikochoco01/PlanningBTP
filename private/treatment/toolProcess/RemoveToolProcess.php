@@ -1,7 +1,6 @@
 <?php
-session_start();
-include_once dirname(__FILE__,3)."/class/InputSecurityClass.php";
-include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
+include_once APP . "class/InputSecurityClass.php";
+include_once APP . "dataBase/dataBaseConnection.php";
 
 if(InputSecurity::validateWithoutNumber($_POST["designation"]) 
     && InputSecurity::validateWithoutLetter($_POST["rmv"]) 
@@ -30,5 +29,5 @@ if(InputSecurity::validateWithoutNumber($_POST["designation"])
         header("Location:".$_SERVER['HTTP_REFERER']);
 }
 else{
-        header("Location:".dirname(__FILE__,3)."/public/toolManagement.php");
+        header("Location:/tool");
 }

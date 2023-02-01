@@ -1,7 +1,6 @@
-<?php 
-session_start();
-include_once dirname(__FILE__,3)."/private/class/InputSecurityClass.php";
-include_once dirname(__FILE__,3)."/private/dataBase/dataBaseConnection.php";
+<?php
+include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if( InputSecurity::validateWithoutLetter($_POST['price']) 
     && InputSecurity::validateWithoutNumber($_POST['description']) 
@@ -26,5 +25,5 @@ if( InputSecurity::validateWithoutLetter($_POST['price'])
         header("Location:".$_SERVER['HTTP_REFERER']);
 }
 else{
-    header("Location:".dirname(__FILE__,3)."/public/expenditure.php");
+    header("Location:/expenditure");
 }

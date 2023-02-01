@@ -26,7 +26,6 @@ $tab=$req->fetchAll();
 // var_dump($tab);
 
 if(isset($user->userId) && isset($loginUsername->loginUsername)){
-    session_start();
     //include_once 'translateDate.php';
     /** session existence test variables */
     $_SESSION['sessionOpen'] = true;
@@ -59,7 +58,7 @@ if(isset($user->userId) && isset($loginUsername->loginUsername)){
     $_SESSION['schedule'] = '7h 18h'; // user schedule of day for the user
     // include_once dirname(__FILE__,4). "/public/home.php";
     $host = $_SERVER['HTTP_HOST'];
-    $path = "/public/home.php";
+    $path = "/home";
     header("Location: http://$host$path");
     Exit();
 }

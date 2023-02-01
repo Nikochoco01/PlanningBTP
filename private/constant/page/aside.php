@@ -1,6 +1,6 @@
 <?php 
-    include_once dirname(__FILE__,2). "/constant.php";
-    include_once dirname(__FILE__,3). "/class/Month.php";
+    include_once APP . "private/constant/constant.php";
+    include_once APP . "private/class/Month.php";
 
     function addUser(){
         if($_SESSION['userFonction'] === "administrator"){
@@ -21,7 +21,7 @@
     <nav class="mainMenu">
         <ul>
             <li>
-                <a href="<?= LINK_TO_HOME ?>">
+                <a href="home">
                     <i class="icon-home"></i>
                         <span class="nav-text">
                             Accueil
@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="<?= LINK_TO_PROFIL.addUser() ?>">
+                <a href="<?= "profil?onglet=personal&display=view".addUser() ?>">
                     <i class="icon-id-card"></i>
                         <span class="nav-text">
                             Profil
@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                    <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
+                    <a href="<?= "planning?onglet=missions&display=week&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
                     <i class="icon-calendar"></i>
                         <span class="nav-text">
                             Planning
@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= LINK_TO_SCHEDULES?>">
+                <a href="schedule">
                     <i class="icon-clock"></i>
                         <span class="nav-text">
                             Horaires
@@ -53,7 +53,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= LINK_TO_EXPENDITURE ?>">
+                <a href="expenditure">
                     <i class="icon-euro"></i>
                         <span class="nav-text">
                             Frais
@@ -61,7 +61,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= LINK_TO_VEHICLE_MANAGEMENT?>">
+                <a href="vehicle">
                     <i class="icon-warehouse"></i>
                         <span class="nav-text">
                             Véhicule
@@ -69,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= LINK_TO_TOOL_MANAGEMENT ?>">
+                <a href="tool">
                     <i class="icon-tool"></i>
                         <span class="nav-text">
                             Matériel

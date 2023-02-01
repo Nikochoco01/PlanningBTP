@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
 $id = $_GET['pictureId'];
 $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);

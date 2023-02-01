@@ -1,6 +1,6 @@
 <?php 
-    include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__,2)."/treatment/profileProcess/searchProcess.php";
+    include_once APP . "private/dataBase/dataBaseConnection.php";
+    include_once APP . "private/treatment/profileProcess/searchProcess.php";
     $statement = $PDO->prepare("select * from User");
     $statement->execute();
     $results = $statement->fetchAll();
@@ -71,7 +71,7 @@
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPhone , "PhoneNumber") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "Position") ?> </td>
-                                <td class="columnForButton"> <a href="/public/profil.php?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
+                                <td class="columnForButton"> <a href="/profil?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

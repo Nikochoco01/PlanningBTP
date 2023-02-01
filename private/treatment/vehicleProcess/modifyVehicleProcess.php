@@ -1,7 +1,6 @@
 <?php
-session_start();
-include_once dirname(__FILE__,3)."/class/InputSecurityClass.php";
-include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
+include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if(InputSecurity::validateWithoutLetter($_POST['id'])
     && InputSecurity::isEmpty($_POST['model']) 
@@ -23,5 +22,5 @@ if(InputSecurity::validateWithoutLetter($_POST['id'])
         header("Location:".$_SERVER['HTTP_REFERER']);
 }
 else{
-    header("Location:".dirname(__FILE__,3)."/vehicle.php");
+    header("Location:/vehicle");
 }

@@ -1,9 +1,8 @@
-<?php 
-    session_start();
-    include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
-    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__,2). "/private/constant/constant.php";
-    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
+<?php
+    include_once APP . "private/class/InputSecurityClass.php";   
+    include_once APP . "private/dataBase/dataBaseConnection.php";
+    include_once APP . "private/constant/constant.php";
+    include_once APP . "private/dataBase/dataBaseConnection.php";
 
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
@@ -13,25 +12,39 @@
 
 <?php $title = "Matériel";
 $rightToModify = $_SESSION['userFonction'] == 'administrator' || $_SESSION['userFonction'] == 'materialManager';
-include_once dirname(__FILE__,2)."/private/constant/page/head.php";
+include_once APP . "private/constant/page/head.php";
 ?>
 
 <body>
     <div class="layout">
-        <?php include_once dirname(__FILE__,2)."/private/constant/page/header.php"; ?>
-        <?php include_once dirname(__FILE__,2)."/private/constant/page/aside.php"; ?>
+        <?php include_once APP . "private/constant/page/header.php"; ?>
+        <?php include_once APP . "private/constant/page/aside.php"; ?>
 
         <main>
             <div class="materialContainer">
                 <div class="materialList">
                     <?php 
-                        include_once dirname(__FILE__,2)."/Modules/classGwendal/toolList.php"; 
-                    ?>
+                        $stat = $PDO->prepare("SELECT * FROM Equipment");
+                        $stat->execute();
+                        $results = $stat->fetchAll();
+                        foreach($results as $res):?>
+                            <form class="material" action="/delete" method="post">
+                                <input type="text" name="id" value="<?= $res->equipmentName ?>" readonly>
+                                <p><?= $res->equipmentTotalQuantity ?></p>
+                                <p><?= $res->equipmentAvailableQuantity ?></p>
+                                <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
+                                <input type="hidden" name="table" value="Equipment">
+                                <input type="hidden" name="idName" value="equipmentName">
+                                <?php if($rightToModify):?>
+                                    <input type="submit" value="Effacer">
+                                <?php endif; ?>
+                            </form>
+                    <?php endforeach; ?>
                 </div>
 
                 <div class="formContainer">
                     <?php if($rightToModify): ?>
-                        <form action="../Modules/classGwendal/newTool.php" method="post" class="formAddMaterial">
+                        <form method="post" class="formAddMaterial">
                             <label for="designation">Nom de l'équipement</label>
                             <input type="text" name="designation" id="designation" required>
 
@@ -49,7 +62,7 @@ include_once dirname(__FILE__,2)."/private/constant/page/head.php";
                         $stat->execute();
                         $results = $stat->fetchAll();
                         if(!empty($results)):?>
-                            <form action="../private/treatment/toolProcess/RemoveToolProcess.php" method="post" class="formRemoveMaterial">
+                            <form action="rmvTool" method="post" class="formRemoveMaterial">
                                 <label for="designation">Nom de l'équipement</label>
                                 <select name="designation" id="des" required>
                                     <?php foreach($results as $res):?>

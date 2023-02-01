@@ -1,5 +1,4 @@
-<?php 
-    session_start();
+<?php
     include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
     include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
     include_once dirname(__FILE__,2). "/private/constant/constant.php";
@@ -23,12 +22,27 @@
             <div class="expenditureContainer">
 
                 <div class="invoiceList">
-                    <?php 
-                        include_once dirname(__FILE__,2)."/Modules/classGwendal/expenditureList.php"; 
-                    ?>
+                    <?php     
+                        $stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.expenseDescription, w.worksiteName, v.eventDescription from Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId where userId = :user order by e.expenseId");
+                        $stat->execute(['user' => $_SESSION['userId']]);
+                        $results = $stat->fetchAll();
+                        foreach($results as $res):?>
+                            <form class="expense" action="/delete" method="post">
+                                <input type="hidden" name="id" value="<?= $res->expenseId ?>">
+                                <p><?= $res->expenseDescription ?></p>
+                                <p><?= $res->worksiteName ?></p>
+                                <p><?= $res->eventDescription ?></p>
+                                <p><?= explode(" ", $res->expenseDate)[0] ?></p>
+                                <p><?= number_format($res->expenseAmount, 2, ".", " ")."€" ?></p>
+                                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                                <input type="hidden" name="table" value="Expense">
+                                <input type="hidden" name="idName" value="expenseId">
+                                <input type="submit" value="Effacer">
+                            </form>
+                    <?php endforeach; ?>
                 </div>
 
-                <form action="../Modules/classGwendal/newExpenditure.php" method="post" class="fromAddExpenditure">
+                <form method="post" class="fromAddExpenditure">
 
                     <label for="worksite"> Chantier </label>
                     <select name="worksite" id="worksite" list="worksites" required>
@@ -79,5 +93,5 @@
         </main>
     </div>
 </body>
-<script src="../private/js/expenses.js"></script>
+<script src="/js/expenses.js"></script>
 </html>

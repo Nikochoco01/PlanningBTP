@@ -1,4 +1,4 @@
-<form action="<?= LINK_TO_MODIFY_PROCESS ?>" method="post" class="profilModify" enctype="multipart/form-data">
+<form action="modifyEmployee" method="post" class="profilModify" enctype="multipart/form-data">
     <a href="<?= returnURL()?>" class="quitButton" > <i class=""></i> QUIT </a>
 
     <label for="userPicture" class="userPicture">

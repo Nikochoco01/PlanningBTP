@@ -1,13 +1,13 @@
 <?php
-    include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__,2). "/class/InputSecurityClass.php";
+    include_once APP . "private/dataBase/dataBaseConnection.php";
+    include_once APP . "private/class/InputSecurityClass.php";
     $userID = InputSecurity::validateWithoutLetter($_GET['employee']);
     $statement = $PDO->prepare("select * from User where userId =".$userID);
     $statement->execute();
     $results = $statement->fetch();
 ?>
 
-<form action="<?= LINK_TO_MODIFY_PROCESS ?>" method="post" class="profilModify">
+<form action="modifyEmployee" method="post" class="profilModify">
     <a href="<?= returnURL()?>" class="quitButton" > <i class=""></i> QUIT </a>
 
     <label for="userPicture" class="userPicture">

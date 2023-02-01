@@ -1,4 +1,4 @@
-<form action="/private/treatment/profileProcess/addProcess.php" method="post" class="profilModify" enctype="multipart/form-data">
+<form action="addEmployee" method="post" class="profilModify" enctype="multipart/form-data">
 
     <a href="<?= returnURL()?>" class="quitButton" > <i class=""></i> QUIT </a>
 
@@ -58,10 +58,10 @@
 
     function returnURL(){
         if($_SESSION['userFonction'] == "administrator"){
-            return "/public/profil.php?onglet=employees&display=view&add=false";
+            return "/profil?onglet=employees&display=view&add=false";
         }
         else{
-            return "/public/profil.php?onglet=employees&display=view&add=false";
+            return "/profil?onglet=employees&display=view&add=false";
         }
     }
 ?>

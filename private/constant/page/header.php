@@ -10,7 +10,7 @@
             </p>
             <p class="typeAccount" id="typeAccount"> <?= InputSecurity::displayWithFormat($_SESSION['userPosition'] , "Position") ?> </p>
 
-            <form action="<?= LINK_LOGOUT_PROCESS ?>" method="post">
+            <form action="logout" method="post">
                     <label for="logOutButton" class="logOutButton"> <i class="icon-power-off"></i> <span> Déconnexion </span> </label>
                     <input type="submit" value="Déconnexion" class="logOutButton" id="logOutButton">
             </form>
