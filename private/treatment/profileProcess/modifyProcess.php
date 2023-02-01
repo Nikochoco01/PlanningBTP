@@ -31,12 +31,14 @@
             //var_dump($test->pictureId);
             if(empty($test->pictureId)){
                 $req = $PDO->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
+                $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
                 //echo "if";
             }else{
-                $req = $PDO->prepare("update Picture set pictureId = $userId, pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ?, userId = userId");
+                $req = $PDO->prepare("update Picture set pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ?, userId = userId");
+                $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
                 //echo "else";
             }
-            $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+            //$req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
         }
 
         $sql = $PDO->prepare("select * from Picture");
@@ -50,7 +52,7 @@
 
     
 
-    $statement = $PDO->prepare('update User  set userFirstName = :FName , userLastName = :LName, userMail = :MAIL , userPhone = :PHONE, pictureId = :ID , userPosition = :POSITION where userId = :ID');
+    $statement = $PDO->prepare('update User set userFirstName = :FName , userLastName = :LName, userMail = :MAIL , userPhone = :PHONE, pictureId = :ID , userPosition = :POSITION where userId = :ID');
     $statement->bindParam("FName", $firstName);
     $statement->bindParam("LName", $lastName);
     $statement->bindParam("MAIL", $mail);
@@ -68,7 +70,7 @@
 
     //$password = InputSecurity::validatePassWord($_POST['userPassword']);
     $password = $_POST['userPassword'];
-    var_dump($_POST['userPassword']);
+    //var_dump($_POST['userPassword']);
 
     $mdp = $PDO->prepare('update Login set loginUserPassword = sha1(:pass) where userId = :ID');
     $mdp->bindParam("pass", $password);
