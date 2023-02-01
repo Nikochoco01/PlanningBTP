@@ -242,7 +242,8 @@ class Month{
         $numWeek = 1;
         $monday = $this->getFirstDay()->modify('last Monday');
 
-        // if(){
+        // if($this->previousWeek() === 5 && $this->getWeeks() === 6){
+        //     $numWeek = 6;
         //     return $numWeek;
         // }
 

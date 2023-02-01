@@ -270,7 +270,7 @@ class Events{
      */
     public function getDetailSelectedEvent($eventId){
         $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
-        $select = "select e.eventId, a.userId, e.worksiteId, GROUP_CONCAT(distinct(u.equipmentName)) equipment, GROUP_CONCAT(distinct(g.vehicleLicensePlate)) vehicle";
+        $select = "select e.eventId, e.worksiteId, GROUP_CONCAT(distinct(a.userId)) userId, GROUP_CONCAT(distinct(u.equipmentName)) equipment, GROUP_CONCAT(distinct(g.vehicleLicensePlate)) vehicle";
         $from = " from Event e join Affected a on e.eventId = a.eventId left outer join UsedEquipment u on e.eventId = u.eventId left outer join GoTo g on e.eventId = g.eventId";
         $where = " where e.eventId =". $eventId;
         $groupBy = " group by e.eventId, a.userId, e.worksiteId";
