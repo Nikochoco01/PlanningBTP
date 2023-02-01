@@ -29,11 +29,11 @@
                         foreach($results as $res):?>
                             <form class="expense" action="/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $res->expenseId ?>">
-                                <p><?= $res->expenseDescription ?></p>
-                                <p><?= $res->worksiteName ?></p>
-                                <p><?= $res->eventDescription ?></p>
-                                <p><?= explode(" ", $res->expenseDate)[0] ?></p>
-                                <p><?= number_format($res->expenseAmount, 2, ".", " ")."€" ?></p>
+                                <p> Liex : <?= $res->worksiteName ?></p>
+                                <p> Mission : <?= $res->eventDescription ?></p>
+                                <p> Raison : <?= $res->expenseDescription ?></p>
+                                <p> Date : <?= explode(" ", $res->expenseDate)[0] ?></p>
+                                <p> Montant : <?= number_format($res->expenseAmount, 2, ".", " ")."€" ?></p>
                                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
                                 <input type="hidden" name="table" value="Expense">
                                 <input type="hidden" name="idName" value="expenseId">

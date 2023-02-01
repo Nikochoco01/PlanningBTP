@@ -29,9 +29,10 @@ include_once APP . "private/constant/page/head.php";
                         $results = $stat->fetchAll();
                         foreach($results as $res):?>
                             <form class="material" action="/delete" method="post">
+                                <label for="id"> Nom </label>
                                 <input type="text" name="id" value="<?= $res->equipmentName ?>" readonly>
-                                <p><?= $res->equipmentTotalQuantity ?></p>
-                                <p><?= $res->equipmentAvailableQuantity ?></p>
+                                <p> Total : <?= $res->equipmentTotalQuantity ?></p>
+                                <p> Disponible : <?= $res->equipmentAvailableQuantity ?></p>
                                 <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
                                 <input type="hidden" name="table" value="Equipment">
                                 <input type="hidden" name="idName" value="equipmentName">

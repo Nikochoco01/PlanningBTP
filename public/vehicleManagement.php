@@ -30,9 +30,13 @@ include_once APP . "private/constant/page/head.php";
                         $i = 0;
                         foreach($results as $res):?>
                             <form class="vehicule" method="post">
+                                <label for="id"> Immatriculation </label>
                                 <input type="text" name="id" value="<?= $res->vehicleLicensePlate ?>" readonly>
+                                <label for="model"> Model </label>
                                 <?php if($rightToModify):?>
                                     <input type="text" name="model" value="<?= $res->vehicleModel ?>" required>
+
+                                    <label for="maxPassenger"> Places disponible </label>
                                     <select name="maxPassenger" id="maxPassenger<?= $i ?>">
                                         <option <?= $res->vehicleMaxPassenger == 2?"selected":"" ?>>2</option>
                                         <option <?= $res->vehicleMaxPassenger == 3?"selected":"" ?>>3</option>
@@ -50,6 +54,8 @@ include_once APP . "private/constant/page/head.php";
                                         <option <?= $res->vehicleMaxPassenger == 16?"selected":"" ?>>16</option>
                                         <option <?= $res->vehicleMaxPassenger == 17?"selected":"" ?>>17</option>
                                     </select>
+
+                                    <label for="license"> Permis </label>
                                     <select name="license" id="license<?= $i ?>" list="licenses" required>
                                         <?php 
                                         $sta = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
@@ -68,7 +74,9 @@ include_once APP . "private/constant/page/head.php";
                                     <input type="reset" value="Reset">
                                 <?php else:?>
                                     <p><?= $res->vehicleModel ?></p>
+                                    <label> Places disponible </label>
                                     <p><?= $res->vehicleMaxPassenger ?></p>
+                                    <label> Permis </label>
                                     <p><?= $res->vehicleDriverLicense ?></p>
                                 <?php endif;?>
                             </form>
