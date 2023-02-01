@@ -20,7 +20,7 @@
     $picture = $_SESSION['userPicture'];
     $userId = $_POST['userId'];
 
-    if(isset($_POST["valider"])){
+    //if(isset($_POST["valider"])){
         // $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
         // var_dump($_FILES["userPicture"]["name"]!="");
         // var_dump($_FILES["userPicture"]["name"]);
@@ -41,14 +41,14 @@
             //$req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
         }
 
-        $sql = $PDO->prepare("select * from Picture");
-        $sql->execute();
+        // $sql = $PDO->prepare("select * from Picture");
+        // $sql->execute();
 
-        $result = $sql->fetchAll();
+        // $result = $sql->fetchAll();
 
         //var_dump($result);
 
-    }
+    //}
 
     
 
