@@ -1,6 +1,6 @@
 <?php
-include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
-include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
+include_once APP . "/private/dataBase/dataBaseConnection.php";
+include_once APP . "/private/class/InputSecurityClass.php";
 
 $eventId = InputSecurity::validateWithoutLetter($_POST['eventId']);
 $eventDescription = InputSecurity::validateWithoutTags($_POST['eventDescription']);
@@ -24,6 +24,6 @@ $updateEvent->bindParam('varEventId' , $eventId);
 
 $updateEvent->execute();
 
-header('Location: /public/planning.php?onglet=missions&display=week&year=2023&month=01&week='.$_SESSION['CURRENTWEEK']);
+header('Location: /planning?onglet=missions&display=week&year=2023&month=01&week='.$_SESSION['CURRENTWEEK']);
 Exit();
 ?>

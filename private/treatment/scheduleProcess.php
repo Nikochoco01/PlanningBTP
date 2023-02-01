@@ -1,5 +1,5 @@
 <?php 
-include_once dirname(__FILE__,2)."/dataBase/dataBaseConnection.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 function diff_time($t1, $t2)
 {
     //Heures au format (hh:mm:ss) la plus grande puis la plus petite 
@@ -113,6 +113,6 @@ if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
        $_SESSION['error'] = "erreur input";
     }
 
-    header('Location: ../../public/schedule.php');
+    header('Location:/schedule');
     Exit();
 }

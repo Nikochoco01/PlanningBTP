@@ -1,6 +1,6 @@
 <?php
-include_once APP . "class/InputSecurityClass.php";
-include_once APP . "dataBase/dataBaseConnection.php";
+include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if(InputSecurity::validateWithoutNumber($_POST["designation"]) 
     && InputSecurity::validateWithoutLetter($_POST["rmv"]) 

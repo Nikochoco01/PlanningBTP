@@ -38,7 +38,10 @@ switch($path){
         break;
 
     case "/schedule":
-        require APP . "public/schedule.php";
+        if($_SERVER["REQUEST_METHOD"] == "GET")
+            require APP . "public/schedule.php";
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+            require TREAT . "scheduleProcess.php";
         break;
 
     case "/expenditure":

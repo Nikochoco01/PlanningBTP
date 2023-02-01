@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['SCRIPT_NAME'] === '/public/profil.php'):
+if($path === '/profil'):
 ?>
 <nav class="navTab">
     <ul>
@@ -20,7 +20,7 @@ if($_SERVER['SCRIPT_NAME'] === '/public/profil.php'):
 <?php 
     endif;
 
-    if($_SERVER['SCRIPT_NAME'] === '/public/planning.php'):
+    if($path === '/planning'):
 ?>
 
 <nav class="navTab">

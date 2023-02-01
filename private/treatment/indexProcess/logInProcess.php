@@ -1,7 +1,7 @@
 <?php
-include_once dirname(__FILE__,3). "/constant/constant.php";
-include_once dirname(__FILE__,3). "/dataBase/dataBaseConnection.php";
-include_once dirname(__FILE__,3). "/class/InputSecurityClass.php";
+include_once APP . "private/constant/constant.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
+include_once APP . "private/class/InputSecurityClass.php";
 
 $userName = InputSecurity::isEmpty($_POST['userName']);
 $userPassword = InputSecurity::isEmpty($_POST['userPassWord']);
@@ -43,7 +43,7 @@ if(isset($user->userId) && isset($loginUsername->loginUsername)){
     $_SESSION['userName'] = $loginUsername->loginUsername; //  connection ID
 
     if($tab == null){
-        $_SESSION['userPicture'] = dirname(__FILE__,3)."/private/img/defaultPP.png";
+        $_SESSION['userPicture'] = APP ."private/img/defaultPP.png";
     }
     else{
         $_SESSION['userPicture'] = $tab[0]["pictureBin"];
@@ -56,7 +56,7 @@ if(isset($user->userId) && isset($loginUsername->loginUsername)){
     $_SESSION['userMail'] = $user->userMail; // user mail address
 
     $_SESSION['schedule'] = '7h 18h'; // user schedule of day for the user
-    // include_once dirname(__FILE__,4). "/public/home.php";
+    // include_once APP . "public/home.php";
     $host = $_SERVER['HTTP_HOST'];
     $path = "/home";
     header("Location: http://$host$path");
