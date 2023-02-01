@@ -34,7 +34,7 @@
                 $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
                 //echo "if";
             }else{
-                $req = $PDO->prepare("update Picture set pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ?, userId = userId");
+                $req = $PDO->prepare("update Picture set pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ? where userId = $userId");
                 $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
                 //echo "else";
             }
@@ -61,7 +61,7 @@
     $statement->bindParam("ID", $userId);
     $statement->execute();
 
-    $getUser = $PDO->prepare("select * from User where userId = :userId ");
+    $getUser = $PDO->prepare("select * from User where userId = :userId");
     $getUser->bindParam("userId" , $_SESSION['userId']);
     $getUser->execute();
 
