@@ -20,8 +20,6 @@
     $picture = $_SESSION['userPicture'];
     $userId = $_POST['userId'];
 
-    //var_dump($picture);
-
     if(isset($_POST["valider"])){
         // $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
         // var_dump($_FILES["userPicture"]["name"]!="");
@@ -68,7 +66,14 @@
     $getUser = $getUser->fetch();
 
 
-    $password = InputSecurity::validatePassWord($_POST['userPassword']);
+    //$password = InputSecurity::validatePassWord($_POST['userPassword']);
+    $password = $_POST['userPassword'];
+    var_dump($_POST['userPassword']);
+
+    $mdp = $PDO->prepare('update Login set loginUserPassword = sha1(:pass) where userId = :ID');
+    $mdp->bindParam("pass", $password);
+    $mdp->bindParam("ID", $userId);
+    $mdp->execute();
 
     /**
      * message to disconnect the user

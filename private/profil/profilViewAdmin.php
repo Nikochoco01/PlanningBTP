@@ -65,7 +65,7 @@
                         <?php
                             foreach($results as $employee):?>
                             <tr class="tableCell">
-                                <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                                <td scope="row"> <img src="/private/treatment/indexProcess/export.php?pictureId=<?= $employee->userId ?>" alt="pas d'image de profil"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "LastName") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "FirstName") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
