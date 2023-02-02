@@ -6,4 +6,4 @@ $req = $PDO->prepare("select * from Picture where pictureId=$id limit 1");
 $req->setFetchMode(PDO::FETCH_ASSOC);
 $req->execute(array($_GET["pictureId"]));
 $tab=$req->fetchAll();
-echo $tab[0]["pictureBin"];        
+echo $tab[0]["pictureBin"];
