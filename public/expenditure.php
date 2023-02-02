@@ -26,7 +26,7 @@
                         foreach($results as $res):?>
                             <form class="expense" action="/delete" method="post">
                                 <input type="hidden" name="id" value="<?= $res->expenseId ?>">
-                                <p> Liex : <?= $res->worksiteName ?></p>
+                                <p> Lieux : <?= $res->worksiteName ?></p>
                                 <p> Mission : <?= $res->eventDescription ?></p>
                                 <p> Raison : <?= $res->expenseDescription ?></p>
                                 <p> Date : <?= explode(" ", $res->expenseDate)[0] ?></p>
