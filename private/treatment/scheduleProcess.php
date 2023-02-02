@@ -90,26 +90,8 @@ if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
             //echo "erreur input";
             $_SESSION['error'] = "erreur input";
         }
-    
-    // $dsn = 'mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521';
-    // $user = 'p2107521';
-    // $password = '12107521';
-    // $conn = new PDO($dsn, $user, $password);
-    // $sql = ("select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime;");
-    // //$sql = ("select workTimeTotalHours as totalHours from WorkTime;");
-    // foreach ($conn->query($sql) as $row) {
-    //     echo $row['totalHours'] . "<br>";
-    //     if ($row['totalHours'] == null) {
-    //         echo "<br>" . "= null";
-    //     } else {
-    //         $diff = date("H:i", strtotime($row['totalHours']));
-    //     }
-    // }
-    
-    // echo "<br>" . "c'est ici: " . $diff;
     }
     else {
-       //echo "l'heure n'est pas valide" . "<br>";
        $_SESSION['error'] = "erreur input";
     }
 

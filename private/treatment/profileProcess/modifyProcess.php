@@ -1,20 +1,20 @@
 <?php
     include_once APP . "/private/class/InputSecurityClass.php";
     include_once APP . "/private/dataBase/dataBaseConnection.php";
-
-    $mail = InputSecurity::validateMail($_POST['userMail']);
-
     // test FirstName
-    $firstName = InputSecurity::validateWithoutNumber($_POST['userFirstName']);
+    $testFirstName = InputSecurity::validateWithoutNumber($_POST['userFirstName'] , $firstName);
 
     // test LastName
-    $lastName = InputSecurity::validateWithoutNumber($_POST['userLastName']);
+    $testLastName = InputSecurity::validateWithoutNumber($_POST['userLastName'] , $lastName);
 
-    // test Position
-    $position = InputSecurity::validateWithoutNumber($_POST['userPosition']);
+    // test mail
+    $testMail = InputSecurity::validateMail($_POST['userMail'] , $mail);
 
     // test phone number
-    $phoneNumber = InputSecurity::validateWithoutLetter($_POST['userPhone'] , "phoneNumber");
+    $testNumberPhone = InputSecurity::validateWithoutLetter($_POST['userPhone'] , $phoneNumber , "phoneNumber");
+
+    // test Position
+    $testPosition = InputSecurity::validateWithoutNumber($_POST['userPosition'] , $position);
 
     $picture = $_SESSION['userPicture'];
     $userId = $_POST['userId'];
@@ -49,16 +49,19 @@
 
     //}
 
-    
-
-    $statement = $PDO->prepare('update User set userFirstName = :FName , userLastName = :LName, userMail = :MAIL , userPhone = :PHONE, pictureId = :ID , userPosition = :POSITION where userId = :ID');
-    $statement->bindParam("FName", $firstName);
-    $statement->bindParam("LName", $lastName);
-    $statement->bindParam("MAIL", $mail);
-    $statement->bindParam("PHONE", $phoneNumber);
-    $statement->bindParam("POSITION", $position);
-    $statement->bindParam("ID", $userId);
-    $statement->execute();
+    if($testFirstName && $testLastName && $testMail && $testNumberPhone && $testPosition){
+        $statement = $PDO->prepare('update User  set userFirstName = :FName , userLastName = :LName, userMail = :MAIL , userPhone = :PHONE, pictureId = :ID , userPosition = :POSITION where userId = :ID');
+        $statement->bindParam("FName", $firstName);
+        $statement->bindParam("LName", $lastName);
+        $statement->bindParam("MAIL", $mail);
+        $statement->bindParam("PHONE", $phoneNumber);
+        $statement->bindParam("POSITION", $position);
+        $statement->bindParam("ID", $userId);
+        $statement->execute();
+    }
+    else{
+        InputSecurity::returnError("Un des champs ne correspond pas aux demandes du formulaire ");
+    }
 
     $getUser = $PDO->prepare("select * from User where userId = :userId");
     $getUser->bindParam("userId" , $_SESSION['userId']);
@@ -83,13 +86,7 @@
 
     // faire le system de mise a jour du login 
 
-    // var_dump($_SESSION['ERROR']);
-    // InputSecurity::destroyError();
-    // var_dump($_SESSION['ERROR']);
 
-    // $_SESSION['userId'] = $getUser->userId; //user id in data base
-    // $_SESSION['userName'] = $loginUsername->loginUsername; //  connection ID
-    //$_SESSION['userPicture'] = $getUser->userPicture; // profile picture 
     if($_SESSION['userId'] == $_POST['userId']){
         $_SESSION['userFirstName'] = $getUser->userFirstName; // first name of user
         $_SESSION['userLastName'] = $getUser->userLastName; // name of user 

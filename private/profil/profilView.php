@@ -9,19 +9,19 @@
     <p>
         <span class="label"> Prénom:</span>
         <span class="userInfo"> 
-            <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "FirstName") ?>
+            <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "uppercaseFirstLetter") ?>
         </span>
     </p>
     <p>
         <span class="label"> Nom:</span>
         <span class="userInfo">
-            <?= InputSecurity::displayWithFormat($_SESSION['userLastName'] , "LastName") ?>
+            <?= InputSecurity::displayWithFormat($_SESSION['userLastName'] , "uppercase") ?>
         </span>
     </p>
     <p>
         <span class="label"> <i class="icon-briefcase"></i> Fonction:</span>
         <span class="userInfo">
-            <?= InputSecurity::displayWithFormat($_SESSION['userPosition'] , "Position") ?>
+            <?= InputSecurity::displayWithFormat($_SESSION['userPosition'] , "uppercase") ?>
         </span>
     </p>
     <p>

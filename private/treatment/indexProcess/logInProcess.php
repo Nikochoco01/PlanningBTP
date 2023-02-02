@@ -3,8 +3,8 @@ include_once APP . "private/constant/constant.php";
 include_once APP . "private/dataBase/dataBaseConnection.php";
 include_once APP . "private/class/InputSecurityClass.php";
 
-$userName = InputSecurity::isEmpty($_POST['userName']);
-$userPassword = InputSecurity::isEmpty($_POST['userPassWord']);
+InputSecurity::isEmpty($_POST['userName'] , $userName);
+InputSecurity::isEmpty($_POST['userPassWord'] , $userPassword);
 $userPassword = sha1($userPassword);
 
 $statement = $PDO->prepare("select * from User where userId = (select userId from Login where loginUsername= :userName and loginUserPassword = :userPassword)");

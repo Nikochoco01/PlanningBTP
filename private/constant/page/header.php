@@ -5,10 +5,10 @@
         <span id="profilButton" tabindex="0" role="button"> <img src="/private/treatment/indexProcess/export.php?pictureId=<?= $_SESSION['userId']; ?>" alt="user picture" class="userPic" id="userPic"> </span>
         <div class="profilMenu">
             <p class="userAccount" id="userAccount"> 
-                <span class="surName"> <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "FirstName") ?> </span> 
-                <span class="name"> <?= InputSecurity::displayWithFormat($_SESSION['userLastName'] , "LastName") ?> </span> 
+                <span class="surName"> <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "uppercaseFirstLetter") ?> </span> 
+                <span class="name"> <?= InputSecurity::displayWithFormat($_SESSION['userLastName'] , "uppercase") ?> </span> 
             </p>
-            <p class="typeAccount" id="typeAccount"> <?= InputSecurity::displayWithFormat($_SESSION['userPosition'] , "Position") ?> </p>
+            <p class="typeAccount" id="typeAccount"> <?= InputSecurity::displayWithFormat($_SESSION['userPosition'] , "uppercase") ?> </p>
 
             <form action="logout" method="post">
                     <label for="logOutButton" class="logOutButton"> <i class="icon-power-off"></i> <span> Déconnexion </span> </label>

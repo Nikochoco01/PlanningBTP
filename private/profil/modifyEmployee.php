@@ -1,6 +1,6 @@
 <?php
     include_once APP . "private/dataBase/dataBaseConnection.php";
-    $userID = InputSecurity::validateWithoutLetter($_GET['employee']);
+    InputSecurity::validateWithoutLetter($_GET['employee'] , $userID);
     $statement = $PDO->prepare("select * from User where userId =".$userID);
     $statement->execute();
     $results = $statement->fetch();
