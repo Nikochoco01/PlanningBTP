@@ -3,8 +3,8 @@ session_start();
 
 const APP = __DIR__ . '/';
 const TREAT = __DIR__ . "/private/treatment/";
-
 include_once APP . "private/constant/constant.php";
+
 include_once APP . "private/class/InputSecurityClass.php";
 
 $path = $_SERVER["PATH_INFO"]??"/";
