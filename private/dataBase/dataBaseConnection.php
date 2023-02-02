@@ -1,6 +1,6 @@
 <?php
 /**
- * PC Gwendal
+ * Gwendal
  */
 // try{
 //     $PDO = new PDO('mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2103916' , 'p2103916' , '12103916');
@@ -24,7 +24,7 @@
 // }
 
 /**
- * PC NIKO
+ * PC Nikola
  */
 try{
     $PDO = new PDO('mysql:host=localhost:3306;dbname=bdsite' , 'root' , 'root');
@@ -34,4 +34,4 @@ try{
 catch(PDOException $e){
     echo "Error : " . $e->getMessage();
 }
-?>
+
