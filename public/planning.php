@@ -6,7 +6,6 @@
 
     include_once APP . "private/dataBase/dataBaseConnection.php";
     include_once APP . "private/class/URLManagementClass.php";
-    include_once APP . "private/constant/constant.php";
 
     $title = TITLE_PAGE_PLANNING;
     include_once APP . "private/constant/page/head.php";

@@ -1,7 +1,6 @@
 <?php
-include_once APP . "/private/constant/constant.php";
-include_once APP . "/private/dataBase/dataBaseConnection.php";
-include_once APP . "/private/class/month.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
+include_once APP . "private/class/month.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,13 +10,13 @@ include_once APP . "/private/class/month.php";
 <?php 
 $title = TITLE_PAGE_SCHEDULE;
 
-include_once APP ."/private/constant/page/head.php";
+include_once APP ."private/constant/page/head.php";
 ?>
 
 <body>
     <div class="layout">
-        <?php include_once APP . "/private/constant/page/header.php"; ?>
-        <?php include_once APP . "/private/constant/page/aside.php"; ?>
+        <?php include_once APP . "private/constant/page/header.php"; ?>
+        <?php include_once APP . "private/constant/page/aside.php"; ?>
 
         <main>
             <div class="scheduleContainer">

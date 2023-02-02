@@ -1,6 +1,4 @@
 <?php
-    include_once APP . "private/constant/constant.php";
-    include_once APP . "private/class/InputSecurityClass.php";
     include_once APP . "private/class/URLManagementClass.php";
     //var_dump($_SESSION['ERROR']);
     // if(isset($_SESSION['MESSAGE'])){

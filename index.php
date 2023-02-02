@@ -1,14 +1,10 @@
-<?php 
-include_once dirname(__FILE__)."/private/constant/constant.php";
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <!-- variables declaration -->
 <?php
     $title = TITLE_PAGE_INDEX;
-    include_once dirname(__FILE__)."/private/constant/page/head.php";
+    include_once APP . "private/constant/page/head.php";
 ?>
 
 <body class="logBody">

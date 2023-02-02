@@ -1,7 +1,4 @@
 <?php
-    include_once APP . "private/class/InputSecurityClass.php";   
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-    include_once APP . "private/constant/constant.php";
     include_once APP . "private/dataBase/dataBaseConnection.php";
 
     $_SESSION['token'] = InputSecurity::generateToken(10);

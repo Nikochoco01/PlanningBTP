@@ -1,8 +1,3 @@
-<?php
-    include_once APP . "private/class/InputSecurityClass.php";
-    include_once APP . "private/constant/constant.php";
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 

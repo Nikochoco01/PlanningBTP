@@ -1,8 +1,5 @@
-<?php
-    include_once dirname(__FILE__,2)."/private/class/InputSecurityClass.php";   
-    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
-    include_once dirname(__FILE__,2). "/private/constant/constant.php";
-    include_once dirname(__FILE__,2)."/private/dataBase/dataBaseConnection.php";
+<?php 
+    include_once APP . "private/dataBase/dataBaseConnection.php";
 
     $_SESSION['token'] = InputSecurity::generateToken(10);
     $title = TITLE_PAGE_COST;
@@ -11,13 +8,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php include_once dirname(__FILE__,2)."/private/constant/page/head.php";?>
+<?php include_once APP . "private/constant/page/head.php";?>
 
 
 <body>
     <div class="layout">
-        <?php include_once dirname(__FILE__,2). "/private/constant/page/header.php" ?>
-        <?php include_once dirname(__FILE__,2). "/private/constant/page/aside.php" ?>
+        <?php include_once APP . "private/constant/page/header.php" ?>
+        <?php include_once APP . "private/constant/page/aside.php" ?>
         <main>
             <div class="expenditureContainer">
 

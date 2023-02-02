@@ -5,7 +5,7 @@
         <div class="iconAddPicture">
             <i class="icon-image-plus"></i>
         </div>
-        <img src="/private/treatment/indexProcess/export.php?pictureId=<?php echo $_SESSION['userId']; ?>" alt="user Picture">
+        <img src="/private/treatment/indexProcess/export.php?pictureId=<?= $_SESSION['userId']; ?>" alt="user Picture">
         <input type="file" name="userPicture" id="userPicture">
     </label>
 
