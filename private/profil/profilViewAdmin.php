@@ -5,8 +5,7 @@
     $statement->execute();
     $results = $statement->fetchAll();
 
-
-        /**
+    /**
      * array where we do the research
      */
     $tables = array(
@@ -21,6 +20,12 @@
 <div class="profilViewAdmin">
 
     <?php
+
+        if(isset($_SESSION['ERROR'])){
+            echo "<script> alert('" . $_SESSION['ERROR'] . "') </script>";
+            InputSecurity::destroyError();
+        }
+
         if(isset($_POST['searchEmployee'])){
             $searchWord = explode(" " , $_POST['searchEmployee']);
             $searchResult = querySearch($tables ,$searchWord);
@@ -53,8 +58,8 @@
                     <thead>
                         <tr>
                             <th scope="col"> Image</th>
-                            <th scope="col"> Nom </th>
                             <th scope="col"> Prénom </th>
+                            <th scope="col"> Nom </th>
                             <th scope="col"> Mail </th>
                             <th scope="col"> Téléphone </th>
                             <th scope="col"> Poste </th>
@@ -66,11 +71,11 @@
                             foreach($results as $employee):?>
                             <tr class="tableCell">
                                 <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
-                                <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "LastName") ?> </td>
-                                <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "FirstName") ?> </td>
+                                <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
+                                <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPhone , "PhoneNumber") ?> </td>
-                                <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "Position") ?> </td>
+                                <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
                                 <td class="columnForButton"> <a href="/public/profil.php?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
                             </tr>
                         <?php endforeach ?>

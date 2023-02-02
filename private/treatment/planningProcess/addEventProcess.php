@@ -4,10 +4,10 @@ include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
 include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
 
 $eventDescription = InputSecurity::validateWithoutTags($_POST['eventDescription']);
-$eventStartDate = InputSecurity::isEmpty($_POST['eventStartDate']);
-$eventEndDate = InputSecurity::isEmpty($_POST['eventEndDate']);
-$eventStartTime = InputSecurity::isEmpty($_POST['eventStartTime']);
-$eventEndTime = InputSecurity::isEmpty($_POST['eventEndTime']);
+InputSecurity::isEmpty($_POST['eventStartDate'] , $eventStartDate);
+InputSecurity::isEmpty($_POST['eventEndDate'] , $eventEndDate);
+InputSecurity::isEmpty($_POST['eventStartTime'] , $eventStartTime);
+InputSecurity::isEmpty($_POST['eventEndTime'] , $eventEndTime);
 
 // // Faire le test des dates pour ajouter X fois l'event
 /**

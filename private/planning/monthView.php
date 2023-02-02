@@ -13,9 +13,11 @@
 
     }
 
+    InputSecurity::validateWithoutNumber($_GET['onglet'] , $page);
+
     switch($_SESSION['userFonction']){
         case PARAM_SESSION_TYPE_ADMINISTRATOR:
-                $events = $event->getEventBetweenByDay($firstDay , $lastDay , InputSecurity::validateWithoutNumber($_GET['onglet']));
+                $events = $event->getEventBetweenByDay($firstDay , $lastDay , $page );
             break;
         case PARAM_SESSION_TYPE_EMPLOYEE:
                 $events = $event->getEventBetweenByDay($firstDay , $lastDay , null);

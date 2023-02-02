@@ -10,7 +10,9 @@
     $firstDay = $firstDay->format('N') === '1' ? $firstDay : $month->getFirstDay()->modify('last Monday');
 
     $lastDay = $firstDay->modify('+' . (6 + 7 * ($weeks - 1)) . 'days');
-    $events = $event->getEventBetweenByDay($firstDay , $lastDay , $_GET['onglet']);
+
+    InputSecurity::validateWithoutNumber($_GET['onglet'] , $page);
+    $events = $event->getEventBetweenByDay($firstDay , $lastDay , $page);
     
     /**
      * Allow to setup the date 
@@ -20,11 +22,6 @@
         $date = $firstDay->modify("+".($dayNumber + $month->setupWeek($month->week)). "day");
     }
 
-    // $worksite = $event->getWorksite();
-    // var_dump($worksite);
-
-    // var_dump($events);
-    // var_dump($_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']."&event=".$event['eventId']);
 ?>
 
 <div class="tab" >

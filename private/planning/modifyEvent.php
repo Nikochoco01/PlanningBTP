@@ -59,7 +59,7 @@
                                 <?php
                                     foreach($workSites as $workSite):?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($workSite['worksiteName'], "LastName") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($workSite['worksiteName'], "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($workSite['worksiteAddress']) ?> </td>
                                         <td class="columnForButton"> 
                                             <input type="radio" name="addWorksite" id="addWorksite" value="<?= $workSite['worksiteId'] ?>" require>
@@ -83,8 +83,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col"> Image</th>
-                                    <th scope="col"> Nom </th>
                                     <th scope="col"> Prénom </th>
+                                    <th scope="col"> Nom </th>
                                     <th scope="col"> Poste </th>
                                     <th scope="col"> supprimer </th>
                                 </tr>
@@ -93,9 +93,9 @@
                                 <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
                                     <tr class="tableCell">
                                         <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "LastName") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "FirstName") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userPosition'] , "Position") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "uppercaseFirstLetter") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userPosition'] , "uppercase") ?> </td>
                                         <td class="columnForButton"> 
                                             <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee['userId']?>">
                                             <label for="addEmployee"> <i class="icon-user-edit"></i> </label>
@@ -127,10 +127,10 @@
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail['vehicle']);?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleLicensePlate'], "LastName") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleLicensePlate'], "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleModel']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleMaxPassenger']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleDriverLicense'], "LastName") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleDriverLicense'], "uppercase") ?> </td>
                                         <td class="columnForButton"> 
                                             <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle['vehicleLicensePlate'] ?>">
                                             <label for="addVehicle"> <i class="icon-user-edit"></i> </label>
@@ -162,7 +162,7 @@
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail['equipment'])?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentName'], "LastName") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentName'], "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentTotalQuantity']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentAvailableQuantity']) ?> </td>
                                         <td> <input type="number" name="materialQuantity[]" id="materialQuantity"> </td>

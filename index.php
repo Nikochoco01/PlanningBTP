@@ -20,7 +20,7 @@ include_once dirname(__FILE__)."/private/constant/constant.php";
                 <form action="<?= LINK_LOGIN_PROCESS ?>" method="post">
                     <p class="userName">
                         <label for="userName"> Nom d'utilisateur : </label>
-                        <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prenom.nom" class="inputLog"> </span>
+                        <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prénom.nom" class="inputLog"> </span>
                     </p>
 
                     <p class="passWord">

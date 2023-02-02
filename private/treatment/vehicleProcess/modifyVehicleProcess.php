@@ -3,20 +3,20 @@ session_start();
 include_once dirname(__FILE__,3)."/class/InputSecurityClass.php";
 include_once dirname(__FILE__,3)."/dataBase/dataBaseConnection.php";
 
-if(InputSecurity::validateWithoutLetter($_POST['id'])
-    && InputSecurity::isEmpty($_POST['model']) 
-    && InputSecurity::validateWithoutLetter($_POST['license'], "licensePlate") 
-    && InputSecurity::validateWithoutLetter($_POST['maxPassenger']) 
-    && InputSecurity::isEmpty($_POST['token'])
-    && InputSecurity::isEmpty($_SESSION['token'])){
+if(InputSecurity::validateWithoutLetter($_POST['id'] , $vehicleId)
+    && InputSecurity::isEmpty($_POST['model'] , $model) 
+    && InputSecurity::validateWithoutLetter($_POST['license'] , $licensePlate, "licensePlate") 
+    && InputSecurity::validateWithoutLetter($_POST['maxPassenger'] , $maxPassenger) 
+    && InputSecurity::isEmpty($_POST['token'] , $token)
+    && InputSecurity::isEmpty($_SESSION['token'] , $sessionToken)){
 
-        if($_POST['token'] == $_SESSION['token']){
+        if($token == $sessionToken){
             $state = $PDO->prepare("UPDATE Vehicle SET vehicleModel = :model, vehicleDriverlicense = :license, vehicleMaxPassenger = :maxPassenger WHERE vehiclelicensePlate = :plate");
             $state->execute([
-                'model' => $_POST['model'],
-                'license' => $_POST['license'],
-                'maxPassenger' => $_POST['maxPassenger'],
-                'plate' => $_POST['id']
+                'model' => $model,
+                'license' => $licensePlate,
+                'maxPassenger' => $maxPassenger,
+                'plate' => $vehicleId
             ]);
         }
         unset($_SESSION['token']);

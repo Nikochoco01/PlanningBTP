@@ -4,33 +4,35 @@
     include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
 
     // test FirstName
-    $firstName = InputSecurity::validateWithoutNumber($_POST['userFirstName']);
+    $testFirstName = InputSecurity::validateWithoutNumber($_POST['userFirstName'] , $firstName);
 
     // test LastName
-    $lastName = InputSecurity::validateWithoutNumber($_POST['userLastName']);
+    $testLastName = InputSecurity::validateWithoutNumber($_POST['userLastName'] , $lastName);
 
     // test mail
-    $mail = InputSecurity::validateMail($_POST['userMail']);
+    $testMail = InputSecurity::validateMail($_POST['userMail'] , $mail);
 
     // test phone number
-    $phoneNumber = InputSecurity::validateWithoutLetter($_POST['userPhone'] , "phoneNumber");
+    $testNumberPhone = InputSecurity::validateWithoutLetter($_POST['userPhone'] , $phoneNumber , "phoneNumber");
 
     // test Position
-    $position = InputSecurity::validateWithoutNumber($_POST['userPosition']);
+    $testPosition = InputSecurity::validateWithoutNumber($_POST['userPosition'] , $position);
 
     $picture = null;
 
-    $statement = $PDO->prepare("call Inscription(:varUserFirstName , :varUserLastName , :varUserMail , :varUserPhone , :varUserPicture , :varUserPosition)");
-    $statement->bindParam("varUserFirstName" , $firstName);
-    $statement->bindParam("varUserLastName" , $lastName);
-    $statement->bindParam("varUserMail" , $mail);
-    $statement->bindParam("varUserPhone" , $phoneNumber);
-    $statement->bindParam("varUserPicture" , $picture);
-    $statement->bindParam("varUserPosition" , $position);
-    $statement->execute();
-
-
-    InputSecurity::returnMessage("Votre mot de passe par default est 1234 changer le des que possible");
+    if($testFirstName && $testLastName && $testMail && $testNumberPhone && $testPosition){
+        $statement = $PDO->prepare("call Inscription(:varUserFirstName , :varUserLastName , :varUserMail , :varUserPhone , :varUserPicture , :varUserPosition)");
+        $statement->bindParam("varUserFirstName" , $firstName);
+        $statement->bindParam("varUserLastName" , $lastName);
+        $statement->bindParam("varUserMail" , $mail);
+        $statement->bindParam("varUserPhone" , $phoneNumber);
+        $statement->bindParam("varUserPicture" , $picture);
+        $statement->bindParam("varUserPosition" , $position);
+        $statement->execute();
+    }
+    else{
+        InputSecurity::returnError("Un des champs ne correspond pas aux demandes du formulaire ");
+    }
 
     header('Location: /public/profil.php?onglet=employees&display=view&add=false');
     Exit();

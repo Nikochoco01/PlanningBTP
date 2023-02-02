@@ -3,12 +3,12 @@ session_start();
 include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
 include_once dirname(__FILE__,4). "/private/class/InputSecurityClass.php";
 
-$eventId = InputSecurity::validateWithoutLetter($_POST['eventId']);
-$eventDescription = InputSecurity::validateWithoutTags($_POST['eventDescription']);
-$eventStartDate = InputSecurity::isEmpty($_POST['eventStartDate']);
-$eventEndDate = InputSecurity::isEmpty($_POST['eventEndDate']);
-$eventStartTime = InputSecurity::isEmpty($_POST['eventStartTime']);
-$eventEndTime = InputSecurity::isEmpty($_POST['eventEndTime']);
+InputSecurity::validateWithoutLetter($_POST['eventId'] , $eventId);
+InputSecurity::validateWithoutTags($_POST['eventDescription'] , $eventDescription);
+InputSecurity::isEmpty($_POST['eventStartDate'] , $eventStartDate);
+InputSecurity::isEmpty($_POST['eventEndDate'] , $eventEndDate);
+InputSecurity::isEmpty($_POST['eventStartTime'] , $eventStartTime);
+InputSecurity::isEmpty($_POST['eventEndTime'] , $eventEndTime);
 
 
 
