@@ -9,7 +9,7 @@ class Database
     /**
      * @var null|PDO stocke l'instance de PDO
      */
-    private ?PDO $pdo = null;
+    private $pdo = null;
 
     /**
      * @const Le DSN pilote de la base de données
