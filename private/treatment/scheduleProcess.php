@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once APP . "private/dataBase/dataBaseConnection.php";
 function diff_time($t1, $t2)
 {
@@ -32,9 +32,9 @@ function diff_time($t1, $t2)
 
 // echo diff_time('05:00:00', '06:00:00') . "<br>";
 
-if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
+if (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['dayInput'])) {
     if (preg_match('/[0-2][0-9]:[0-5][0-9]/', $_POST['startTime']) && preg_match('/[0-2][0-9]:[0-5][0-9]/', $_POST['endTime'])) {
-       // echo "l'heure est valide" . "<br>";
+        // echo "l'heure est valide" . "<br>";
         if ($_POST['startTime'] < $_POST['endTime']) {
             unset($_SESSION['error']);
             // echo "c'est tout bon" . "<br>";
@@ -50,38 +50,38 @@ if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
             // $diff = date("h:i", strtotime($diff));
             // echo $diff . " test 2" . "<br>";
             $getId = $PDO->prepare("select userId from Login where loginUsername = :userName");
-            $getId->bindParam("userName" , $_SESSION['userName']);
+            $getId->bindParam("userName", $_SESSION['userName']);
             $getId->execute();
             $getId = $getId->fetch();
             $getId = $getId->userId;
 
-                $test = $PDO->prepare('select userId from WorkTime where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
-                $test->bindParam('id', $getId);
-                $test->bindParam("d" , $_POST['dayInput']);
-                $test->bindParam("week" , $w);
-                $test->bindParam('m', $m);
-                $test->bindParam('Y', $y);
-                $test->execute();
-                $test = $test->fetch();
-                // var_dump($test);
-            if(!isset($test->userId)){
-                // echo "j'insert";
+            $test = $PDO->prepare('select userId from WorkTime where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
+            $test->bindParam('id', $getId);
+            $test->bindParam("d", $_POST['dayInput']);
+            $test->bindParam("week", $w);
+            $test->bindParam('m', $m);
+            $test->bindParam('Y', $y);
+            $test->execute();
+            $test = $test->fetch();
+            // var_dump($test);
+            if (!isset($test->userId)) {
+                echo $_POST['dayInput'];
                 $sth = $PDO->prepare('INSERT INTO WorkTime(userId, workTimeDay, workTimeWeek, workTimeMonth, workTimeYear, workTimeTotalHours) VALUES (:id, :d, :week, :m, :Y, :diff)');
                 $sth->bindParam('id', $getId);
-                $sth->bindParam("d" , $_POST['dayInput']);
-                $sth->bindParam("week" , $w);
+                $sth->bindParam("d", $_POST['dayInput']);
+                $sth->bindParam("week", $w);
                 // $sth->bindParam('W', $w); // à voir pour éviter le problème d'une saisie par semaine
                 $sth->bindParam('m', $m);
                 $sth->bindParam('Y', $y);
                 $sth->bindParam('diff', $diff);
                 $sth->execute();
-            }else{
+            } else {
                 // echo "j'update";
                 $up = $PDO->prepare('UPDATE WorkTime set workTimeTotalHours = :diff where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
                 $up->bindParam('diff', $diff);
                 $up->bindParam('id', $getId);
-                $up->bindParam("d" , $_POST['dayInput']);
-                $up->bindParam("week" , $w);
+                $up->bindParam("d", $_POST['dayInput']);
+                $up->bindParam("week", $w);
                 $up->bindParam('m', $m);
                 $up->bindParam('Y', $y);
                 $up->execute();
@@ -90,11 +90,10 @@ if (isset($_POST['startTime']) && isset($_POST['endTime'])) {
             //echo "erreur input";
             $_SESSION['error'] = "erreur input";
         }
-    }
-    else {
-       $_SESSION['error'] = "erreur input";
+    } else {
+        $_SESSION['error'] = "erreur input";
     }
 
     header('Location:/schedule');
-    Exit();
+    exit();
 }

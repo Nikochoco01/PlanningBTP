@@ -1,5 +1,5 @@
 <?php
-include_once dirname(__FILE__,4). "/private/dataBase/dataBaseConnection.php";
+include_once __DIR__ . "/../private/database/dataBaseConnection.php";
 $id = $_GET['pictureId'];
 $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
 $req = $PDO->prepare("select * from Picture where pictureId=$id limit 1");
