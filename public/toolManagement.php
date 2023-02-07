@@ -27,7 +27,7 @@ include_once APP . "private/constant/page/head.php";
                         foreach($results as $res):?>
                             <form class="material" action="/delete" method="post">
                                 <label for="id"> Nom </label>
-                                <input type="text" name="id" value="<?= $res->equipmentName ?>" readonly>
+                                <input type="text" name="id" value="<?= InputSecurity::displayWithFormat($res->equipmentName, "uppercaseFirstLetter") ?>" readonly>
                                 <p> Total : <?= $res->equipmentTotalQuantity ?></p>
                                 <p> Disponible : <?= $res->equipmentAvailableQuantity ?></p>
                                 <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">

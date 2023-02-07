@@ -28,10 +28,10 @@ include_once APP . "private/constant/page/head.php";
                         foreach($results as $res):?>
                             <form class="vehicule" method="post">
                                 <label for="id"> Immatriculation </label>
-                                <input type="text" name="id" value="<?= $res->vehicleLicensePlate ?>" readonly>
-                                <label for="model"> Model </label>
+                                <input type="text" name="id" value="<?= InputSecurity::displayWithFormat($res->vehicleLicensePlate, "uppercase") ?>" readonly>
+                                <label for="model"> Modele </label>
                                 <?php if($rightToModify):?>
-                                    <input type="text" name="model" value="<?= $res->vehicleModel ?>" required>
+                                    <input type="text" name="model" value="<?= InputSecurity::displayWithFormat($res->vehicleModel, "uppercaseFirstLetter") ?>" required>
 
                                     <label for="maxPassenger"> Places disponible </label>
                                     <select name="maxPassenger" id="maxPassenger<?= $i ?>">
@@ -60,7 +60,7 @@ include_once APP . "private/constant/page/head.php";
                                         $sta->execute();
                                         $resul = $sta->fetchAll();
                                         foreach($resul as $resu):?>
-                                            <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseName?"selected":""?>> <?= $resu->driverLicenseName ?>
+                                            <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseName?"selected":""?>> <?= InputSecurity::displayWithFormat($resu->driverLicenseName, "uppercase") ?>
                                     <?php endforeach; ?>
                                     </select>
                                     <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
@@ -70,11 +70,11 @@ include_once APP . "private/constant/page/head.php";
                                     <input type="submit" value="Modifier" formaction="/vehicleMod">
                                     <input type="reset" value="Reset">
                                 <?php else:?>
-                                    <p><?= $res->vehicleModel ?></p>
+                                    <p><?= InputSecurity::displayWithFormat($res->vehicleModel, "uppercaseFirstLetter") ?></p>
                                     <label> Places disponible </label>
                                     <p><?= $res->vehicleMaxPassenger ?></p>
                                     <label> Permis </label>
-                                    <p><?= $res->vehicleDriverLicense ?></p>
+                                    <p><?= InputSecurity::displayWithFormat($res->vehicleDriverLicense, "uppercase") ?></p>
                                 <?php endif;?>
                             </form>
                     <?php $i++;
@@ -87,7 +87,7 @@ include_once APP . "private/constant/page/head.php";
                         <label for="plate">Immatriculation</label>
                         <input type="search" name="plate" id="plate" required>
 
-                        <label for="model">Model de vehicule</label>
+                        <label for="model">Modele de vehicule</label>
                         <input type="text" name="model" id="model" required>
 
                         <label for="license">Permis nécessaire</label>
@@ -99,7 +99,7 @@ include_once APP . "private/constant/page/head.php";
                             $stat->execute();
                             $results = $stat->fetchAll();
                             foreach($results as $res):?>
-                                <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= $res->driverLicenseName ?>
+                                <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= InputSecurity::displayWithFormat($res->driverLicenseName, "uppercase") ?>
                             <?php endforeach; ?>
                         </select>
 

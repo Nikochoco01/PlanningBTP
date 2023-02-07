@@ -2,23 +2,23 @@
 include_once APP . "private/class/InputSecurityClass.php";
 include_once APP . "private/dataBase/dataBaseConnection.php";
 
-if( InputSecurity::validateWithoutLetter($_POST['price']) 
-    && InputSecurity::validateWithoutNumber($_POST['description']) 
-    && InputSecurity::validateWithoutLetter($_POST['worksite'])
-    && InputSecurity::validateWithoutLetter($_SESSION['userId'])
-    && InputSecurity::validateWithoutLetter($_POST['event'])  
-    && InputSecurity::isEmpty($_POST['token']) 
-    && InputSecurity::isEmpty($_SESSION['token'])){
+if( InputSecurity::validateWithoutLetter($_POST['price'], $price) 
+    && InputSecurity::validateWithoutNumber($_POST['description'], $description) 
+    && InputSecurity::validateWithoutLetter($_POST['worksite'], $worksite)
+    && InputSecurity::validateWithoutLetter($_SESSION['userId'], $userId)
+    && InputSecurity::validateWithoutLetter($_POST['event'], $event)  
+    && !InputSecurity::isEmpty($_POST['token'], $token) 
+    && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
         
-        if($_POST['token'] == $_SESSION['token']){
+        if($token == $sessionToken){
             $stat = $PDO->prepare("insert into Expense values(default, :date, :price, :desc, :user, :event, :worksite);");
             $stat->execute([
                 'date' => Date("Y-m-d H:m:s"),
-                'price' => $_POST['price'],
-                'desc' => $_POST['description'],
-                'user' => $_SESSION['userId'],
-                'event' => $_POST['event'],
-                'worksite' => $_POST['worksite']
+                'price' => $price,
+                'desc' => $description,
+                'user' => $userId,
+                'event' => $event,
+                'worksite' => $worksite
             ]);
         }
         unset($_SESSION['token']);
