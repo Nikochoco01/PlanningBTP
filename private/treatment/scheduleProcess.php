@@ -32,7 +32,7 @@ function diff_time($t1, $t2)
 
 // echo diff_time('05:00:00', '06:00:00') . "<br>";
 
-if (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['dayInput'])) {
+if (isset($_POST['startTime']) && isset($_POST['endTime']) && $_POST['dayInput'] != "" && $_POST['startTime'] != "" && $_POST['endTime'] != "" && $_POST['dayInput'] < 32 && $_POST['dayInput'] > 0) {
     if (preg_match('/[0-2][0-9]:[0-5][0-9]/', $_POST['startTime']) && preg_match('/[0-2][0-9]:[0-5][0-9]/', $_POST['endTime'])) {
         // echo "l'heure est valide" . "<br>";
         if ($_POST['startTime'] < $_POST['endTime']) {
@@ -65,7 +65,6 @@ if (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['dayI
             $test = $test->fetch();
             // var_dump($test);
             if (!isset($test->userId)) {
-                echo $_POST['dayInput'];
                 $sth = $PDO->prepare('INSERT INTO WorkTime(userId, workTimeDay, workTimeWeek, workTimeMonth, workTimeYear, workTimeTotalHours) VALUES (:id, :d, :week, :m, :Y, :diff)');
                 $sth->bindParam('id', $getId);
                 $sth->bindParam("d", $_POST['dayInput']);
@@ -87,13 +86,18 @@ if (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['dayI
                 $up->execute();
             }
         } else {
-            //echo "erreur input";
+            // echo "erreur input";
             $_SESSION['error'] = "erreur input";
         }
     } else {
+        // echo "erreur input";
         $_SESSION['error'] = "erreur input";
     }
 
+    header('Location:/schedule');
+    exit();
+} else {
+    $_SESSION['error'] = "erreur input";
     header('Location:/schedule');
     exit();
 }
