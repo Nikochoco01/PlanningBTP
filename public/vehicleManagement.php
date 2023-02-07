@@ -66,7 +66,7 @@ include_once APP . "private/constant/page/head.php";
                                     <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
                                     <input type="hidden" name="table" value="Vehicle">
                                     <input type="hidden" name="idName" value="vehicleLicensePlate">
-                                    <input type="submit" value="Effacer" formaction="../delete">
+                                    <input type="submit" value="Effacer" formaction="/vehicleDelete">
                                     <input type="submit" value="Modifier" formaction="/vehicleMod">
                                     <input type="reset" value="Reset">
                                 <?php else:?>

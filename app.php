@@ -6,6 +6,9 @@ const TREAT = __DIR__ . "/private/treatment/";
 include_once APP . "private/constant/constant.php";
 
 include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/class/Database.php";
+
+$db = new Database;
 
 $path = $_SERVER["PATH_INFO"]??"/";
 
@@ -83,6 +86,11 @@ switch($path){
     case "/delete":
         if($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "delete.php";
+        break;
+
+    case "/vehicleDelete":
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+            require TREAT . "vehicleProcess/deleteVehicle.php";
         break;
 
     case "/logout":
