@@ -6,6 +6,9 @@
  */
 class Database
 {
+    public const FORMAT_NUMBER = 'number';
+    public const FORMAT_STRING = 'string';
+
     /**
      * @var null|PDO stocke l'instance de PDO
      */
@@ -87,6 +90,7 @@ class Database
                 if (!self::PRODUCTION){
                     $param[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION; // on affiche les erreurs en mode dev uniquement
                 }
+                $param[PDO::ATTR_DEFAULT_FETCH_MODE] = PDO::FETCH_OBJ;
                 $this->pdo = new PDO(self::DSN, self::USER, self::PASSWORD, $param);
             }catch (PDOException $e){
                 throw new Exception("Erreur : " . $e->getMessage());
@@ -219,6 +223,41 @@ class Database
     }
 
     /**
+     * Ajout des données dans une table avec 1 ou plusieur champ de clé primaire (si l'element existe déja dans la table alors la raquête fera un UPDATE)
+     * @param string $table Le nom de la table
+     * @param array $datas un tableau des valeurs à ajouter, champs de la clé primaire exclus (sauf si vous ne voulez pas vérifier ) ex: array('col1' => 'val1', 'col2' => 'val2', 'col3' => 'val3', ...)
+     * @param array $conditions un tableau vers les chaps de la clé primaire
+     * @return bool
+     * @throws Exception
+     */
+    public function add(string $table, array $datas, array $conditions = []): bool
+    {
+        if($conditions){
+            $one = $this->getOne($table, ['conditions' => $conditions]);
+            var_dump($one);
+            if($one){
+                return $this->update($table, $datas, $conditions);
+            }
+            else{
+                $array = array_merge($conditions, $datas);
+                array_walk($array, function(string &$value){ $value = "\"$value\""; });
+                $fields = implode(', ' ,array_keys($array));
+                $values = implode(', ',array_values($array));
+                $req = "INSERT INTO $table($fields) VALUES($values)";
+                return $this->getPdo()->exec($req);
+            }
+        }
+        else{
+            $array = $datas;
+            array_walk($array, function(string &$value){ $value = "\"$value\""; });
+            $fields = implode(', ' ,array_keys($array));
+            $values = implode(', ',array_values($array));
+            $req = "INSERT INTO $table($fields) VALUES($values)";
+            return $this->getPdo()->exec($req);
+        }
+    }
+
+    /**
      * Supprime un élément de la table dont l'id est $id
      * @param string $table Le nom de la table
      * @param int $id L'id de l'élément à supprimer
@@ -231,17 +270,19 @@ class Database
         return $this->getPdo()->exec($req) == 1;
     }
 
-    public function del(string $table, array $fields): bool
+    /**
+     * Supprime un élément d'une table dont la clé primaire possède 1 ou plusieur champ
+     * @param string $table Le nom de la table
+     * @param array $condition Un tableaux vers les champ de la clé primaire ex: array('col1' => 'val1', 'col2' => 'val2')
+     * @return bool
+     * @throws Exception
+     */
+    public function deleteBtp(string $table, array $conditions): bool
     {
-        $str = '';
-        var_dump($fields);
-        foreach($fields as $key => $value){
-            if($key != array_key_first($fields)){
-                $str .= " AND ";
-            }
-            $str .= $key . "=\"" . $value ."\"";
-        }
-        $req = "DELETE FROM " . $table . " WHERE " . $str;
+        $cond = $conditions;
+        array_walk($cond, function(string &$value, string $keys){ $value = "$keys = \"$value\""; });
+        $fields = implode(" AND ", $cond);
+        $req = "DELETE FROM " . $table . " WHERE $fields";
         return $this->getPdo()->exec($req) == 1;
     }
 
@@ -266,6 +307,41 @@ class Database
             $this->save($table, $datas); // met à jour chaque élément trouvé dans le $search
         }
         return $cpt;
+    }
+
+    /**
+     * Méthode pour faire un UPDATE sur une table dont la clé primaire possède 1 ou plusieur champ
+     * @param string $table Le nom de la table
+     * @param array $datas Un tableaux vers un tableaux contenant les valeurs à modifier et leur type ex: array('col1' => 'val1', 'col2' => array('val' => 'val2', 'type' => 'int'), 'col3' => 'val3', ...)
+     * @param array $conditions Un tableaux vers les condition de la requête
+     * @return bool
+     * @throws Exception
+     */
+    public function updateBtp(string $table, array $datas, array $conditions){
+        $search = $this->read($table, $conditions);
+        if(!$search){
+            return false;
+        }
+        $fields = $datas;
+        $id = $conditions;
+        array_walk($fields, function( &$value, string $keys){ is_array($value) ? $value = "$keys = {$this->formatForSql($value['val'], $value['type'])}" : $value = "$keys = $value"; });
+        array_walk($id, function( &$value, string $keys){ is_array($value) ? $value = "$keys = {$this->formatForSql($value['val'], $value['type'])}" : $value = "$keys = $value"; });
+        $fieldsStr = implode(', ', $fields);
+        $idStr = implode(' AND ', $id);
+        $req = "UPDATE $table SET $fieldsStr WHERE $idStr";
+        var_dump($req , "<br>");
+        return $this->getPdo()->exec($req) == 1;
+    }
+
+    private function formatForSql(string $value, string $format){
+        switch($format){
+            case self::FORMAT_NUMBER:
+                return str_replace('"', "", $value);
+            case self::FORMAT_STRING:
+                return '"' . $value . '"';
+            default:
+                return '"' . $value . '"';
+        }
     }
 }
 

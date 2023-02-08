@@ -1,6 +1,4 @@
 <?php
-include_once APP . "private/class/InputSecurityClass.php";
-include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if(InputSecurity::validateWithoutLetter($_POST['id'], $id, "licensePlate")){
     $linksToEvent = $db->read("GoTo",
@@ -10,14 +8,14 @@ if(InputSecurity::validateWithoutLetter($_POST['id'], $id, "licensePlate")){
         ]);
     
     foreach($linksToEvent as $event){
-        $db->del("GoTo", 
+        $db->deleteBtp("GoTo", 
         [
-            'eventId' => $event['eventId'],
+            'eventId' => $event->eventId,
             'vehicleLicensePlate' => $id
         ]);
     }
 
-    $db->del("Vehicle", ['vehicleLicensePlate' => $id]);
+    $db->deleteBtp("Vehicle", ['vehicleLicensePlate' => $id]);
 
 }
 header("Location:".$_SERVER['HTTP_REFERER']);

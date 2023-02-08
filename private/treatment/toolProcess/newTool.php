@@ -1,29 +1,44 @@
 <?php
-include_once APP . "private/class/InputSecurityClass.php";
-include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if( InputSecurity::validateWithoutNumber($_POST['designation'], $designation)
     && InputSecurity::validateWithoutLetter($_POST['total'], $total)
     && !InputSecurity::isEmpty($_POST['token'], $token)
     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
         if($token == $sessionToken){
-            $stat = $PDO->prepare("SELECT equipmentName FROM Equipment WHERE equipmentName = :equipmentName");
-            $stat->execute([ 'equipmentName' => $designation]);
-            if(!$stat->fetch()){
-                $stat = $PDO->prepare("INSERT INTO Equipment VALUES(:designation, :tt, :tt)");
-                $stat->execute([
-                    'designation' => $designation,
-                    'tt' => $total
-                ]);
+            if(!$db->getOne('Equipment', ['conditions' => ['equipmentName' => $designation]])){
+                $db->add('Equipment', 
+                    [
+                        'equipmentName' => $designation,
+                        'equipmentTotalQuantity' => $total,
+                        'equipmentAvailableQuantity' => $total
+                    ]
+                );
             }
             else{
-                $stat = $PDO->prepare("UPDATE Equipment SET equipmentTotalQuantity = equipmentTotalQuantity + :add, equipmentAvailableQuantity = equipmentAvailableQuantity + :add WHERE equipmentName = :designation");
-                $stat->execute([
-                    'add' => $total,
-                    'designation' => $designation
-                ]);
+                $db->updateBtp('Equipment',
+                    [
+                        'equipmentTotalQuantity' => 
+                            [
+                                'val' => 'equipmentTotalQuantity + ' . $total,
+                                'type' => Database::FORMAT_NUMBER
+                            ],
+                        'equipmentAvailableQuantity' => 
+                            [
+                                'val' => 'equipmentAvailableQuantity + ' . $total,
+                                'type' => Database::FORMAT_NUMBER
+                            ]
+                    ],
+                    [
+                        'equipmentName' => 
+                            [
+                                'val' => $designation,
+                                'type' => Database::FORMAT_STRING
+                            ]
+                    ]
+                );
             }
         }
+        die();
         unset($_SESSION['token']);
         header("Location:".$_SERVER['HTTP_REFERER']);
 }

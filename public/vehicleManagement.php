@@ -1,6 +1,4 @@
 <?php
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
 
@@ -21,19 +19,22 @@ include_once APP . "private/constant/page/head.php";
             <div class="vehicleContainer">
                 <div class="vehiculeList">
                     <?php 
-                        $stat = $PDO->prepare("select v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense from Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+                        $results = $db->read("Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName",
+                            [
+                                'fields' => ['v.vehicleLicensePlate', 'v.vehicleModel', 'v.vehicleMaxPassenger', 'v.vehicleDriverLicense']
+                            ]
+                        );
                         $i = 0;
                         foreach($results as $res):?>
                             <form class="vehicule" method="post">
-                                <label for="id"> Immatriculation </label>
-                                <input type="text" name="id" value="<?= InputSecurity::displayWithFormat($res->vehicleLicensePlate, "uppercase") ?>" readonly>
-                                <label for="model"> Modele </label>
-                                <?php if($rightToModify):?>
-                                    <input type="text" name="model" value="<?= InputSecurity::displayWithFormat($res->vehicleModel, "uppercaseFirstLetter") ?>" required>
+                                <label for="id<?= $i ?>"> Immatriculation </label>
+                                <input type="text" name="id" id="id<?= $i ?>" value="<?= InputSecurity::displayWithFormat($res->vehicleLicensePlate, "uppercase") ?>" readonly>
 
-                                    <label for="maxPassenger"> Places disponible </label>
+                                <label for="model<?= $i ?>"> Modele </label>
+                                <?php if($rightToModify):?>
+                                    <input type="text" name="model" id="model<?= $i ?>" value="<?= InputSecurity::displayWithFormat($res->vehicleModel, "uppercaseFirstLetter") ?>" required>
+
+                                    <label for="maxPassenger<?= $i ?>"> Places disponible </label>
                                     <select name="maxPassenger" id="maxPassenger<?= $i ?>">
                                         <option <?= $res->vehicleMaxPassenger == 2?"selected":"" ?>>2</option>
                                         <option <?= $res->vehicleMaxPassenger == 3?"selected":"" ?>>3</option>
@@ -52,20 +53,16 @@ include_once APP . "private/constant/page/head.php";
                                         <option <?= $res->vehicleMaxPassenger == 17?"selected":"" ?>>17</option>
                                     </select>
 
-                                    <label for="license"> Permis </label>
+                                    <label for="license<?= $i ?>"> Permis </label>
                                     <select name="license" id="license<?= $i ?>" list="licenses" required>
                                         <?php 
-                                        $sta = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
-                                                    
-                                        $sta->execute();
-                                        $resul = $sta->fetchAll();
+                                        $resul =
+                                        $results = $db->read('DriverLicense', ['fields' => ['driverLicenseName', 'driverLicenseMaxPassenger']]);
                                         foreach($resul as $resu):?>
                                             <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseName?"selected":""?>> <?= InputSecurity::displayWithFormat($resu->driverLicenseName, "uppercase") ?>
                                     <?php endforeach; ?>
                                     </select>
                                     <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
-                                    <input type="hidden" name="table" value="Vehicle">
-                                    <input type="hidden" name="idName" value="vehicleLicensePlate">
                                     <input type="submit" value="Effacer" formaction="/vehicleDelete">
                                     <input type="submit" value="Modifier" formaction="/vehicleMod">
                                     <input type="reset" value="Reset">
@@ -94,10 +91,7 @@ include_once APP . "private/constant/page/head.php";
                         <select name="license" id="license" list="licenses" required>
                             <option value="">-- Choix du Permis --</option>
                             <?php 
-                            $stat = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
-                            
-                            $stat->execute();
-                            $results = $stat->fetchAll();
+                            $results = $db->read('DriverLicense', ['fields' => ['driverLicenseName', 'driverLicenseMaxPassenger']]);
                             foreach($results as $res):?>
                                 <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= InputSecurity::displayWithFormat($res->driverLicenseName, "uppercase") ?>
                             <?php endforeach; ?>

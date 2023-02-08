@@ -1,6 +1,4 @@
 <?php
-include_once APP . "private/class/InputSecurityClass.php";
-include_once APP . "private/dataBase/dataBaseConnection.php";
 
 if(InputSecurity::validateWithoutLetter($_POST['id'] , $licensePlate , "licensePlate")
     && !InputSecurity::isEmpty($_POST['model'] , $model) 
@@ -10,13 +8,14 @@ if(InputSecurity::validateWithoutLetter($_POST['id'] , $licensePlate , "licenseP
     && !InputSecurity::isEmpty($_SESSION['token'] , $sessionToken)){
 
         if($token == $sessionToken){
-            $state = $PDO->prepare("UPDATE Vehicle SET vehicleModel = :model, vehicleDriverlicense = :license, vehicleMaxPassenger = :maxPassenger WHERE vehiclelicensePlate = :plate");
-            $state->execute([
-                'model' => $model,
-                'license' => $driverLicense,
-                'maxPassenger' => $maxPassenger,
-                'plate' => $licensePlate
-            ]);
+            $db->updateBtp('Vehicle',
+                [
+                    'vehicleModel' => $model,
+                    'vehicleDriverlicense' => $driverLicense,
+                    'vehicleMaxPassenger' => $maxPassenger,
+                ],
+                ['vehiclelicensePlate' => $licensePlate]
+            );
         }
         unset($_SESSION['token']);
         header("Location:".$_SERVER['HTTP_REFERER']);
