@@ -28,6 +28,7 @@ class URLManagement{
         if($_GET['onglet'] == $tab){
             return "activeTab";
         }
+        return "";
     }
 
     // /** 

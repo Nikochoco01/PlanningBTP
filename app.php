@@ -3,11 +3,17 @@ session_start();
 
 const APP = __DIR__ . '/';
 const TREAT = __DIR__ . "/private/treatment/";
-include_once APP . "private/constant/constant.php";
 
+include_once APP . "private/constant/constant.php";
+include_once APP . "private/dataBase/Database.php";
+include_once APP . "private/dataBase/dataBaseConnection.php";
 include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/treatment/profileProcess/searchProcess.php";
+
 
 $path = $_SERVER["PATH_INFO"]??"/";
+
+$dataBase = new Database();
 
 ob_start();
 

@@ -60,10 +60,10 @@
 
     function returnURL(){
         if($_SESSION['userFonction'] == "administrator"){
-            return "/public/profil.php?onglet=personal&display=view&add=false";
+            return "/profil?onglet=personal&display=view&add=false";
         }
         else{
-            return "/public/profil.php?onglet=personal&display=view";
+            return "/profil?onglet=personal&display=view";
         }
     }
 ?>

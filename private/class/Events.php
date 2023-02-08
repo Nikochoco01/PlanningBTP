@@ -1,7 +1,4 @@
-<?php 
-
-include_once dirname(__FILE__,2). "/dataBase/dataBaseConnection.php";
-
+<?php
 class Events{
    
     public $PDO;

@@ -156,6 +156,7 @@ class InputSecurity{
     */
     public static function validateWithoutLetter($input , & $return , ?string $format = null):bool{
         $REGEX = "";
+        $inputProcessing = "";
 
         switch($format){
             case null:
@@ -175,6 +176,9 @@ class InputSecurity{
         if(InputSecurity::isEmpty($input , $inputProcessing) == true){
             return false;
         }
+        // else{
+        //     $inputProcessing = InputSecurity::isEmpty($input, $inputProcessing);
+        // }
 
         if(preg_match($REGEX , $inputProcessing)){
             $return = $inputProcessing;
@@ -222,19 +226,15 @@ class InputSecurity{
     public static function displayWithFormat($input , ?string $format = null){
         $inputProcessing = InputSecurity::validateWithoutTags($input);
         switch($format){
-            case null:
-                    return mb_strtolower($inputProcessing);
-                break;
             case "uppercase":
-                    return mb_strtoupper($inputProcessing);
-                break;
+                return mb_strtoupper($inputProcessing);
             case "uppercaseFirstLetter":
-                    return mb_convert_case($inputProcessing , MB_CASE_TITLE);
-                break;
+                return mb_convert_case($inputProcessing , MB_CASE_TITLE);
             case "PhoneNumber":
-                    $inputProcessing = str_split($inputProcessing , 2);
-                    return implode(" " , $inputProcessing);
-                break;
+                $inputProcessing = str_split($inputProcessing , 2);
+                return implode(" " , $inputProcessing);
+            default:
+                return mb_strtolower($inputProcessing);
         }
     }
 

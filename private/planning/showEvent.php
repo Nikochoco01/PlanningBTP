@@ -78,7 +78,7 @@
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
                                     <tr class="tableCell">
-                                        <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                                        <td scope="row"> <img src="" alt="image de l'employé"> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "uppercaseFirstLetter") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userPosition'] , "uppercase") ?> </td>

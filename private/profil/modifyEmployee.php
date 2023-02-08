@@ -1,9 +1,14 @@
 <?php
-    include_once APP . "private/dataBase/dataBaseConnection.php";
     InputSecurity::validateWithoutLetter($_GET['employee'] , $userID);
-    $statement = $PDO->prepare("select * from User where userId =".$userID);
-    $statement->execute();
-    $results = $statement->fetch();
+    // $statement = $PDO->prepare("select * from User where userId =".$userID);
+    // $statement->execute();
+    // $results = $statement->fetch();
+
+    $results = $dataBase->read("User", [
+        "conditions" => [
+            "userId" => $userID
+        ]
+    ]);
 ?>
 
 <form action="modifyEmployee" method="post" class="profilModify" enctype="multipart/form-data">
@@ -18,25 +23,25 @@
     </label>
 
     <label class="Disabled"> <span>Nom d'utilisateur : </span>
-        <input type="text" name="userName" id="userName" value="<?= $results->userLastName ?>" class="Disabled" disabled>
+        <input type="text" name="userName" id="userName" value="<?= $results[0]->userLastName ?>" class="Disabled" disabled>
     </label>
     <label for="userPassWord"> <span>Mot de passe :</span>
         <input type="password" name="userPassword" id="userPassword" value="" placeholder="taper un nouveau mot de passe">
     </label>
     <label for="userFirstName"> <span>Prénom :</span>
-        <input type="text" name="userFirstName" id="userFirstName" value="<?= $results->userFirstName ?>">
+        <input type="text" name="userFirstName" id="userFirstName" value="<?= $results[0]->userFirstName ?>">
     </label>
     <label for="userLastName"> <span>Nom :</span>
-        <input type="text" name="userLastName" id="userLastName" value="<?= $results->userLastName ?>">
+        <input type="text" name="userLastName" id="userLastName" value="<?= $results[0]->userLastName ?>">
     </label>
     <label for="userPosition" class=" <?= addDisabled() ?>"> <span>Poste :</span>
-        <input type="text" name="userPosition" id="userPosition" value="<?= $results->userPosition ?>" <?= disableInput()?> class="<?= addDisabled() ?>">
+        <input type="text" name="userPosition" id="userPosition" value="<?= $results[0]->userPosition ?>" <?= disableInput()?> class="<?= addDisabled() ?>">
     </label>
     <label for="userMail"> <span>Adresse mail :</span>
-        <input type="text" name="userMail" id="userMail" value="<?= $results->userMail ?>">
+        <input type="text" name="userMail" id="userMail" value="<?= $results[0]->userMail ?>">
     </label>
     <label for="userPhone"> <span>Numéro de téléphone :</span>
-        <input type="text" name="userPhone" id="userPhone" value="<?= $results->userPhone ?>">
+        <input type="text" name="userPhone" id="userPhone" value="<?= $results[0]->userPhone ?>">
     </label>
 
     <input type="hidden" name="userId" value="<?= $_GET['employee']?>">
@@ -70,15 +75,13 @@
         if($_SESSION['userFonction'] == "administrator"){
             switch($_GET['onglet']){
                 case "personal":
-                        return "/public/profil.php?onglet=personal&display=view&add=false";
-                    break;
+                        return "/profil?onglet=personal&display=view&add=false";
                 case "employees":
-                        return "/public/profil.php?onglet=employees&display=view&add=false";
-                    break;
+                        return "/profil?onglet=employees&display=view&add=false";
             }
         }
         else{
-            return "/public/profil.php?onglet=personal&display=view";
+            return "/profil.php?onglet=personal&display=view";
         }
     }
 ?>

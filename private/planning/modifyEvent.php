@@ -1,5 +1,4 @@
-<?php 
-    require_once dirname(__FILE__,2). "/class/Events.php";
+<?php
     $eventDetails = $event->getDetailSelectedEvent($_GET['event']);
     $selectedEvent = $event->getEvent($eventDetails[0]['eventId']);
 
@@ -92,12 +91,12 @@
                             <tbody>
                                 <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
                                     <tr class="tableCell">
-                                        <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                                        <td scope="row"> <img src="" alt="image de l'employé"> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "uppercaseFirstLetter") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee[0]['userPosition'] , "uppercase") ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee['userId']?>">
+                                            <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee[0]['userId']?>">
                                             <label for="addEmployee"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -132,7 +131,7 @@
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleMaxPassenger']) ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleDriverLicense'], "uppercase") ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle['vehicleLicensePlate'] ?>">
+                                            <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle[0]['vehicleLicensePlate'] ?>">
                                             <label for="addVehicle"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -167,7 +166,7 @@
                                         <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentAvailableQuantity']) ?> </td>
                                         <td> <input type="number" name="materialQuantity[]" id="materialQuantity"> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addMaterial[]" id="addMaterial" value="<?= $material['equipmentName'] ?>">
+                                            <input type="checkbox" name="addMaterial[]" id="addMaterial" value="<?= $material[0]['equipmentName'] ?>">
                                             <label for="addMaterial"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
