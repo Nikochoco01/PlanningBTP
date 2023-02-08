@@ -14,17 +14,17 @@ class Database
     /**
      * @const Le DSN pilote de la base de données
      */
-    private const DSN = "sqlite:" . __DIR__ . "/../database.db";
+    private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521";
 
     /**
      * @const Le nom d'utilisateur de l'accès à la base de données
      */
-    private const USER = null;
+    private const USER = "p2107521";
 
     /**
      * @const Le mot de passe d'accès à la base de données
      */
-    private const PASSWORD = null;
+    private const PASSWORD = "12107521";
 
     /**
      * @const Si on est en mode production ou développement, car les erreurs seront affichées en mode dev, pas en prod
@@ -50,16 +50,16 @@ class Database
     {
         $condition = "";
         $values = [];
-        if (isset($data['password'])){ // on exclut password de la recherche, car on ne trouvera jamais de correspondance
+        if (isset($data['password'])) { // on exclut password de la recherche, car on ne trouvera jamais de correspondance
             unset($data['password']);
         }
-        if(count($data) > 0){
-            foreach ($data as $key => $value){
-                $condition .= ($condition != "")?" AND ":"";
+        if (count($data) > 0) {
+            foreach ($data as $key => $value) {
+                $condition .= ($condition != "") ? " AND " : "";
                 $operator = explode(" ", $key); // gestion des opérateurs dans les conditions : <= >= != <> LIKE
-                if(isset($operator[1])){
+                if (isset($operator[1])) {
                     $condition .= $operator[0] . " " . $operator[1] . " ? ";
-                }else{
+                } else {
                     $condition .= $operator[0] . " = ? ";
                 }
                 $values[] = $value;
@@ -68,7 +68,7 @@ class Database
         return [
             'condition' => $condition,
             'values' => $values,
-            ];
+        ];
     }
 
     /**
@@ -76,22 +76,22 @@ class Database
      * @return PDO
      * @throws Exception
      */
-    private function getPdo():PDO
+    private function getPdo(): PDO
     {
-        if(!$this->pdo){
+        if (!$this->pdo) {
             if (
                 preg_match("/^sqlite:(.*)$/", self::DSN, $match) &&
                 !file_exists($match[1])
-            ){
+            ) {
                 throw new Exception('Fichier de base de données Sqlite introuvable');
             }
-            try{
+            try {
                 $param = [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ]; // pour avoir les résultats sous forme d'objet
-                if (!self::PRODUCTION){
+                if (!self::PRODUCTION) {
                     $param[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION; // on affiche les erreurs en mode dev uniquement
                 }
                 $this->pdo = new PDO(self::DSN, self::USER, self::PASSWORD, $param);
-            }catch (PDOException $e){
+            } catch (PDOException $e) {
                 throw new Exception("Erreur : " . $e->getMessage());
             }
         }
@@ -109,7 +109,7 @@ class Database
     public function query(string $query, array $values = []): PDOStatement
     {
         $statement = $this->getPdo()->prepare($query);
-        if ($statement === false){
+        if ($statement === false) {
             throw new Exception('Erreur de requête SQL');
         }
         $statement->execute($values);
@@ -147,33 +147,33 @@ class Database
         $condition = $this->conditions($options['conditions']);
 
         // on crée la chaine des champs à sélectionner
-        if(count($options['fields']) > 0){
+        if (count($options['fields']) > 0) {
             $fields = implode(',', $options['fields']);
-        }else{
+        } else {
             $fields = "*";
         }
 
         $req = "SELECT " . $fields . " FROM " . $table;
-        if($condition['condition'] != ""){
+        if ($condition['condition'] != "") {
             $req .= " WHERE " . $condition['condition'];
         }
 
         // on crée la chaine pour le ORDER BY
-        if(count($options['order'])> 0){
+        if (count($options['order']) > 0) {
             $req .= " ORDER BY " . implode(', ', $options['order']);
         }
 
         // on ajoute la limite de la requête
-        if($options['limit']){
+        if ($options['limit']) {
             $req .= " LIMIT " . $options['offset'] . ", " . $options['limit'];
         }
 
 
         // on retourne les résultats
         $stmt = $this->query($req, $condition['values']);
-        $result = $one?$stmt->fetch():$stmt->fetchAll();
+        $result = $one ? $stmt->fetch() : $stmt->fetchAll();
         // Si password est dans les conditions, on vérifie la correspondance
-        if ($one && isset($options['conditions']['password']) && !password_verify($options['conditions']['password'], $result->password)){
+        if ($one && isset($options['conditions']['password']) && !password_verify($options['conditions']['password'], $result->password)) {
             return (object) [];
         }
         return $result;
@@ -203,23 +203,23 @@ class Database
     public function save(string $table, array $datas): bool
     {
         $id = null;
-        if(isset($datas['id']) && is_numeric($datas['id'])){
+        if (isset($datas['id']) && is_numeric($datas['id'])) {
             $id = $datas['id'];
             unset($datas['id']);
         }
-        if(!$datas){
+        if (!$datas) {
             return false;
         }
-        if(isset($datas['password'])){ // on hache le mot de passe s'il fait partie des données
+        if (isset($datas['password'])) { // on hache le mot de passe s'il fait partie des données
             $datas['password'] = $this->hash($datas['password']);
         }
         $keys = array_keys($datas);
-        $values = substr(str_repeat('?,',count($keys)),0,-1);
-        if($id){ // si l'id existe on va faire une mise à jour
-            $fields = implode('=?, ',$keys);
+        $values = substr(str_repeat('?,', count($keys)), 0, -1);
+        if ($id) { // si l'id existe on va faire une mise à jour
+            $fields = implode('=?, ', $keys);
             $req = "UPDATE " . $table . " SET $fields=? WHERE id=" . $id;
-        }else{ // sinon on fait une insertion
-            $fields = implode(', ',$keys);
+        } else { // sinon on fait une insertion
+            $fields = implode(', ', $keys);
             $req = "INSERT INTO $table ($fields) VALUES ($values)";
         }
         return !($this->query($req, array_values($datas)) == false);
@@ -247,13 +247,14 @@ class Database
      * @return bool|int Le nombre de champs concernés
      * @throws Exception
      */
-    public function update(string $table, array $datas, array $conditions){
+    public function update(string $table, array $datas, array $conditions)
+    {
         $search = $this->read($table, $conditions); // on vérifie s'il y a des correspondances dans la table selon les conditions demandées
-        if(!$search){
+        if (!$search) {
             return false; // retourne false si aucun résultat
         }
         $cpt = 0;
-        foreach ($search as $value){
+        foreach ($search as $value) {
             $cpt++;
             $datas["id"] = $value->id;
             $this->save($table, $datas); // met à jour chaque élément trouvé dans le $search
@@ -261,4 +262,3 @@ class Database
         return $cpt;
     }
 }
-
