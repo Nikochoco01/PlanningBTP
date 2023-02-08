@@ -38,7 +38,6 @@ if( InputSecurity::validateWithoutNumber($_POST['designation'], $designation)
                 );
             }
         }
-        die();
         unset($_SESSION['token']);
         header("Location:".$_SERVER['HTTP_REFERER']);
 }

@@ -329,7 +329,6 @@ class Database
         $fieldsStr = implode(', ', $fields);
         $idStr = implode(' AND ', $id);
         $req = "UPDATE $table SET $fieldsStr WHERE $idStr";
-        var_dump($req , "<br>");
         return $this->getPdo()->exec($req) == 1;
     }
 
