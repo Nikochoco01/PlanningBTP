@@ -44,19 +44,11 @@
     const LINK_TO_MODIFY_PROCESS = "/private/treatment/profileProcess/modifyProcess";
 
     const LINK_TO_HOME = "/home";
-<<<<<<< HEAD
-    const LINK_TO_PROFIL = "/profil.php?onglet=personal&display=view";
-=======
     const LINK_TO_PROFIL = "/profil?onglet=personal&display=view";
->>>>>>> Nikola
     const LINK_TO_PLANNING = "/planning?onglet=missions&display=week";
     const LINK_TO_PLANNING_EMPLOYEE = "/planning?onglet=employee&display=week";
     const LINK_TO_SCHEDULES = "/schedule";
     const LINK_TO_EXPENDITURE = "/expenditure";
-<<<<<<< HEAD
-    const LINK_TO_TOOL_MANAGEMENT = "/toolManagement.php";
-=======
     const LINK_TO_TOOL_MANAGEMENT = "/toolManagement";
->>>>>>> Nikola
     const LINK_TO_VEHICLE_MANAGEMENT = "/vehicleManagement";
 ?>
