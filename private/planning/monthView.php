@@ -3,6 +3,7 @@
     require_once dirname(__FILE__,2). "/class/Events.php";
 
     $event = new Events($PDO);
+    // $event = new Events($dataBase);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
@@ -15,6 +16,8 @@
 
     InputSecurity::validateWithoutNumber($_GET['onglet'] , $page);
 
+    $events = "";
+
     switch($_SESSION['userFonction']){
         case PARAM_SESSION_TYPE_ADMINISTRATOR:
                 $events = $event->getEventBetweenByDay($firstDay , $lastDay , $page );
@@ -25,6 +28,8 @@
         case PARAM_SESSION_TYPE_TEAM_LEADER:
             break;
     }
+
+var_dump($events);
 ?>
 
 <div class="tab" >

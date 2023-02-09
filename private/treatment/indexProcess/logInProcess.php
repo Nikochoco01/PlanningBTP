@@ -3,18 +3,6 @@ InputSecurity::isEmpty($_POST['userName'] , $userName);
 InputSecurity::isEmpty($_POST['userPassWord'] , $userPassword);
 $userPassword = sha1($userPassword);
 
-// $statement = $PDO->prepare("select * from User where userId = (select userId from Login where loginUsername= :userName and loginUserPassword = :userPassword)");
-// $statement->bindParam('userName' , $userName);
-// $statement->bindParam('userPassword' , $userPassword);
-// $statement->execute();
-
-// $statementUserName = $PDO->prepare("select loginUsername from Login where loginUsername= :userName");
-// $statementUserName->bindParam('userName' , $_POST['userName']);
-// $statementUserName->execute();
-
-// $user = $statement->fetch();
-// $loginUsername = $statementUserName->fetch();
-
 $userId = $dataBase->read("Login", [
                 "conditions" => [
                     "loginUsername" => $userName,

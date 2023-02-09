@@ -1,9 +1,9 @@
 <?php 
         require_once dirname(__FILE__,2). "/class/Events.php";
-        $workSites = $event->getWorksite();
-        $employees = $event->getEmployee();
-        $vehicles = $event->getVehicles();
-        $materials = $event->getMaterial();
+        // $workSites = $event->getWorksite();
+        // $employees = $event->getEmployee();
+        // $vehicles = $event->getVehicles();
+        // $materials = $event->getMaterial();
 ?>
 
 <div class="addEvent">
