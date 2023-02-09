@@ -7,7 +7,7 @@
 ?>
 
 <div class="addEvent">
-    <form action="/private/treatment/planningProcess/addEventProcess.php" method="post">
+    <form method="post">
 
         <span>
             <label for="eventDescription"> Description :</label>

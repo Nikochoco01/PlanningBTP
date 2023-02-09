@@ -40,7 +40,12 @@ switch ($path) {
         break;
 
     case "/planning":
-        require APP . "public/planning.php";
+        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+            require APP . "public/planning.php";
+        }
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            require TREAT . "planningProcess/addEventProcess.php";
+        }
         break;
 
     case "/schedule":
