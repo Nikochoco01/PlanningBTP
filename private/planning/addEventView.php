@@ -1,9 +1,9 @@
 <?php 
         require_once dirname(__FILE__,2). "/class/Events.php";
-        $workSites = $event->getWorksite();
-        $employees = $event->getEmployee();
-        $vehicles = $event->getVehicles();
-        $materials = $event->getMaterial();
+        // $workSites = $event->getWorksite();
+        // $employees = $event->getEmployee();
+        // $vehicles = $event->getVehicles();
+        // $materials = $event->getMaterial();
 ?>
 
 <div class="addEvent">
@@ -88,7 +88,7 @@
                                 <?php
                                     foreach($employees as $employee):?>
                                     <tr class="tableCell">
-                                        <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                                        <td scope="row"> <img src="" alt="image de l'employé"> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee['userFirstName'] , "uppercaseFirstLetter") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee['userLastName'] , "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($employee['userPosition'] , "uppercase") ?> </td>

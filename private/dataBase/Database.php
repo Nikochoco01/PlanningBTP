@@ -1,5 +1,9 @@
 <?php
 
+
+$iutLog = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
+$LocalHost = "mysql:host=localhost:3306;dbname=bdsite";
+
 /**
  * Class Database
  * pour une abstraction totale de la base de données, le but étant de simplifier le code
@@ -14,17 +18,29 @@ class Database
     /**
      * @const Le DSN pilote de la base de données
      */
+<<<<<<< HEAD
     private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521";
+=======
+    private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
+>>>>>>> Nikola
 
     /**
      * @const Le nom d'utilisateur de l'accès à la base de données
      */
+<<<<<<< HEAD
     private const USER = "p2107521";
+=======
+    private const USER = "p2101430";
+>>>>>>> Nikola
 
     /**
      * @const Le mot de passe d'accès à la base de données
      */
+<<<<<<< HEAD
     private const PASSWORD = "12107521";
+=======
+    private const PASSWORD = "12101430";
+>>>>>>> Nikola
 
     /**
      * @const Si on est en mode production ou développement, car les erreurs seront affichées en mode dev, pas en prod

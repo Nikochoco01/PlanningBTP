@@ -2,7 +2,7 @@
     require_once dirname(__FILE__,2). "/class/Month.php";
     require_once dirname(__FILE__,2). "/class/Events.php";
 
-    $event = new Events($PDO);
+    // $event = new Events($PDO);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
@@ -20,6 +20,7 @@
     }
     
     $formatDate = 'Y-m-'.$month->formatDayNumber($month->day);
+
 ?>
 
 <div class="tab" >
