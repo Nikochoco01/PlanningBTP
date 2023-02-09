@@ -40,11 +40,18 @@ switch ($path) {
         break;
 
     case "/planning":
+        var_dump($_SERVER['PATH_INFO']);
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
             require APP . "public/planning.php";
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            echo "add";
+            var_dump($_SERVER['PATH_INFO']);
             require TREAT . "planningProcess/addEventProcess.php";
+        }
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && $path == "/planning/modifyEventProcess.php"){
+            var_dump($_SERVER['PATH_INFO']);
+            require TREAT . "planningProcess/modifyEventProcess.php";
         }
         break;
 

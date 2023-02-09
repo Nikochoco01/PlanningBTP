@@ -39,16 +39,16 @@
     const TITLE_PAGE_MATERIAL = "Matériel";
     const TITLE_PAGE_VEHICLE = "Véhicule";
 
-    const LINK_LOGIN_PROCESS = "/private/treatment/indexProcess/logInProcess.php";
-    const LINK_LOGOUT_PROCESS = "/private/treatment/indexProcess/logOutProcess.php";
-    const LINK_TO_MODIFY_PROCESS = "/private/treatment/profileProcess/modifyProcess.php";
+    const LINK_LOGIN_PROCESS = "/private/treatment/indexProcess/logInProcess";
+    const LINK_LOGOUT_PROCESS = "/private/treatment/indexProcess/logOutProcess";
+    const LINK_TO_MODIFY_PROCESS = "/private/treatment/profileProcess/modifyProcess";
 
-    const LINK_TO_HOME = "/public/home.php";
-    const LINK_TO_PROFIL = "/public/profil.php?onglet=personal&display=view";
-    const LINK_TO_PLANNING = "/public/planning.php?onglet=missions&display=week";
-    const LINK_TO_PLANNING_EMPLOYEE = "/public/planning.php?onglet=employee&display=week";
-    const LINK_TO_SCHEDULES = "/public/schedule.php";
-    const LINK_TO_EXPENDITURE = "/public/expenditure.php";
-    const LINK_TO_TOOL_MANAGEMENT = "/public/toolManagement.php";
-    const LINK_TO_VEHICLE_MANAGEMENT = "/public/vehicleManagement.php";
+    const LINK_TO_HOME = "/home";
+    const LINK_TO_PROFIL = "/profil.php?onglet=personal&display=view";
+    const LINK_TO_PLANNING = "/planning?onglet=missions&display=week";
+    const LINK_TO_PLANNING_EMPLOYEE = "/planning?onglet=employee&display=week";
+    const LINK_TO_SCHEDULES = "/schedule";
+    const LINK_TO_EXPENDITURE = "/expenditure";
+    const LINK_TO_TOOL_MANAGEMENT = "/toolManagement.php";
+    const LINK_TO_VEHICLE_MANAGEMENT = "/vehicleManagement";
 ?>
