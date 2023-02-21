@@ -3,7 +3,7 @@ include_once APP . "/private/dataBase/dataBaseConnection.php";
 include_once APP . "/private/class/InputSecurityClass.php";
 
 InputSecurity::validateWithoutLetter($_POST['eventId'] , $eventId);
-InputSecurity::validateWithoutTags($_POST['eventDescription'] , $eventDescription);
+InputSecurity::validateWithoutNumber($_POST['eventDescription'] , $eventDescription);
 InputSecurity::isEmpty($_POST['eventStartDate'] , $eventStartDate);
 InputSecurity::isEmpty($_POST['eventEndDate'] , $eventEndDate);
 InputSecurity::isEmpty($_POST['eventStartTime'] , $eventStartTime);

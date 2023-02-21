@@ -10,7 +10,7 @@
 ?>
 
 <div class="modifyEvent">
-    <form action="/private/treatment/planningProcess/modifyEventProcess.php" method="post">
+    <form action="/modifyEvent" method="post">
         <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>" class="quitModify"> X </a>
         <input type="hidden" name="eventId" value="<?= $eventID ?>" >
         <span>
@@ -177,7 +177,6 @@
                 </span>
             </li>
         </ul>
-
         <span class="buttonZone">
             <input type="submit" value="Modifier la mission" class="validateButton">
             <input type="button" value="Annuler l'ajout" class="validateButton">
