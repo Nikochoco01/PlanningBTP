@@ -47,6 +47,38 @@ class Month{
     }
 
     /**
+    * Allow to get the year register in the object
+    * @return int years
+    */
+    public function getYear(){
+        return $this->year;
+    }
+
+    /**
+    * Allow to get the month register in the object
+    * @return int num of month
+    */
+    public function getMonth(){
+        return $this->month;
+    }
+
+    /**
+    * Allow to get the week register in the object
+    * @return int num of week
+    */
+    public function getWeek(){
+        return $this->week;
+    }
+
+    /**
+    * Allow to get the day register in the object
+    * @return int num of day
+    */
+    public function getDay(){
+        return $this->day;
+    }
+
+    /**
      * return the first day of month 
      * 
      * @return DateTimeImmutable
@@ -165,22 +197,16 @@ class Month{
             switch($week){
                 case 1:
                     return 0;
-                    break;
                 case 2:
                     return 7*1;
-                    break;
                 case 3:
                     return 7*2;
-                    break;
                 case 4:
                     return 7*3;
-                    break;
                 case 5:
                     return 7*4;
-                    break;
                 case 6:
                     return 7*5;
-                    break;
             }
         }
     }

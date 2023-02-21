@@ -5,7 +5,6 @@
     // $event = new Events($PDO);
     $event = new Events($dataBase);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
-    $_SESSION['CURRENTWEEK'] = $month->getCurrentWeek();
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
     $firstDay = $firstDay->format('N') === '1' ? $firstDay : $month->getFirstDay()->modify('last Monday');
