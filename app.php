@@ -39,6 +39,13 @@ switch ($path) {
             require TREAT . "profileProcess/modifyProcess.php";
         break;
 
+    case "/modifyEvent":
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && $path=="/modifyEvent"){
+            var_dump($_SERVER['PATH_INFO']);
+            require TREAT . "planningProcess/modifyEventProcess.php";
+        }
+        break;
+
     case "/planning":
         var_dump($_SERVER['PATH_INFO']);
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -48,10 +55,6 @@ switch ($path) {
             echo "add";
             var_dump($_SERVER['PATH_INFO']);
             require TREAT . "planningProcess/addEventProcess.php";
-        }
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && $path == "/planning/modifyEventProcess.php"){
-            var_dump($_SERVER['PATH_INFO']);
-            require TREAT . "planningProcess/modifyEventProcess.php";
         }
         break;
 
