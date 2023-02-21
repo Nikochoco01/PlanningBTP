@@ -24,6 +24,6 @@ $updateEvent->bindParam('varEventId' , $eventId);
 
 $updateEvent->execute();
 
-header('Location: /planning?onglet=missions&display=week&year=2023&month=01&week='.$_SESSION['CURRENTWEEK']);
+header('Location: /planning?onglet=missions&display=week&year=2023&month=02&week='.$_SESSION['CURRENTWEEK']);
 Exit();
 ?>

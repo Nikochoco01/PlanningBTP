@@ -1,9 +1,9 @@
 <?php
 
 
-$iutLog = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
-$iutLogUser = "p2101430";
-$iutLogPassword = "12101430";
+$iutLog = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521";
+$iutLogUser = "p2107521";
+$iutLogPassword = "12107521";
 
 $LocalHost = "mysql:host=localhost:3306;dbname=bdsite";
 $LocalhostLogUser = "root";
@@ -23,17 +23,17 @@ class Database
     /**
      * @const Le DSN pilote de la base de données
      */
-    private const DSN = "mysql:host=localhost:3306;dbname=bdsite";
+    private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521";
 
     /**
      * @const Le nom d'utilisateur de l'accès à la base de données
      */
-    private const USER = "root";
+    private const USER = "p2107521";
 
     /**
      * @const Le mot de passe d'accès à la base de données
      */
-    private const PASSWORD = "root";
+    private const PASSWORD = "12107521";
 
     /**
      * @const Si on est en mode production ou développement, car les erreurs seront affichées en mode dev, pas en prod
