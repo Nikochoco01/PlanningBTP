@@ -39,9 +39,9 @@
     const TITLE_PAGE_MATERIAL = "Matériel";
     const TITLE_PAGE_VEHICLE = "Véhicule";
 
-    const LINK_LOGIN_PROCESS = "/private/treatment/indexProcess/logInProcess.php";
-    const LINK_LOGOUT_PROCESS = "/private/treatment/indexProcess/logOutProcess.php";
-    const LINK_TO_MODIFY_PROCESS = "/private/treatment/profileProcess/modifyProcess.php";
+    const LINK_LOGIN_PROCESS = "/private/treatment/indexProcess/logInProcess";
+    const LINK_LOGOUT_PROCESS = "/private/treatment/indexProcess/logOutProcess";
+    const LINK_TO_MODIFY_PROCESS = "/private/treatment/profileProcess/modifyProcess";
 
     const LINK_TO_HOME = "/home";
     const LINK_TO_PROFIL = "/profil?onglet=personal&display=view";
