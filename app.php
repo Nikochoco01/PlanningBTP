@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 const APP = __DIR__ . '/';
