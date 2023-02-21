@@ -8,22 +8,18 @@ InputSecurity::isEmpty($_POST['eventStartDate'] , $eventStartDate);
 InputSecurity::isEmpty($_POST['eventEndDate'] , $eventEndDate);
 InputSecurity::isEmpty($_POST['eventStartTime'] , $eventStartTime);
 InputSecurity::isEmpty($_POST['eventEndTime'] , $eventEndTime);
+InputSecurity::isEmpty($_POST['modifyWorksite'] , $eventWorksite);
 
+    $dataBase->save("Event",[
+        "eventId" => $eventId,
+        "eventDescription" => $eventDescription,
+        "eventStartDate" => $eventStartDate,
+        "eventEndDate" => $eventEndDate,
+        "eventStartTime" => $eventStartTime,
+        "eventEndTime" => $eventEndTime,
+        "worksiteId" => $eventWorksite
+    ] , "eventId");
 
-
-/**
- * Query to update the selected event
- */
-$updateEvent = $PDO->prepare("update Event set eventDescription = :varDescription , eventStartDate = :varStartDate , eventEndDate = :varEndDate , eventStartTime = :varStartTime , eventEndTime = :varEndTime where eventId = :varEventId");
-$updateEvent->bindParam('varDescription', $eventDescription);
-$updateEvent->bindParam('varStartDate' , $eventStartDate);
-$updateEvent->bindParam('varEndDate' , $eventEndDate);
-$updateEvent->bindParam('varStartTime' , $eventStartTime);
-$updateEvent->bindParam('varEndTime' , $eventEndTime);
-$updateEvent->bindParam('varEventId' , $eventId);
-
-$updateEvent->execute();
-
-header('Location: /planning?onglet=missions&display=week&year=2023&month=01&week='.$_SESSION['CURRENTWEEK']);
+header('Location: /planning?onglet=missions&display=week&year='.$_POST['year'].'&month='.$_POST['month'].'&week='.$_POST['week']);
 Exit();
 ?>

@@ -2,6 +2,7 @@
     InputSecurity::validateWithoutLetter($_GET['event'] , $eventID);
     $eventDetails = $event->getDetailSelectedEvent($eventID);
     $selectedEvent = $event->getEvent($eventDetails[0]->eventId)[0];
+
     function isInEvent($element1 , $element2){
         if($element1 == $element2){
             return "checked";
@@ -11,6 +12,11 @@
 
 <div class="modifyEvent">
     <form action="/modifyEvent" method="post">
+        <input type="hidden" name="year" value="<?= $month->getYear() ?>">
+        <input type="hidden" name="month" value="<?= $month->getMonth() ?>">
+        <input type="hidden" name="week" value="<?= $month->getWeek() ?>">
+        <input type="hidden" name="day" value="<?= $month->getDay() ?>">
+
         <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>" class="quitModify"> X </a>
         <input type="hidden" name="eventId" value="<?= $eventID ?>" >
         <span>
@@ -56,13 +62,13 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach($workSites as $workSite):?>
+                                    foreach($eventDetails as $eventDetail): $workSite = $event->getWorksite($eventDetail->worksiteId)[0];?>
                                     <tr class="tableCell">
                                         <td> <?= InputSecurity::displayWithFormat($workSite->worksiteName, "uppercase") ?> </td>
                                         <td> <?= InputSecurity::displayWithFormat($workSite->worksiteAddress) ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="radio" name="addWorksite" id="addWorksite" value="<?= $workSite->worksiteId ?>" require>
-                                            <label for="addWorksite"> <i class="icon-user-edit"></i> </label>
+                                            <input type="radio" name="modifyWorksite" id="modifyWorksite" value="<?= $workSite->worksiteId ?>" checked>
+                                            <label for="modifyWorksite"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

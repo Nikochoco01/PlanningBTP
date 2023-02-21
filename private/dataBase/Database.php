@@ -206,15 +206,16 @@ class Database
      * Ajoute des données dans la table (si l'id est défini dans $datas alors la requête fera un UPDATE
      * @param string $table le nom de la table
      * @param array $datas un tableau des valeurs à ajouter ex: array('col1' => 'val1', 'col2' => 'val2', 'col3' => 'val3', ...)
+     * @param string $name une chaîne de caractères pour donner le nom de la colonne id
      * @return bool
      * @throws Exception
      */
-    public function save(string $table, array $datas): bool
+    public function save(string $table, array $datas , string $idName): bool
     {
         $id = null;
-        if (isset($datas['id']) && is_numeric($datas['id'])) {
-            $id = $datas['id'];
-            unset($datas['id']);
+        if (isset($datas[$idName]) && is_numeric($datas[$idName])) {
+            $id = $datas[$idName];
+            unset($datas[$idName]);
         }
         if (!$datas) {
             return false;
@@ -226,12 +227,12 @@ class Database
         $values = substr(str_repeat('?,', count($keys)), 0, -1);
         if ($id) { // si l'id existe on va faire une mise à jour
             $fields = implode('=?, ', $keys);
-            $req = "UPDATE " . $table . " SET $fields=? WHERE id=" . $id;
+            $req = "UPDATE " . $table . " SET $fields=? WHERE ".$idName."=" . $id;
         } else { // sinon on fait une insertion
             $fields = implode(', ', $keys);
             $req = "INSERT INTO $table ($fields) VALUES ($values)";
         }
-        return !($this->query($req, array_values($datas)) == false);
+       return !($this->query($req, array_values($datas)) == false);
     }
 
     /**
@@ -253,10 +254,11 @@ class Database
      * @param string $table
      * @param array $datas
      * @param array $conditions
+     * @param string $name une chaîne de caractères pour donner le nom de la colonne id
      * @return bool|int Le nombre de champs concernés
      * @throws Exception
      */
-    public function update(string $table, array $datas, array $conditions)
+    public function update(string $table, array $datas, array $conditions , string $idName)
     {
         $search = $this->read($table, $conditions); // on vérifie s'il y a des correspondances dans la table selon les conditions demandées
         if (!$search) {
@@ -265,8 +267,8 @@ class Database
         $cpt = 0;
         foreach ($search as $value) {
             $cpt++;
-            $datas["id"] = $value->id;
-            $this->save($table, $datas); // met à jour chaque élément trouvé dans le $search
+            $datas[$idName] = $value->id;
+            $this->save($table, $datas , $idName); // met à jour chaque élément trouvé dans le $search
         }
         return $cpt;
     }
