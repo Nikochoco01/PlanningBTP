@@ -226,7 +226,7 @@ class Database
      * Ajout des données dans une table avec 1 ou plusieur champ de clé primaire (si l'element existe déja dans la table alors la raquête fera un UPDATE)
      * @param string $table Le nom de la table
      * @param array $datas un tableau des valeurs à ajouter, champs de la clé primaire exclus (sauf si vous ne voulez pas vérifier ) ex: array('col1' => 'val1', 'col2' => 'val2', 'col3' => 'val3', ...)
-     * @param array $conditions un tableau vers les chaps de la clé primaire
+     * @param array $conditions un tableau vers les champs de la clé primaire
      * @return bool
      * @throws Exception
      */
@@ -234,7 +234,6 @@ class Database
     {
         if($conditions){
             $one = $this->getOne($table, ['conditions' => $conditions]);
-            var_dump($one);
             if($one){
                 return $this->update($table, $datas, $conditions);
             }

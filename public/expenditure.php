@@ -1,6 +1,4 @@
 <?php 
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-
     $_SESSION['token'] = InputSecurity::generateToken(10);
     $title = TITLE_PAGE_COST;
 ?>
@@ -19,12 +17,16 @@
             <div class="expenditureContainer">
 
                 <div class="invoiceList">
-                    <?php     
-                        $stat = $PDO->prepare("select e.expenseId, e.expenseDate, e.expenseAmount, e.expenseDescription, w.worksiteName, v.eventDescription from Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId where userId = :user order by e.expenseId");
-                        $stat->execute(['user' => $_SESSION['userId']]);
-                        $results = $stat->fetchAll();
+                    <?php
+                        $results = $db->read("Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId",
+                            [
+                                'conditions' => ['userId' => $_SESSION['userId']],
+                                'fields' => ['e.expenseId', 'e.expenseDate', 'e.expenseAmount', 'e.expenseDescription', 'w.worksiteName', 'v.eventDescription'],
+                                'order' => ['e.expenseId']
+                            ]
+                        );
                         foreach($results as $res):?>
-                            <form class="expense" action="/delete" method="post">
+                            <form class="expense" action="/deleteExpenditure" method="post">
                                 <input type="hidden" name="id" value="<?= $res->expenseId ?>">
                                 <p> Lieux : <?= $res->worksiteName ?></p>
                                 <p> Mission : <?= $res->eventDescription ?></p>
@@ -44,11 +46,15 @@
                     <label for="worksite"> Chantier </label>
                     <select name="worksite" id="worksite" list="worksites" required>
                         <option value="">-- Choix du chantier --</option>
-                        <?php 
-                        $stat = $PDO->prepare("select worksiteId, worksiteName from Worksite;");
-                            
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+                        <?php
+                        $results = $db->read("Worksite", 
+                            ['fields' => 
+                                [
+                                    'worksiteId',
+                                    'worksiteName'
+                                ]
+                            ]
+                        );
                         foreach($results as $res):?>
                             <option value="<?= $res->worksiteId ?>"> <?= $res->worksiteName ?>
                         <?php endforeach; ?>

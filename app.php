@@ -59,6 +59,13 @@ switch($path){
             require TREAT . "expenditureProcess/newExpenditure.php";
         break;
 
+    case "/deleteExpenditure":
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+            require TREAT . "expenditureProcess/deleteExpenditure.php";
+        else
+            header("Location:".$_SERVER['HTTP_REFERER']);
+        break;
+
     case "/vehicle":
         if($_SERVER["REQUEST_METHOD"] == "GET")
             require APP . "public/vehicleManagement.php";
@@ -90,13 +97,6 @@ switch($path){
     case "/deleteTool":
         if($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "toolProcess/deleteTool.php";
-        else            
-            header("Location:".$_SERVER['HTTP_REFERER']);
-        break;
-
-    case "/delete":
-        if($_SERVER["REQUEST_METHOD"] == "POST")
-            require TREAT . "delete.php";
         else            
             header("Location:".$_SERVER['HTTP_REFERER']);
         break;
