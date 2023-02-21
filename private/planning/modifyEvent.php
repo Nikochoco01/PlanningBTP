@@ -1,7 +1,7 @@
 <?php
-    $eventDetails = $event->getDetailSelectedEvent($_GET['event']);
-    $selectedEvent = $event->getEvent($eventDetails[0]['eventId']);
-
+    InputSecurity::validateWithoutLetter($_GET['event'] , $eventID);
+    $eventDetails = $event->getDetailSelectedEvent($eventID);
+    $selectedEvent = $event->getEvent($eventDetails[0]->eventId)[0];
     function isInEvent($element1 , $element2){
         if($element1 == $element2){
             return "checked";
@@ -12,30 +12,30 @@
 <div class="modifyEvent">
     <form action="/private/treatment/planningProcess/modifyEventProcess.php" method="post">
         <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>" class="quitModify"> X </a>
-        <input type="hidden" name="eventId" value="<?= $_GET['event'] ?>" >
+        <input type="hidden" name="eventId" value="<?= $eventID ?>" >
         <span>
             <label for="eventDescription"> Description :</label>
-            <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>">
+            <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent->eventDescription ?>">
         </span>
 
         <span>
             <label for="eventStartDate"> Date de début :</label>
-            <input type="date" name="eventStartDate" id="eventStartDate" value="<?= $selectedEvent[0]['eventStartDate'] ?>">
+            <input type="date" name="eventStartDate" id="eventStartDate" value="<?= $selectedEvent->eventStartDate ?>">
         </span>
 
         <span>
             <label for="eventEndDate"> Date de fin :</label>
-            <input type="date" name="eventEndDate" id="eventEndDate" value="<?= $selectedEvent[0]['eventEndDate'] ?>">
+            <input type="date" name="eventEndDate" id="eventEndDate" value="<?= $selectedEvent->eventEndDate ?>">
         </span>
 
         <span>
             <label for="eventStartTime"> Heure de début :</label>
-            <input type="time" name="eventStartTime" id="eventStartTime" value="<?= $selectedEvent[0]['eventStartTime'] ?>">
+            <input type="time" name="eventStartTime" id="eventStartTime" value="<?= $selectedEvent->eventStartTime ?>">
         </span>
 
         <span>
             <label for="eventEndTime"> Heure de fin :</label>
-            <input type="time" name="eventEndTime" id="eventEndTime" value="<?= $selectedEvent[0]['eventEndTime'] ?>">
+            <input type="time" name="eventEndTime" id="eventEndTime" value="<?= $selectedEvent->eventEndTime ?>">
         </span>
 
         <ul>
@@ -58,10 +58,10 @@
                                 <?php
                                     foreach($workSites as $workSite):?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($workSite['worksiteName'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($workSite['worksiteAddress']) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($workSite->worksiteName, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($workSite->worksiteAddress) ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="radio" name="addWorksite" id="addWorksite" value="<?= $workSite['worksiteId'] ?>" require>
+                                            <input type="radio" name="addWorksite" id="addWorksite" value="<?= $workSite->worksiteId ?>" require>
                                             <label for="addWorksite"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -89,14 +89,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
+                                <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail->userId)[0];?>
                                     <tr class="tableCell">
                                         <td scope="row"> <img src="" alt="image de l'employé"> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "uppercaseFirstLetter") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userPosition'] , "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee[0]['userId']?>">
+                                            <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee->userId?>">
                                             <label for="addEmployee"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -124,14 +124,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail['vehicle']);?>
+                                <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail->vehicle)[0];?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleLicensePlate'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleModel']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleMaxPassenger']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleDriverLicense'], "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleLicensePlate, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleModel) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleMaxPassenger) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleDriverLicense, "uppercase") ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle[0]['vehicleLicensePlate'] ?>">
+                                            <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle->vehicleLicensePlate ?>">
                                             <label for="addVehicle"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -159,14 +159,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail['equipment'])?>
+                                <?php foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail->equipment)[0]?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentName'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentTotalQuantity']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentAvailableQuantity']) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentName, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentTotalQuantity) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentAvailableQuantity) ?> </td>
                                         <td> <input type="number" name="materialQuantity[]" id="materialQuantity"> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addMaterial[]" id="addMaterial" value="<?= $material[0]['equipmentName'] ?>">
+                                            <input type="checkbox" name="addMaterial[]" id="addMaterial" value="<?= $material->equipmentName ?>">
                                             <label for="addMaterial"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>

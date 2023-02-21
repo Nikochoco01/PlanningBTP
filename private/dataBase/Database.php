@@ -2,7 +2,12 @@
 
 
 $iutLog = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
+$iutLogUser = "p2101430";
+$iutLogPassword = "12101430";
+
 $LocalHost = "mysql:host=localhost:3306;dbname=bdsite";
+$LocalhostLogUser = "root";
+$LocalhostLogPassword = "root";
 
 /**
  * Class Database
@@ -18,17 +23,17 @@ class Database
     /**
      * @const Le DSN pilote de la base de données
      */
-    private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
+    private const DSN = "mysql:host=localhost:3306;dbname=bdsite";
 
     /**
      * @const Le nom d'utilisateur de l'accès à la base de données
      */
-    private const USER = "p2101430";
+    private const USER = "root";
 
     /**
      * @const Le mot de passe d'accès à la base de données
      */
-    private const PASSWORD = "12101430";
+    private const PASSWORD = "root";
 
     /**
      * @const Si on est en mode production ou développement, car les erreurs seront affichées en mode dev, pas en prod

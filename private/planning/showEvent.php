@@ -1,7 +1,8 @@
 <?php 
     require_once dirname(__FILE__,2). "/class/Events.php";
-    $eventDetails = $event->getDetailSelectedEvent($_GET['event']);
-    $selectedEvent = $event->getEvent($eventDetails[0]['eventId']);
+    InputSecurity::validateWithoutLetter($_GET['event'] , $eventID);
+    $eventDetails = $event->getDetailSelectedEvent($eventID);
+    $selectedEvent = $event->getEvent($eventDetails[0]->eventId)[0];
 ?>
 
 
@@ -10,27 +11,27 @@
         <a href="<?= LINK_TO_PLANNING."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>" class="quitDetails"> X </a>
         <span>
             <label for="eventDescription"> Description :</label>
-            <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent[0]['eventDescription'] ?>" readonly>
+            <input type="text" name="eventDescription" id="eventDescription" value="<?= $selectedEvent->eventDescription ?>" readonly>
         </span>
 
         <span>
             <label for="eventStartDate"> Date de début :</label>
-            <input type="date" name="eventStartDate" id="eventStartDate" value="<?= $selectedEvent[0]['eventStartDate'] ?>" readonly>
+            <input type="date" name="eventStartDate" id="eventStartDate" value="<?= $selectedEvent->eventStartDate ?>" readonly>
         </span>
 
         <span>
             <label for="eventEndDate"> Date de fin :</label>
-            <input type="date" name="eventEndDate" id="eventEndDate" value="<?= $selectedEvent[0]['eventEndDate'] ?>" readonly>
+            <input type="date" name="eventEndDate" id="eventEndDate" value="<?= $selectedEvent->eventEndDate ?>" readonly>
         </span>
 
         <span>
             <label for="eventStartTime"> Heure de début :</label>
-            <input type="time" name="eventStartTime" id="eventStartTime" value="<?= $selectedEvent[0]['eventStartTime'] ?>" readonly>
+            <input type="time" name="eventStartTime" id="eventStartTime" value="<?= $selectedEvent->eventStartTime ?>" readonly>
         </span>
 
         <span>
             <label for="eventEndTime"> Heure de fin :</label>
-            <input type="time" name="eventEndTime" id="eventEndTime" value="<?= $selectedEvent[0]['eventEndTime'] ?>" readonly>
+            <input type="time" name="eventEndTime" id="eventEndTime" value="<?= $selectedEvent->eventEndTime ?>" readonly>
         </span>
 
         <ul>
@@ -49,10 +50,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $workSite = $event->getWorksite($eventDetails[0]['worksiteId']); ?>
+                                <?php $workSite = $event->getWorksite($eventDetails[0]->worksiteId)[0]; ?>
                                 <tr class="tableCell">
-                                    <td> <?= InputSecurity::displayWithFormat($workSite[0]['worksiteName'], "uppercase") ?> </td>
-                                    <td> <?= InputSecurity::displayWithFormat($workSite[0]['worksiteAddress']) ?> </td>
+                                    <td> <?= InputSecurity::displayWithFormat($workSite->worksiteName, "uppercase") ?> </td>
+                                    <td> <?= InputSecurity::displayWithFormat($workSite->worksiteAddress) ?> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -76,12 +77,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail['userId']);?>
+                                <?php foreach($eventDetails as $eventDetail): $employee = $event->getEmployee($eventDetail->userId)[0];?>
                                     <tr class="tableCell">
                                         <td scope="row"> <img src="" alt="image de l'employé"> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userFirstName'] , "uppercaseFirstLetter") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userLastName'] , "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee[0]['userPosition'] , "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -106,12 +107,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail['vehicle']);?>
+                                <?php foreach($eventDetails as $eventDetail): $vehicle = $event->getVehicles($eventDetail->vehicle)[0];?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleLicensePlate'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleModel']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleMaxPassenger']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle[0]['vehicleDriverLicense'], "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleLicensePlate, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleModel) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleMaxPassenger) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleDriverLicense, "uppercase") ?> </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -136,11 +137,11 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail['equipment'])?>
+                                    foreach($eventDetails as $eventDetail): $material = $event->getMaterial($eventDetail->equipment)[0]?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentName'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentTotalQuantity']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($material[0]['equipmentAvailableQuantity']) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentName, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentTotalQuantity) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentAvailableQuantity) ?> </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -150,7 +151,7 @@
             </li>
         </ul>
 
-        <?php if($_SESSION['userPosition'] != PARAM_SESSION_TYPE_ADMINISTRATOR ) : ?>
+        <?php if($_SESSION['userPosition'] != PARAM_SESSION_TYPE_ADMINISTRATOR) : ?>
             <span class="buttonZone">
                 <a href="<?= URLManagement::addUrlParam(array('modify'=>'true')) ?>">Modifier</a>
             </span>
