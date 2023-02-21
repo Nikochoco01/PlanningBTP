@@ -150,7 +150,7 @@ class Database
         );
         $condition = $this->conditions($options['conditions']);
 
-        // on crée la chaine des champs à sélectionner
+        // on crée la chaîne des champs à sélectionner
         if(count($options['fields']) > 0){
             $fields = implode(',', $options['fields']);
         }else{
@@ -162,7 +162,7 @@ class Database
             $req .= " WHERE " . $condition['condition'];
         }
 
-        // on crée la chaine pour le ORDER BY
+        // on crée la chaîne pour le ORDER BY
         if(count($options['order'])> 0){
             $req .= " ORDER BY " . implode(', ', $options['order']);
         }
@@ -172,7 +172,6 @@ class Database
             $req .= " LIMIT " . $options['offset'] . ", " . $options['limit'];
         }
 
-
         // on retourne les résultats
         $stmt = $this->query($req, $condition['values']);
         $result = $one?$stmt->fetch():$stmt->fetchAll();
@@ -180,6 +179,7 @@ class Database
         if ($one && isset($options['conditions']['password']) && !password_verify($options['conditions']['password'], $result->password)){
             return (object) [];
         }
+
         return $result;
     }
 

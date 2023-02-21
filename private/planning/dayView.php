@@ -3,6 +3,7 @@
     require_once dirname(__FILE__,2). "/class/Events.php";
 
     // $event = new Events($PDO);
+    $event = new Events($dataBase);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
@@ -65,7 +66,7 @@
                 <?php
                     $eventsForDay = $events[$date->format($formatDate)] ?? [];
                     foreach($eventsForDay as $event): 
-                    if($event['eventStartTime'] >= '00:00:00' && $event['eventStartTime'] <= '12:59:59'):
+                    if($event->eventStartTime >= '00:00:00' && $event->eventStartTime <= '12:59:59'):
                 ?>
                     <td class="eventMorning">
                         <?php include dirname(__FILE__)."/calendarEvent.php"; ?>
@@ -80,7 +81,7 @@
                 <?php
                     $eventsForDay = $events[$date->format($formatDate)] ?? [];
                     foreach($eventsForDay as $event): 
-                    if($event['eventStartTime'] >= '13:00:00' && $event['eventStartTime'] <= '23:59:59'):
+                    if($event->eventStartTime >= '13:00:00' && $event->eventStartTime <= '23:59:59'):
                 ?>
                     <td class="eventAfternoon">
                         <?php include dirname(__FILE__)."/calendarEvent.php"; ?>

@@ -2,8 +2,8 @@
     require_once dirname(__FILE__,2). "/class/Month.php";
     require_once dirname(__FILE__,2). "/class/Events.php";
 
-    $event = new Events($PDO);
-    // $event = new Events($dataBase);
+    // $event = new Events($PDO);
+    $event = new Events($dataBase);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
@@ -28,8 +28,9 @@
         case PARAM_SESSION_TYPE_TEAM_LEADER:
             break;
     }
-
-var_dump($events);
+// echo "<pre>";
+// var_dump($events);
+// echo "</pre>";
 ?>
 
 <div class="tab" >

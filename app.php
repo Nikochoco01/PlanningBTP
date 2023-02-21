@@ -3,6 +3,7 @@ session_start();
 
 const APP = __DIR__ . '/';
 const TREAT = __DIR__ . "/private/treatment/";
+const PRIVE = __DIR__ . "/private/";
 
 include_once APP . "private/constant/constant.php";
 include_once APP . "private/dataBase/Database.php";

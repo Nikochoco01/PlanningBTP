@@ -1,38 +1,39 @@
 <?php
 class Events{
    
-    public $PDO;
-    // private $dataBase;
+    // public $PDO;
+    private $dataBase;
     function __construct($dataBase)
     {
-        $this->PDO = $dataBase;
-        // $this->dataBase = $dataBase;
+        // $this->PDO = $dataBase;
+        $this->dataBase = $dataBase;
     }
 
     /**
      * allow to get an event with his ID
      * 
-     * @return assoc_array from data base
+     * @return array from data base
      */
         public function getEvent($eventId = null){
 
-            // if($eventId != null){
-            //    return $this->dataBase->read("Event" , [
-            //         "conditions" => ["eventId" => "$eventId"],
-            //         "fields" => ["distinct *"]
-            //     ]);
-            // }
-
             if($eventId != null){
-                $select = "select distinct *";
-                $from = " from Event";
-                $where = " where eventId = " . $eventId;
-
-                $query = $select . $from . $where;
-                $statement = $this->PDO->query($query);
-                $getEvent = $statement->fetchAll();
-                return $getEvent;
+               return $this->dataBase->read("Event" , [
+                        "conditions" => ["eventId" => "$eventId"],
+                        "fields" => ["distinct *"]
+                    ]);
             }
+            return [];
+
+            // if($eventId != null){
+            //     $select = "select distinct *";
+            //     $from = " from Event";
+            //     $where = " where eventId = " . $eventId;
+
+            //     $query = $select . $from . $where;
+            //     $statement = $this->PDO->query($query);
+            //     $getEvent = $statement->fetchAll();
+            //     return $getEvent;
+            // }
         }
 
 
@@ -128,15 +129,21 @@ class Events{
     /**
      * allow to get an event in the data base
      * 
-     * @return assoc_array from data base
+     * @return array from data base
      */
     public function getEventBetween(\DateTimeImmutable $eventStart , \DateTimeImmutable $eventEnd){
 
-        // $getEvent =  $this->dataBase->read("Event e join Worksite w on w.worksiteId = e.worksiteId" , [
-        //     "conditions" => ["eventStartDate" => "between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}'"],
-        //     "order" => ["e.eventStartTime asc"]
-        // ]);
+        $getEvent = $this->dataBase->read("Event e join Worksite w on w.worksiteId = e.worksiteId", [
+            "conditions" => [
+                "eventStartDate between" => $eventStart->format('Y-m-d 00:00:00'),
+                " " => $eventEnd->format('Y-m-d 23:59:59')
+            ],
+            "fields" => ["distinct *"],
+            "order" => ["e.eventStartTime asc"]
+        ]);
+        return $getEvent;
 
+        // $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
         // /* Get the event from dataBase */
         // $select = "select distinct *";
         // $from = " from Event e join Worksite w on w.worksiteId = e.worksiteId";
@@ -146,38 +153,16 @@ class Events{
         
         // $query = $select . $from . $where . $between . $orderBy;
 
-        // $getEvent = $this->dataBase->query($query);
-        // var_dump($getEvent->fetchAll());
-        // $testStart = "2023-01-29";
-        // $testEnd = "2023-01-31";
-
-        // $getEvent = $this->dataBase->read("Event e join Worksite w on w.worksiteId = e.worksiteId", [
-        //     "conditions" => ["eventStartDate" => "2023-01-30"]
-        // ]);
-        // var_dump($getEvent);
+        // $statement = $this->PDO->query($query);
+        // $getEvent = $statement->fetchAll();
 
         // return $getEvent;
-
-        $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
-        /* Get the event from dataBase */
-        $select = "select distinct *";
-        $from = " from Event e join Worksite w on w.worksiteId = e.worksiteId";
-        $where = " where eventStartDate";
-        $between = " between '{$eventStart->format('Y-m-d 00:00:00')}' and '{$eventEnd->format('Y-m-d 23:59:59')}'";
-        $orderBy = " order by e.eventStartTime asc";
-        
-        $query = $select . $from . $where . $between . $orderBy;
-
-        $statement = $this->PDO->query($query);
-        $getEvent = $statement->fetchAll();
-
-        return $getEvent;
     }
 
     /**
      * allow to group event by day
      * 
-     * @return day
+     * @return array
      */
     public function getEventBetweenByDay(\DateTimeImmutable $eventStart , \DateTimeImmutable $eventEnd , ?string $page = null){
         $events = "";
@@ -199,15 +184,17 @@ class Events{
                     $events = $this->getEventWithMaterial($eventStart , $eventEnd);
                 break;
         }
-
         $days = [];
         foreach($events as $event){
-            $date = explode(' ' , $event['eventStartDate'])[0];
+            $date = explode(' ' , $event->eventStartDate)[0];
             if(!isset($days[$date])){
                 $days[$date] = [$event];
             }
             else{
                 $days[$date][] = $event;
+                // echo "<pre>";
+                // var_dump($days[$date]);
+                // echo "</pre>";
             }
         }
         return $days;
