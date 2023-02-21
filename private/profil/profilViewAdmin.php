@@ -1,10 +1,6 @@
-<?php 
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-    include_once APP . "private/treatment/profileProcess/searchProcess.php";
-    $statement = $PDO->prepare("select * from User");
-    $statement->execute();
-    $results = $statement->fetchAll();
+<?php
 
+    $results = "";
     /**
      * array where we do the research
      */
@@ -29,15 +25,20 @@
         if(isset($_POST['searchEmployee'])){
             $searchWord = explode(" " , $_POST['searchEmployee']);
             $searchResult = querySearch($tables ,$searchWord);
+
+      //  $searchStatement = $dataBase->read($tables , );
+
             $searchStatement = $PDO->prepare($searchResult);
             $searchStatement->execute();
             $results = $searchStatement->fetchAll();
             unset($_POST['searchEmployee']);
+
         }
         else{
-            $statement = $PDO->prepare("select * from User");
-            $statement->execute();
-            $results = $statement->fetchAll();
+
+        $results = $dataBase->read("User" , [
+                        "field" => "*"
+                    ]);
         }
         switch ($_GET["add"]) {
             case "false":
@@ -45,7 +46,7 @@
 
             <div class="addButton-searchZone">
                 <a href="<?= URLManagement::addUrlParam(array('add'=>'true')) ?>" class="addEmployeeButton"> <i class="icon-user-plus-bottom"></i> </a>
-                <a href="/public/profil.php?onglet=employees&display=view&add=false" class="refreshButton"> <i class="icon-rotate"></i> </a>
+                <a href="/profil?onglet=employees&display=view&add=false" class="refreshButton"> <i class="icon-rotate"></i> </a>
 
                 <form method="POST" class="searchZone">
                     <input type="search" name="searchEmployee" id="searchEmployee" placeholder="chercher un employé">
@@ -68,7 +69,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach($results as $employee):?>
+                            foreach($results as $employee): ?>
                             <tr class="tableCell">
                                 <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
@@ -76,7 +77,7 @@
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPhone , "PhoneNumber") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
-                                <td class="columnForButton"> <a href="/public/profil.php?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
+                                <td class="columnForButton"> <a href="/profil?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

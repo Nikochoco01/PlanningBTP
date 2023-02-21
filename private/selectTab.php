@@ -4,13 +4,13 @@ if($path === '/profil'):
 <nav class="navTab">
     <ul>
         <li class="buttonTabs <?= URLManagement::activeTab(PARAM_PERSONAL_ONGLET) ?>">
-            <a href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_PERSONAL_ONGLET)) ?>">
+            <a href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_PERSONAL_ONGLET , 'display' => PARAM_VIEW_DISPLAY)) ?>">
                 <i class="icon-user"></i> Personnel
             </a>
         </li>
 
         <li class="buttonTabs <?= URLManagement::activeTab(PARAM_EMPLOYEE_ONGLET) ?>">
-            <a href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_EMPLOYEE_ONGLET))?>">
+            <a href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_EMPLOYEE_ONGLET , 'display' => PARAM_VIEW_DISPLAY))?>">
                <i class="icon-users-group"></i> Employés
             </a>
         </li>

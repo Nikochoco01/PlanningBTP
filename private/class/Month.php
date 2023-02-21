@@ -70,7 +70,6 @@ class Month{
         }
     }
 
-
     /**
      * return the month in full letters
      * 

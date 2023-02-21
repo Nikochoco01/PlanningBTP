@@ -2,7 +2,8 @@
     require_once dirname(__FILE__,2). "/class/Month.php";
     require_once dirname(__FILE__,2). "/class/Events.php";
 
-    $event = new Events($PDO);
+    // $event = new Events($PDO);
+    $event = new Events($dataBase);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $_SESSION['CURRENTWEEK'] = $month->getCurrentWeek();
     $weeks = $month->getWeeks();
@@ -21,7 +22,7 @@
     foreach($month->days as $dayNumber => $day){
         $date = $firstDay->modify("+".($dayNumber + $month->setupWeek($month->week)). "day");
     }
-
+// var_dump($events);
 ?>
 
 <div class="tab" >

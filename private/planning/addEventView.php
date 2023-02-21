@@ -7,7 +7,7 @@
 ?>
 
 <div class="addEvent">
-    <form action="/private/treatment/planningProcess/addEventProcess.php" method="post">
+    <form method="post">
 
         <span>
             <label for="eventDescription"> Description :</label>
@@ -54,10 +54,10 @@
                                 <?php
                                     foreach($workSites as $workSite):?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($workSite['worksiteName'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($workSite['worksiteAddress']) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($workSite->worksiteName, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($workSite->worksiteAddress) ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="radio" name="addWorksite" id="addWorksite" value="<?= $workSite['worksiteId'] ?>" require>
+                                            <input type="radio" name="addWorksite" id="addWorksite" value="<?= $workSite->worksiteId ?>" require>
                                             <label for="addWorksite"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -88,12 +88,12 @@
                                 <?php
                                     foreach($employees as $employee):?>
                                     <tr class="tableCell">
-                                        <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee['userFirstName'] , "uppercaseFirstLetter") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee['userLastName'] , "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($employee['userPosition'] , "uppercase") ?> </td>
+                                        <td scope="row"> <img src="" alt="image de l'employé"> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee['userId']?>">
+                                            <input type="checkbox" name="addEmployee[]" id="addEmployee" value="<?= $employee->userId?>">
                                             <label for="addEmployee"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -124,12 +124,12 @@
                                 <?php
                                     foreach($vehicles as $vehicle):?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleLicensePlate'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleModel']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleMaxPassenger']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($vehicle['vehicleDriverLicense'], "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleLicensePlate, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleModel) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleMaxPassenger) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleDriverLicense, "uppercase") ?> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle['vehicleLicensePlate'] ?>">
+                                            <input type="checkbox" name="addVehicle[]" id="addVehicle" value="<?= $vehicle->vehicleLicensePlate ?>">
                                             <label for="addVehicle"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
@@ -160,12 +160,12 @@
                                 <?php
                                     foreach($materials as $material):?>
                                     <tr class="tableCell">
-                                        <td> <?= InputSecurity::displayWithFormat($material['equipmentName'], "uppercase") ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($material['equipmentTotalQuantity']) ?> </td>
-                                        <td> <?= InputSecurity::displayWithFormat($material['equipmentAvailableQuantity']) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentName, "uppercase") ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentTotalQuantity) ?> </td>
+                                        <td> <?= InputSecurity::displayWithFormat($material->equipmentAvailableQuantity) ?> </td>
                                         <td> <input type="number" name="materialQuantity[]" id="materialQuantity"> </td>
                                         <td class="columnForButton"> 
-                                            <input type="checkbox" name="addMaterial[]" id="addMaterial" value="<?= $material['equipmentName'] ?>">
+                                            <input type="checkbox" name="addMaterial[]" id="addMaterial" value="<?= $material->equipmentName ?>">
                                             <label for="addMaterial"> <i class="icon-user-edit"></i> </label>
                                         </td>
                                     </tr>
