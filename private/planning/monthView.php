@@ -29,7 +29,6 @@
             break;
     }
 
-var_dump($events);
 ?>
 
 <div class="tab" >

@@ -46,7 +46,7 @@ switch ($path) {
         break;
 
     case "/planning":
-        var_dump($_SERVER['PATH_INFO']);
+        // var_dump($_SERVER['PATH_INFO']);
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
             require APP . "public/planning.php";
         }
