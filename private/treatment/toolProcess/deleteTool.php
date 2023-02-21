@@ -4,7 +4,7 @@ if(InputSecurity::validateWithoutNumber($_POST['id'], $id)
     && !InputSecurity::isEmpty($_POST['token'], $token)
     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
         if($token == $sessionToken){
-            $linksToEvent = $db->read("UsedEquipment",
+            $linksToEvent = $dataBase->read("UsedEquipment",
                 [
                     'fields' => ['eventId'],
                     'conditions' => ['equipmentName' => $id]
@@ -12,7 +12,7 @@ if(InputSecurity::validateWithoutNumber($_POST['id'], $id)
             );
             
             foreach($linksToEvent as $event){
-                $db->deleteBtp("UsedEquipment", 
+                $dataBase->deleteBtp("UsedEquipment", 
                     [
                         'eventId' => $event->eventId,
                         'equipmentName' => $id
@@ -20,7 +20,7 @@ if(InputSecurity::validateWithoutNumber($_POST['id'], $id)
                 );
             }
 
-            $db->deleteBtp("Equipment", ['equipmentName' => $id]);
+            $dataBase->deleteBtp("Equipment", ['equipmentName' => $id]);
         }
 
         unset($_SESSION['token']);

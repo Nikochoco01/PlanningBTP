@@ -8,7 +8,7 @@ if( InputSecurity::validateWithoutLetter($_POST['plate'], $licensePlate, "licens
     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
 
         if($token == $sessionToken){
-            $db->add("Vehicle",
+            $dataBase->add("Vehicle",
                 [
                     'vehicleDisponibility' => true,
                     'vehicleModel' => $model,

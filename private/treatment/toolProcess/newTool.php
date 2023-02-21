@@ -5,8 +5,8 @@ if( InputSecurity::validateWithoutNumber($_POST['designation'], $designation)
     && !InputSecurity::isEmpty($_POST['token'], $token)
     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
         if($token == $sessionToken){
-            if(!$db->getOne('Equipment', ['conditions' => ['equipmentName' => $designation]])){
-                $db->add('Equipment', 
+            if(!$dataBase->getOne('Equipment', ['conditions' => ['equipmentName' => $designation]])){
+                $dataBase->add('Equipment', 
                     [
                         'equipmentName' => $designation,
                         'equipmentTotalQuantity' => $total,
@@ -15,7 +15,7 @@ if( InputSecurity::validateWithoutNumber($_POST['designation'], $designation)
                 );
             }
             else{
-                $db->updateBtp('Equipment',
+                $dataBase->updateBtp('Equipment',
                     [
                         'equipmentTotalQuantity' => 
                             [

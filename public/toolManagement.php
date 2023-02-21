@@ -19,7 +19,7 @@ include_once APP . "private/constant/page/head.php";
             <div class="materialContainer">
                 <div class="materialList">
                     <?php 
-                        $results = $db->read('Equipment');
+                        $results = $dataBase->read('Equipment');
                         foreach($results as $res):?>
                             <form class="material" action="/deleteTool" method="post">
                                 <label for="id"> Nom </label>
@@ -53,7 +53,7 @@ include_once APP . "private/constant/page/head.php";
                         </form>
 
                         <?php 
-                        $results = $db->read('Equipment', ['fields' => ['equipmentName']]);
+                        $results = $dataBase->read('Equipment', ['fields' => ['equipmentName']]);
                         if(!empty($results)):?>
                             <form action="/rmvTool" method="post" class="formRemoveMaterial">
                                 <label for="designation">Nom de l'équipement</label>

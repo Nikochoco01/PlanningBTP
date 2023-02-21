@@ -8,7 +8,7 @@ if(InputSecurity::validateWithoutLetter($_POST['id'] , $licensePlate , "licenseP
     && !InputSecurity::isEmpty($_SESSION['token'] , $sessionToken)){
 
         if($token == $sessionToken){
-            $db->updateBtp('Vehicle',
+            $dataBase->updateBtp('Vehicle',
                 [
                     'vehicleModel' => $model,
                     'vehicleDriverlicense' => $driverLicense,

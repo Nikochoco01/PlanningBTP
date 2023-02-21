@@ -5,7 +5,7 @@ if(InputSecurity::validateWithoutLetter($_POST['id'], $id)
     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
         if($token == $sessionToken){
            
-            $db->deleteBtp("Expense", ['expenseId' => $id]);
+            $dataBase->deleteBtp("Expense", ['expenseId' => $id]);
         }
 
         unset($_SESSION['token']);

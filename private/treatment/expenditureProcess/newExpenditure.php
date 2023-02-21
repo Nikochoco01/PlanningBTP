@@ -9,7 +9,7 @@ if( InputSecurity::validateWithoutLetter($_POST['price'], $price)
     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)){
         
         if($token == $sessionToken){
-            $db->save("Expense",
+            $dataBase->saveBtp("Expense",
                 [
                     'expenseDate' => Date("Y-m-d H:m:s"),
                     'expenseAmount' => $price,

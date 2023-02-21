@@ -5,15 +5,14 @@ if(InputSecurity::validateWithoutNumber($_POST["designation"] , $designation)
     && !InputSecurity::isEmpty($_POST["token"] , $token) 
     && !InputSecurity::isEmpty($_SESSION["token"] , $sessionToken)){
         if($_POST["token"] == $sessionToken){
-                $res = $db->read("Equipment",
+                $res = $dataBase->read("Equipment",
                         [
                                 'fields' => ['equipmentTotalQuantity', 'equipmentAvailableQuantity'],
                                 'conditions' => ['equipmentName' => $designation]
                         ]
                 );
-                $stat = $PDO->prepare("UPDATE Equipment SET equipmentTotalQuantity = equipmentTotalQuantity - :rmv, equipmentAvailableQuantity = equipmentAvailableQuantity - :rmv WHERE equipmentName = :designation");
                 if($res->equipmentAvailableQuantity > $removeQuantity){
-                        $db->updateBtp('Equipment', 
+                        $dataBase->updateBtp('Equipment', 
                                 [
                                         'equipmentTotalQuantity' => 
                                         [
@@ -36,7 +35,7 @@ if(InputSecurity::validateWithoutNumber($_POST["designation"] , $designation)
                         );
                 }
                 else{
-                        $db->updateBtp('Equipment', 
+                        $dataBase->updateBtp('Equipment', 
                                 [
                                         'equipmentTotalQuantity' => 
                                         [

@@ -18,7 +18,7 @@
 
                 <div class="invoiceList">
                     <?php
-                        $results = $db->read("Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId",
+                        $results = $dataBase->read("Expense e join Worksite w on e.worksiteId = w.worksiteId join Event v on e.eventId = v.eventId",
                             [
                                 'conditions' => ['userId' => $_SESSION['userId']],
                                 'fields' => ['e.expenseId', 'e.expenseDate', 'e.expenseAmount', 'e.expenseDescription', 'w.worksiteName', 'v.eventDescription'],
@@ -47,7 +47,7 @@
                     <select name="worksite" id="worksite" list="worksites" required>
                         <option value="">-- Choix du chantier --</option>
                         <?php
-                        $results = $db->read("Worksite", 
+                        $results = $dataBase->read("Worksite", 
                             ['fields' => 
                                 [
                                     'worksiteId',

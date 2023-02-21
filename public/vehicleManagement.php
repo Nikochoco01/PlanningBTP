@@ -19,7 +19,7 @@ include_once APP . "private/constant/page/head.php";
             <div class="vehicleContainer">
                 <div class="vehiculeList">
                     <?php 
-                        $results = $db->read("Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName",
+                        $results = $dataBase->read("Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName",
                             [
                                 'fields' => ['v.vehicleLicensePlate', 'v.vehicleModel', 'v.vehicleMaxPassenger', 'v.vehicleDriverLicense']
                             ]
@@ -57,7 +57,7 @@ include_once APP . "private/constant/page/head.php";
                                     <select name="license" id="license<?= $i ?>" list="licenses" required>
                                         <?php 
                                         $resul =
-                                        $results = $db->read('DriverLicense', ['fields' => ['driverLicenseName', 'driverLicenseMaxPassenger']]);
+                                        $results = $dataBase->read('DriverLicense', ['fields' => ['driverLicenseName', 'driverLicenseMaxPassenger']]);
                                         foreach($resul as $resu):?>
                                             <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseName?"selected":""?>> <?= InputSecurity::displayWithFormat($resu->driverLicenseName, "uppercase") ?>
                                     <?php endforeach; ?>
@@ -91,7 +91,7 @@ include_once APP . "private/constant/page/head.php";
                         <select name="license" id="license" list="licenses" required>
                             <option value="">-- Choix du Permis --</option>
                             <?php 
-                            $results = $db->read('DriverLicense', ['fields' => ['driverLicenseName', 'driverLicenseMaxPassenger']]);
+                            $results = $dataBase->read('DriverLicense', ['fields' => ['driverLicenseName', 'driverLicenseMaxPassenger']]);
                             foreach($results as $res):?>
                                 <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= InputSecurity::displayWithFormat($res->driverLicenseName, "uppercase") ?>
                             <?php endforeach; ?>

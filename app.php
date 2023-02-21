@@ -11,9 +11,7 @@ include_once APP . "private/dataBase/Database.php";
 include_once APP . "private/dataBase/dataBaseConnection.php";
 include_once APP . "private/class/InputSecurityClass.php";
 
-$db = new Database;
 include_once APP . "private/treatment/profileProcess/searchProcess.php";
-
 
 $path = $_SERVER["PATH_INFO"] ?? "/";
 $dataBase = new Database();
