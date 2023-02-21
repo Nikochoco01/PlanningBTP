@@ -1,6 +1,4 @@
 <?php
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
 
@@ -21,18 +19,17 @@ include_once APP . "private/constant/page/head.php";
             <div class="materialContainer">
                 <div class="materialList">
                     <?php 
-                        $stat = $PDO->prepare("SELECT * FROM Equipment");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+                        $results = $db->read('Equipment');
                         foreach($results as $res):?>
-                            <form class="material" action="/delete" method="post">
+                            <form class="material" action="/deleteTool" method="post">
                                 <label for="id"> Nom </label>
                                 <input type="text" name="id" value="<?= InputSecurity::displayWithFormat($res->equipmentName, "uppercaseFirstLetter") ?>" readonly>
+                                
                                 <p> Total : <?= $res->equipmentTotalQuantity ?></p>
+                                
                                 <p> Disponible : <?= $res->equipmentAvailableQuantity ?></p>
+                                
                                 <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
-                                <input type="hidden" name="table" value="Equipment">
-                                <input type="hidden" name="idName" value="equipmentName">
                                 <?php if($rightToModify):?>
                                     <input type="submit" value="Effacer">
                                 <?php endif; ?>
@@ -56,15 +53,13 @@ include_once APP . "private/constant/page/head.php";
                         </form>
 
                         <?php 
-                        $stat = $PDO->prepare("select equipmentName from Equipment");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+                        $results = $db->read('Equipment', ['fields' => ['equipmentName']]);
                         if(!empty($results)):?>
-                            <form action="rmvTool" method="post" class="formRemoveMaterial">
+                            <form action="/rmvTool" method="post" class="formRemoveMaterial">
                                 <label for="designation">Nom de l'équipement</label>
                                 <select name="designation" id="des" required>
                                     <?php foreach($results as $res):?>
-                                        <option><?= $res->equipmentName ?></option>
+                                        <option><?= InputSecurity::displayWithFormat($res->equipmentName, "uppercaseFirstLetter") ?></option>
                                     <?php endforeach;?>
                                 </select>
 

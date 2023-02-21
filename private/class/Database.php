@@ -337,9 +337,9 @@ class Database
             case self::FORMAT_NUMBER:
                 return str_replace('"', "", $value);
             case self::FORMAT_STRING:
-                return '"' . $value . '"';
+                return '"' . str_replace('"', "", $value) . '"';
             default:
-                return '"' . $value . '"';
+                return '"' . str_replace('"', "", $value) . '"';
         }
     }
 }

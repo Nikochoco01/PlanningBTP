@@ -69,6 +69,8 @@ switch($path){
     case "/vehicleMod":
         if($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "vehicleProcess/modifyVehicleProcess.php";
+        else            
+            header("Location:".$_SERVER['HTTP_REFERER']);
         break;
 
     case "/tool":
@@ -80,22 +82,37 @@ switch($path){
 
     case "/rmvTool":
         if($_SERVER["REQUEST_METHOD"] == "POST")
-            require TREAT . "toolProcess/RemoveToolProcess.php";
+            require TREAT . "toolProcess/removeToolProcess.php";
+        else            
+            header("Location:".$_SERVER['HTTP_REFERER']);
+        break;
+    
+    case "/deleteTool":
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+            require TREAT . "toolProcess/deleteTool.php";
+        else            
+            header("Location:".$_SERVER['HTTP_REFERER']);
         break;
 
     case "/delete":
         if($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "delete.php";
+        else            
+            header("Location:".$_SERVER['HTTP_REFERER']);
         break;
 
     case "/vehicleDelete":
         if($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "vehicleProcess/deleteVehicle.php";
+        else            
+            header("Location:".$_SERVER['HTTP_REFERER']);
         break;
 
     case "/logout":
         if($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "indexProcess/logOutProcess.php";
+        else            
+            header("Location:".$_SERVER['HTTP_REFERER']);
         break;
 
     default:
