@@ -10,7 +10,6 @@ include_once APP . "private/constant/constant.php";
 include_once APP . "private/dataBase/Database.php";
 include_once APP . "private/dataBase/dataBaseConnection.php";
 include_once APP . "private/class/InputSecurityClass.php";
-include_once APP . "private/class/Database.php";
 
 $db = new Database;
 include_once APP . "private/treatment/profileProcess/searchProcess.php";
