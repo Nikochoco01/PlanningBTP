@@ -176,9 +176,6 @@ class InputSecurity{
         if(InputSecurity::isEmpty($input , $inputProcessing) == true){
             return false;
         }
-        // else{
-        //     $inputProcessing = InputSecurity::isEmpty($input, $inputProcessing);
-        // }
 
         if(preg_match($REGEX , $inputProcessing)){
             $return = $inputProcessing;
@@ -200,15 +197,21 @@ class InputSecurity{
     */
     public static function validatePassWord($input , & $return){
         InputSecurity::isEmpty($input , $inputProcessing);
+
         $REGEX = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
-        if(preg_match($REGEX , $inputProcessing)){
+        if(preg_match($REGEX , $input)){
             $return = $inputProcessing;
             return true;
         }
-        else{
-            InputSecurity::returnError(InputSecurity::$errorPasswordLength);
-            return false;
-        }
+        // if(preg_match($REGEX , $inputProcessing)){
+        //     var_dump("val: " .$inputProcessing);
+        //     $return = $inputProcessing;
+        //     return true;
+        // }
+        // else{
+        //     InputSecurity::returnError(InputSecurity::$errorPasswordLength);
+        //     return false;
+        // }
     }
 
     // public static function validatePicture($input){
