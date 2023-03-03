@@ -57,6 +57,7 @@ include_once APP ."private/constant/page/head.php";
                 $getId->execute();
                 $getId = $getId->fetch();
                 $getId = $getId->userId;
+                var_dump($getId);
 
                 // temporaire 
                 $sql  = "select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime where userId = $getId and workTimeWeek = $week";

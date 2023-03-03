@@ -26,16 +26,15 @@ class Picture{
 
         public static function add($dataBase, $userId = null, $name, $size, $type, $bin){
             if($userId != null){
-                return $dataBase->save("Picture", [
-                    "picrtureId" => ["$userId"],
-                    "userId" => ["$userId"],
-                    "picrtureName" => ["$name"],
-                    "picrtureSize" => ["$size"],
-                    "picrtureType" => ["$type"],
-                    "picrtureBin" => ["$bin"]
+                $dataBase->save("Picture", [
+                    "picrtureId" => "$userId",
+                    "userId" => "$userId",
+                    "picrtureName" => "$name",
+                    "picrtureSize" => "$size",
+                    "picrtureType" => "$type",
+                    "picrtureBin" => "$bin"
                 ]);
             }
-            return [];
         }
 
         public static function modify($dataBase, $userId = null){

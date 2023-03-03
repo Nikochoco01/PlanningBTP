@@ -15,7 +15,7 @@ include_once APP . "private/constant/page/head.php";
             <main>
                 <img src="/private/treatment/indexProcess/export.php?pictureId=<?php echo $_SESSION['userId']; ?>" alt="pas d'image de profil">
                 <?php var_dump(Picture::display($dataBase, $_SESSION['userId']));?>
-                <?php Picture::add("4", "4", "deft.png", "721", "image/png", "010011100001111"); ?>
+                <?php Picture::add($dataBase, "4", "4", "deft.png", "721", "image/png", "010011100001111"); ?>
             </main>
     </div>
 </body>
