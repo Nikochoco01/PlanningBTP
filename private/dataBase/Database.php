@@ -176,7 +176,6 @@ class Database
         if ($options['limit']) {
             $req .= " LIMIT " . $options['offset'] . ", " . $options['limit'];
         }
-
         // on retourne les résultats
         $stmt = $this->query($req, $condition['values']);
         $result = $one ? $stmt->fetch() : $stmt->fetchAll();

@@ -25,7 +25,6 @@ include_once APP ."private/constant/page/head.php";
                     }
                     function affichage($totalHours){
                         //Heures au format (hh:mm:ss) la plus grande puis la plus petite
-
                         $tab = explode(":", $totalHours);
 
                         $h = $tab[0]; // récupère la partie heures endTime
@@ -41,39 +40,34 @@ include_once APP ."private/constant/page/head.php";
 
                     $week = date('W');
 
-                    // temporaire 
-                   // $sql  = "select sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours from WorkTime where userId = $getId and workTimeWeek = $week";
-                    // foreach($PDO->query($sql) as $row){
-                    // if($row->totalHours != null){
-                    //         $diff = $row->totalHours;
-                    // }
-                    // }
-
-                    $horaires = $dataBase->read("WorkTime" , [
+                    $differenceBetween = $dataBase->read("WorkTime" , [
                         "conditions" => ['userId' => $_SESSION['userId'] , "workTimeWeek" => $week],
-                        "fields" => ['sec_to_time(sum(time_to_sec(workTimeTotalHours))) as' => 'totalHours']
-                    ]);
-                    var_dump($horaires);
+                        "fields" => ['sec_to_time(sum(time_to_sec(workTimeTotalHours))) as totalHours']
+                    ])[0];
 
                  // $horaire  = "select * from WorkTime where userId = $ and workTimeWeek = $week order by workTimeDay ASC";
+                    $schedules = $dataBase->read("WorkTime",[
+                        "conditions" => ["userId" => $_SESSION['userId'] , "workTimeWeek" => $week],
+                        "order" => ["workTimeDay ASC"]
+                    ]);
                     ?>
                     <div class="horaireContant">
 
-                        <?php foreach($PDO->query($horaire) as $row):?>
+                        <?php foreach($schedules as $schedule):?>
                             <div class="horaire">
-                                    <p>Jour : <?= $row->workTimeDay ?>
-                                    Semaine : <?=$row->workTimeWeek ?>
-                                    Mois : <?= $row->workTimeMonth ?>
-                                    Heures de la journée : <?= $row->workTimeTotalHours ?></p>
+                                    <p>Jour : <?= $schedule->workTimeDay ?>
+                                    Semaine : <?=$schedule->workTimeWeek ?>
+                                    Mois : <?= $schedule->workTimeMonth ?>
+                                    Heures de la journée : <?= $schedule->workTimeTotalHours ?></p>
                             </div>
                         <?php endforeach; ?>
                     </div>
                     <span class="separator"></span>
                     <div class="recap">
-                        <?php if (!isset($diff)) : ?>
+                        <?php if (!isset($differenceBetween)) : ?>
                             <p>Les heures effectuées cette semaine: 0:00</p>
                         <?php else: ?>
-                            <p>Les heures effectuées cette semaine: <?= affichage($diff); ?></p>
+                            <p>Les heures effectuées cette semaine: <?= affichage($differenceBetween->totalHours); ?></p>
                         <?php endif; ?>
                     </div>
 

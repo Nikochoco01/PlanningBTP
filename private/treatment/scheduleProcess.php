@@ -1,5 +1,4 @@
 <?php
-include_once APP . "private/dataBase/dataBaseConnection.php";
 function diff_time($t1, $t2)
 {
     //Heures au format (hh:mm:ss) la plus grande puis la plus petite 
@@ -39,51 +38,40 @@ if (isset($_POST['startTime']) && isset($_POST['endTime']) && $_POST['dayInput']
             unset($_SESSION['error']);
             // echo "c'est tout bon" . "<br>";
             // echo date('W') . "<br>";
-            $w = date("W");
+            $week = date("W");
             // echo date('m') . "<br>";
-            $m = date("m");
+            $month = date("m");
             // echo date('Y') . "<br>";
-            $y = date("Y");
+            $year = date("Y");
             // echo $_POST['endTime'] . "<br>" . $_POST['startTime'] . "<br>";
             $diff = diff_time($_POST['endTime'], $_POST['startTime']);
-            // echo $diff . " test 1" . "<br>";
-            // $diff = date("h:i", strtotime($diff));
-            // echo $diff . " test 2" . "<br>";
-            $getId = $PDO->prepare("select userId from Login where loginUsername = :userName");
-            $getId->bindParam("userName", $_SESSION['userName']);
-            $getId->execute();
-            $getId = $getId->fetch();
-            $getId = $getId->userId;
+            
+            $test = $dataBase->read("WorkTime",[
+                "conditions" => ["userId" => $_SESSION["userId"] , "workTimeDay" => $_POST['dayInput'] , 
+                                "workTimeWeek" => $week , "workTimeMonth" => $month , "workTimeYear" => $year ],
+                "fields" => ["userId"]
+            ]);
 
-            $test = $PDO->prepare('select userId from WorkTime where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
-            $test->bindParam('id', $getId);
-            $test->bindParam("d", $_POST['dayInput']);
-            $test->bindParam("week", $w);
-            $test->bindParam('m', $m);
-            $test->bindParam('Y', $y);
-            $test->execute();
-            $test = $test->fetch();
-            // var_dump($test);
+            var_dump($test);
             if (!isset($test->userId)) {
-                $sth = $PDO->prepare('INSERT INTO WorkTime(userId, workTimeDay, workTimeWeek, workTimeMonth, workTimeYear, workTimeTotalHours) VALUES (:id, :d, :week, :m, :Y, :diff)');
-                $sth->bindParam('id', $getId);
-                $sth->bindParam("d", $_POST['dayInput']);
-                $sth->bindParam("week", $w);
-                // $sth->bindParam('W', $w); // à voir pour éviter le problème d'une saisie par semaine
-                $sth->bindParam('m', $m);
-                $sth->bindParam('Y', $y);
-                $sth->bindParam('diff', $diff);
-                $sth->execute();
+                $dataBase->save("WorkTime",[
+                    "userId" => $_SESSION['userId'],
+                    "workTimeDay" => $_POST['dayInput'],
+                    "workTimeWeek" => $week,
+                    "workTimeMonth" => $month,
+                    "workTimeYear" => $year,
+                    "workTimeTotalHours" => $diff
+                ], $_SESSION['userId']);
             } else {
                 // echo "j'update";
-                $up = $PDO->prepare('UPDATE WorkTime set workTimeTotalHours = :diff where userId = :id and workTimeDay = :d and workTimeWeek = :week and workTimeMonth = :m and workTimeYear = :Y');
-                $up->bindParam('diff', $diff);
-                $up->bindParam('id', $getId);
-                $up->bindParam("d", $_POST['dayInput']);
-                $up->bindParam("week", $w);
-                $up->bindParam('m', $m);
-                $up->bindParam('Y', $y);
-                $up->execute();
+                $dataBase->save("WorkTime",[
+                    "userId" => $_SESSION['userId'],
+                    "workTimeDay" => $_POST['dayInput'],
+                    "workTimeWeek" => $week,
+                    "workTimeMonth" => $month,
+                    "workTimeYear" => $year,
+                    "workTimeTotalHours" => $diff
+                ], $_SESSION['userId']);
             }
         } else {
             // echo "erreur input";
