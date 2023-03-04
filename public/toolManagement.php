@@ -1,6 +1,4 @@
 <?php
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
 
@@ -20,10 +18,10 @@ include_once APP . "private/constant/page/head.php";
         <main>
             <div class="materialContainer">
                 <div class="materialList">
-                    <?php 
-                        $stat = $PDO->prepare("SELECT * FROM Equipment");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+                    <?php
+                        $results = $dataBase->read("Equipment",[
+                            "fields" => ["distinct *"]
+                        ]);
                         foreach($results as $res):?>
                             <form class="material" action="/delete" method="post">
                                 <label for="id"> Nom </label>
@@ -55,10 +53,10 @@ include_once APP . "private/constant/page/head.php";
                             <button type="reset">Annuler</button>
                         </form>
 
-                        <?php 
-                        $stat = $PDO->prepare("select equipmentName from Equipment");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+                        <?php
+                        $results = $dataBase->read("Equipment",[
+                            "fields" => ["equipmentName"]
+                        ]);
                         if(!empty($results)):?>
                             <form action="rmvTool" method="post" class="formRemoveMaterial">
                                 <label for="designation">Nom de l'équipement</label>

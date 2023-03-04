@@ -1,6 +1,4 @@
 <?php
-    include_once APP . "private/dataBase/dataBaseConnection.php";
-
     $_SESSION['token'] = InputSecurity::generateToken(10);
 ?>
 
@@ -21,9 +19,10 @@ include_once APP . "private/constant/page/head.php";
             <div class="vehicleContainer">
                 <div class="vehiculeList">
                     <?php 
-                        $stat = $PDO->prepare("select v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense from Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName");
-                        $stat->execute();
-                        $results = $stat->fetchAll();
+
+                        $results = $dataBase->read("Vehicle v join DriverLicense d on v.vehicleDriverLicense = d.driverLicenseName",[
+                            "fields" => ["v.vehicleLicensePlate, v.vehicleModel, v.vehicleMaxPassenger, v.vehicleDriverLicense"]
+                        ]);
                         $i = 0;
                         foreach($results as $res):?>
                             <form class="vehicule" method="post">
@@ -54,12 +53,12 @@ include_once APP . "private/constant/page/head.php";
 
                                     <label for="license"> Permis </label>
                                     <select name="license" id="license<?= $i ?>" list="licenses" required>
-                                        <?php 
-                                        $sta = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
-                                                    
-                                        $sta->execute();
-                                        $resul = $sta->fetchAll();
-                                        foreach($resul as $resu):?>
+                                        <?php
+                                        $results = $dataBase->read("DriverLicense",[
+                                            "fields" => ["driverLicenseName, driverLicenseMaxPassenger"]
+                                        ]);
+
+                                        foreach($results as $resu):?>
                                             <option max="<?= $resu->driverLicenseMaxPassenger ?>" <?= $res->vehicleDriverLicense == $resu->driverLicenseName?"selected":""?>> <?= $resu->driverLicenseName ?>
                                     <?php endforeach; ?>
                                     </select>
@@ -93,11 +92,10 @@ include_once APP . "private/constant/page/head.php";
                         <label for="license">Permis nécessaire</label>
                         <select name="license" id="license" list="licenses" required>
                             <option value="">-- Choix du Permis --</option>
-                            <?php 
-                            $stat = $PDO->prepare("select driverLicenseName, driverLicenseMaxPassenger from DriverLicense;");
-                            
-                            $stat->execute();
-                            $results = $stat->fetchAll();
+                            <?php
+                            $results = $dataBase->read("DriverLicense",[
+                                "fields" => ["driverLicenseName, driverLicenseMaxPassenger"]
+                            ]);
                             foreach($results as $res):?>
                                 <option max="<?= $res->driverLicenseMaxPassenger ?>"> <?= $res->driverLicenseName ?>
                             <?php endforeach; ?>
