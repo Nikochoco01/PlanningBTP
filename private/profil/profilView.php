@@ -1,5 +1,5 @@
 <div class="profilView">
-    <img src="/private/treatment/indexProcess/export.php?pictureId=<?= $_SESSION['userId']; ?>" alt="photo de profil">
+    <img src="data:image/;base64,<?=Picture::display($dataBase, $_SESSION['userId'])?>" alt="test">
     <p>
         <span class="label"> <i class="icon-user"></i> Nom d'utilisateur:</span>
         <span class="userInfo">

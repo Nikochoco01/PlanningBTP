@@ -19,7 +19,7 @@ class Picture{
                 return $dataBase->read("Picture" , [
                         "conditions" => ["userId" => "$userId"],
                         "fields" => ["pictureBin"]
-                    ]);
+                    ])[0]->pictureBin;
             }
             return [];
         }
@@ -27,12 +27,12 @@ class Picture{
         public static function add($dataBase, $userId = null, $name, $size, $type, $bin){
             if($userId != null){
                 $dataBase->save("Picture", [
-                    "picrtureId" => "$userId",
+                    "pictureId" => "$userId",
                     "userId" => "$userId",
-                    "picrtureName" => "$name",
-                    "picrtureSize" => "$size",
-                    "picrtureType" => "$type",
-                    "picrtureBin" => "$bin"
+                    "pictureName" => "$name",
+                    "pictureSize" => "$size",
+                    "pictureType" => "$type",
+                    "pictureBin" => "$bin"
                 ]);
             }
         }

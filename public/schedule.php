@@ -64,7 +64,7 @@ include_once APP ."private/constant/page/head.php";
                 foreach($PDO->query($sql) as $row){
                 if($row->totalHours != null){
                         $diff = $row->totalHours;
-                }
+                    }
                 }
 
                 // var_dump($schedule);
@@ -84,6 +84,13 @@ include_once APP ."private/constant/page/head.php";
                 // }
                 $horaire  = "select * from WorkTime where userId = $getId and workTimeWeek = $week order by workTimeDay ASC";
                 ?>
+                
+                <?php
+                    $d=cal_days_in_month(CAL_GREGORIAN,02,2023);
+                    $days = date("t");
+                    echo $days;
+                ?> 
+                
                 <div class="horaireContant">
 
                     <?php foreach($PDO->query($horaire) as $row):?>

@@ -1,6 +1,7 @@
 <?php
 include_once APP . "/private/class/InputSecurityClass.php";
 include_once APP . "/private/dataBase/dataBaseConnection.php";
+include_once APP . "/private/class/Picture.php"; 
 // test FirstName
 $testFirstName = InputSecurity::validateWithoutNumber($_POST['userFirstName'], $firstName);
 
@@ -24,19 +25,25 @@ $userId = $_POST['userId'];
 // var_dump($_FILES["userPicture"]["name"]!="");
 // var_dump($_FILES["userPicture"]["name"]);
 if ($_FILES["userPicture"]["name"] != "") {
-    $test = $PDO->prepare("select pictureId from Picture where userId = $userId");
-    $test->execute();
-    $test = $test->fetch();
-    //var_dump($test->pictureId);
-    if (empty($test->pictureId)) {
-        $req = $PDO->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
-        $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
-        //echo "if";
-    } else {
-        $req = $PDO->prepare("update Picture set pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ? where userId = $userId");
-        $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
-        //echo "else";
-    }
+    $pictureName = $_FILES["userPicture"]["name"];
+    $pictureSize = $_FILES["userPicture"]["size"];
+    $pictureType = $_FILES["userPicture"]["type"];
+    $pictureBin = base64_encode(file_get_contents($_FILES["userPicture"]["tmp_name"]));
+
+    Picture::add($dataBase , $_SESSION['userId'] , $pictureName , $pictureSize , $pictureType , $pictureBin );
+    // $test = $PDO->prepare("select pictureId from Picture where userId = $userId");
+    // $test->execute();
+    // $test = $test->fetch();
+    // //var_dump($test->pictureId);
+    // if (empty($test->pictureId)) {
+    //     $req = $PDO->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
+    //     $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+    //     //echo "if";
+    // } else {
+    //     $req = $PDO->prepare("update Picture set pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ? where userId = $userId");
+    //     $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+    //     //echo "else";
+    // }
     //$req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
 }
 
