@@ -18,7 +18,7 @@
         <div class="iconAddPicture">
             <i class="icon-image-plus"></i>
         </div>
-        <img src="/private/treatment/indexProcess/export.php?pictureId=<?= $_GET['employee'] ?>" alt="user Picture">
+        <img src="<?=Picture::display($dataBase, $_GET['employee'])?>" alt="user Picture">
         <input type="file" name="userPicture" id="userPicture">
     </label>
 

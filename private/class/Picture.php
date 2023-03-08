@@ -16,10 +16,15 @@ class Picture{
     */
         public static function display($dataBase, $userId = null){
             if($userId != null){
-                return $dataBase->read("Picture" , [
+                $res = $dataBase->read("Picture" , [
                         "conditions" => ["userId" => "$userId"],
                         "fields" => ["pictureBin"]
-                    ])[0]->pictureBin;
+                    ]);
+                if($res){
+                    return "data:image/;base64," . $res[0]->pictureBin;
+                }else{
+                    return "/img/defaultPP.png";
+                }
             }
             return [];
         }

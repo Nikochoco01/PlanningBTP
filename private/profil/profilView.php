@@ -1,5 +1,5 @@
 <div class="profilView">
-    <img src="data:image/;base64,<?=Picture::display($dataBase, $_SESSION['userId'])?>" alt="test">
+    <img src="<?=Picture::display($dataBase, $_SESSION['userId'])?>" alt="User Picture">
     <p>
         <span class="label"> <i class="icon-user"></i> Nom d'utilisateur:</span>
         <span class="userInfo">

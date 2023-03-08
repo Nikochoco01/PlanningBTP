@@ -30,7 +30,8 @@ if ($_FILES["userPicture"]["name"] != "") {
     $pictureType = $_FILES["userPicture"]["type"];
     $pictureBin = base64_encode(file_get_contents($_FILES["userPicture"]["tmp_name"]));
 
-    Picture::add($dataBase , $_SESSION['userId'] , $pictureName , $pictureSize , $pictureType , $pictureBin );
+    Picture::add($dataBase , $userId , $pictureName , $pictureSize , $pictureType , $pictureBin );
+    var_dump($userId);
     // $test = $PDO->prepare("select pictureId from Picture where userId = $userId");
     // $test->execute();
     // $test = $test->fetch();
