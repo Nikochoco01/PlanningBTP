@@ -1,2057 +1,308 @@
-:root{
-    --mainColor: #ED7D31;
-    --transparentMainColor: rgba(237, 125, 49 , 0.7);
-
-    --secondaryColor: #303030;
-    --transparentSecondaryColor: rgba(255, 192, 0 , 0.5);
-
-    --shadowColor: rgba(0 , 0 , 0 , 0.5);
-    --textColorBlack: #000;
-    --transparentTextColorBlack: rgba(0, 0, 0, 0.5);
-    --textColorWhite : rgba(231 , 231 , 231 , 1);
-}
-
-/******************************
-*
-    Style for page 
-*
-*****************************/
-
 *{
+    --orange : #ED7D31;
+    --bg-login : #303030;
+    --gray : #303030;
+    --white: #fff;
+    --white-transparent: #ffffff8f;
     margin: 0;
     padding: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body{
-    margin: 0;
-    padding: 0;
-    background-color: rgba(231 , 231 , 231 , 1);
-    font-weight: bold;
-}
-
-.layout{
-    display: grid;
-    grid-template-columns: repeat(12 , 1fr);
-    grid-auto-rows: 1fr;
-}
-
-/******************************
-*
-    Style for login page
-*
-*****************************/
-
-.logBody{
-    display: flex;
-    flex-direction: column;
     width: 100%;
     height: 100vh;
 }
 
-.logMain{
+/*========================================
+*
+* Default Class
+*
+*=======================================*/
+
+/*====================
+*
+* input layout
+*
+*====================*/
+.input-field{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.input-field input{
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    padding:10px 50% 10px 5px;
+}
+
+.input-field label{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    pointer-events:none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: 0.2s ease all; 
+}
+
+.input-field input:focus{
+    outline: none;
+}
+
+.input-field input:focus ~ label, .input-field input:valid ~ label{
+    font-size: small;
+    top: -30px;
+    transition: 0.2s ease all; 
+}
+
+/*====================
+*
+* btn class
+*
+*====================*/
+.btn{
+    position: relative; /* mettre le positionnement sur le grid */
+    left: 418px;
+    top: -35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondaryColor);
+    /* padding: 6px 10px 10px 10px; */
+    border-radius: 5px;
+    width: 40px;
+    height: 36px;
+}
+
+.btn-input{
+    background-color: var(--gray);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    width: 20%;
+    height: 30px;
+}
+
+.btn-input:hover{
+    transition: 0.2s ease all;
+    background-color: var(--white-transparent);
+    font-weight: bold;
+    color: var(--gray);
+}
+
+/*====================
+*
+* grid layout
+*
+*====================*/
+.grid-c5-r3{
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    grid-template-rows: repeat(3 ,1fr);
+}
+
+.grid-c5-r4{
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    grid-template-rows: repeat(4 ,1fr);
+}
+
+.align-self-center{
+    align-self: center;
+}
+
+/*====================
+*
+* font class
+*
+*====================*/
+.font-bold{
+    font-weight: bold;
+}
+
+/*====================
+*
+* color class
+*
+*====================*/
+
+.bg-color-orange{
+    background-color: var(--orange);
+}
+
+.bg-color-gray{
+    background-color: var(--gray);
+}
+
+/*========================================
+*
+*========== Main Option Website ==========
+*
+*=======================================*/
+
+/*====================
+*
+* grid layout website
+*
+*====================*/
+.container{
+    display: grid;
+    grid-template-columns: repeat(12 , 1fr);
+    grid-template-rows: repeat(8 , 1fr);
+    column-gap: 0px;
+    row-gap: 0px;
+    background-color: var(--bg-login);
     width: 100%;
     height: 100%;
 }
 
-.logForm{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10%;
-    padding-top: 1%;
-    background-color: var(--mainColor);
-    border-radius: 50px;
-    box-shadow: 1px 1px 10px var(--textColorBlack);
-    width: 40%;
-    height: 55%;
-}
-
-.logForm form{
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-50% , -60%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10%;
-    width: 80%;
-    height: 80%;
-}
-
-.logForm form p{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    gap: 2px;
-    width: 50%;
-    font-size: 1.2em;
-}
-
-
-.logForm form p span{
-    display: flex;
-    gap: 1%;
-}
-
-.logForm form p span a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 320px;
-    text-decoration: none;
-    color: var(--textColorBlack);
-    align-self: center;
-    background-color: var(--secondaryColor);
-    border-radius: 50px;
-    width: 40px;
-    height: 40px;
-}
-
-.logForm form p span a:hover{
-    transform: scale(1.1);
-}
-
-.logForm form p span i{
-    align-self: center;
-    font-size: 1.2em;
-}
-
-.logForm .inputLog{
-    border: 0px solid;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-}
-
-.logForm .inputLog:focus{
-    outline: none;
-    caret-color: var(--mainColor);
-}
-
-.logForm form .userName{
-    position: absolute;
-    top: 100px;
-}
-
-.logForm form .passWord{
-    position: absolute;
-    top: 200px;
-}
-
-
-.logForm input[type = "submit"]{
-    position: absolute;
-    bottom: 20%;
-    align-self: center;
-    border:  1px solid var(--textColorBlack);
-    border-radius: 50px;
-    cursor: pointer;
-    width: 200px;
-    height: 35px;
-}
-
-.logForm input[type = "submit"]:hover{
-    transform: scale(1.1);
-}
-
-.logForm input[type = "reset"]{
-    position: absolute;
-    bottom: 10%;
-    align-self: center;
-    border:  1px solid var(--textColorBlack);
-    border-radius: 50px;
-    cursor: pointer;
-    width: 200px;
-    height: 35px;
-}
-
-.logForm input[type = "reset"]:hover{
-    transform: scale(1.1);
-}
-
-/******************************
+/*====================
 *
-    Style for header 
+* Header website
 *
-*****************************/
+*====================*/
 
-header{
+.header{
+    grid-area: 1 / 1 / 2 / 13; /* row-start , column-end, row-end , column-end */
     display: grid;
-    grid-template-columns: repeat(5 , 1fr);
-    grid-column: span 12;
-    grid-row: 1;
-    background-color: var(--mainColor);
-    padding: 10px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
-header h1{
-    grid-column: 3;
-    align-self: center;
-    justify-self: center;
+.title-page{
+    grid-area: 1 / 6 / 2 / 8;
 }
 
-.profilZone{
-    position: relative;
-    grid-column: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/*====================
+*
+* profil menu
+*
+*====================*/
+
+.profil-zone{
+    grid-area: 1 / 11 / 2 / 12;
 }
 
-#profilButton{
+.profil-image-button{
     border-radius: 10px;
     transition: 0.5s;
     width: 65px;
     height: 65px;
 }
 
-#profilButton img{
-    border-radius: 10px;
-    transition: 0.5s;
-    width: 65px;
-    height: 65px;
-}
-
-#profilButton:hover{
+.profil-image-button:hover{
     cursor: pointer;
     transform: scale(1.1);
 }
 
-#profilButton:focus img{
+.profil-image-button:focus{
     transform: scale(1.1);
     border-radius: 50px;
     transition: 1.2s;
 }
 
-.profilMenu{
-    position: absolute;
-    top: 165%;
-    z-index: -1;
+.profil-menu{
+
+}
+
+/*========================================
+*
+*=========== Login Page Option ===========
+*
+*========================================*/
+
+/*=======================
+*
+* grid layout Login Page
+*
+*=======================*/
+
+.main-login{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8%;
-    color: var(--mainColor);
+    grid-area: 1 / 1 / 9 / 13; /* row-start , column-end, row-end , column-end */
+}
+
+/*=======================
+*
+* grid layout Login card
+*
+*=======================*/
+
+.card-login{
     border-radius: 20px;
-    background-color: var(--secondaryColor);
-    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
-    backdrop-filter: blur(10px);
-    /* border: 1px solid var(--transparentSecondaryColor); */
-    transition: 0.5s;
-    opacity: 0;
-    width: 210px;
-    height: 150px;
-}
-
-.profilMenu form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 2px solid var(--mainColor);
-    width: 90%;
-}
-
-.profilMenu form label{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    margin-top: 8%;
-    color: var(--secondaryColor);
-    background-color: var(--mainColor);
-    border-radius: 50px;
-    padding: 10px;
-    transition: 0.3s;
-}
-
-.profilMenu form label i{
-    font-size: 1.5em;
-}
-
-.profilMenu form input{
-    position: absolute;
-    width: 1px;
-    height: 1px;
-}
-
-.profilMenu form label:hover{
-    transition: 0.3s;
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-#profilButton:focus ~ .profilMenu{
-    transition: 0.5s;
-    top: 130%;
-    opacity: 1;
-    z-index: 2;
-}
-
-/******************************
-*
-    Style for aside 
-*
-*****************************/
-
-.layout aside{
-    grid-column: 1;
-    grid-row: 3 / span 8;
-    background-color: var(--secondaryColor);
-    border-radius: 0 20px 20px 0;
-    width: 50%;
-}
-
-.layout aside .mainMenu{
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.layout aside .mainMenu ul{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-}
-
-.layout aside .mainMenu ul li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 10%;
-    transition: 0.3s;
-}
-
-.layout aside .mainMenu ul li a{
-    position: absolute;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: var(--textColorWhite);
-    width: 100%;
-    height: 8.5%;
-    transition: 0.3s;
-}
-
-.layout aside .mainMenu ul li a i{
-    font-size: 2em;
-}
-
-.layout aside .mainMenu ul li a .nav-text{
-    position: absolute;
-    font-size: 1.2em;
-    transform: translateX(-50%);
-    z-index: -1;
-}
-
-.layout aside .mainMenu ul li:hover a{
-    background-color: var(--mainColor);
-    color: var(--secondaryColor);
-    width: 400px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border: 2px solid var(--secondaryColor);
-    z-index: 2;
-}
-
-.layout aside .mainMenu ul li:hover a .nav-text{
-    transform: translateX(120px);
-    transition: 0.3s;
-    z-index: 2;
-}
-
-/******************************
-*
-    Style for main of all page
-*
-*****************************/
-
-main{
-    grid-column: 2 / 13;
-    grid-row: 2 / span 10;
-    /* background-color: bisque; */
-    display: grid;
-    grid-template-columns: repeat(6 , 1fr);
-    grid-auto-rows: 1fr;
-}
-
-/********* select tab *********/
-
-.navTab{
-    grid-column: span 6;
-    grid-row: 1;
-    padding: 10px;
-}
-
-.navTab > ul{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
-    list-style-type: none;
-    width: 100%;
-    height: 100%;
-}
-
-.navTab > ul > .buttonTabs{
-    width: 20%;
-    height: 50%;
-}
-
-.navTab > ul > .buttonTabs > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5%;
-    font-size: 1.3em;
-    background-color: var(--mainColor);
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--textColorBlack);
-    transition: 0.3s;
-    width: 100%;
-    height: 100%;
-}
-
-.navTab > ul > .buttonTabs > a >i{
-    font-size: 1.5em;
-}
-
-.navTab > ul > .buttonTabs > a:hover{
-    transform: scale(1.1);
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-    transition: 0.3s;
-}
-
-.navTab > ul > .activeTab a{
-    background-color: var(--secondaryColor);
-    color: var(--mainColor);
-}
-
-/******************************
-*
-    Style for profilView page
-*
-*****************************/
-
-.profilContent{
-    grid-column: span 6;
-    grid-row: 2 / 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* profilView , profilModify (Card format) */
-.profilView , .profilModify{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 50px;
-    gap: 4%;
-    background-color: var(--mainColor);
-    font-size: 1.2em;
-    width: 40%;
-    height: 85%;
-}
-
-/* profilView */
-.profilView img{
-    align-self: center;
-    border: 2px solid var(--secondaryColor);
-    border-radius: 50px;
-    width: 150px;
-    height: 150px;
-}
-
-/* profilView */
-
-.profilView p {
-    display: flex;
-    width: 100%;
-}
-.profilView p .label{
-    display: inline-block;
-    text-align: end;
-    padding-left: 10%;
-    width: 32%;
-}
-
-.profilView p .userInfo{
-    padding-left: 5%;
-    width: 55%;
-}
-
-.profilView a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5%;
-    align-self: center;
-    background-color: var(--secondaryColor);
-    border-radius: 50px;
-    padding-left: 6%;
-    padding-right: 6%;
-    padding-top: 1.5%;
-    padding-bottom: 1.5%;
-    text-decoration: none;
-    color: var(--textColorWhite);
-    transition: 0.3s;
-}
-
-.profilView a i{
-    font-size: 1.2em;
-}
-
-.profilView a:hover{
-    transform: scale(1.1);
-    color: var(--mainColor);
-    transition: 0.3s;
-}
-
-/******************************
-*
-    Style for profilModify
-*
-*****************************/
-
-.profilModify{
-    gap: 2%;
-}
-
-.profilModify .quitButton{
-    position: relative;
-    left: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondaryColor);
-    border-radius: 10px;
-    transition: 0.5s;
-    text-decoration: none;
-    color: var(--textColorBlack);
-    width: 40px;
-    height: 40px;
-}
-
-.profilModify .quitButton:hover{
-    color: var(--mainColor);
-    transform: scale(1.1);
-    transition: 0.5s;
-}
-
-.profilModify .userPicture{
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    padding: 0;
-    border: 2px solid var(--secondaryColor);
-    border-radius: 50px;
-    width: 150px;
-    height: 150px;
-}
-
-.profilModify .iconAddPicture{
-    visibility: hidden;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondaryColor);
-    opacity: 0.8;
-    border-radius: 50px;
-    width: 152px;
-    height: 152px;
-    transition: 0.2s;
-}
-
-.profilModify .iconAddPicture i{
-    font-size: 3em;
-    color: var(--mainColor);
-}
-
-.profilModify .userPicture:hover .iconAddPicture{
-    visibility: visible;
-    animation: hoverIcon 0.5s;
-}
-
-@keyframes hoverIcon{
-    0%{
-        transform: scale(1);
-    }
-    50%{
-        transform: scale(1.1);
-    }
-    100%{
-        transform: scale(1);
-    }
-}
-
-.profilModify .userPicture img{
-    border-radius: 50px;
-    width: 150px;
-    height: 150px;
-}
-
-.profilModify label{
-    display: flex;
-    align-items: center;
-    align-self: center;
-    gap: 5%;
-    cursor: pointer;
-    width: 90%;
-}
-
-.profilModify .Disabled{
-    cursor: not-allowed;
-}
-
-.profilModify label span{
-    display: inline-block;
-    text-align: end;
-    width: 42%;
-}
-
-.profilModify span{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
-}
-
-.profilModify input[type="text"] , input[type="password"]{
-    border: 0px solid;
-    border-radius: 10px;
-    padding: 10px;
-    width: 45%;
-}
-
-.profilModify input[type="text"]:focus  , input[type="password"]:focus{
-    outline: none;
-    caret-color: var(--mainColor);
-}
-
-.profilModify span input[type="submit"] , .profilModify span input[type="reset"]{
-    align-self: center;
-    border:  1px solid var(--textColorBlack);
-    border-radius: 50px;
-    cursor: pointer;
-    width: 200px;
-    height: 35px;
-}
-
-.profilModify input[type="submit"]:hover , .profilModify input[type="reset"]:hover{
-    transform: scale(1.1);
-}
-
-.profilModify input[type="file"]{
-    position: absolute;
-    left: 45%;
-    width: 10%;
-    z-index: -1;
-    visibility: hidden;
-}
-
-
-/******************************
-*
-    Style for profilViewAdmin search bar and add button
-*
-*****************************/
-
-.addButton-searchZone{
-    display: flex;
-    flex-direction: row-reverse;
-    padding: 1%;
-    width: 100%;
-}
-
-.addButton-searchZone .addEmployeeButton{
-    position: relative;
-    right: 2%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    text-decoration: none;
-    color: var(--textColorBlack);
-    font-size: 1.5em;
-    border-radius: 10px;
-    transition: 0.3s;
-    width: 35px;
-    height: 35px;
-}
-
-.addButton-searchZone .addEmployeeButton:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-}
-
-.addButton-searchZone .refreshButton{
-    position: relative;
-    right: 4%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    text-decoration: none;
-    color: var(--textColorBlack);
-    font-size: 1.5em;
-    border-radius: 10px;
-    transition: 0.3s;
-    width: 35px;
-    height: 35px;
-}
-
-.addButton-searchZone .refreshButton:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-}
-
-.addButton-searchZone .searchZone{
-    position: relative;
-    right: 6%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-}
-
-.addButton-searchZone .searchZone input{
-    background-color: var(--mainColor);
-    border: 0px solid;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-    padding-left: 40px;
-    outline: none;
-}
-
-.addButton-searchZone .searchZone label{
-    position: absolute;
-    left: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    background-color: var(--mainColor);
-    border-radius: 10px;
-    transition: 0.3s;
-    width: 35px;
-    height: 35px;
-}
-
-.addButton-searchZone .searchZone input[type="search"]:hover ~ .searchEmployeeLabel{
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.addButton-searchZone .searchZone input[type="search"]:focus ~ .searchEmployeeLabel{
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.addButton-searchZone .searchZone input[type="search"]:focus ~ .searchEmployeeLabel{
-    color: var(--mainColor);
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-/******************************
-*
-    Style for profilViewAdmin
-*
-*****************************/
-
-.profilViewAdmin{
-    width: 90%;
-    height: 100%;
-}
-
-/******************************
-*
-    Style for profilViewAdmin Employee List
-*
-*****************************/
-.scrollTableContainer{
-    display: inline-block;
-    overflow-y: scroll;
-    width: 100%;
-    height: 80%;
-}
-
-.table{
-    display: table;
-    table-layout: fixed;
-    border-collapse: collapse;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-}
-
-/* style of head table */
-.table thead th{
-    position: sticky;
-    top: 0;
-    padding: 1%;
-    background-color: var(--mainColor);
-    color: var(--textColorBlack);
-}
-
-/* Picture column */
-.table thead th:nth-child(1){
-    width: 10%;
-}
-
-/* SurName column */
-.table thead th:nth-child(2){
-    width: 14%;
-}
-
-/* FirstName column */
-.table thead th:nth-child(3){
-    width: 14%;
-}
-
-/* Mail column */
-.table thead th:nth-child(4){
-    width: 14%;
-}
-
-/* Phone column */
-.table thead th:nth-child(5){
-    width: 14%;
-}
-
-/* Position column */
-.table thead th:nth-child(6){
-    width: 14%;
-}
-
-/* Button column */
-.table thead th:nth-child(7){
-    width: 6%;
-}
-
-/******************************
-*
-    Style for profilViewAdmin Employee object
-*
-*****************************/
-
-.table tbody .tableCell td{
-    padding: 0.6%;
-}
-
-.table tbody .tableCell td:first-child img{
-    width: 100px;
-    height: 100px;
-}
-
-.table tbody .tableCell:nth-child(odd) {
-    background-color: rgba(141, 141, 141, 1);
-}
-
-.table tbody .tableCell:nth-child(even) {
-    background-color: rgba(171, 171, 171, 1);
-}
-
-.table .tableCell .columnForButton a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 1.4em;
-    border-radius: 10px;
-    background-color: var(--mainColor);
-    color: var(--textColorBlack);
-    width: 40px;
-    height: 40px;
-}
-
-.table .tableCell .columnForButton a:hover{
-    transform: scale(1.1);
-}
-
-/******************************
-*
-    Style for planningView
-*
-*****************************/
-
-.tabContent{
-    grid-column: span 6;
-    grid-row: 2 / 10;
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.tab{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-/******************************
-*
-    Style for tool bar planning
-*
-*****************************/
-
-.tabHeader{
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 1%;
-    width: 94%;
-    height: 10%;
-    background-color: var(--mainColor);
-}
-
-/* Right side */
-.rightSide{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 37.5%;
-    height: 100%;
-}
-
-.rightSide a{
-    font-weight: bolder;
-    text-decoration: none;
-    color: var(--textColorWhite);
-}
-
-/* arrow to go to previous or next */
-.navigationPreviousNext{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--orange);
     width: 30%;
-    height: 100%;
-}
-
-.navigationPreviousNext a:nth-child(n){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3%;
-    background-color: var(--secondaryColor);
-    width: 16%;
     height: 40%;
-    transition: 0.5s;
 }
 
-.navigationPreviousNext a:nth-child(n):hover{
-    /* background-color: var(--transparentSecondaryColor); */
-    color: var(--mainColor);
-    transition: 0.5s;
-}
-
-.navigationPreviousNext a:nth-child(1){
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-right: 2px solid var(--textColorBlack);
-}
-
-.navigationPreviousNext a:nth-child(2){
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-/* button to go to different view  */
-.navigationView{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 74%;
-    height: 100%;
-}
-
-.navigationView a:nth-child(n){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4%;
-    background-color: var(--secondaryColor);
-    width: 18%;
-    height: 20%;
-}
-
-.navigationView a:nth-child(n):hover{
-    /* background-color: var(--transparentSecondaryColor); */
-    color: var(--mainColor);
-    transition: 0.5s;
-}
-
-.navigationView a:nth-child(1){
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-right: 2px solid var(--textColorBlack);
-}
-
-.navigationView a:nth-child(2) , .navigationView a:nth-child(3){
-    border-right: 2px solid var(--textColorBlack);
-}
-
-.navigationView a:nth-child(4){
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-/* center */
-.middle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-}
-
-/* Left side */
-.leftSide{
-    display: flex;
-    width: 37.5%;
-    height: 100%;
-}
-
-.zoneAddEvent{
-    position: absolute;
-    left: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    width: 10%;
-    height: 100%;
-}
-
-.zoneAddEvent .buttonAddEvent{
-    position: absolute;
-}
-
-.zoneAddEvent .indicator{
-    text-align: center;
-    position: absolute;
-    display: inline;
-    width: 150px;
-    border-radius: 5px;
-    background-color: var(--secondaryColor);
-    color: var(--mainColor);
-    transition: 0.3s;
-    z-index: -1;
-}
-
-.zoneAddEvent .buttonLabel{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    color: var(--textColorBlack);
-    text-decoration: none;
-    transition: 0.3s;
-    border-radius: 50%;
-    font-size: 1.5em;
-    width: 40px;
-    height: 40px;
-}
-
-.zoneAddEvent .buttonLabel:hover{
-    background-color: var(--secondaryColor);
-    color: var(--mainColor);
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.zoneAddEvent .buttonLabel:hover ~ .indicator{
-    transform: translateY(-50px);
-    transition: 0.3s;
-}
-
-/******************************
-*
-    Style for popUp to add event
-*
-*****************************/
-.addEvent{
-    position: absolute;
-    top: 100px;
-    left: 0px;
-    border-radius: 10px;
-    background-color: var(--transparentMainColor);
-    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--transparentSecondaryColor);
-    padding: 10%;
-    width: 1000px;
-    height: auto;
-    visibility: hidden;
-}
-
-.addEvent form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+.card-login-content{
+    column-gap: 0px;
+    row-gap: 0px;
     width: 100%;
     height: 100%;
 }
 
-.addEvent form span:nth-child(n){
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.addEvent form span:nth-child(n) label{
-    display: flex;
-    width: 20%;
-}
-
-.addEvent form span:nth-child(n) input{
-    position: relative;
-    width: 200px;
-}
-
-.addEvent .scrollAddEvent{
-    width: 100%;
-    height: 200px;
-}
-
-.addEvent .buttonZone{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5%;
-    padding: 2%;
-}
-
-.addEvent .validateButton{
-    border:  1px solid var(--textColorBlack);
-    border-radius: 50px;
-    cursor: pointer;
-    width: 150px;
-    height: 35px;
-}
-
-.validateButton:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.zoneAddEvent .buttonAddEvent:checked ~ .buttonLabel{
-    background-color: var(--secondaryColor);
-    color: var(--mainColor);
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.zoneAddEvent .buttonAddEvent:checked ~ .addEvent{
-    visibility: visible;
-}
-
-.addEvent ul{
-    list-style: none;
-    perspective: 900;
-    padding: 0;
-    margin: 0;
-}
-
-.addEvent li{
-    position: relative;
-    padding: 0;
-    margin: 0;
-    padding-bottom: 4px;
-    padding-top: 18px;
-    animation: flipdown 0.5s ease both;
-}
-
-.addEvent li:nth-of-type(1){
-    animation-delay: 0.5s;
-}
-
-.addEvent li:nth-of-type(2){
-    animation-delay: 0.75s;
-}
-    
-.addEvent li:nth-of-type(3){
-    animation-delay: 1.0s;
-}
-
-.addEvent li:nth-of-type(4){
-    animation-delay: 1.25s;
-}
-
-li:last-of-type{
-    padding-bottom: 0;
-}
-
-.addEvent i{
-    position: absolute;
-    transform: translate( -6px , 0 );
-    margin-top: 16px;
-    right: 0;
-}
-
-.addEvent i:before , .addEvent i:after{
-    content: "";
-    animation: transition;
-    position: absolute;
-    width: 3px;
-    height: 9px;
-}
-
-.addEvent i:before{
-    transform: translate( -2px , 0 ) rotate( 45deg );
-}
-
-.addEvent i:after{
-    transform: translate( 2px , 0 ) rotate( -45deg );
-}
-
-.addEvent .labelDropMenu{
-    font-size: x-large;
-    font-weight: bold;
-}
-
-.addEvent .labelDropMenu:hover{
-    cursor: pointer;
-}
-
-.addEvent .checkboxDrop{
-    position: absolute;
-    cursor: pointer;
-    z-index: 1;
-    opacity: 0;
-}
-
-.addEvent .checkboxDrop:checked ~span{
-    margin-top: 0;
-    max-height: 0;
-    opacity: 0;
-    transform: translate( 0 , 50% );
-}
-
-.addEvent .checkboxDrop:checked ~i:before{
-    transform: translate( 2px , 0 ) rotate( 45deg );
-}
-
-.addEvent .checkboxDrop:checked ~i::after{
-    transform: translate( -2px , 0 ) rotate( -45deg );
-}
-
-@keyframes flipdown{
-    0%{
-        opacity: 0;
-        transform-origin: top center;
-        transform: rotateX(-90deg);
-    }
-    5%{
-        opacity: 1;
-    }
-    80%{
-        transform: rotateX(8deg);
-    }
-    83%{
-        transform: rotateX(6deg);
-    }
-    
-    92%{
-        transform: rotateX(-3deg);
-    }
-
-    100%{
-        transform-origin: top center;
-        transform: rotateX(0deg);
-    }
-}
-
-/******************************
-*
-    Style for popUp to show detail of event
-*
-*****************************/
-
-.detailEvent{
-    position: absolute;
-    top: 100px;
-    left: 0px;
-    border-radius: 10px;
-    background-color: var(--transparentMainColor);
-    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--transparentSecondaryColor);
-    padding: 10%;
-    width: 1000px;
-    height: auto;
-    /* visibility: hidden; */
-}
-
-.detailEvent .detailContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-    height: 100%;
-}
-
-.detailEvent .detailContainer a {
-    text-decoration: none;
-    color: var(--textColorBlack);
-}
-
-.detailEvent .detailContainer .quitDetails{
-    position: relative;
-    left: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    border-radius: 10px;
-    transition: 0.5s;
-    width: 40px;
-    height: 40px;
-}
-
-.detailEvent .detailContainer .quitDetails:hover{
-    transform: scale(1.1);
-    transition: 0.5s;
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-}
-
-.detailEvent .detailContainer span:nth-child(n){
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.detailEvent .detailContainer span:nth-child(n) label{
-    display: flex;
-    width: 20%;
-}
-
-.detailEvent .detailContainer span:nth-child(n) input{
-    position: relative;
-    width: 200px;
-}
-
-.detailEvent .scrollAddEvent{
-    width: 100%;
-    height: 200px;
-}
-
-.detailEvent .buttonZone{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5%;
-    padding: 2%;
-}
-
-.detailEvent .buttonZone a{
-    position: relative;
-    left: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    border-radius: 10px;
-    transition: 0.5s;
-    width: 80px;
-    height: 40px;
-}
-
-.detailEvent .buttonZone a:hover{
-    transform: scale(1.1);
-    transition: 0.5s;
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-}
-
-
-.detailEvent ul{
-    list-style: none;
-    perspective: 900;
-    padding: 0;
-    margin: 0;
-}
-
-.detailEvent li{
-    position: relative;
-    padding: 0;
-    margin: 0;
-    padding-bottom: 4px;
-    padding-top: 18px;
-    animation: flipdown 0.5s ease both;
-}
-
-.detailEvent li:nth-of-type(1){
-    animation-delay: 0.5s;
-}
-
-.detailEvent li:nth-of-type(2){
-    animation-delay: 0.75s;
-}
-    
-.detailEvent li:nth-of-type(3){
-    animation-delay: 1.0s;
-}
-
-.detailEvent li:nth-of-type(4){
-    animation-delay: 1.25s;
-}
-
-li:last-of-type{
-    padding-bottom: 0;
-}
-
-.detailEvent i{
-    position: absolute;
-    transform: translate( -6px , 0 );
-    margin-top: 16px;
-    right: 0;
-}
-
-.detailEvent i:before , .addEvent i:after{
-    content: "";
-    animation: transition;
-    position: absolute;
-    width: 3px;
-    height: 9px;
-}
-
-.detailEvent i:before{
-    transform: translate( -2px , 0 ) rotate( 45deg );
-}
-
-.detailEvent i:after{
-    transform: translate( 2px , 0 ) rotate( -45deg );
-}
-
-.detailEvent .labelDropMenu{
-    font-size: x-large;
-    font-weight: bold;
-}
-
-.detailEvent .labelDropMenu:hover{
-    cursor: pointer;
-}
-
-.detailEvent .checkboxDrop{
-    position: absolute;
-    cursor: pointer;
-    z-index: 1;
-    opacity: 0;
-}
-
-.detailEvent .checkboxDrop:checked ~span{
-    margin-top: 0;
-    max-height: 0;
-    opacity: 0;
-    transform: translate( 0 , 50% );
-}
-
-.detailEvent .checkboxDrop:checked ~i:before{
-    transform: translate( 2px , 0 ) rotate( 45deg );
-}
-
-.detailEvent .checkboxDrop:checked ~i::after{
-    transform: translate( -2px , 0 ) rotate( -45deg );
-}
-
-/******************************
-*
-    Style for Popup to modify Event
-*
-*****************************/
-
-.modifyEvent{
-    position: absolute;
-    top: 100px;
-    left: 0px;
-    border-radius: 10px;
-    background-color: var(--transparentMainColor);
-    box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--transparentSecondaryColor);
-    padding: 10%;
-    width: 1000px;
-    height: auto;
-}
-
-.modifyEvent form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-    height: 100%;
-}
-
-.modifyEvent form a {
-    text-decoration: none;
-    color: var(--textColorBlack);
-}
-
-.modifyEvent .quitModify{
-    position: relative;
-    left: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--mainColor);
-    border-radius: 10px;
-    border: 2px solid var(--transparentTextColorBlack);
-    transition: 0.5s;
-    width: 40px;
-    height: 40px;
-}
-
-.modifyEvent .quitModify:hover{
-    transform: scale(1.1);
-    transition: 0.5s;
-    color: var(--mainColor);
-    background-color: var(--secondaryColor);
-}
-
-.modifyEvent form span:nth-child(n){
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.modifyEvent form span:nth-child(n) label{
-    display: flex;
-    width: 20%;
-}
-
-.modifyEvent form span:nth-child(n) input{
-    position: relative;
-    width: 200px;
-}
-
-.modifyEvent .scrollAddEvent{
-    width: 100%;
-    height: 200px;
-}
-
-.modifyEvent .buttonZone{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5%;
-    padding: 2%;
-}
-
-.modifyEvent .validateButton{
-    border:  1px solid var(--textColorBlack);
-    border-radius: 50px;
-    cursor: pointer;
-    width: 150px;
-    height: 35px;
-}
-
-.validateButton:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.zoneAddEvent .buttonAddEvent:checked ~ .buttonLabel{
-    background-color: var(--secondaryColor);
-    color: var(--mainColor);
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-
-.zoneAddEvent .buttonAddEvent:checked ~ .addEvent{
-    visibility: visible;
-}
-
-.modifyEvent ul{
-    list-style: none;
-    perspective: 900;
-    padding: 0;
-    margin: 0;
-}
-
-.modifyEvent li{
-    position: relative;
-    padding: 0;
-    margin: 0;
-    padding-bottom: 4px;
-    padding-top: 18px;
-    animation: flipdown 0.5s ease both;
-}
-
-.modifyEvent li:nth-of-type(1){
-    animation-delay: 0.5s;
-}
-
-.modifyEvent li:nth-of-type(2){
-    animation-delay: 0.75s;
-}
-    
-.modifyEvent li:nth-of-type(3){
-    animation-delay: 1.0s;
-}
-
-.modifyEvent li:nth-of-type(4){
-    animation-delay: 1.25s;
-}
-
-li:last-of-type{
-    padding-bottom: 0;
-}
-
-.modifyEvent i{
-    position: absolute;
-    transform: translate( -6px , 0 );
-    margin-top: 16px;
-    right: 0;
-}
-
-.modifyEvent i:before , .modifyEvent i:after{
-    content: "";
-    animation: transition;
-    position: absolute;
-    width: 3px;
-    height: 9px;
-}
-
-.modifyEvent i:before{
-    transform: translate( -2px , 0 ) rotate( 45deg );
-}
-
-.modifyEvent i:after{
-    transform: translate( 2px , 0 ) rotate( -45deg );
-}
-
-.modifyEvent .labelDropMenu{
-    font-size: x-large;
-    font-weight: bold;
-}
-
-.modifyEvent .labelDropMenu:hover{
-    cursor: pointer;
-}
-
-.modifyEvent .checkboxDrop{
-    position: absolute;
-    cursor: pointer;
-    z-index: 1;
-    opacity: 0;
-}
-
-.modifyEvent .checkboxDrop:checked ~span{
-    margin-top: 0;
-    max-height: 0;
-    opacity: 0;
-    transform: translate( 0 , 50% );
-}
-
-.modifyEvent .checkboxDrop:checked ~i:before{
-    transform: translate( 2px , 0 ) rotate( 45deg );
-}
-
-.modifyEvent .checkboxDrop:checked ~i::after{
-    transform: translate( -2px , 0 ) rotate( -45deg );
-}
-
-/******************************
-*
-    Style for Planning day view
-*
-*****************************/
-
-.calendarBodyDayView{
-    background-color: var(--transparentMainColor);
-}
-
-.rowName{
-    width: 2%;
-    height: 200px;
-}
-
-/* .eventMorning{
-    background-color: brown;
-    height: 50%;
-}
-
-.eventAfternoon{
-    height: 50%;
-} */
-
-/******************************
-*
-    Style for Planning week view
-*
-*****************************/
-
-
-/******************************
-*
-    Style for Planning month view
-*
-*****************************/
-
-.calendarTable{
-    align-self: center;
+.card-title{
+    grid-area: 1 / 2 / 2 / 5;
     justify-self: center;
-    border-collapse: collapse;
-    width: 90%;
-    height: 90%;
+    align-self: center;
 }
 
-.calendarTable th{
-    height: 5%;
-}
-
-/* if month as 5 weeks */
-.calendarTable td{
-    padding: 2px;
-    vertical-align: top;
-    border: 1px solid var(--textColorBlack);
-    width: 12.85%;
-    height: 18%;
-}
-
-/* if month as 6 weeks*/
-.calendarTable6weeks td{
-    padding: 2px;
-    vertical-align: top;
-    border: 1px solid var(--textColorBlack);
-    width: 12.85%;
-    height: 15%;
-}
-
-/* if the day isn't in the current month*/
-.calendarOtherMonth{
-    opacity: 0.3;
-}
-
-/******************************
-*
-    Style for calendarBox and Events
-*
-*****************************/
-
-.eventContainer {
+.card-body{
+    grid-area: 2 / 1 / 5 / 6;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.card-form{
     width: 100%;
-    height: 90%;
+    height: 100%;
 }
 
-.calendarDayNumber{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    width: 25px;
-    height: 25px;
+.grid-c5-r3 .row1{
+    padding-left: 15%;
+    grid-area: 1 / 1 / 2 / 6;
 }
 
-.colorCurrentDay{
-    background-color: #ED7D31;
+.grid-c5-r3 .row2{
+    padding-left: 15%;
+    grid-area: 2 / 1 / 3 / 6;
 }
 
-.eventContainer .calendarEvent{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 8px;
-    border-radius: 5px;
-    width: 95%;
-    background-color: var(--mainColor);
-}
-
-/******************************
-*
-    Style for schedule Page
-*
-*****************************/
-
-.scheduleContainer{
-    grid-column: span 5;
-    grid-row: 2 / 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
-    background-color: var(--mainColor);
-    border-radius: 20px;
-}
-
-.scheduleContainer .horaireContant{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow-y: scroll;
-    padding: 1%;
-    gap: 2%;
-    width: 90%;
-    height: 50%;
-}
-
-.scheduleContainer .horaire{
-    background-color: var(--secondaryColor);
-    border-radius: 10px;
-    padding: 2%;
-    width: auto;
-    height: 5%;
-}
-
-.scheduleContainer .separator{
-    background-color: var(--textColorBlack);
-    width: 100%;
-    height: 1px;
-}
-.scheduleContainer .recap{
-    background-color: var(--secondaryColor);
-    border-radius: 10px;
-    padding: 2%;
-    width: auto;
-}
-
-.scheduleContainer form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    border-radius: 20px;
-    padding: 2%;
-    background-color: var(--transparentSecondaryColor);
-}
-
-.scheduleContainer form span{
-    display: flex;
-    width: 100%;
-}
-
-.scheduleContainer form span:nth-child(n){
+.grid-c5-r3 .row3{
+    grid-area: 3 / 1 / 4 / 6;
     display: flex;
     justify-content: center;
-    width: 100%;
-}
-
-.scheduleContainer form span:nth-child(n) label{
-    display: flex;
-    width: 40%;
-}
-
-.scheduleContainer form span:nth-child(n) input{
-    position: relative;
-    width: 200px;
-}
-
-.scheduleContainer .zoneButton{
-    display: flex;
-    gap: 1%;
-    width: 100%;
-}
-
-/******************************
-*
-    Style for expenditure Page
-*
-*****************************/
-
-.expenditureContainer{
-    grid-column: span 5;
-    grid-row: 2 / 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
-    background-color: var(--mainColor);
-    border-radius: 20px;
-}
-
-.invoiceList{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow-y: scroll;
-    padding: 1%;
-    gap: 2%;
-    width: 90%;
-    height: 50%;
-}
-
-.invoiceList form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2%;
-    border-radius: 20px;
-    background-color: var(--transparentSecondaryColor);
-    width: auto;
-    height: auto;
-}
-
-.expenditureContainer .fromAddExpenditure{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 20px;
-    padding: 2%;
-    background-color: var(--transparentSecondaryColor);
-}
-
-/******************************
-*
-    Style for vehicle Page
-*
-*****************************/
-
-.vehicleContainer{
-    grid-column: span 5;
-    grid-row: 2 / 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
-    background-color: var(--mainColor);
-    border-radius: 20px;
-}
-
-.vehiculeList{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow-y: scroll;
-    padding: 1%;
-    gap: 2%;
-    width: 90%;
-    height: 50%;
-}
-
-.vehiculeList form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2%;
-    border-radius: 20px;
-    background-color: var(--transparentSecondaryColor);
-    width: auto;
-    height: auto;
-}
-
-.vehicleContainer .formAddVehicle{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 20px;
-    padding: 2%;
-    background-color: var(--transparentSecondaryColor);
-}
-
-/******************************
-*
-    Style for material Page
-*
-*****************************/
-
-.materialContainer{
-    grid-column: span 5;
-    grid-row: 2 / 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
-    background-color: var(--mainColor);
-    border-radius: 20px;
-}
-
-.materialList{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow-y: scroll;
-    padding: 1%;
-    gap: 2%;
-    width: 90%;
-    height: 50%;
-}
-
-.materialList form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2%;
-    border-radius: 20px;
-    background-color: var(--transparentSecondaryColor);
-    width: auto;
-    height: auto;
-}
-
-.formContainer{
-    display: flex;
     gap: 5%;
-    width: auto;
-    height: auto;
 }
 
-.formAddMaterial{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 20px;
-    padding: 2%;
-    background-color: var(--transparentSecondaryColor);
+
+/*=========================================
+*
+*=============== Page Option ==============
+*
+*========================================*/
+
+/*=======================
+*
+* grid layout header
+*
+*=======================*/
+
+.header-website{
+
 }
 
-.formRemoveMaterial{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 20px;
-    padding: 2%;
-    background-color: var(--transparentSecondaryColor);
-}
+
+/*=======================
+*
+* grid layout main
+*
+*=======================*/

@@ -7,32 +7,37 @@
     include_once APP . "private/constant/page/head.php";
 ?>
 
-<body class="logBody">
-        <main class="logMain">
-
-            <div class="logForm">
-                <h2> Connectez-vous </h2>
-                <form  action="<?php //LINK_LOGIN_PROCESS ?>" method="post">
-                    <p class="userName">
-                        <label for="userName"> Nom d'utilisateur : </label>
-                        <span> <i class="icon-user"></i> <input type="text" name="userName" id="userName" placeholder="prénom.nom" class="inputLog"> </span>
-                    </p>
-
-                    <p class="passWord">
-                        <label for="userPassWord"> Mot de passe : </label>
-                        <span> 
-                            <i class="icon-lock"></i> <input type="password" name="userPassWord" id="userPassWord" placeholder="mot de passe" class="inputLog"> 
-                            <a href="#" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
-                        </span>
-                    </p>
-
-                        <input type="submit" value="Connexion">
-                        <input type="reset" value="Annuler">
-                </form>
+<body>
+    <div class="container">
+        <main class="main-login">
+            <div class="card-login">
+                <div class="card-login-content grid-c5-r4">
+                    <span class="card-title font-bold">Connectez-vous</span>
+                    <div class="card-body">
+                        <form method="post" class="card-form grid-c5-r3">
+                            <div class="row1 align-self-center">
+                                <div class="input-field">
+                                    <input id="last_name" type="text" name="userName" required>
+                                    <label for="last_name" class="black-text"> <i class="icon-user"></i> Last Name</label>
+                                </div>
+                            </div>
+                            <div class="row2 align-self-center">
+                                <div class="input-field">
+                                    <input id="password" type="password" name="userPassWord" required>
+                                    <label for="password" class="black-text"> <i class="icon-lock"></i> Password</label>
+                                </div>
+                                <a class="btn bg-color-gray" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
+                            </div>
+                            <div class="row3 align-self-center">
+                                <input type="submit" value="Connexion" class="btn-input">
+                                <input type="reset" value="Annuler" class="btn-input">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </main>
-
-
+    </div>
     <script>
         let inputPassWord = document.querySelector('input[name="userPassWord"]');
         let toggleButton = document.getElementById('toggle');
