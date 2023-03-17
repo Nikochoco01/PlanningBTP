@@ -42,6 +42,26 @@ body{
     padding: 2%;
 }
 
+.width-100{
+    width: 100%;
+}
+
+.height-100{
+    height: 100%;
+}
+
+.width-50{
+    width: 50%;
+}
+
+.height-50{
+    height: 50%;
+}
+
+.border-rad-10{
+    border-radius: 10px;
+}
+
 /*====================
 *
 * font class
@@ -125,18 +145,18 @@ body{
 * btn class
 *
 *====================*/
-.btn{
+/*.btn{
     position: relative; /* mettre le positionnement sur le grid */
-    left: 418px;
+    /* left: 418px;
     top: -35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 6px 10px 10px 10px; */
+    padding: 6px 10px 10px 10px;
     border-radius: 5px;
     width: 40px;
     height: 36px;
-}
+} */
 
 .btn-input{
     display: none;
@@ -179,8 +199,14 @@ body{
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    width: 100%;
-    height: 100%;
+    transition: 0.2s ease all;
+}
+
+.btn-link:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease all;
+    font-weight: bolder;
+    color: var(--orange);
 }
 
 /*====================
@@ -444,6 +470,11 @@ body{
 
 .main-content{
     grid-area: 2 / 1 / 8 / 12;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
 /*========================================
@@ -522,7 +553,47 @@ body{
 
 /*=========================================
 *
-*=============== Page Option ==============
+*=============== Profil Page ==============
 *
 *========================================*/
 
+.profil-view-container{
+    grid-area: 1 / 1 / 7 / 12;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.profil-view-picture{
+    grid-area: 1 / 2 / 4 / 5;
+}
+
+.profil-view-user-name{
+    grid-area: 5 / 2 / 6 / 5;
+}
+
+.profil-view-fonction{
+    grid-area: 6 / 2 / 7 / 5;
+}
+
+.profil-view-firstname{
+    grid-area: 1 / 6 / 2 / 11;
+}
+
+.profil-view-lastname{
+    grid-area: 2 / 6 / 3 / 11;
+}
+
+.profil-view-mail-address{
+    grid-area: 3 / 6 / 4 / 11;
+}
+
+.profil-view-mail-phone-number{
+    grid-area: 4 / 6 / 5 / 11;
+}
+
+.profil-view-btn-zone{
+    grid-area: 6 / 6 / 7 / 12;
+}
