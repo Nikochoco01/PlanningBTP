@@ -9,10 +9,10 @@ include_once APP . "private/constant/page/head.php";
 ?>
 
 <body>
-    <div class="layout">
+    <div class="container">
         <?php include_once APP . "private/constant/page/header.php" ?>
         <?php include_once APP . "private/constant/page/aside.php" ?>
-            <main>
+            <main class="container-main">
                 <img src="/private/treatment/indexProcess/export.php?pictureId=<?php echo $_SESSION['userId']; ?>" alt="pas d'image de profil">
             </main>
     </div>

@@ -17,8 +17,8 @@
     $firstDay = $firstDay->format('N') === '1' ? $firstDay : $month->getFirstDay()->modify('last Monday');
 ?>
 
-<aside>
-    <nav class="mainMenu">
+<aside class="aside-menu bg-color-gray">
+    <nav class="main-menu">
         <ul>
             <li>
                 <a href="home">

@@ -14,16 +14,16 @@
 ?>
 
 <body>
-    <div class="layout">
+    <div class="container">
         <?php include_once APP . "private/constant/page/header.php"; ?>
         <?php include_once APP . "private/constant/page/aside.php"; ?>
-        <main>
+        <main class="container-main">
             <?php
                 if($_SESSION['userFonction'] == 'administrator'){
                     include_once APP . "private/selectTab.php";
                 }
             ?>
-            <div class="profilContent">
+            <div class="main-content">
                 <?php 
                     switch ($_GET["onglet"]) {
                         case PARAM_PERSONAL_ONGLET:

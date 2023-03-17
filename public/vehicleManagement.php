@@ -11,11 +11,11 @@ include_once APP . "private/constant/page/head.php";
 ?>
 
 <body>
-    <div class="layout">
+    <div class="container">
         <?php include_once APP . "private/constant/page/header.php"; ?>
         <?php include_once APP . "private/constant/page/aside.php"; ?>
 
-        <main>
+        <main class="container-main">
             <div class="vehicleContainer">
                 <div class="vehiculeList">
                     <?php 

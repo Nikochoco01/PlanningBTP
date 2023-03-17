@@ -22,6 +22,67 @@ body{
 
 /*====================
 *
+* utility class
+*
+*====================*/
+
+.margin-left-5{
+    margin-left: 5px;
+}
+
+.margin-right-5{
+    margin-right: 5px;
+}
+
+.padding-1{
+    padding: 1%;
+}
+
+.padding-2{
+    padding: 2%;
+}
+
+/*====================
+*
+* font class
+*
+*====================*/
+.font-bold{
+    font-weight: bold;
+}
+
+/*====================
+*
+* color class
+*
+*====================*/
+
+.bg-color-orange{
+    background-color: var(--orange);
+}
+
+.bg-color-gray{
+    background-color: var(--gray);
+}
+
+.text-deco-none{
+    text-decoration: none;
+}
+
+.text-color-orange{
+    color: var(--orange);
+}
+
+.text-color-white{
+    color: var(--white);
+}
+
+.text-color-gray{
+    color: var(--gray);
+}
+
+/*====================
+*
 * input layout
 *
 *====================*/
@@ -78,19 +139,48 @@ body{
 }
 
 .btn-input{
-    background-color: var(--gray);
-    color: var(--white);
+    display: none;
+}
+
+.label-btn-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     border-radius: 10px;
     width: 20%;
     height: 30px;
 }
 
-.btn-input:hover{
+.label-btn-input:hover{
     transition: 0.2s ease all;
     background-color: var(--white-transparent);
     font-weight: bold;
     color: var(--gray);
+}
+
+.label-btn-input:hover *{
+    transition: 0.2s ease all;
+    font-weight: bolder;
+}
+
+.label-btn-profil{
+    width: 70%;
+}
+
+/*====================
+*
+* link class
+*
+*====================*/
+
+.btn-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
 }
 
 /*====================
@@ -114,29 +204,6 @@ body{
     align-self: center;
 }
 
-/*====================
-*
-* font class
-*
-*====================*/
-.font-bold{
-    font-weight: bold;
-}
-
-/*====================
-*
-* color class
-*
-*====================*/
-
-.bg-color-orange{
-    background-color: var(--orange);
-}
-
-.bg-color-gray{
-    background-color: var(--gray);
-}
-
 /*========================================
 *
 *========== Main Option Website ==========
@@ -154,7 +221,6 @@ body{
     grid-template-rows: repeat(8 , 1fr);
     column-gap: 0px;
     row-gap: 0px;
-    background-color: var(--bg-login);
     width: 100%;
     height: 100%;
 }
@@ -173,7 +239,6 @@ body{
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     align-items: center;
-    background-color: var(--orange);
     min-height: 70px;
 }
 
@@ -195,10 +260,11 @@ body{
 }
 
 .profil-image-button{
+    text-align: center;
     border-radius: 10px;
     transition: 0.5s;
     width: 65px;
-    height: auto;
+    height: 65px;
 }
 
 .profil-image-button:hover{
@@ -212,17 +278,16 @@ body{
     transition: 1.2s;
 }
 
+/* VOIR POUR LE BUTTON Z-INDEX */
 .profil-menu{
     position: absolute;
-    top: 18%;
-    z-index: -1;
+    top: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8%;
     border-radius: 20px;
-    background-color: var(--gray);
     box-shadow: 0 4px 30px rgba(0 , 0 , 0 , 0.5);
     backdrop-filter: blur(10px);
     border: 1px solid var(--transparentSecondaryColor);
@@ -234,9 +299,151 @@ body{
 
 .profil-image-button:focus ~ .profil-menu{
     transition: 0.5s;
-    top: 10%;
+    top: 13%;
     opacity: 1;
+}
+
+.profil-informations , .profil-type{
+    text-align: center;
+    width: 90%;
+}
+
+.profil-logout-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid var(--orange);
+    width: 90%;
+    height: 40%;
+}
+
+/*====================
+*
+* page menu
+*
+*====================*/
+.aside-menu{
+    grid-area: 3 / 1 / 8 / 2;
+    border-radius: 0 20px 20px 0;
+    width: 50%;
+}
+
+.main-menu{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main-menu ul{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.main-menu ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    transition: 0.3s;
+}
+
+.main-menu ul li a{
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--white);
+    width: 100%;
+    height: 8.5%;
+    transition: 0.3s;
+}
+
+.main-menu ul li a i{
+    font-size: 2em;
+}
+
+.main-menu ul li a .nav-text{
+    position: absolute;
+    font-size: 1.2em;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.main-menu ul li:hover a{
+    background-color: var(--orange);
+    width: 400px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     z-index: 2;
+}
+
+.main-menu ul li:hover a .nav-text{
+    transform: translateX(120px);
+    transition: 0.3s;
+    z-index: 2;
+}
+
+/*=======================
+*
+* grid layout main
+*
+*=======================*/
+
+.container-main{
+    grid-area: 2 / 2 / 9 / 13;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: 10% repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.nav-tab{
+    grid-area: 1 / 1 / 2 / 11;
+}
+
+.tab-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+}
+
+.tab-list-element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s ease all;
+    width: 20%;
+    height: 30px;
+}
+
+.tab-list-element:hover{
+    transition: 0.2s ease all;
+    transform: scale(1.1);
+    font-weight: bold;
+    color: var(--gray);
+}
+
+.tab-list-element:hover *{
+    transition: 0.2s ease all;
+    font-weight: bolder;
+    color: var(--orange);
+}
+
+.main-content{
+    grid-area: 2 / 1 / 8 / 12;
 }
 
 /*========================================
@@ -319,19 +526,3 @@ body{
 *
 *========================================*/
 
-/*=======================
-*
-* grid layout header
-*
-*=======================*/
-
-.header-website{
-
-}
-
-
-/*=======================
-*
-* grid layout main
-*
-*=======================*/

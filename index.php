@@ -8,7 +8,7 @@
 ?>
 
 <body>
-    <div class="container">
+    <div class="container bg-color-gray">
         <main class="main-login">
             <div class="card-login">
                 <div class="card-login-content grid-c5-r4">
@@ -29,8 +29,12 @@
                                 <a class="btn bg-color-gray" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
                             </div>
                             <div class="row3 align-self-center">
-                                <input type="submit" value="Connexion" class="btn-input">
-                                <input type="reset" value="Annuler" class="btn-input">
+
+                                <label for="btn-connection" class="label-btn-input bg-color-gray text-color-white"> <span> Connexion </span> </label>
+                                <input type="submit" class="btn-input" id="btn-connection">
+
+                                <label for="btn-cancel" class="label-btn-input bg-color-gray text-color-white"> <span> Annuler </span> </label>
+                                <input type="reset" class="btn-input" id="btn-cancel">
                             </div>
                         </form>
                     </div>

@@ -1,17 +1,17 @@
 <?php
 if($path === '/profil'):
 ?>
-<nav class="navTab">
-    <ul>
-        <li class="buttonTabs <?= URLManagement::activeTab(PARAM_PERSONAL_ONGLET) ?>">
-            <a href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_PERSONAL_ONGLET , 'display' => PARAM_VIEW_DISPLAY)) ?>">
-                <i class="icon-user"></i> Personnel
+<nav class="nav-tab">
+    <ul class="tab-list">
+        <li class="tab-list-element bg-color-gray <?= URLManagement::activeTab(PARAM_PERSONAL_ONGLET) ?>">
+            <a class="btn-link text-color-white" href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_PERSONAL_ONGLET , 'display' => PARAM_VIEW_DISPLAY)) ?>">
+                <i class="icon-user margin-right-5"></i> Personnel
             </a>
         </li>
 
-        <li class="buttonTabs <?= URLManagement::activeTab(PARAM_EMPLOYEE_ONGLET) ?>">
-            <a href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_EMPLOYEE_ONGLET , 'display' => PARAM_VIEW_DISPLAY))?>">
-               <i class="icon-users-group"></i> Employés
+        <li class="tab-list-element bg-color-gray <?= URLManagement::activeTab(PARAM_EMPLOYEE_ONGLET) ?>">
+            <a class="btn-link text-color-white" href=" <?= URLManagement::addUrlParam(array('onglet' => PARAM_EMPLOYEE_ONGLET , 'display' => PARAM_VIEW_DISPLAY))?>">
+               <i class="icon-users-group margin-right-5"></i> Employés
             </a>
         </li>
     </ul>
@@ -23,8 +23,8 @@ if($path === '/profil'):
     if($path === '/planning'):
 ?>
 
-<nav class="navTab">
-    <ul>
+<nav class="nav-tab">
+    <ul class="tab-list">
         <li class="buttonTabs <?= URLManagement::activeTab(PARAM_MISSION_ONGLET) ?>"> 
             <a href=" <?= URLManagement::addUrlParam(array('onglet'=> PARAM_MISSION_ONGLET)) ?>">
                 <i class="icon-clipboard-list"></i> Missions 
