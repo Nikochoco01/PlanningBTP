@@ -171,7 +171,7 @@ body{
     animation: input-unfocused 0.2s forwards;
 }
 
-.input-field:focus ~ .input-label , .input-field:valid ~ .input-label , .input-field:disabled ~ .input-label{
+.input-field:focus ~ .input-label , .input-field:valid ~ .input-label , .input-field:disabled ~ .input-label , .input-field:read-only ~ .input-label{
     animation: input-focus 0.2s forwards;
 }
 
@@ -426,11 +426,11 @@ body{
 
 .profil-image-button:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .profil-image-button:focus{
-    transform: scale(1.1);
+    transform: scale(1.2);
     border-radius: 50px;
     transition: 1.2s;
 }
@@ -685,7 +685,7 @@ body{
 *
 *=========================================*/
 
-.profil-view-container , .profil-modify-container{
+.profil-container{
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -697,74 +697,50 @@ body{
     height: 100%;
 }
 
-.profil-view-container .label{
-    color: var(--white);
-    font-weight: bold;
-}
-
-.profil-view-container .user-info{
-    display: block;
-    border-radius: 10px;
-    background-color: var(--light-gray);
-    padding: 1% 2% 1% 2%;
-    margin-top: 1%;
-    width: 50%;
-}
-
-.profil-view-picture , .profil-modify-picture{
+.profil-picture{
     grid-area: 1 / 2 / 4 / 6;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.profil-view-picture > .profil-picture{
-    border-radius: 10px;
-    width: 52%;
-    height: auto;
-}
-
-.profil-modify-picture > .icon-add-picture{
-
-}
-
-.profil-view-user-name{
+.profil-user-name{
     grid-area: 4 / 2 / 5 / 6;
     align-self: center;
 }
 
-.profil-view-fonction{
+.profil-fonction{
     grid-area: 5 / 2 / 6 / 6;
     align-self: center;
 }
 
-.profil-view-firstname{
+.profil-firstname{
     grid-area: 1 / 7 / 2 / 11;
     align-self: center;
 }
 
-.profil-view-lastname{
+.profil-lastname{
     grid-area: 2 / 7 / 3 / 11;
     align-self: center;
 }
 
-.profil-view-mail-address{
+.profil-mail-address{
     grid-area: 3 / 7 / 4 / 11;
     align-self: center;
 }
 
-.profil-view-phone-number{
+.profil-phone-number{
     grid-area: 4 / 7 / 5 / 11;
     align-self: center;
 }
 
-.profil-view-btn-zone , .profil-modify-btn-zone{
+.profil-password{
+    grid-area: 5 / 7 / 6 / 11;
+    align-self: center;
+}
+
+.profil-btn-zone{
     grid-area: 6 / 7 / 7 / 12;
     display: flex;
     gap: 2%;
-}
-
-.profil-modify-password{
-    grid-area: 5 / 7 / 6 / 11;
-    align-self: center;
 }
