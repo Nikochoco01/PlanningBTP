@@ -16,15 +16,15 @@
                     <div class="card-body">
                         <form method="post" class="card-form grid-c5-r3">
                             <div class="row1 align-self-center">
-                                <div class="input-field">
-                                    <input id="last_name" type="text" name="userName" required>
-                                    <label for="last_name" class="black-text"> <i class="icon-user"></i> Last Name</label>
+                                <div class="input-container width-70">
+                                    <input id="last_name" type="text" name="userName" class="input-field bg-color-light-gray" required>
+                                    <label for="last_name" class="black-text input-label"> <i class="icon-user"></i> Last Name</label>
                                 </div>
                             </div>
                             <div class="row2 align-self-center">
-                                <div class="input-field">
-                                    <input id="password" type="password" name="userPassWord" required>
-                                    <label for="password" class="black-text"> <i class="icon-lock"></i> Password</label>
+                                <div class="input-container width-70">
+                                    <input id="password" type="password" name="userPassWord" class="input-field bg-color-light-gray" required>
+                                    <label for="password" class="black-text input-label"> <i class="icon-lock"></i> Password</label>
                                 </div>
                                 <a class="btn bg-color-gray" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
                             </div>

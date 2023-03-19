@@ -1,7 +1,9 @@
 *{
     --orange : #ED7D31;
+    --orange-transparent : rgba(237, 125, 49,0.5);
     --bg-login : #303030;
     --gray : #303030;
+    --light-gray: #A5A5A5;
     --white: #fff;
     --white-transparent: #ffffff8f;
     margin: 0;
@@ -34,6 +36,30 @@ body{
     margin-right: 5px;
 }
 
+.margin-top-5{
+    margin-top: 5px;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+
+.margin-left-10{
+    margin-left: 10px;
+}
+
+.margin-right-10{
+    margin-right: 10px;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
 .padding-1{
     padding: 1%;
 }
@@ -42,20 +68,32 @@ body{
     padding: 2%;
 }
 
-.width-100{
-    width: 100%;
-}
-
-.height-100{
-    height: 100%;
-}
-
 .width-50{
     width: 50%;
 }
 
 .height-50{
     height: 50%;
+}
+
+.width-50px{
+    width: 50px;
+}
+
+.height-50px{
+    height: 50px;
+}
+
+.width-70{
+    width: 70%;
+}
+
+.width-100{
+    width: 100%;
+}
+
+.height-100{
+    height: 100%;
 }
 
 .border-rad-10{
@@ -85,6 +123,10 @@ body{
     background-color: var(--gray);
 }
 
+.bg-color-light-gray{
+    background-color: var(--light-gray);
+}
+
 .text-deco-none{
     text-decoration: none;
 }
@@ -106,38 +148,97 @@ body{
 * input layout
 *
 *====================*/
-.input-field{
+.input-container{
     position: relative;
-    width: 100%;
-    height: auto;
-}
-
-.input-field input{
-    position: relative;
-    border: none;
-    border-radius: 5px;
-    padding:10px 50% 10px 5px;
-}
-
-.input-field label{
-    position: absolute;
     display: flex;
     align-items: center;
-    pointer-events:none;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transition: 0.2s ease all; 
+    height: 64px;
 }
 
-.input-field input:focus{
+.input-field{
+    border: none;
+    border-radius: 5px;
     outline: none;
+    padding-left: 4px;
+    width: 100%;
+    height: 30px;
 }
 
-.input-field input:focus ~ label, .input-field input:valid ~ label{
-    font-size: small;
-    top: -30px;
-    transition: 0.2s ease all; 
+.input-label{
+    position: absolute;
+    left: 4px;
+    pointer-events:none;
+    transition: 0.2s ease all;
+}
+
+.input-field:focus ~ .input-label , .input-field:valid ~ .input-label , .input-field:disabled ~ .input-label{
+    transform: translateY(-30px);
+    transition: 0.2s ease all;
+}
+
+.disabled{
+    cursor: not-allowed;
+}
+
+/*====================
+*
+* input picture layout
+*
+*====================*/
+
+.input-picture-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52%;
+    height: 310px;
+}
+
+.input-picture-field{
+    display: none;
+}
+
+.input-picture-label{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 3em;
+    z-index: 1;
+    transition: 0.3s ease all;
+    width: 100%;
+    height: 100%;
+}
+
+.input-picture-label i {
+    opacity: 0;
+}
+
+.input-picture-rendered{
+    position: absolute;
+    border-radius: 10px;
+    transition: 0.3s ease all;
+    width: 100%;
+    height: 100%;
+}
+
+.input-picture-label:hover{
+    background-color: var(--orange-transparent);
+    transform: scale(1.03);
+    border-radius: 60px;
+    transition: 0.3s ease all;
+}
+
+.input-picture-label:hover .hover{
+    opacity: 1;
+    transition: 0.3s ease all;
+}
+
+.input-picture-label:hover ~ .input-picture-rendered{
+    border-radius: 60px;
+    transition: 0.3s ease all;
 }
 
 /*====================
@@ -206,7 +307,7 @@ body{
     transform: scale(1.1);
     transition: 0.2s ease all;
     font-weight: bolder;
-    color: var(--orange);
+    color: var(--gray);
 }
 
 /*====================
@@ -470,11 +571,7 @@ body{
 
 .main-content{
     grid-area: 2 / 1 / 8 / 12;
-    display: grid;
-    grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    display: flex;
 }
 
 /*========================================
@@ -520,6 +617,7 @@ body{
     grid-area: 1 / 2 / 2 / 5;
     justify-self: center;
     align-self: center;
+    font-size: 2em;
 }
 
 .card-body{
@@ -551,49 +649,92 @@ body{
 }
 
 
-/*=========================================
+/*==========================================
 *
-*=============== Profil Page ==============
+*====Profil Page view and modify option ====
 *
-*========================================*/
+*=========================================*/
 
-.profil-view-container{
-    grid-area: 1 / 1 / 7 / 12;
+.profil-view-container , .profil-modify-container{
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    background-color: var(--gray);
+    border-top-left-radius: 20px;
+    width: 100%;
+    height: 100%;
 }
 
-.profil-view-picture{
-    grid-area: 1 / 2 / 4 / 5;
+.profil-view-container .label{
+    color: var(--white);
+    font-weight: bold;
+}
+
+.profil-view-container .user-info{
+    display: block;
+    border-radius: 10px;
+    background-color: var(--light-gray);
+    padding: 1% 2% 1% 2%;
+    margin-top: 1%;
+    width: 50%;
+}
+
+.profil-view-picture , .profil-modify-picture{
+    grid-area: 1 / 2 / 4 / 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profil-view-picture > .profil-picture{
+    border-radius: 10px;
+    width: 52%;
+    height: auto;
+}
+
+.profil-modify-picture > .icon-add-picture{
+
 }
 
 .profil-view-user-name{
-    grid-area: 5 / 2 / 6 / 5;
+    grid-area: 4 / 2 / 5 / 6;
+    align-self: center;
 }
 
 .profil-view-fonction{
-    grid-area: 6 / 2 / 7 / 5;
+    grid-area: 5 / 2 / 6 / 6;
+    align-self: center;
 }
 
 .profil-view-firstname{
-    grid-area: 1 / 6 / 2 / 11;
+    grid-area: 1 / 7 / 2 / 11;
+    align-self: center;
 }
 
 .profil-view-lastname{
-    grid-area: 2 / 6 / 3 / 11;
+    grid-area: 2 / 7 / 3 / 11;
+    align-self: center;
 }
 
 .profil-view-mail-address{
-    grid-area: 3 / 6 / 4 / 11;
+    grid-area: 3 / 7 / 4 / 11;
+    align-self: center;
 }
 
-.profil-view-mail-phone-number{
-    grid-area: 4 / 6 / 5 / 11;
+.profil-view-phone-number{
+    grid-area: 4 / 7 / 5 / 11;
+    align-self: center;
 }
 
-.profil-view-btn-zone{
-    grid-area: 6 / 6 / 7 / 12;
+.profil-view-btn-zone , .profil-modify-btn-zone{
+    grid-area: 6 / 7 / 7 / 12;
+    display: flex;
+    gap: 2%;
+}
+
+.profil-modify-password{
+    grid-area: 5 / 7 / 6 / 11;
+    align-self: center;
 }
