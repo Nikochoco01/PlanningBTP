@@ -1,23 +1,12 @@
 <form action="modifyEmployee" method="post" class="profil-modify-container" enctype="multipart/form-data">
     <a href="<?= returnURL()?>" class="btn-link bg-color-orange border-rad-10 width-50px height-50px margin-top-10 margin-left-10" > <i class=""></i> X </a>
 
-    <!-- <div class="profil-view-picture">
-        <label for="userPicture">
-            <div class="icon-add-picture">
-                <i class="icon-image-plus"></i>
-            </div>
-            <img src="/img/defaultPP.png" alt="user Picture" class="profil-picture">
-            <input type="file" name="userPicture" id="userPicture">
-        </label>
-    </div> -->
-
     <div class="profil-view-picture">
         <div class="input-picture-container">
         <input type="file" name="" id="input-picture-field" class="input-picture-field">
-        <label for="input-picture-field" class="input-picture-label"> <i class="icon-image-plus hover"></i> </label>
+        <label for="input-picture-field" class="input-picture-label"> <i class="icon-image-plus"></i> </label>
         <img src="/img/defaultPP.png" alt="photo de profil" class="input-picture-rendered">
     </div>
-
 
     </div>
 

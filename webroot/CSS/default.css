@@ -168,16 +168,35 @@ body{
     position: absolute;
     left: 4px;
     pointer-events:none;
-    transition: 0.2s ease all;
+    animation: input-unfocused 0.2s forwards;
 }
 
 .input-field:focus ~ .input-label , .input-field:valid ~ .input-label , .input-field:disabled ~ .input-label{
-    transform: translateY(-30px);
-    transition: 0.2s ease all;
+    animation: input-focus 0.2s forwards;
 }
 
 .disabled{
     cursor: not-allowed;
+}
+
+@keyframes input-focus{
+    0%{
+        transform: translateY(0px);
+    }
+
+    100%{
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes input-unfocused{
+    0%{
+        transform: translateY(-30px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
 }
 
 /*====================
@@ -213,7 +232,7 @@ body{
 }
 
 .input-picture-label i {
-    opacity: 0;
+    visibility: hidden;
 }
 
 .input-picture-rendered{
@@ -225,20 +244,18 @@ body{
 }
 
 .input-picture-label:hover{
-    background-color: var(--orange-transparent);
-    transform: scale(1.03);
-    border-radius: 60px;
-    /* transition: 0.3s ease all; */
+    background-color: var(--orange);
+    opacity: 0.8;
+    animation: hover-picture 0.5s forwards;
 }
 
-.input-picture-label:hover .hover{
-    opacity: 1;
-    transition: 0.3s ease all;
+.input-picture-label:hover i{
+    visibility: visible;
 }
 
 .input-picture-label:hover ~ .input-picture-rendered{
     border-radius: 60px;
-    transition: 0.3s ease all;
+    transition: 0.5s ease all;
 }
 
 @keyframes hover-picture{
@@ -250,6 +267,7 @@ body{
     }
     100%{
         transform: scale(1);
+        border-radius: 60px;
     }
 }
 
