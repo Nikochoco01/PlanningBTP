@@ -228,7 +228,7 @@ body{
     background-color: var(--orange-transparent);
     transform: scale(1.03);
     border-radius: 60px;
-    transition: 0.3s ease all;
+    /* transition: 0.3s ease all; */
 }
 
 .input-picture-label:hover .hover{
@@ -239,6 +239,18 @@ body{
 .input-picture-label:hover ~ .input-picture-rendered{
     border-radius: 60px;
     transition: 0.3s ease all;
+}
+
+@keyframes hover-picture{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 
 /*====================
