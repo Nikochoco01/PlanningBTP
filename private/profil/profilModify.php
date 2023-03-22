@@ -1,4 +1,4 @@
-<form action="modifyEmployee" method="post" class="profil-container" enctype="multipart/form-data">
+<form action="modifyEmployee" method="post" class="profil-container bg-color-gray" enctype="multipart/form-data">
     <a href="<?= returnURL()?>" class="btn-link bg-color-orange border-rad-10 width-50px height-50px margin-top-10 margin-left-10" > <i class=""></i> X </a>
 
     <div class="profil-picture">

@@ -13,7 +13,7 @@
     );
 ?>
 
-<div class="profil-container">
+<div class="profil-container bg-color-gray">
 
     <?php
         if(isset($_SESSION['ERROR'])){
