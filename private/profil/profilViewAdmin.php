@@ -13,29 +13,23 @@
     );
 ?>
 
-<div class="profilViewAdmin">
+<div class="profil-container">
 
     <?php
-
         if(isset($_SESSION['ERROR'])){
             echo "<script> alert('" . $_SESSION['ERROR'] . "') </script>";
             InputSecurity::destroyError();
         }
-
         if(isset($_POST['searchEmployee'])){
             $searchWord = explode(" " , $_POST['searchEmployee']);
             $searchResult = querySearch($tables ,$searchWord);
-
       //  $searchStatement = $dataBase->read($tables , );
-
             $searchStatement = $PDO->prepare($searchResult);
             $searchStatement->execute();
             $results = $searchStatement->fetchAll();
             unset($_POST['searchEmployee']);
-
         }
         else{
-
         $results = $dataBase->read("User" , [
                         "field" => "*"
                     ]);
@@ -44,7 +38,7 @@
             case "false":
     ?>
 
-            <div class="addButton-searchZone">
+            <div class="profil-container-header">
                 <a href="<?= URLManagement::addUrlParam(array('add'=>'true')) ?>" class="addEmployeeButton"> <i class="icon-user-plus-bottom"></i> </a>
                 <a href="/profil?onglet=employees&display=view&add=false" class="refreshButton"> <i class="icon-rotate"></i> </a>
 
@@ -54,9 +48,9 @@
                 </form>
             </div>
 
-            <div class="scrollTableContainer">
+            <div class="scroll-table-container">
                 <table class="table">
-                    <thead>
+                    <thead class="table-header">
                         <tr>
                             <th scope="col"> Image</th>
                             <th scope="col"> Prénom </th>
@@ -67,17 +61,17 @@
                             <th scope="col"> Éditer </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-body">
                         <?php
                             foreach($results as $employee): ?>
-                            <tr class="tableCell">
+                            <tr class="table-cell">
                                 <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPhone , "PhoneNumber") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
-                                <td class="columnForButton"> <a href="/profil?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
+                                <td class="column-for-button"> <a href="/profil?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

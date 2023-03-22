@@ -678,7 +678,6 @@ body{
     gap: 5%;
 }
 
-
 /*==========================================
 *
 *====Profil Page view and modify option ====
@@ -695,6 +694,10 @@ body{
     border-top-left-radius: 20px;
     width: 100%;
     height: 100%;
+}
+
+.profil-container-header{
+    grid-area: 1 / 1 / 2 / 12;
 }
 
 .profil-picture{
@@ -743,4 +746,19 @@ body{
     grid-area: 6 / 7 / 7 / 12;
     display: flex;
     gap: 2%;
+}
+
+/*==========================================
+*
+*============== Table layout ===============
+*
+*=========================================*/
+
+.scroll-table-container{
+    grid-area: 2 / 1 / 7 / 12;
+    overflow-y: scroll;
+}
+
+.table{
+    width: 100%;
 }

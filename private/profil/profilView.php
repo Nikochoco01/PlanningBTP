@@ -1,4 +1,5 @@
 <div class="profil-container">
+    BUG MODIFICATION PROFIL EMPLOYEE ON ACCEDE AU TABLEAU ADMINISTRATEUR
     <div class="profil-picture">
         <div class="input-picture-container">
             <img src="/img/defaultPP.png" alt="photo de profil" class="input-picture-rendered">
