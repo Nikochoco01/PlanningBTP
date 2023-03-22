@@ -31,7 +31,7 @@ if ($_FILES["userPicture"]["name"] != "") {
     $pictureBin = base64_encode(file_get_contents($_FILES["userPicture"]["tmp_name"]));
 
     Picture::add($dataBase , $userId , $pictureName , $pictureSize , $pictureType , $pictureBin );
-    var_dump($userId);
+    var_dump($_FILES);
     // $test = $PDO->prepare("select pictureId from Picture where userId = $userId");
     // $test->execute();
     // $test = $test->fetch();
