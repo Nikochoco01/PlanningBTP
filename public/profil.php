@@ -1,5 +1,6 @@
 <?php
     include_once APP . "private/class/URLManagementClass.php";
+    include_once APP . "private/class/Picture.php";
     //var_dump($_SESSION['ERROR']);
     // if(isset($_SESSION['MESSAGE'])){
     //     var_dump($_SESSION['MESSAGE']);

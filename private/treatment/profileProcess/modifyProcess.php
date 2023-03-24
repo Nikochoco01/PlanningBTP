@@ -1,8 +1,7 @@
 <?php
-
-// test Password
-// $testPassword = InputSecurity::validatePassWord($_POST['userPassword'] , $passwordVerify);
-
+include_once APP . "/private/class/InputSecurityClass.php";
+include_once APP . "/private/dataBase/dataBaseConnection.php";
+include_once APP . "/private/class/Picture.php"; 
 // test FirstName
 $testFirstName = InputSecurity::validateWithoutNumber($_POST['userFirstName'], $firstName);
 
@@ -19,6 +18,43 @@ $testNumberPhone = InputSecurity::validateWithoutLetter($_POST['userPhone'], $ph
 $testPosition = InputSecurity::validateWithoutNumber($_POST['userPosition'], $position);
 
 $userId = $_POST['userId'];
+
+//if(isset($_POST["valider"])){
+// $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_OBJ);
+// var_dump($_FILES["userPicture"]["name"]!="");
+// var_dump($_FILES["userPicture"]["name"]);
+if ($_FILES["userPicture"]["name"] != "") {
+    $pictureName = $_FILES["userPicture"]["name"];
+    $pictureSize = $_FILES["userPicture"]["size"];
+    $pictureType = $_FILES["userPicture"]["type"];
+    $pictureBin = base64_encode(file_get_contents($_FILES["userPicture"]["tmp_name"]));
+
+    Picture::add($dataBase , $userId , $pictureName , $pictureSize , $pictureType , $pictureBin );
+    var_dump($_FILES);
+    // $test = $PDO->prepare("select pictureId from Picture where userId = $userId");
+    // $test->execute();
+    // $test = $test->fetch();
+    // //var_dump($test->pictureId);
+    // if (empty($test->pictureId)) {
+    //     $req = $PDO->prepare("insert into Picture(pictureId, pictureName, pictureSize, pictureType, pictureBin, userId) values ($userId, ?, ?, ?, ?, $userId)");
+    //     $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+    //     //echo "if";
+    // } else {
+    //     $req = $PDO->prepare("update Picture set pictureName = ?, pictureSize = ?, pictureType = ?, pictureBin = ? where userId = $userId");
+    //     $req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+    //     //echo "else";
+    // }
+    //$req->execute(array($_FILES["userPicture"]["name"], $_FILES["userPicture"]["size"], $_FILES["userPicture"]["type"], file_get_contents($_FILES["userPicture"]["tmp_name"])));
+}
+
+// $sql = $PDO->prepare("select * from Picture");
+// $sql->execute();
+
+// $result = $sql->fetchAll();
+
+//var_dump($result);
+
+//}
 
 if ($testFirstName && $testLastName && $testMail && $testNumberPhone && $testPosition) {
 

@@ -1,9 +1,9 @@
 <?php
 
 
-$iutLog = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
-$iutLogUser = "p2101430";
-$iutLogPassword = "12101430";
+$iutLog = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521";
+$iutLogUser = "p2107521";
+$iutLogPassword = "12107521";
 
 $LocalHost = "mysql:host=localhost:3306;dbname=bdsite";
 $LocalhostLogUser = "root";

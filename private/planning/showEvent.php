@@ -2,6 +2,8 @@
     require_once dirname(__FILE__,2). "/class/Events.php";
     InputSecurity::validateWithoutLetter($_GET['event'] , $eventID);
     $eventDetails = $event->getDetailSelectedEvent($eventID);
+
+    var_dump($eventDetails);
     $selectedEvent = $event->getEvent($eventDetails[0]->eventId)[0];
 ?>
 
