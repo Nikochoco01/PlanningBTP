@@ -29,7 +29,7 @@ class Picture{
             return [];
         }
 
-        public static function add($dataBase, $userId = null, $name, $size, $type, $bin){
+        public static function add($dataBase, $name, $size, $type, $bin , $userId = null){
             if($userId != null){
                 $dataBase->save("Picture", [
                     "pictureId" => "$userId",
@@ -38,7 +38,7 @@ class Picture{
                     "pictureSize" => "$size",
                     "pictureType" => "$type",
                     "pictureBin" => "$bin"
-                ]);
+                ], "userId");
             }
         }
 

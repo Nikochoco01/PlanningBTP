@@ -23,17 +23,17 @@ class Database
     /**
      * @const Le DSN pilote de la base de données
      */
-    private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2101430";
+    private const DSN = "mysql:host=iutbg-lamp.univ-lyon1.fr:3306;dbname=p2107521";
 
     /**
      * @const Le nom d'utilisateur de l'accès à la base de données
      */
-    private const USER = "p2101430";
+    private const USER = "p2107521";
 
     /**
      * @const Le mot de passe d'accès à la base de données
      */
-    private const PASSWORD = "12101430";
+    private const PASSWORD = "12107521";
 
     /**
      * @const Si on est en mode production ou développement, car les erreurs seront affichées en mode dev, pas en prod

@@ -65,7 +65,7 @@
                         <?php
                             foreach($results as $employee): ?>
                             <tr class="table-cell">
-                                <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                                <td scope="row"> <img src="<?= Picture::display($dataBase, $employee->pictureId);?>" alt="image de l'employé"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>

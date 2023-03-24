@@ -8,13 +8,12 @@ const PRIVE = __DIR__ . "/private/";
 include_once APP . "private/constant/constant.php";
 include_once APP . "private/dataBase/Database.php";
 include_once APP . "private/class/InputSecurityClass.php";
+include_once APP . "private/class/Picture.php";
 include_once APP . "private/class/URLManagementClass.php";
 include_once APP . "private/treatment/profileProcess/searchProcess.php";
 
 
 $path = $_SERVER["PATH_INFO"] ?? "/";
-$dataBase = new Database();
-
 $dataBase = new Database();
 
 ob_start();
