@@ -9,6 +9,7 @@ include_once APP . "private/constant/constant.php";
 include_once APP . "private/dataBase/Database.php";
 include_once APP . "private/class/InputSecurityClass.php";
 include_once APP . "private/class/URLManagementClass.php";
+include_once APP . "private/class/Month.php";
 include_once APP . "private/treatment/profileProcess/searchProcess.php";
 
 
