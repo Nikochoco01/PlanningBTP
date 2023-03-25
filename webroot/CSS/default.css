@@ -710,7 +710,8 @@ body{
 }
 
 .profil-container-header{
-    grid-area: 1 / 1 / 2 / 12;
+    grid-area: 1 / 2 / 2 / 11;
+    background-color: aqua;
 }
 
 .profil-picture{
@@ -769,9 +770,18 @@ body{
 
 .scroll-table-container{
     grid-area: 2 / 1 / 7 / 12;
+    position: relative;
     overflow-y: scroll;
+    background-color: bisque;
 }
 
 .table{
     width: 100%;
+    text-align: center;
+}
+
+.table-options{
+    background-color: aqua;
+    width: 100%;
+    height: 20%;
 }
