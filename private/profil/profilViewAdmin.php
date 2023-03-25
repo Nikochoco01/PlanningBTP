@@ -34,23 +34,23 @@
                         "field" => "*"
                     ]);
         }
-        switch ($_GET["add"]) {
-            case "false":
     ?>
 
             <div class="profil-container-header">
-                <a href="<?= URLManagement::addUrlParam(array('add'=>'true')) ?>" class="addEmployeeButton"> <i class="icon-user-plus-bottom"></i> </a>
-                <a href="/profil?onglet=employees&display=view&add=false" class="refreshButton"> <i class="icon-rotate"></i> </a>
+                <div class="profil-link-container">
+                    <a href="<?= URLManagement::addUrlParam(array('display'=>'add')) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-user-plus-bottom"></i> </a>
+                    <a href="/profil?onglet=employees&display=view" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-rotate"></i> </a>
+                </div>
 
-                <form method="POST" class="searchZone">
-                    <input type="search" name="searchEmployee" id="searchEmployee" placeholder="chercher un employé">
-                    <label for="searchEmployee" class="searchEmployeeLabel"> <i class="icon-user-search"></i></label>
+                <form method="POST" class="input-container width-50">
+                    <input type="search" name="search-employee" class="input-field" id="search-employee" optional>
+                    <label for="search-employee" class="input-label text-color-white"> <i class="icon-user-search"></i> chercher un employé </label>
                 </form>
             </div>
 
-            <div class="scroll-table-container">
+            <div class="table-container">
                 <table class="table">
-                    <thead class="table-header">
+                    <thead class="table-header bg-color-orange text-color-gray">
                         <tr>
                             <th scope="col"> Image</th>
                             <th scope="col"> Prénom </th>
@@ -64,24 +64,17 @@
                     <tbody class="table-body">
                         <?php
                             foreach($results as $employee): ?>
-                            <tr class="table-cell">
-                                <td scope="row"> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                            <tr class="table-cell text-color-white">
+                                <td> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPhone , "PhoneNumber") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userPosition , "uppercase") ?> </td>
-                                <td class="column-for-button"> <a href="/profil?onglet=employees&display=modify&add=false&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
+                                <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="/profil?onglet=employees&display=modify&employee=<?= $employee->userId ?>" > <i class="icon-user-edit"></i> </a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
-    <?php
-            break;
-            case "true":
-                include "addEmployee.php";
-            break;
-        }
-    ?>
 </div>

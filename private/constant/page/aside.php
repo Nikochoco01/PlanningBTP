@@ -2,15 +2,6 @@
     include_once APP . "private/constant/constant.php";
     include_once APP . "private/class/Month.php";
 
-    function addUser(){
-        if($_SESSION['userFonction'] === "administrator"){
-            return "&add=false";
-        }
-        else{
-            return "";
-        }
-    }
-
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
@@ -29,7 +20,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="<?= "profil?onglet=personal&display=view".addUser() ?>">
+                <a href="profil?onglet=personal&display=view">
                     <i class="icon-id-card"></i>
                         <span class="nav-text">
                             Profil

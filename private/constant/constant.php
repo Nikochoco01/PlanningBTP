@@ -6,6 +6,7 @@
 
     const PARAM_VIEW_DISPLAY = 'view';
     const PARAM_MODIFY_DISPLAY = 'modify';
+    const PARAM_ADD_DISPLAY = 'add';
 
     // const onglet parameter:
     const PARAM_MISSION_ONGLET = 'missions';

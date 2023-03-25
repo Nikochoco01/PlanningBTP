@@ -44,6 +44,9 @@
                                 case PARAM_MODIFY_DISPLAY:
                                     include_once APP . "private/profil/modifyEmployee.php";
                                 break;
+                                case PARAM_ADD_DISPLAY:
+                                    include_once APP . "private/profil/addEmployee.php";
+                                break;
                             }
                         break;
                     }

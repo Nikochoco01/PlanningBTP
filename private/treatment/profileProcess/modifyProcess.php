@@ -70,5 +70,5 @@ $getUser = $dataBase->read("User",[
 
 
 // AbC13me@?    
-header('Location:/profil?onglet=employees&display=view&add=false');
+header('Location:/profil?onglet=employees&display=view');
 exit();

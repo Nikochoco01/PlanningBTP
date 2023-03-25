@@ -37,7 +37,7 @@
     </div>
 
     <div class="profil-btn-zone">
-        <a class="btn-link width-50 height-50 border-rad-10 bg-color-orange text-color-white" href="<?= URLManagement::addUrlParam(array('display' => PARAM_MODIFY_DISPLAY)) ?>"> <i class="icon-user-edit"></i> Modifier </a>
+        <a class="btn-link width-50 height-50 border-rad-10 bg-color-orange text-color-white hover-color-gray" href="<?= URLManagement::addUrlParam(array('display' => PARAM_MODIFY_DISPLAY)) ?>"> <i class="icon-user-edit"></i> Modifier </a>
     </div>
     
 </div>
