@@ -60,7 +60,7 @@
 
     <input type="hidden" name="userId" value="<?= $employeeID ?>">
 
-    <div class="profil-btn-zone">
+    <div class="profil-btn-zone btn-container width-50">
         <label for="btn-register" class="label-btn-input bg-color-orange text-color-black"> <span> Enregistrer </span> </label>
         <input type="submit" class="btn-input" id="btn-register">
 

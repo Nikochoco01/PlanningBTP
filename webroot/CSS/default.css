@@ -317,6 +317,15 @@ body{
 * btn class
 *
 *====================*/
+
+.btn-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
 .btn{
     display: flex;
     justify-content: center;
@@ -327,7 +336,15 @@ body{
 }
 
 .btn-input{
-    display: none;
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
 }
 
 .label-btn-input{
@@ -336,15 +353,13 @@ body{
     align-items: center;
     border: none;
     border-radius: 10px;
-    width: 20%;
+    width: 100%;
     height: 30px;
+    animation: btn-unhover 0.2s forwards;
 }
 
 .label-btn-input:hover , .btn:hover{
-    transition: 0.2s ease all;
-    background-color: var(--white-transparent);
-    font-weight: bold;
-    color: var(--gray);
+    animation: btn-hover 0.2s forwards;
 }
 
 .label-btn-input:hover * , .btn:hover *{
@@ -354,6 +369,30 @@ body{
 
 .label-btn-profil{
     width: 70%;
+}
+
+@keyframes btn-hover {
+    0%{
+
+    }
+
+    100%{
+        background-color: var(--white-transparent);
+        font-weight: bold;
+        color: var(--gray);
+    }
+}
+
+@keyframes btn-unhover {
+    0%{
+        background-color: var(--white-transparent);
+        font-weight: bold;
+        color: var(--gray);
+    }
+
+    100%{
+
+    }
 }
 
 /*====================
@@ -367,13 +406,33 @@ body{
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    transition: 0.2s ease all;
+    animation: btn-link-unhover 0.2s forwards;
 }
 
 .btn-link:hover{
-    transform: scale(1.1);
-    transition: 0.2s ease all;
-    font-weight: bolder;
+    animation: btn-link-hover 0.2s forwards;
+}
+
+@keyframes btn-link-hover {
+    0%{
+
+    }
+    100%{
+        transform: scale(1.1);
+        transition: 0.2s ease all;
+        font-weight: bolder;
+    }
+}
+
+@keyframes btn-link-unhover {
+    0%{
+        transform: scale(1.1);
+        transition: 0.2s ease all;
+        font-weight: bolder;
+    }
+    100%{
+
+    }
 }
 
 /*====================
@@ -741,6 +800,7 @@ body{
     align-items: center;
     width: 100%;
 }
+
 .profil-link-container{
     display: flex;
     justify-content: center;
@@ -805,6 +865,11 @@ body{
 
 .table-container{
     grid-area: 2 / 1 / 7 / 12;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table-form{
     display: flex;
     justify-content: flex-end;
 }

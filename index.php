@@ -29,7 +29,6 @@
                                 <a class="btn bg-color-gray text-color-white" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
                             </div>
                             <div class="row3 align-self-center">
-
                                 <label for="btn-connection" class="label-btn-input bg-color-gray text-color-white"> <span> Connexion </span> </label>
                                 <input type="submit" class="btn-input" id="btn-connection">
 

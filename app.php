@@ -84,7 +84,7 @@ switch ($path) {
             require TREAT . "vehicleProcess/newVehicle.php";
         break;
 
-    case "/vehicleMod":
+    case "/vehicleModify":
         if ($_SERVER["REQUEST_METHOD"] == "POST")
             require TREAT . "vehicleProcess/modifyVehicleProcess.php";
         break;
