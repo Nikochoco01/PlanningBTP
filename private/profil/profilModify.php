@@ -77,7 +77,7 @@
 
     function returnURL(){
         if($_SESSION['userFonction'] == "administrator"){
-            return "/profil?onglet=personal&display=view&add=false";
+            return "/profil?onglet=personal&display=view";
         }
         else{
             return "/profil?onglet=personal&display=view";

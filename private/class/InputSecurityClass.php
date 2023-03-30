@@ -169,7 +169,7 @@ class InputSecurity{
                 break;
             case "licensePlate":
                     //license plate french format
-                    $REGEX = "/[A-Z]{2}([-])[0-9]{3}([-])[A-Z]{2}/";
+                    $REGEX = "/[a-zA-Z]{2}([-])[0-9]{3}([-])[a-zA-Z]{2}/";
                 break;
         }
 

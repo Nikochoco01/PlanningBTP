@@ -20,15 +20,6 @@
     $picture = null;
 
     if($testFirstName && $testLastName && $testMail && $testNumberPhone && $testPosition){
-        // $statement = $PDO->prepare("call Inscription(:varUserFirstName , :varUserLastName , :varUserMail , :varUserPhone , :varUserPicture , :varUserPosition)");
-        // $statement->bindParam("varUserFirstName" , $firstName);
-        // $statement->bindParam("varUserLastName" , $lastName);
-        // $statement->bindParam("varUserMail" , $mail);
-        // $statement->bindParam("varUserPhone" , $phoneNumber);
-        // $statement->bindParam("varUserPicture" , $picture);
-        // $statement->bindParam("varUserPosition" , $position);
-        // $statement->execute();
-
         $query = "call Inscription(? , ? , ? , ? , ? , ?)";
 
         $dataBase->query($query, [

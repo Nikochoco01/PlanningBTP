@@ -1,84 +1,39 @@
-<?php
-    $_SESSION['token'] = InputSecurity::generateToken(10);
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php $title = "Matériel";
-$rightToModify = $_SESSION['userFonction'] == 'administrator' || $_SESSION['userFonction'] == 'materialManager';
-include_once APP . "private/constant/page/head.php";
+<?php 
+    $title = TITLE_PAGE_MATERIAL;
+    $rightToModify = $_SESSION['userFonction'] == 'administrator' || $_SESSION['userFonction'] == 'materialManager';
+    $_SESSION['token'] = InputSecurity::generateToken(10);
+    include_once APP . "private/constant/page/head.php";
 ?>
 
 <body>
     <div class="container">
         <?php include_once APP . "private/constant/page/header.php"; ?>
         <?php include_once APP . "private/constant/page/aside.php"; ?>
-
         <main class="container-main">
-            <div class="materialContainer">
-                <div class="materialList">
-                    <?php
-                        $results = $dataBase->read("Equipment",[
-                            "fields" => ["distinct *"]
-                        ]);
-                        foreach($results as $res):?>
-                            <form class="material" action="/delete" method="post">
-                                <label for="id"> Nom </label>
-                                <input type="text" name="id" value="<?= $res->equipmentName ?>" readonly>
-                                <p> Total : <?= $res->equipmentTotalQuantity ?></p>
-                                <p> Disponible : <?= $res->equipmentAvailableQuantity ?></p>
-                                <input type="hidden" name="token" value="<?= $_SESSION["token"] ?>">
-                                <input type="hidden" name="table" value="Equipment">
-                                <input type="hidden" name="idName" value="equipmentName">
-                                <?php if($rightToModify):?>
-                                    <input type="submit" value="Effacer">
-                                <?php endif; ?>
-                            </form>
-                    <?php endforeach; ?>
-                </div>
-
-                <div class="formContainer">
-                    <?php if($rightToModify): ?>
-                        <form method="post" class="formAddMaterial">
-                            <label for="designation">Nom de l'équipement</label>
-                            <input type="text" name="designation" id="designation" required>
-
-                            <label for="total">Quantité du nouvelle équipement</label>
-                            <input type="number" name="total" id="total" min="0" max="2000000000" step="1" required>
-
-                            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
-
-                            <button type="submit">Valider</button>
-                            <button type="reset">Annuler</button>
-                        </form>
-
-                        <?php
-                        $results = $dataBase->read("Equipment",[
-                            "fields" => ["equipmentName"]
-                        ]);
-                        if(!empty($results)):?>
-                            <form action="rmvTool" method="post" class="formRemoveMaterial">
-                                <label for="designation">Nom de l'équipement</label>
-                                <select name="designation" id="des" required>
-                                    <?php foreach($results as $res):?>
-                                        <option><?= $res->equipmentName ?></option>
-                                    <?php endforeach;?>
-                                </select>
-
-                                <label for="rmv">Nombre à enlever au stock</label>
-                                <input type="number" name="rmv" id="rmv" min="0" required>
-
-                                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
-
-                                <button type="submit">Valider</button>
-                                <button type="submit">Annuler</button>
-                            </form>
-                        <?php endif; ?>
-                    <?php endif;?>
-                </div>
+            <div class="main-content">
+                <?php 
+                    switch ($_GET["onglet"]) {
+                        case PARAM_MATERIAL_ONGLET:
+                            switch($_GET["display"]){
+                                case PARAM_VIEW_DISPLAY:
+                                    include_once APP . "private/material/materialView.php";
+                                break;
+                                case PARAM_MODIFY_DISPLAY:
+                                    include_once APP . "private/material/materialModify.php";
+                                break;
+                                case PARAM_ADD_DISPLAY:
+                                    include_once APP . "private/material/materialAdd.php";
+                                break;
+                            }
+                        break;
+                    }
+                ?>
             </div>
         </main>
     </div>
 </body>
+
 </html>

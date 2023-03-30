@@ -1,7 +1,4 @@
 <?php 
-    include_once APP . "private/constant/constant.php";
-    include_once APP . "private/class/Month.php";
-
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
     $firstDay = $month->getFirstDay();
@@ -20,7 +17,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="profil?onglet=personal&display=view">
+                <a href="profil?onglet=<?= PARAM_PERSONAL_ONGLET ?>&display=<?= PARAM_VIEW_DISPLAY ?>">
                     <i class="icon-id-card"></i>
                         <span class="nav-text">
                             Profil
@@ -28,10 +25,10 @@
                 </a>
             </li>
             <li class="has-subnav">
-                    <a href="<?= "planning?onglet=missions&display=week&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
+                    <a href="<?= "planning?onglet=".PARAM_MISSION_ONGLET."&display=".PARAM_WEEK_DISPLAY."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
                     <i class="icon-calendar"></i>
                         <span class="nav-text">
-                            Planning
+                            Planning <?= var_dump($month->getCurrentWeek()) ?>
                         </span>
                 </a>
             </li>
@@ -52,7 +49,7 @@
                 </a>
             </li>
             <li>
-                <a href="vehicle">
+                <a href="vehicle?onglet=<?=PARAM_VEHICLES_ONGLET?>&display=<?= PARAM_VIEW_DISPLAY?>">
                     <i class="icon-warehouse"></i>
                         <span class="nav-text">
                             Véhicule
@@ -60,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a href="tool">
+                <a href="tool?onglet=<?=PARAM_MATERIAL_ONGLET?>&display=<?= PARAM_VIEW_DISPLAY?>">
                     <i class="icon-tool"></i>
                         <span class="nav-text">
                             Matériel

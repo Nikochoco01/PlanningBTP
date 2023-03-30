@@ -39,7 +39,7 @@
             <div class="profil-container-header">
                 <div class="profil-link-container">
                     <a href="<?= URLManagement::addUrlParam(array('display'=>'add')) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-user-plus-bottom"></i> </a>
-                    <a href="/profil?onglet=employees&display=view" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-rotate"></i> </a>
+                    <a href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?= PARAM_EMPLOYEE_ONGLET ?>&display=<?= PARAM_VIEW_DISPLAY?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-rotate"></i> </a>
                 </div>
 
                 <form method="POST" class="input-container width-50">

@@ -1,29 +1,25 @@
 <?php
-include_once APP . "private/class/InputSecurityClass.php";
-include_once APP . "private/dataBase/dataBaseConnection.php";
+$testLicensePlate = InputSecurity::validateWithoutLetter($_POST['addLicensePlate'], $licensePlate , "licensePlate");
+$testVehicleModel = InputSecurity::isEmpty($_POST['addModel'], $vehicleModel);
+$testDriverLicense = InputSecurity::validateWithoutNumber($_POST['addDriverLicense'], $driverLicense);
+$testMaxPassenger = InputSecurity::validateWithoutLetter($_POST['addSeatsNumber'], $maxPassenger);
+$testAvailable = InputSecurity::validateWithoutNumber($_POST['addAvailable'], $available);
+$testTokenForm = InputSecurity::isEmpty($_POST['token'], $tokenForm);
+$testTokenSession = InputSecurity::isEmpty($_SESSION['token'], $tokenSession);
 
-if( InputSecurity::validateWithoutNumber($_POST['plate'])
-    && InputSecurity::isEmpty($_POST['model']) 
-    && InputSecurity::validateWithoutLetter($_POST['license'], "licensePlate") 
-    && InputSecurity::validateWithoutNumber($_POST['maxPassenger'])
-    && InputSecurity::isEmpty($_POST['token'])
-    && InputSecurity::isEmpty($_SESSION['token'])){
-        if($_POST['token'] == $_SESSION['token']){
-            $stat = $PDO->prepare("SELECT vehicleLicensePlate FROM Vehicle WHERE vehicleLicensePlate = :plate");
-            $stat->execute([ 'plate' => $_POST['plate']]);
-            if(!$stat->fetch()){
-                $stat = $PDO->prepare("insert into Vehicle values(:plate, :model, :license, :max, true);");
-                $stat->execute([
-                    'plate' => $_POST['plate'],
-                    'model' => $_POST['model'],
-                    'license' => $_POST['license'],
-                    'max' => $_POST['maxPassenger'],
-                ]);
-            }
-        }
-        unset($_SESSION['token']);
-        header("Location:".$_SERVER['HTTP_REFERER']);
+if ($testLicensePlate && !$testVehicleModel && $testDriverLicense && $testMaxPassenger && $testAvailable && !$testTokenForm && !$testTokenSession ) {
+    if($tokenForm == $tokenSession){
+        $results = $dataBase->save("Vehicle",[
+            "vehicleLicensePlate" => $licensePlate,
+            "vehicleModel" => $vehicleModel,
+            "vehicleDriverLicense" => $driverLicense,
+            "vehicleMaxPassenger" => $maxPassenger,
+            "vehicleDisponibility" => $available
+        ],"");
+    }
+} else {
+    InputSecurity::returnError("Un des champs ne correspond pas aux demandes du formulaire");
 }
-else{
-        header("Location:/vehicle");
-}
+unset($_SESSION['token']);
+header("Location:/vehicle?onglet=vehicles&display=view");
+exit();
