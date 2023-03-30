@@ -10,13 +10,14 @@ include_once APP . "private/dataBase/Database.php";
 include_once APP . "private/class/InputSecurityClass.php";
 include_once APP . "private/class/URLManagementClass.php";
 include_once APP . "private/class/Month.php";
+include_once APP . "private/class/Picture.php";
 include_once APP . "private/treatment/profileProcess/searchProcess.php";
 
 
 $path = $_SERVER["PATH_INFO"] ?? "/";
 $dataBase = new Database();
 
-$dataBase = new Database();
+$pictureWebsite = new Picture($dataBase);
 
 ob_start();
 

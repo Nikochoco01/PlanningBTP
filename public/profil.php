@@ -1,10 +1,3 @@
-<?php
-    include_once APP . "private/class/URLManagementClass.php";
-    //var_dump($_SESSION['ERROR']);
-    // if(isset($_SESSION['MESSAGE'])){
-    //     var_dump($_SESSION['MESSAGE']);
-    // }
-?>
 <!DOCTYPE html>
 <html lang="fr">
 

@@ -63,9 +63,9 @@
                     </thead>
                     <tbody class="table-body">
                         <?php
-                            foreach($results as $employee): ?>
+                            foreach($results as $employee):?>
                             <tr class="table-cell text-color-white">
-                                <td> <img src="<?= $employee->userPicture ?>" alt="image de l'employé"> </td>
+                                <td> <img class="border-rad-10 width-70px height-70px margin-left-10" src=" <?= $pictureWebsite->display($employee->pictureId) ?>" alt="image de l'employé"> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userFirstName , "uppercaseFirstLetter") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userLastName , "uppercase") ?> </td>
                                 <td> <?= InputSecurity::displayWithFormat($employee->userMail) ?> </td>

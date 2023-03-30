@@ -37,10 +37,19 @@ if ($testFirstName && $testLastName && $testMail && $testNumberPhone && $testPos
 
 $getUser = $dataBase->read("User",[
     "conditions"=>[
-        "userId" => $_SESSION['userId']
+        "userId" => $userId
     ],
     "fields" => ["distinct *"]
 ]);
+
+if ($_FILES["userPicture"]["name"] != "") {
+    $pictureName = $_FILES["userPicture"]["name"];
+    $pictureSize = $_FILES["userPicture"]["size"];
+    $pictureType = $_FILES["userPicture"]["type"];
+    $pictureBin = base64_encode(file_get_contents($_FILES["userPicture"]["tmp_name"]));
+
+    $pictureWebsite->add($pictureName , $pictureSize , $pictureType , $pictureBin , $getUser->userId);
+}
 
 // var_dump($_POST["userPassword"]);
 // var_dump(InputSecurity::isEmpty($_POST["userPassword"] , $return));
@@ -69,6 +78,6 @@ $getUser = $dataBase->read("User",[
 // var_dump("result : ".$ret);
 
 
-// AbC13me@?    
-header('Location:/profil?onglet=employees&display=view');
+// AbC13me@?
+header('Location:/profil?onglet=personal&display=view');
 exit();

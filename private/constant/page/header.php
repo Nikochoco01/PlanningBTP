@@ -2,7 +2,7 @@
     <h1 class="title-page"> <?= $title ?> </h1>
 
     <div class="profil-zone">
-        <img tabindex="0" role="button" class="profil-image-button"src="/img/defaultPP.png" alt="user picture">
+        <img tabindex="0" role="button" class="profil-image-button" src="<?= $pictureWebsite->display($_SESSION['userId']) ?>" alt="user picture">
         <div class="profil-menu bg-color-gray text-color-orange">
             <p class="profil-informations font-bold"> 
                 <span class="surName"> <?= InputSecurity::displayWithFormat($_SESSION['userFirstName'] , "uppercaseFirstLetter") ?> </span> 

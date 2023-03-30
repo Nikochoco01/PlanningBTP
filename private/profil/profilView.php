@@ -2,7 +2,7 @@
     BUG MODIFICATION PROFIL EMPLOYEE ON ACCEDE AU TABLEAU ADMINISTRATEUR
     <div class="profil-picture">
         <div class="input-picture-container">
-            <img src="/img/defaultPP.png" alt="photo de profil" class="input-picture-rendered">
+            <img src="<?= $pictureWebsite->display($_SESSION['userId']) ?>" alt="photo de profil" class="input-picture-rendered">
         </div>
     </div>
 

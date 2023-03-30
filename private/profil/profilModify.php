@@ -3,9 +3,9 @@
 
     <div class="profil-picture">
         <div class="input-picture-container">
-        <input type="file" name="" id="input-picture-field" class="input-picture-field">
+        <input type="file" name="userPicture" id="input-picture-field" class="input-picture-field">
         <label for="input-picture-field" class="input-picture-label"> <i class="icon-image-plus"></i> </label>
-        <img src="/img/defaultPP.png" alt="photo de profil" class="input-picture-rendered">
+        <img src="<?= $pictureWebsite->display($_SESSION['userId']) ?>" alt="photo de profil" class="input-picture-rendered">
     </div>
 
     </div>
