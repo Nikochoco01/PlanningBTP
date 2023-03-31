@@ -10,6 +10,7 @@ $testTokenSession = InputSecurity::isEmpty($_SESSION['token'], $tokenSession);
 if ($testLicensePlate && !$testVehicleModel && $testDriverLicense && $testMaxPassenger && $testAvailable && !$testTokenForm && !$testTokenSession ) {
     if($tokenForm == $tokenSession){
         $results = $dataBase->save("Vehicle",[
+            "vehicleId" => 0,
             "vehicleLicensePlate" => $licensePlate,
             "vehicleModel" => $vehicleModel,
             "vehicleDriverLicense" => $driverLicense,

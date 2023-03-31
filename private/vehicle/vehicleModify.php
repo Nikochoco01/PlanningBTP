@@ -25,7 +25,6 @@
 
     <div class="profil-container-header">
         <div class="profil-link-container">
-            <a href="<?= URLManagement::addUrlParam(array('display'=>'add')) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-user-plus-bottom"></i> </a>
             <a href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?=PARAM_VEHICLES_ONGLET?>&display=<?= PARAM_VIEW_DISPLAY?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class=""> X </i> </a>
         </div>
 
@@ -36,7 +35,7 @@
     </div>
 
     <div class="table-container">
-        <form method="post" action="vehicleModify" class="table-form">
+        <form method="post" class="table-form">
             <table class="table">
                 <thead class="table-header bg-color-orange text-color-gray">
                     <tr>
@@ -57,9 +56,13 @@
                             <td> <div class="input-container width-70"> <input type="text" name="addDriverLicense" class="input-field" value="<?= $vehicle->vehicleDriverLicense ?>" required> </div> </td>
                             <td> <div class="input-container width-70"> <input type="text" name="addAvailable" class="input-field" value="<?= $vehicle->vehicleDisponibility ?>" required> </div> </td>
                             <td>
-                                <div class="btn-container width-50">
+                                <div class="btn-container width-80 gap-6">
                                     <label for="btn-register" class="label-btn-input bg-color-gray text-color-white"> <span> Enregistrer </span> </label>
-                                    <input type="submit" class="btn-input" id="btn-register">
+                                    <input type="submit" class="btn-input" id="btn-register" formaction="vehicleModify">
+
+                                    <label for="btn-delete" class="label-btn-input bg-color-gray text-color-white"> <span> Supprimer </span> </label>
+                                    <input type="submit" class="btn-input" id="btn-delete" formaction="vehicleDelete">
+                                    
                                     <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
                                     <input type="hidden" name="vehicleId" value="<?= $vehicle->vehicleId ?>">
                                 </div>

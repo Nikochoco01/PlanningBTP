@@ -89,6 +89,11 @@ switch ($path) {
             require TREAT . "vehicleProcess/modifyVehicleProcess.php";
         break;
 
+    case "/vehicleDelete":
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
+            require TREAT . "vehicleProcess/deleteVehicleProcess.php";
+        break;
+
     case "/tool":
         if ($_SERVER["REQUEST_METHOD"] == "GET")
             require APP . "public/toolManagement.php";

@@ -241,9 +241,9 @@ class Database
      * @return bool
      * @throws Exception
      */
-    public function delete(string $table, int $id): bool
+    public function delete(string $table , string $idName , int $id): bool
     {
-        $req = "DELETE FROM " . $table . " WHERE id=" . $id;
+        $req = "DELETE FROM " . $table . " WHERE ".$idName."=" . $id;
         return $this->getPdo()->exec($req) == 1;
     }
 
