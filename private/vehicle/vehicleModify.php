@@ -61,7 +61,7 @@
                                     <label for="btn-register" class="label-btn-input bg-color-gray text-color-white"> <span> Enregistrer </span> </label>
                                     <input type="submit" class="btn-input" id="btn-register">
                                     <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
-                                    <input type="hidden" name="vehicleLicensePlate" value="<?= $vehicle->vehicleLicensePlate ?>">
+                                    <input type="hidden" name="vehicleId" value="<?= $vehicle->vehicleId ?>">
                                 </div>
                             </td>
                         </tr>

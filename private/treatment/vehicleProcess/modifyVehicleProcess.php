@@ -1,5 +1,5 @@
 <?php
-// $testLicensePlate = InputSecurity::validateWithoutLetter($_POST['addLicensePlate'], $licensePlate , "licensePlate");
+$testLicensePlate = InputSecurity::validateWithoutLetter($_POST['addLicensePlate'], $vehicleLicensePlate , "licensePlate");
 $testVehicleModel = InputSecurity::isEmpty($_POST['addModel'], $vehicleModel);
 $testDriverLicense = InputSecurity::validateWithoutNumber($_POST['addDriverLicense'], $driverLicense);
 $testMaxPassenger = InputSecurity::validateWithoutLetter($_POST['addSeatsNumber'], $maxPassenger);
@@ -7,17 +7,18 @@ $testAvailable = InputSecurity::validateWithoutNumber($_POST['addAvailable'], $a
 $testTokenForm = InputSecurity::isEmpty($_POST['token'], $tokenForm);
 $testTokenSession = InputSecurity::isEmpty($_SESSION['token'], $tokenSession);
 
-$vehicleLicensePlate = $_POST['vehicleLicensePlate'];
+$vehicleId = $_POST['vehicleId'];
 
-if (!$testVehicleModel && $testDriverLicense && $testMaxPassenger && $testAvailable && !$testTokenForm && !$testTokenSession ) {
+if ($testLicensePlate && !$testVehicleModel && $testDriverLicense && $testMaxPassenger && $testAvailable && !$testTokenForm && !$testTokenSession ) {
     if($tokenForm == $tokenSession){
         $dataBase->save("Vehicle", [
+            "vehicleId" => $vehicleId,
             "vehicleLicensePlate" => $vehicleLicensePlate,
             "vehicleModel" => $vehicleModel,
             "vehicleDriverLicense" => $driverLicense,
             "vehicleMaxPassenger" => $maxPassenger,
             "vehicleDisponibility" => $available
-        ], "vehicleLicensePlate");
+        ], "vehicleId");
     }
 } else {
     InputSecurity::returnError("Un des champs ne correspond pas aux demandes du formulaire");
