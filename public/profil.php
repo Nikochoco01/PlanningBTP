@@ -30,16 +30,21 @@
                             }
                         break;
                         case PARAM_EMPLOYEE_ONGLET:
-                            switch($_GET["display"]){
-                                case PARAM_VIEW_DISPLAY:
-                                    include_once APP . "private/profil/profilViewAdmin.php";
-                                break;
-                                case PARAM_MODIFY_DISPLAY:
-                                    include_once APP . "private/profil/modifyEmployee.php";
-                                break;
-                                case PARAM_ADD_DISPLAY:
-                                    include_once APP . "private/profil/addEmployee.php";
-                                break;
+                            if($_SESSION['userFonction'] == 'administrator'){
+                                switch($_GET["display"]){
+                                    case PARAM_VIEW_DISPLAY:
+                                        include_once APP . "private/profil/profilViewAdmin.php";
+                                    break;
+                                    case PARAM_MODIFY_DISPLAY:
+                                        include_once APP . "private/profil/modifyEmployee.php";
+                                    break;
+                                    case PARAM_ADD_DISPLAY:
+                                        include_once APP . "private/profil/addEmployee.php";
+                                    break;
+                                }
+                            }
+                            else{
+                                header("Location: /profil?onglet=personal&display=view");
                             }
                         break;
                     }

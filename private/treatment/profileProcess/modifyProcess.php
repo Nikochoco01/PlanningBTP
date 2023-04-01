@@ -37,5 +37,14 @@ if ($_FILES["userPicture"]["name"] != "") {
 
     $pictureWebsite->add($pictureName , $pictureSize , $pictureType , $pictureBin , $getUser->userId);
 }
+
+if($_SESSION['userId'] == $userId){
+    // $_SESSION['userPicture'] = $getUser[0]->userPicture;
+    $_SESSION['userFirstName'] = $getUser[0]->userFirstName;
+    $_SESSION['userLastName'] = $getUser[0]->userLastName;
+    $_SESSION['userPosition'] = $getUser[0]->userPosition;
+    $_SESSION['userPhone'] = $getUser[0]->userPhone;
+    $_SESSION['userMail'] = $getUser[0]->userMail;
+}
 header('Location:/profil?onglet=personal&display=view');
 exit();

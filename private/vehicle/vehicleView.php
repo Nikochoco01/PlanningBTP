@@ -42,19 +42,23 @@
                     <th scope="col"> Place disponible </th>
                     <th scope="col"> Permis </th>
                     <th scope="col"> Disponibilité </th>
+                    <?php if($rightToModify):?>
                     <th scope="col"> Éditer </th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody class="table-body">
                 <?php
                     foreach($results as $vehicle):?>
                     <tr class="table-cell text-color-white">
-                        <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleLicensePlate , "uppercase") ?> </td>
+                        <td class="padding-left-2"> <?= InputSecurity::displayWithFormat($vehicle->vehicleLicensePlate , "uppercase") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleModel , "uppercaseFirstLetter") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleMaxPassenger) ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleDriverLicense , "uppercase") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($vehicle->vehicleDisponibility , "uppercase") ?> </td>
-                        <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?=PARAM_VEHICLES_ONGLET?>&display=<?= PARAM_MODIFY_DISPLAY?>&vehicle=<?= $vehicle->vehicleLicensePlate ?>" > <i class="icon-user-edit"></i> </a> </td>
+                        <?php if($rightToModify):?>
+                            <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?=PARAM_VEHICLES_ONGLET?>&display=<?= PARAM_MODIFY_DISPLAY?>&vehicle=<?= $vehicle->vehicleLicensePlate ?>" > <i class="icon-user-edit"></i> </a> </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach ?>
             </tbody>

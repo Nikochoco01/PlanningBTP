@@ -1,5 +1,4 @@
 <div class="profil-container bg-color-gray">
-    BUG MODIFICATION PROFIL EMPLOYEE ON ACCEDE AU TABLEAU ADMINISTRATEUR
     <div class="profil-picture">
         <div class="input-picture-container">
             <img src="<?= $pictureWebsite->display($_SESSION['userId']) ?>" alt="photo de profil" class="input-picture-rendered">

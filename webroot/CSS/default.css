@@ -85,6 +85,15 @@ body{
     padding: 2%;
 }
 
+.padding-left-2{
+    padding-left: 2%;
+}
+
+.padding-left-5{
+    padding-left: 5%;
+}
+
+
 .width-50{
     width: 50%;
 }
@@ -147,6 +156,10 @@ body{
 
 .gap-6{
     gap: 6%;
+}
+
+.text-align-center{
+    text-align: center;
 }
 
 /*====================

@@ -48,11 +48,12 @@
                 <?php
                     foreach($results as $material):?>
                     <tr class="table-cell text-color-white">
-                        <td>  </td>
-                        <td> <?= InputSecurity::displayWithFormat($material->equipmentName , "uppercaseFirstLetter") ?> </td>
+                        <td class="padding-left-5"> <?= InputSecurity::displayWithFormat($material->equipmentName , "uppercaseFirstLetter") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($material->equipmentAvailableQuantity , "uppercase") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($material->equipmentTotalQuantity) ?> </td>
-                        <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="/tool?onglet=material&display=modify&material=<?= $material->equipmentName ?>" > <i class="icon-user-edit"></i> </a> </td>
+                        <?php if($rightToModify):?>
+                            <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="/tool?onglet=material&display=modify&material=<?= $material->equipmentName ?>" > <i class="icon-user-edit"></i> </a> </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach ?>
             </tbody>
