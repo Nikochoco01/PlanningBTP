@@ -24,15 +24,6 @@ $loginUsername = $dataBase->read("Login",[
                     "fields" => ["loginUsername"]
                 ]);
 
-// $req = $PDO->prepare("select * from Picture where pictureId= $user[0]->userId limit 1");
-// $req = $PDO->prepare("select * from Picture where pictureId= $user->userId limit 1");
-// $req->setFetchMode(PDO::FETCH_ASSOC);
-// $req->execute();
-// $tab=$req->fetchAll();
-// var_dump($tab);
-
-
-
 if(isset($user[0]->userId) && isset($loginUsername[0]->loginUsername)){
     //include_once 'translateDate.php';
     /** session existence test variables */

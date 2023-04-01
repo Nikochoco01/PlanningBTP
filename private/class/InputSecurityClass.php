@@ -88,7 +88,6 @@ class InputSecurity{
     * @return bool return true if the input is empty else false
     */
     public static function isEmpty($input , & $return): bool{
-
         if(empty($input)){
             InputSecurity::returnMessage(InputSecurity::$errorEmptyInput);
             return true;

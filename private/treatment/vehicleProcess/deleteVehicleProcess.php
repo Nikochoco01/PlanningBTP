@@ -22,15 +22,6 @@ if ($testLicensePlate && !$testVehicleModel && $testDriverLicense && $testMaxPas
 
         foreach ($goToEvent as $event) {
             $dataBase->delete("GoTo" ,"vehicleId" , $vehicleId );
-
-
-            // $dataBase->delete(
-            //     "GoTo",
-            //     [
-            //         'eventId' => $event->eventId,
-            //         'vehicleId' => $id
-            //     ]
-            // );
         }
 
         $dataBase->delete("Vehicle" , "vehicleId" , $vehicleId);
@@ -41,33 +32,3 @@ if ($testLicensePlate && !$testVehicleModel && $testDriverLicense && $testMaxPas
 unset($_SESSION['token']);
 header("Location:/vehicle?onglet=vehicles&display=view");
 exit();
-
-
-// if (InputSecurity::validateWithoutLetter($_POST['id'], $id, "licensePlate")
-//     && !InputSecurity::isEmpty($_POST['token'], $token)
-//     && !InputSecurity::isEmpty($_SESSION['token'], $sessionToken)) {
-//         if ($token == $sessionToken) {
-//             $linksToEvent = $dataBase->read(
-//                 "GoTo",
-//                 [
-//                     "fields" => ['eventId'],
-//                     "conditions" => ["vehicleLicensePlate" => $id]
-//                 ]
-//             );
-
-//             foreach ($linksToEvent as $event) {
-//                 $dataBase->deleteBtp(
-//                     "GoTo",
-//                     [
-//                         'eventId' => $event->eventId,
-//                         'vehicleLicensePlate' => $id
-//                     ]
-//                 );
-//             }
-
-//             $dataBase->deleteBtp("Vehicle", ['vehicleLicensePlate' => $id]);
-//         }
-
-//         unset($_SESSION['token']);
-// }
-// header("Location:" . $_SERVER['HTTP_REFERER']);

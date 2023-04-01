@@ -35,7 +35,7 @@
     </div>
 
     <div class="table-container">
-        <form method="post">
+        <form method="post" class="table-form">
             <table class="table">
                 <thead class="table-header bg-color-orange text-color-gray">
                     <tr>
@@ -49,19 +49,21 @@
                 </thead>
                 <tbody class="table-body">
                         <tr class="table-cell text-color-white">
-                            <td> <input type="text" name="addLicensePlate" class="input-field" required> </td>
-                            <td> <input type="text" name="addModel" class="input-field" required> </td>
-                            <td> <input type="text" name="addSeatsNumber" class="input-field" required> </td>
-                            <td> <input type="text" name="addDriverLicense" class="input-field" required> </td>
-                            <td> <input type="text" name="addAvailable" class="input-field" required> </td>
+                        <td> <div class="input-container width-70 margin-left-10"> <input type="text" name="addLicensePlate" class="input-field" required> </div> </td>
+                            <td> <div class="input-container width-70"> <input type="text" name="addModel" class="input-field" required> </div> </td>
+                            <td> <div class="input-container width-70"> <input type="text" name="addSeatsNumber" class="input-field" required> </div> </td>
+                            <td> <div class="input-container width-70"> <input type="text" name="addDriverLicense" class="input-field" required> </div> </td>
+                            <td> <div class="input-container width-70"> <input type="text" name="addAvailable" class="input-field" required> </div> </td>
                             <td> 
-                                <label for="btn-register" class="label-btn-input bg-color-gray text-color-black"> <span> Enregistrer </span> </label>
-                                <input type="submit" class="btn-input" id="btn-register">
+                                <div class="btn-container width-80 gap-6">
+                                    <label for="btn-register" class="label-btn-input bg-color-gray text-color-white"> <span> Enregistrer </span> </label>
+                                    <input type="submit" class="btn-input" id="btn-register">
+                                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                                </div>
                             </td>
                         </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
         </form>
     </div>
 </div>

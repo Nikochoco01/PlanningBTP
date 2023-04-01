@@ -29,11 +29,13 @@
                                 <a class="btn bg-color-gray text-color-white" id="toggle"> <i class="icon-eye-slash" id="toggleIcon"></i> </a>
                             </div>
                             <div class="row3 align-self-center">
-                                <label for="btn-connection" class="label-btn-input bg-color-gray text-color-white"> <span> Connexion </span> </label>
-                                <input type="submit" class="btn-input" id="btn-connection">
+                                <div class="btn-container width-80 gap-6">
+                                    <label for="btn-connection" class="label-btn-input bg-color-gray text-color-white"> <span> Connexion </span> </label>
+                                    <input type="submit" class="btn-input" id="btn-connection">
 
-                                <label for="btn-cancel" class="label-btn-input bg-color-gray text-color-white"> <span> Annuler </span> </label>
-                                <input type="reset" class="btn-input" id="btn-cancel">
+                                    <label for="btn-cancel" class="label-btn-input bg-color-gray text-color-white"> <span> Annuler </span> </label>
+                                    <input type="reset" class="btn-input" id="btn-cancel">
+                                </div>
                             </div>
                         </form>
                     </div>

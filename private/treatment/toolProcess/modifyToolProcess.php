@@ -9,22 +9,20 @@ $materialId = $_POST['materialId'];
 
 if ($testMaterialName && $testMaterialNumberAvailable && $testMaterialNumberTotal && !$testTokenForm && !$testTokenSession ) {
     if($tokenForm == $tokenSession){
-        $goToEvent = $dataBase->read(
-                "UsedEquipment",
-                [
-                    "conditions" => ["equipmentId" => $materialId],
-                    "fields" => ['eventId']
-                ]
-            );
-    
-            foreach ($goToEvent as $event) {
-                $dataBase->delete("UsedEquipment" ,"equipmentId" , $materialId );
-            }
-    
-            $dataBase->delete("Equipment" , "equipmentId" , $materialId);
+            $results = $dataBase->save("Equipment",[
+                "equipmentId" => $materialId,
+                "equipmentName" => $materialName,
+                "equipmentAvailableQuantity" => $materialNumberAvailable,
+                "equipmentTotalQuantity" => $materialNumberTotal
+            ],"equipmentId");
     }
 } else {
-    InputSecurity::returnError("Un des champs ne correspond pas aux demandes du formulaire");
+    if($materialNumberTotal == null){
+        InputSecurity::returnError("Le nombre de matériel ne peut être de 0 , supprimer le matériel");
+    }
+    else{
+        InputSecurity::returnError("Un des champs ne correspond pas aux demandes du formulaire");
+    }
 }
 unset($_SESSION['token']);
 header("Location:/tool?onglet=material&display=view");

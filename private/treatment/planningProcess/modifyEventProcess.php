@@ -1,6 +1,4 @@
 <?php
-include_once APP . "/private/dataBase/dataBaseConnection.php";
-include_once APP . "/private/class/InputSecurityClass.php";
 
 InputSecurity::validateWithoutLetter($_POST['eventId'] , $eventId);
 InputSecurity::validateWithoutNumber($_POST['eventDescription'] , $eventDescription);

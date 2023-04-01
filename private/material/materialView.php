@@ -1,4 +1,25 @@
 <div class="profil-container bg-color-gray">
+    <?php
+        if(isset($_SESSION['ERROR'])){
+            echo "<script> alert('" . $_SESSION['ERROR'] . "') </script>";
+            InputSecurity::destroyError();
+        }
+        if(isset($_POST['searchEmployee'])){
+            $searchWord = explode(" " , $_POST['searchEmployee']);
+            $searchResult = querySearch($tables ,$searchWord);
+        //  $searchStatement = $dataBase->read($tables , );
+            $searchStatement = $PDO->prepare($searchResult);
+            $searchStatement->execute();
+            $results = $searchStatement->fetchAll();
+            unset($_POST['searchEmployee']);
+        }
+        else{
+            $results = $dataBase->read("Equipment",[
+                "field" => "*"
+            ]);
+        }
+    ?>
+
     <div class="profil-container-header">
         <div class="profil-link-container">
             <a href="<?= URLManagement::addUrlParam(array('display'=>'add')) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-user-plus-bottom"></i> </a>
@@ -25,16 +46,13 @@
             </thead>
             <tbody class="table-body">
                 <?php
-                    $materials = $dataBase->read("Equipment",[
-                        "fields" => ["distinct *"]
-                    ]);
-                    foreach($materials as $material):?>
+                    foreach($results as $material):?>
                     <tr class="table-cell text-color-white">
                         <td>  </td>
                         <td> <?= InputSecurity::displayWithFormat($material->equipmentName , "uppercaseFirstLetter") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($material->equipmentAvailableQuantity , "uppercase") ?> </td>
                         <td> <?= InputSecurity::displayWithFormat($material->equipmentTotalQuantity) ?> </td>
-                        <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="/profil?onglet=employees&display=modify&employee=<?= $material->equipmentName ?>" > <i class="icon-user-edit"></i> </a> </td>
+                        <td> <a class="btn-link bg-color-gray width-50 height-50px border-rad-10 text-color-white hover-color-orange" href="/tool?onglet=material&display=modify&material=<?= $material->equipmentName ?>" > <i class="icon-user-edit"></i> </a> </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

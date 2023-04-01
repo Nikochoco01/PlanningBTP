@@ -101,14 +101,14 @@ switch ($path) {
             require TREAT . "toolProcess/newTool.php";
         break;
 
-    case "/rmvTool":
+    case "/toolModify":
         if ($_SERVER["REQUEST_METHOD"] == "POST")
-            require TREAT . "toolProcess/RemoveToolProcess.php";
+            require TREAT . "toolProcess/modifyToolProcess.php";
         break;
 
-    case "/delete":
+    case "/toolDelete":
         if ($_SERVER["REQUEST_METHOD"] == "POST")
-            require TREAT . "delete.php";
+            require TREAT . "toolProcess/RemoveToolProcess.php";
         break;
 
     case "/logout":
