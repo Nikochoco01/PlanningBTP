@@ -29,35 +29,35 @@ body{
 *
 *====================*/
 
-.margin-left-5-px{
+.margin-left-5px{
     margin-left: 5px;
 }
 
-.margin-right-5-px{
+.margin-right-5px{
     margin-right: 5px;
 }
 
-.margin-top-5-px{
+.margin-top-5px{
     margin-top: 5px;
 }
 
-.margin-bottom-5-px{
+.margin-bottom-5px{
     margin-bottom: 5px;
 }
 
-.margin-left-10-px{
+.margin-left-10px{
     margin-left: 10px;
 }
 
-.margin-right-10-px{
+.margin-right-10px{
     margin-right: 10px;
 }
 
-.margin-top-10-px{
+.margin-top-10px{
     margin-top: 10px;
 }
 
-.margin-bottom-10-px{
+.margin-bottom-10px{
     margin-bottom: 10px;
 }
 
@@ -92,7 +92,6 @@ body{
 .padding-left-5{
     padding-left: 5%;
 }
-
 
 .width-50{
     width: 50%;
@@ -142,12 +141,28 @@ body{
     height: 80px;
 }
 
+.height-94{
+    height: 94%;
+}
+
 .width-100{
     width: 100%;
 }
 
 .height-100{
     height: 100%;
+}
+
+.width-100px{
+    width: 100px;
+}
+
+.height-100px{
+    height: 100px;
+}
+
+.height-230px{
+    height: 230px;
 }
 
 .border-rad-10{
@@ -355,7 +370,7 @@ body{
     position: relative;
     display: flex;
     align-items: center;
-    height: 100px;
+    justify-content: center;
 }
 
 .btn{
@@ -938,7 +953,7 @@ body{
 }
 
 .table-header tr th:nth-child(1){
-    text-align: center;
+    padding-left: 4%;
 }
 
 .table-cell{
@@ -986,4 +1001,77 @@ body{
         color: white;
         font-weight: normal;
     }
+}
+
+/*=======================
+*
+* layout for planning
+*
+*=======================*/
+
+.table-border{
+    border-top: 1px solid var(--orange);
+    border-bottom: 1px solid var(--orange);
+    border-left: 1px solid var(--orange);
+}
+
+.table-cell-calendar{
+    min-height: 80px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    vertical-align: top;
+}
+
+/* if the day isn't in the current month*/
+.table-cell-not-in-month{
+    opacity: 0.3;
+}
+
+.table-cell-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-day-number{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-right-radius: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+.color-current-day{
+    background-color: var(--orange);
+}
+
+/*==========================================
+*
+*============== Event layout ===============
+*
+*=========================================*/
+
+.event-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    margin: 4px 0 4px 0;
+}
+
+.event-container::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+.event{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96%;
+}
+
+.event-informations{
+    width: 95%;
 }

@@ -193,22 +193,28 @@ class Month{
      * @return int 
      */
     private function convertWeek($week){
-        if($week >= 1 && $week < 7){
+            $returnWeek = 0;
             switch($week){
                 case 1:
-                    return 0;
+                    $returnWeek = 0;
+                    break;
                 case 2:
-                    return 7*1;
+                    $returnWeek = 7*1;
+                    break;
                 case 3:
-                    return 7*2;
+                    $returnWeek = 7*2;
+                    break;
                 case 4:
-                    return 7*3;
+                    $returnWeek = 7*3;
+                    break;
                 case 5:
-                    return 7*4;
+                    $returnWeek = 7*4;
+                    break;
                 case 6:
-                    return 7*5;
+                    $returnWeek = 7*5;
+                    break;
             }
-        }
+        return $returnWeek;
     }
 
     /**
@@ -218,19 +224,22 @@ class Month{
      */
     public function setupWeek($week){
 
+        $returnWeek = 0;
+
         if($week <= 0){
             $this->previousMonth();
-            return $this->getWeeks();
+            $returnWeek = $this->getWeeks();
         }
 
         if($week > $this->getWeeks()){
             $this->nextMonth();
-            return 1;
+            $returnWeek = 1;
         }
 
         if($week >=1 && $week < 7){
-            return $this->convertWeek($week);
+            $returnWeek = $this->convertWeek($week);
         }
+        return $returnWeek;
     }
 
     /**
@@ -248,9 +257,9 @@ class Month{
      * 
      * @return bool
      */
-    private function withinWeek(\DateTimeImmutable $firstWeekDay){
+    private function withinWeek(\DateTimeImmutable $firstWeekDayInput){
         $currentDay = date('Y-m-d');
-        $firstWeekDay = $firstWeekDay;
+        $firstWeekDay = $firstWeekDayInput;
         $lastWeekDay = $firstWeekDay->modify('+' . 6 . 'days');
 
         $firstWeekDay = $firstWeekDay->format('Y-m-d');
@@ -266,11 +275,6 @@ class Month{
     public function getCurrentWeek(){
         $numWeek = 1;
         $monday = $this->getFirstDay()->modify('last Monday');
-
-        // if($this->previousWeek() === 5 && $this->getWeeks() === 6){
-        //     $numWeek = 6;
-        //     return $numWeek;
-        // }
 
         for($numWeek; $numWeek < $this->getWeeks(); $numWeek++){
             if($this->withinWeek($monday)){

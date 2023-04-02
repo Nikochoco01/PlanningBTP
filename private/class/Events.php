@@ -86,7 +86,7 @@ class Events{
      */
     public function getVehicles(){
 
-        return $this->dataBase->read("Vehicle v left join GoTo g on v.vehicleLicensePlate = g.vehicleLicensePlate",[
+        return $this->dataBase->read("Vehicle v left join GoTo g on v.vehicleId = g.vehicleId",[
             "conditions" => ["eventId is" => null],
             "fields" => ["distinct v.vehicleLicensePlate , v.vehicleModel , v.vehicleDriverLicense , v.vehicleMaxPassenger"]
         ]);
