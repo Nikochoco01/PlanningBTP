@@ -5,6 +5,6 @@
         <p> <?= (new DateTime($event->eventStartTime))->format('H:m') ?> - <?= (new DateTime($event->eventEndTime))->format('H:m') ?> </p>
     </div>
     <div class="btn-container width-80 height-50px">
-        <a href="<?= URLManagement::addUrlParam(array('event'=>$event->eventId))?>" class="btn-link width-80 height-50 border-rad-10 bg-color-orange text-color-gray"> détails </a>
+        <a href="<?= URLManagement::addUrlParam(array('display'=>'view' ,'event'=>$event->eventId))?>" class="btn-link width-80 height-50 border-rad-10 bg-color-orange text-color-gray"> détails </a>
     </div>
 </div>

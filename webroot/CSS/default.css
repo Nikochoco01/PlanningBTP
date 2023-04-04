@@ -93,6 +93,14 @@ body{
     padding-left: 5%;
 }
 
+.width-30{
+    width: 30%;
+}
+
+.height-30{
+    height: 30%;
+}
+
 .width-50{
     width: 50%;
 }
@@ -852,7 +860,6 @@ body{
     justify-content: center;
     align-items: center;
     gap: 2%;
-    width: 40%;
 }
 
 .profil-picture{
@@ -1074,4 +1081,14 @@ body{
 
 .event-informations{
     width: 95%;
+}
+
+/*==========================================
+*
+*======== Event Details layout =============
+*
+*=========================================*/
+
+.checkboxDrop:not(:checked) ~ .table-container{
+    /* display: none; */
 }

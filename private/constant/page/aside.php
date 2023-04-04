@@ -28,7 +28,7 @@
                     <a href="<?= "planning?onglet=".PARAM_MISSION_ONGLET."&display=".PARAM_WEEK_DISPLAY."&year=".date('Y')."&month=".date('m')."&week=".$month->getCurrentWeek() ?>">
                     <i class="icon-calendar"></i>
                         <span class="nav-text">
-                            Planning <?= var_dump($month->getCurrentWeek()) ?>
+                            Planning
                         </span>
                 </a>
             </li>

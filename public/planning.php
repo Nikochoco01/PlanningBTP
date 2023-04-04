@@ -23,6 +23,7 @@
                     $dayView = APP . "private/planning/dayView.php";
                     $weekView = APP . "private/planning/weekView.php";
                     $monthView = APP . "private/planning/monthView.php";
+                    $eventView = APP . "private/planning/showEvent.php";
 
 
                     switch($_GET["onglet"]){
@@ -37,6 +38,9 @@
                                     case PARAM_MONTH_DISPLAY:
                                         include_once $monthView;
                                     break;
+                                    case PARAM_VIEW_DISPLAY:
+                                        include_once $eventView;
+                                    break;
                                 }
                             break;
                         case PARAM_EMPLOYEE_ONGLET:
@@ -49,6 +53,9 @@
                                     break;
                                     case PARAM_MONTH_DISPLAY:
                                         include_once $monthView;
+                                    break;
+                                    case PARAM_VIEW_DISPLAY:
+                                        include_once $eventView;
                                     break;
                                 }
                             break;
@@ -63,6 +70,9 @@
                                     case PARAM_MONTH_DISPLAY:
                                         include_once $monthView;
                                     break;
+                                    case PARAM_VIEW_DISPLAY:
+                                        include_once $eventView;
+                                    break;
                                 }
                             break;
                         case PARAM_MATERIAL_ONGLET:
@@ -75,6 +85,9 @@
                                     break;
                                     case PARAM_MONTH_DISPLAY:
                                         include_once $monthView;
+                                    break;
+                                    case PARAM_VIEW_DISPLAY:
+                                        include_once $eventView;
                                     break;
                                 }
                             break;

@@ -18,7 +18,7 @@ class Events{
 
             if($eventId != null){
                return $this->dataBase->read("Event" , [
-                        "conditions" => ["eventId" => "$eventId"],
+                        "conditions" => ["eventId" => $eventId],
                         "fields" => ["distinct *"]
                     ]);
             }
@@ -31,15 +31,16 @@ class Events{
      * 
      * @return array from data base
      */
-        public function getWorksite($worksiteId = null){
+        public function getWorksite($view , $worksiteId = null){
 
-            if($worksiteId != null){
+            if($worksiteId != null && $view == "view"){
                 return $this->dataBase->read("Worksite",[
-                    "conditions" => ["worksiteId" => "$worksiteId"],
+                    "conditions" => ["worksiteId" => $worksiteId],
                     "fields" => ["distinct *"]
                 ]);
             }
-            else{
+    
+            if($worksiteId == null && $view == "modify"){
                 return $this->dataBase->read("Worksite",[
                     "fields" => ["distinct *"]
                 ]);
@@ -51,15 +52,16 @@ class Events{
      * 
      * @return array from data base
      */
-    public function getEmployee($employeeId = null){
+    public function getEmployee($view, $employeeId = null){
 
-        if($employeeId != null){
+        if($employeeId != null && $view == "view"){
             return $this->dataBase->read("User",[
-                "conditions" => ["userId" => "$employeeId"],
+                "conditions" => ["userId" => $employeeId],
                 "fields" => ["distinct *"]
             ]);
         }
-        else{
+
+        if($employeeId == null && $view == "modify"){
             return $this->dataBase->read("User",[
                 "fields" => ["distinct *"]
             ]);
@@ -71,12 +73,20 @@ class Events{
      * 
      * @return array from data base
      */
-    public function getMaterial(){
+    public function getMaterial($view ,$eventId = null){
+        if($eventId != null && $view == "view"){
+            return $this->dataBase->read("Equipment e left join UsedEquipment u on e.equipmentName = u.equipmentName",[
+                "conditions" => ["eventId =" => $eventId],
+                "fields" => ["distinct *"]
+            ]);
+        }
 
-        return $this->dataBase->read("Equipment e left join UsedEquipment u on e.equipmentName = u.equipmentName",[
-            "conditions" => ["eventId is" => null],
-            "fields" => ["distinct e.equipmentName , e.equipmentTotalQuantity , e.equipmentAvailableQuantity"]
-        ]);
+        if($eventId == null && $view == "modify"){
+            return $this->dataBase->read("Equipment e left join UsedEquipment u on e.equipmentName = u.equipmentName",[
+                "conditions" => ["eventId is" => null],
+                "fields" => ["distinct *"]
+            ]);
+        }
     }
 
     /**
@@ -84,12 +94,21 @@ class Events{
      * 
      * @return array from data base
      */
-    public function getVehicles(){
+    public function getVehicles($view ,$eventId = null){
 
-        return $this->dataBase->read("Vehicle v left join GoTo g on v.vehicleId = g.vehicleId",[
-            "conditions" => ["eventId is" => null],
-            "fields" => ["distinct v.vehicleLicensePlate , v.vehicleModel , v.vehicleDriverLicense , v.vehicleMaxPassenger"]
-        ]);
+        if($eventId != null && $view == "view"){
+            return $this->dataBase->read("Vehicle v left join GoTo g on v.vehicleId = g.vehicleId",[
+                "conditions" => ["eventId =" => $eventId],
+                "fields" => ["distinct *"]
+            ]);
+        }
+
+        if($eventId == null && $view == "modify"){
+            return $this->dataBase->read("Vehicle v left join GoTo g on v.vehicleId = g.vehicleId",[
+                "conditions" => ["eventId is" => null],
+                "fields" => ["distinct *"]
+            ]);
+        }
     }
 
     /**
@@ -231,8 +250,8 @@ class Events{
                                         left outer join GoTo g on e.eventId = g.eventId", [
             "conditions" => ["e.eventId" => "$eventId"],
             "fields" => ["e.eventId, e.worksiteId, GROUP_CONCAT(distinct(a.userId)) userId, 
-                            GROUP_CONCAT(distinct(u.equipmentName)) equipment, 
-                            GROUP_CONCAT(distinct(g.vehicleLicensePlate)) vehicle"],
+                            GROUP_CONCAT(distinct(u.equipmentId)) equipment, 
+                            GROUP_CONCAT(distinct(g.vehicleId)) vehicle"],
             "order" => ["e.eventId, a.userId, e.worksiteId"]
         ]);
     }

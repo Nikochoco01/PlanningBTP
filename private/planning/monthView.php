@@ -27,23 +27,25 @@
 
 <div class="profil-container bg-color-gray">
     <div class="profil-container-header">
-        <div class="profil-link-container">
+        <div class="profil-link-container width-50">
             <a href="<?= URLManagement::addUrlParam(array('display'=>'add')) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-user-plus-bottom"></i> </a>
             <a href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?= PARAM_EMPLOYEE_ONGLET ?>&display=<?= PARAM_VIEW_DISPLAY?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-rotate"></i> </a>
         </div>
 
-        <h2> <?= $month->toStringMonth(); ?> </h2>
+        <div class="profil-link-container text-color-white width-50">
+            <h2> <?= $month->toStringMonth(); ?> </h2>
+        </div>
 
-        <div class="profil-link-container">
+        <div class="profil-link-container width-30">
             <a href="<?= URLManagement::addUrlParam(array('month'=>$month->previousMonth()->month ,'year'=>$month->previousMonth()->year)) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-angle-left"></i> </a>
             <a href="<?= URLManagement::addUrlParam(array('month'=>$month->nextMonth()->month ,'year'=>$month->nextMonth()->year)) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-angle-right"></i> </a>
         </div>
 
-        <div class="profil-link-container">
-            <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y') , 'week'=>$month->getCurrentWeek()))?>" class="btn-link width-100px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em">Aujourd’hui</a>
-            <a href="<?= URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d'))) ?>" class="btn-link width-100px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Jour </a>
-            <a href="<?= URLManagement::addUrlParam(array('display'=>'week' , 'week'=>$month->getCurrentWeek())) ?>" class="btn-link width-100px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Semaine </a>
-            <a href="<?= URLManagement::addUrlParam(array('display'=>'month')) ?>" class="btn-link width-100px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Mois </a>
+        <div class="profil-link-container width-70">
+            <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y') , 'week'=>$month->getCurrentWeek()))?>" class="btn-link width-100 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em">Aujourd’hui</a>
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d'))) ?>" class="btn-link width-50 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Jour </a>
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'week' , 'week'=>$month->getCurrentWeek())) ?>" class="btn-link width-100 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Semaine </a>
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'month')) ?>" class="btn-link width-50 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Mois </a>
         </div>
     </div>
 
