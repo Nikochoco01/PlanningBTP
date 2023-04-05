@@ -24,6 +24,7 @@
                     $weekView = APP . "private/planning/weekView.php";
                     $monthView = APP . "private/planning/monthView.php";
                     $eventView = APP . "private/planning/showEvent.php";
+                    $eventAdd = APP . "private/planning/addEventView.php";
 
 
                     switch($_GET["onglet"]){
@@ -41,6 +42,9 @@
                                     case PARAM_VIEW_DISPLAY:
                                         include_once $eventView;
                                     break;
+                                    case PARAM_ADD_DISPLAY:
+                                        include_once $eventAdd;
+                                    break;
                                 }
                             break;
                         case PARAM_EMPLOYEE_ONGLET:
@@ -56,6 +60,9 @@
                                     break;
                                     case PARAM_VIEW_DISPLAY:
                                         include_once $eventView;
+                                    break;
+                                    case PARAM_ADD_DISPLAY:
+                                        include_once $eventAdd;
                                     break;
                                 }
                             break;
@@ -73,6 +80,9 @@
                                     case PARAM_VIEW_DISPLAY:
                                         include_once $eventView;
                                     break;
+                                    case PARAM_ADD_DISPLAY:
+                                        include_once $eventAdd;
+                                    break;
                                 }
                             break;
                         case PARAM_MATERIAL_ONGLET:
@@ -88,6 +98,9 @@
                                     break;
                                     case PARAM_VIEW_DISPLAY:
                                         include_once $eventView;
+                                    break;
+                                    case PARAM_ADD_DISPLAY:
+                                        include_once $eventAdd;
                                     break;
                                 }
                             break;

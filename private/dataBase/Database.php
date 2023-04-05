@@ -211,6 +211,9 @@ class Database
      */
     public function save(string $table, array $datas , string $idName): bool
     {
+        // var_dump($table);
+        // var_dump($datas);
+        // var_dump($idName);
         $id = null;
         if (isset($datas[$idName]) && is_numeric($datas[$idName])) {
             $id = $datas[$idName];

@@ -26,7 +26,7 @@
     ?>
 
     <div class="profil-container-header">
-        <div class="profil-link-container">
+        <div class="profil-link-container width-50">
             <a href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?=PARAM_MATERIAL_ONGLET?>&display=<?= PARAM_VIEW_DISPLAY?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class=""> X </i> </a>
         </div>
 

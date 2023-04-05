@@ -62,9 +62,26 @@ class Events{
         }
 
         if($employeeId == null && $view == "modify"){
-            return $this->dataBase->read("User",[
-                "fields" => ["distinct *"]
-            ]);
+
+            // $userList = array();
+            
+            // $affected = $this->dataBase->read("Affected", ["fields" => ["userId"]]);
+
+            // // var_dump($affected);
+
+            // foreach($affected as $affect){
+            //    $notIn = $this->dataBase->read("User",[
+            //         "conditions" => ["userId notin" => $affect->userId],
+            //         "fields" => ["distinct *"]
+            //     ]);
+            //     var_dump($affected);
+
+            //     array_push($userList , $notIn->userId);
+            // }
+
+            // var_dump($userList);
+
+            // return $userList;
         }
     }
 
@@ -82,9 +99,9 @@ class Events{
         }
 
         if($eventId == null && $view == "modify"){
-            return $this->dataBase->read("Equipment e left join UsedEquipment u on e.equipmentName = u.equipmentName",[
-                "conditions" => ["eventId is" => null],
-                "fields" => ["distinct *"]
+            return $this->dataBase->read("Equipment e left join UsedEquipment u on e.equipmentId = u.equipmentId",[
+                "conditions" => ["e.equipmentAvailableQuantity >" => 0],
+                "fields" => ["distinct e.equipmentId , e.equipmentName , e.equipmentAvailableQuantity , e.equipmentTotalQuantity"]
             ]);
         }
     }
@@ -106,7 +123,7 @@ class Events{
         if($eventId == null && $view == "modify"){
             return $this->dataBase->read("Vehicle v left join GoTo g on v.vehicleId = g.vehicleId",[
                 "conditions" => ["eventId is" => null],
-                "fields" => ["distinct *"]
+                "fields" => ["distinct v.*"]
             ]);
         }
     }

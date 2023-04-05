@@ -1,5 +1,5 @@
 <form action="modifyEmployee" method="post" class="profil-container bg-color-gray" enctype="multipart/form-data">
-    <a href="<?= returnURL()?>" class="btn-link bg-color-orange border-rad-10 width-50px height-50px margin-top-10-px margin-left-10-px" > <i class=""></i> X </a>
+    <a href="<?= returnURL()?>" class="btn-link bg-color-orange border-rad-10 width-50px height-50px margin-top-10px margin-left-10px" > <i class=""></i> X </a>
 
     <div class="profil-picture">
         <div class="input-picture-container">

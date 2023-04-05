@@ -53,12 +53,32 @@ body{
     margin-right: 10px;
 }
 
+.margin-right-15px{
+    margin-right: 15px;
+}
+
 .margin-top-10px{
     margin-top: 10px;
 }
 
 .margin-bottom-10px{
     margin-bottom: 10px;
+}
+
+.margin-left-5{
+    margin-left: 5%;
+}
+
+.margin-right-5{
+    margin-right: 5%;
+}
+
+.margin-top-5{
+    margin-top: 5%;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5%;
 }
 
 .margin-left-10{
@@ -93,12 +113,24 @@ body{
     padding-left: 5%;
 }
 
+.width-10{
+    width: 10%;
+}
+
 .width-30{
     width: 30%;
 }
 
 .height-30{
     height: 30%;
+}
+
+.width-30px{
+    width: 30px;
+}
+
+.height-30px{
+    height: 30px;
 }
 
 .width-50{
@@ -115,6 +147,14 @@ body{
 
 .height-50px{
     height: 50px;
+}
+
+.width-60{
+    width: 60%;
+}
+
+.height-60{
+    height: 60%;
 }
 
 .width-70{
@@ -242,7 +282,7 @@ body{
 
 /*====================
 *
-* input layout
+* text input layout
 *
 *====================*/
 .input-container{
@@ -272,6 +312,10 @@ body{
     animation: input-focus 0.2s forwards;
 }
 
+.date-time{
+    animation: input-focus 0.2s forwards;
+}
+
 .disabled{
     cursor: not-allowed;
 }
@@ -294,6 +338,31 @@ body{
     100%{
         transform: translateY(0px);
     }
+}
+
+/*=====================
+*
+* checkbox input layout
+*
+*====================*/
+
+.input-checkbox-field{
+    width: 0;
+    height: 0;
+}
+
+.input-checkbox-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    animation: btn-unhover 0.2s forwards;
+}
+
+.input-checkbox-label:hover{
+    animation: btn-hover 0.2s forwards;
 }
 
 /*====================
@@ -1053,6 +1122,10 @@ body{
     background-color: var(--orange);
 }
 
+.table-list{
+    list-style: none;
+}
+
 /*==========================================
 *
 *============== Event layout ===============
@@ -1088,7 +1161,3 @@ body{
 *======== Event Details layout =============
 *
 *=========================================*/
-
-.checkboxDrop:not(:checked) ~ .table-container{
-    /* display: none; */
-}

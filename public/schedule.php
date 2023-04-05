@@ -14,7 +14,7 @@ include_once APP ."private/constant/page/head.php";
             <?php include_once APP . "private/constant/page/aside.php"; ?>
 
             <main class="container-main">
-                <div class="scheduleContainer">
+                <div class="main-content">
                     <?php
                     if(isset($_SESSION['error'])){
                         echo "<script> alert('".$_SESSION['error']."') </script>";

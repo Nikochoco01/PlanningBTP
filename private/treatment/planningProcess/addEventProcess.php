@@ -1,7 +1,4 @@
 <?php
-include_once APP . "/private/dataBase/dataBaseConnection.php";
-include_once APP . "/private/class/InputSecurityClass.php";
-
 $eventDescription = InputSecurity::validateWithoutTags($_POST['eventDescription']);
 InputSecurity::isEmpty($_POST['eventStartDate'] , $eventStartDate);
 InputSecurity::isEmpty($_POST['eventEndDate'] , $eventEndDate);
@@ -62,78 +59,69 @@ InputSecurity::isEmpty($_POST['eventEndTime'] , $eventEndTime);
 
 $eventWorksite = $_POST['addWorksite'];
 
-$eventEmployees = $_POST['addEmployee'];
+// $eventEmployees = $_POST['addEmployee'];
 
 $eventVehicles = $_POST['addVehicle'];
 
 $eventMaterials = $_POST['addMaterial'];
+$eventMaterialName = $_POST['materialName'];
+
 $eventMaterialsQuantity = $_POST['materialQuantity'];
 
+var_dump($eventMaterialsQuantity);
 
-// function addEvent(){
+// var_dump($_POST);
+
+// var_dump($eventWorksite);
+// var_dump($eventVehicles);
+// var_dump($eventMaterials);
+// var_dump($eventMaterialsQuantity);
+
+
+    $insertEvent = $dataBase->save("Event",[
+        "eventDescription" => $eventDescription,
+        "eventStartDate" => $eventStartDate,
+        "eventEndDate" => $eventEndDate,
+        "eventStartTime" => $eventStartTime,
+        "eventEndTime" => $eventEndTime,
+        "worksiteId"=> $eventWorksite
+    ],"");
+
+    $getLastEvent = $dataBase->read("Event",[
+        "fields" => ["max(eventID) eventId"]
+    ])[0];
+
+// if($eventEmployees){
+//     foreach($eventEmployees as $eventEmployee){
+//         $this->dataBase->save("Affected",[
+//             "userId" => $eventEmployee,
+//             "eventId" => $gettingLastEvent->eventId
+//         ],"");
+//     }
 // }
-// function getEventId(){
-// }
-// function addEmployee(){
-// }
-// function addVehicle(){
-// }
-// function addMaterial(){
-// }
 
-
-    /**
-     * Query to insert into Event the new event
-     */
-    $insertEvent = $PDO->prepare("insert into Event values(0 , :varDescription , :varStartDate , :varEndDate , :varStartTime , :varEndTime , :varWorksite)");
-    $insertEvent->bindParam('varDescription', $eventDescription);
-    $insertEvent->bindParam('varStartDate' , $eventStartDate);
-    $insertEvent->bindParam('varEndDate' , $eventEndDate);
-    $insertEvent->bindParam('varStartTime' , $eventStartTime);
-    $insertEvent->bindParam('varEndTime' , $eventEndTime);
-    $insertEvent->bindParam('varWorksite' , $eventWorksite);
-
-    $insertEvent->execute();
-
-
-    /**
-     * Get the id of last Event so this event
-     */
-    $getLastEvent = $PDO->prepare("select max(eventID) eventId from Event");
-    $getLastEvent->execute();
-    $gettingLastEvent = $getLastEvent->fetch();
-    $gettingLastEvent = $gettingLastEvent->eventId;
-
-    /**
-     * Query to insert into Affected the person selected
-     */
-    foreach($eventEmployees as $eventEmployee){
-        $insertAffected = $PDO->prepare("insert into Affected values(:varUser , :varEvent)");
-        $insertAffected->bindParam('varUser', $eventEmployee);
-        $insertAffected->bindParam('varEvent' , $gettingLastEvent);
-        $insertAffected->execute();
-    }
-
-    /**
-     * Query to insert into GoTo the vehicles selected
-     */
+if($eventVehicles){
     foreach($eventVehicles as $eventVehicle){
-        $insertGoTo = $PDO->prepare("insert into GoTo values(:varLicensePlate , :varEvent)");
-        $insertGoTo->bindParam('varLicensePlate', $eventVehicle);
-        $insertGoTo->bindParam('varEvent' , $gettingLastEvent);
-        $insertGoTo->execute();
+        // var_dump($eventVehicle);
+        $dataBase->save("GoTo",[
+            "vehicleId" => $eventVehicle,
+            "eventId" => $getLastEvent->eventId
+        ],"");
     }
+}
 
-    /**
-     * Query to insert into UsedEquipment the equipment selected
-     */
+if($eventMaterials){
+
     for($i = 0; $i < count($eventMaterials); $i++){
-        $insertGoTo = $PDO->prepare("insert into UsedEquipment values(:varEvent, :varMaterialName , :varQuantity)");
-        $insertGoTo->bindParam('varEvent' , $gettingLastEvent);
-        $insertGoTo->bindParam('varMaterialName', $eventMaterials[$i]);
-        $insertGoTo->bindParam('varQuantity', $eventMaterialsQuantity[$i]);
-        $insertGoTo->execute();
+
+        $dataBase->save("UsedEquipment",[
+            "eventId" => $getLastEvent->eventId,
+            "equipmentId" => $eventMaterial, 
+            "equipmentName" => $eventMaterialName[$i],
+            "Quantity" => $eventMaterialsQuantity[$i]
+        ],"");
     }
+}
 
 header('Location: /planning?onglet=missions&display=week&year=2023&month=01&week='.$_SESSION['CURRENTWEEK']);
 Exit();
