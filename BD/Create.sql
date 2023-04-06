@@ -1,5 +1,3 @@
--- use p2107521;
-use bdsite;
 SET SQL_SAFE_UPDATES = 0;
 
 drop table if exists Affected;
@@ -24,10 +22,11 @@ CREATE TABLE DriverLicense(
 );
 
 CREATE TABLE Equipment(
+   equipmentId int auto_increment,
    equipmentName VARCHAR(255),
    equipmentTotalQuantity INT,
    equipmentAvailableQuantity INT,
-   constraint PK_Equipment PRIMARY KEY(equipmentName)
+   constraint PK_Equipment PRIMARY KEY(equipmentId)
 );
 
 CREATE TABLE Worksite(
@@ -61,7 +60,7 @@ CREATE TABLE User(
 );
 
 CREATE TABLE Picture(
-   pictureId int unsigned auto_increment,
+   pictureId int unsigned,
    userId INT not null,
    pictureName VARCHAR(255),
    pictureSize int,
@@ -80,21 +79,22 @@ CREATE TABLE Login(
 );
 
 CREATE TABLE Vehicle(
-   vehicleLicensePlate VARCHAR(255),
+   vehicleId INT not null auto_increment,
+   vehicleLicensePlate VARCHAR(12) unique,
    vehicleModel VARCHAR(255),
    vehicleDriverLicense VARCHAR(255),
    vehicleMaxPassenger VARCHAR(255),
    vehicleDisponibility VARCHAR(255),
-   constraint PK_Vehicle PRIMARY KEY(vehicleLicensePlate),
+   constraint PK_Vehicle PRIMARY KEY(vehicleId),
    constraint FK_Vehicle_DriverLicense FOREIGN KEY(vehicleDriverLicense) REFERENCES DriverLicense(driverLicenseName)
 );
 
 CREATE TABLE WorkTime(
    userId INT,
-   workTimeDay VARCHAR(4),
-   workTimeMonth VARCHAR(4),
-   workTimeWeek VARCHAR(4),
-   workTimeYear VARCHAR(5),
+   workTimeDay int,
+   workTimeMonth int,
+   workTimeWeek int,
+   workTimeYear int,
    workTimeTotalHours VARCHAR(255),
    constraint PK_WorkTime PRIMARY KEY(userId, workTimeMonth, workTimeWeek, workTimeYear, workTimeDay),
    constraint FK_WorkTime_User FOREIGN KEY(userId) REFERENCES User(userId)
@@ -124,18 +124,19 @@ CREATE TABLE HaveLicense(
 
 CREATE TABLE UsedEquipment(
    eventId INT,
+   equipmentId INT,
    equipmentName VARCHAR(255),
    Quantity INT,
    constraint PK_UsedEquipment PRIMARY KEY(eventId, equipmentName),
    constraint FK_UsedEquipment_Event FOREIGN KEY(eventId) REFERENCES Event(eventId),
-   constraint FK_UsedEquipment_Equipment FOREIGN KEY(equipmentName) REFERENCES Equipment(equipmentName)
+   constraint FK_UsedEquipment_Equipment FOREIGN KEY(equipmentId) REFERENCES Equipment(equipmentId)
 );
 
 CREATE TABLE GoTo(
-   vehicleLicensePlate VARCHAR(50),
+   vehicleId int,
    eventId INT,
-   constraint PK_GoTo PRIMARY KEY(vehicleLicensePlate, eventId),
-   constraint FK_GoTo_Vehicle FOREIGN KEY(vehicleLicensePlate) REFERENCES Vehicle(vehicleLicensePlate),
+   constraint PK_GoTo PRIMARY KEY(vehicleId, eventId),
+   constraint FK_GoTo_Vehicle FOREIGN KEY(vehicleId) REFERENCES Vehicle(vehicleId),
    constraint FK_GoTo_Event FOREIGN KEY(eventId) REFERENCES Event(eventId)
 );
 
@@ -159,6 +160,7 @@ BEGIN
 declare id int default 0;
 	insert into User values (0, userFirstName, userLastName, userMail, userPhone, pictureId, userPostion);
     set id = (select userId from User u where u.userFirstName = userFirstName and u.userLastName = userLastName and u.userMail = userMail);
+    update User set pictureId = id where userId = id;
     insert into Login values (id, concat((select replace(userFirstName, " ", "-")),".", (select replace((select userLastName from User u where u.userFirstName = userFirstName and u.userLastName = userLastName and u.userMail = userMail), " ", "-"))), sha1("1234"));
 END
 $
@@ -166,7 +168,7 @@ delimiter ;
 
 drop procedure if exists AffectTools;
 delimiter $
-CREATE procedure AffectTools (IN id INT, IN name varchar(255), IN quantity INT)
+CREATE procedure AffectTools (IN eventId INT, IN materialId INT , IN name varchar(255), IN quantity INT)
 BEGIN
 DECLARE availableTools INT;
 
@@ -179,7 +181,7 @@ THEN
 ROLLBACK;
 ELSE
 
-INSERT INTO UsedEquipment VALUES(id, name, quantity);
+INSERT INTO UsedEquipment VALUES(eventId, materialId, name, quantity);
 
 UPDATE Equipment e
 SET equipmentAvailableQuantity = equipmentAvailableQuantity - quantity
