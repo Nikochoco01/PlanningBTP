@@ -1,8 +1,4 @@
-<?php
-    require_once dirname(__FILE__,2). "/class/Month.php";
-    require_once dirname(__FILE__,2). "/class/Events.php";
-
-    // $event = new Events($PDO);
+<?php 
     $event = new Events($dataBase);
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null , $_GET['week'] ?? null , $_GET['day'] ?? null);
     $weeks = $month->getWeeks();
@@ -21,76 +17,96 @@
     }
     
     $formatDate = 'Y-m-'.$month->formatDayNumber($month->day);
-
 ?>
 
-<div class="tab" >
-    <div class="tabHeader">
-        <div class="leftSide">
-                <div class="zoneAddEvent">
-                    <input type="checkbox" name="buttonAddEvent" id="buttonAddEvent" class="buttonAddEvent">
-                    <label for="buttonAddEvent" class="buttonLabel" id="buttonLabel"> <i id="iButtonLabel" class="icon-calendar-plus-alt"></i></label>
-                    <label for="buttonAddEvent" class="indicator"> Ajouter une mission</label>
-                    <?php include_once dirname(__FILE__). "/addEventView.php"?>
-                </div>
-            
-                <div class="zoneModifyEvent">
-                    <?php if(isset($_GET['event'])){
-                        include_once dirname(__FILE__). "/modifyEvent.php";
-                    } ?>
-                </div>
+
+<div class="profil-container bg-color-gray">
+    <div class="profil-container-header">
+        <div class="profil-link-container width-50">
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'add')) ?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-user-plus-bottom"></i> </a>
+            <a href="<?=$_SERVER["PATH_INFO"]?>?onglet=<?= PARAM_EMPLOYEE_ONGLET ?>&display=<?= PARAM_VIEW_DISPLAY?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-rotate"></i> </a>
         </div>
 
-        <div class="middle">
+        <div class="profil-link-container text-color-white width-50">
             <h2> <?= $month->toStringDay(); ?> </h2>
         </div>
 
-        <div class="rightSide">
-                <div class="navigationPreviousNext">
-                    <a href="<?= URLManagement::addUrlParam(array('month'=>$month->previousDay()->month ,'year'=>$month->previousDay()->year , 'week'=>$month->previousDay()->week , 'day'=>$month->previousDay()->day))?> "> <i class="icon-angle-left"></i> </a>
-                    <a href="<?= URLManagement::addUrlParam(array('month'=>$month->nextDay()->month ,'year'=>$month->nextDay()->year , 'week'=>$month->nextDay()->week , 'day'=>$month->nextDay()->day))?> "> <i class="icon-angle-right"></i> </a>
-                </div>
-                <div class="navigationView">
-                    <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y'), 'day'=>date('d')))?>">Aujourd’hui</a>
-                    <a href="<?= URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d'))) ?>" class="changeView"> Jour </a>
-                    <a href="<?= URLManagement::addUrlParam(array('display'=>'week' , 'week'=>$month->getCurrentWeek())) ?>" class="changeView"> Semaine </a>
-                    <a href="<?= URLManagement::addUrlParam(array('display'=>'month')) ?>" class="changeView"> Mois </a>
-                </div>
+        <div class="profil-link-container width-30">
+            <a href="<?= URLManagement::addUrlParam(array('month'=>$month->previousDay()->month ,'year'=>$month->previousDay()->year , 'week'=>$month->previousDay()->week , 'day'=>$month->previousDay()->day))?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-angle-left"></i> </a>
+            <a href="<?= URLManagement::addUrlParam(array('month'=>$month->nextDay()->month ,'year'=>$month->nextDay()->year , 'week'=>$month->nextDay()->week , 'day'=>$month->nextDay()->day))?>" class="btn-link width-50px height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> <i class="icon-angle-right"></i> </a>
         </div>
+
+        <div class="profil-link-container width-70">
+            <a href="<?= URLManagement::addUrlParam(array('month'=>date('m') ,'year'=>date('Y') , 'week'=>$month->getCurrentWeek()))?>" class="btn-link width-100 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em">Aujourd’hui</a>
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'day' , 'day'=>date('d'))) ?>" class="btn-link width-50 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Jour </a>
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'week' , 'week'=>$month->getCurrentWeek())) ?>" class="btn-link width-100 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Semaine </a>
+            <a href="<?= URLManagement::addUrlParam(array('display'=>'month')) ?>" class="btn-link width-50 height-50px border-rad-10 bg-color-orange hover-color-gray text-color-gray font-1-5-em"> Mois </a>
+        </div>
+
     </div>
 
-    <table class="calendarTable">
-        <tbody class="calendarBodyDayView">
-            <tr>
-                <th class="rowName"> Matin </th>
-                <?php
-                    $eventsForDay = $events[$date->format($formatDate)] ?? [];
-                    foreach($eventsForDay as $event): 
-                    if($event->eventStartTime >= '00:00:00' && $event->eventStartTime <= '12:59:59'):
-                ?>
-                    <td class="eventMorning">
-                        <?php include dirname(__FILE__)."/calendarEvent.php"; ?>
+    <div class="table-container">
+        <table class="table">
+            <thead class="table-header bg-color-orange text-color-gray">
+                <tr>
+                    <th> Matin </th>
+                    <th> Après-midi </th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr class="table-cell-calendar text-color-white height-94">
+                    <td class="table-border">
+                        <div class="event-container height-94">
+                            <?php
+                                $eventsForDay = $events[$date->format($formatDate)] ?? [];
+                                foreach($eventsForDay as $event): 
+                                if($event->eventStartTime >= '00:00:00' && $event->eventStartTime <= '12:59:59'):
+                            ?>
+                            <?php 
+                                foreach($eventsForDay as $event){
+                                    include dirname(__FILE__)."/calendarEvent.php";
+                                }
+                            ?>
+                            <?php endif; endforeach; ?>
+                        </div>
                     </td>
-                <?php 
-                    endif;
-                    endforeach 
-                ?>
-            </tr>
-            <tr>
-                <th class="rowName"> Après-midi </th>
-                <?php
-                    $eventsForDay = $events[$date->format($formatDate)] ?? [];
-                    foreach($eventsForDay as $event): 
-                    if($event->eventStartTime >= '13:00:00' && $event->eventStartTime <= '23:59:59'):
-                ?>
-                    <td class="eventAfternoon">
-                        <?php include dirname(__FILE__)."/calendarEvent.php"; ?>
+
+                    <td class="table-border">
+                        <div class="event-container height-94">
+                            <?php
+                                $eventsForDay = $events[$date->format($formatDate)] ?? [];
+                                foreach($eventsForDay as $event): 
+                                if($event->eventStartTime >= '13:00:00' && $event->eventStartTime <= '23:59:59'):
+                            ?>
+                            <?php 
+                                foreach($eventsForDay as $event){
+                                    include dirname(__FILE__)."/calendarEvent.php";
+                                }
+                            ?>
+                            <?php endif; endforeach; ?>
+                        </div>
                     </td>
-                <?php 
-                    endif;
-                    endforeach 
-                ?>
-            </tr>
-        </tbody>
-    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -76,7 +76,7 @@
                                     <?php endif; ?>
                                 </p>
                             </div>
-                            <div class="event-container height-100">
+                            <div class="event-container height-94">
                                 <?php 
                                     foreach($eventsForDay as $event){
                                         include dirname(__FILE__)."/calendarEvent.php";

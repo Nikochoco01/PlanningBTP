@@ -38,8 +38,8 @@
             <thead class="table-header bg-color-orange text-color-gray">
                 <tr>
                     <th scope="col"> Immatriculation</th>
-                    <th scope="col"> Model </th>
-                    <th scope="col"> Place disponible </th>
+                    <th scope="col"> Modèle </th>
+                    <th scope="col"> Places assises </th>
                     <th scope="col"> Permis </th>
                     <th scope="col"> Disponibilité </th>
                     <?php if($rightToModify):?>

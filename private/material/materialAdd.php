@@ -37,11 +37,11 @@
             <table class="table">
                 <thead class="table-header bg-color-orange text-color-gray">
                     <tr>
-                        <th scope="col"> Nom de l'equipment</th>
+                        <th scope="col"> Nom de l'équipement</th>
                         <th scope="col"> Nombre disponible </th>
                         <th scope="col"> Nombre total</th>
                         <?php if($rightToModify):?>
-                        <th scope="col"> Editer</th>
+                        <th scope="col"> Éditer</th>
                         <?php endif; ?>
                     </tr>
                 </thead>
